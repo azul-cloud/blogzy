@@ -1,0 +1,22 @@
+{% extends "maininclude/base.html" %}
+
+{% block title %}
+    Favorite Travel Stories
+{% endblock %}
+
+{% block main %}
+    <div class="row row-padding jumbotron">
+        <h2 class="text-center">My Favorites</h2>
+    </div>
+    <div class="container">
+        <div class="row-padding">
+            {% for f in favorites %}
+                <div class="col-md-4">
+                    <h1 class="text-center"><a class="brand" href="{{ f.post.get_absolute_url }}">{{ f.post.title }}</h1>
+                    <img src="{{ f.post.get_image_url }}" class="img-responsive" /></a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
+

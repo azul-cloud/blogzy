@@ -1,0 +1,380 @@
+/* Colors Light to Dark #B1D0DD, #588497, #27576B, #092F3F, #010E13 */
+
+/***** General *****/
+/* sticky footer */
+html, body {
+    height: 100%;
+}
+#wrap {
+    min-height: 100%;
+}
+#main {
+    overflow:hidden;
+	padding-bottom: 180px;
+	height:100%;
+}
+
+/* must be same height as the footer */
+#footer {
+    position: relative;
+	margin-top: -180px; /* negative value of footer height */
+	height: 180px;
+	clear:both;
+	padding: 50px;
+	font-size:150%;
+}
+#footer a:link,
+#footer a:visited {
+    color: #fff;
+}
+
+/* end sticky footer */
+
+html {
+    font-family: "Open Sans", sans-serif;
+}
+h1, h2 {
+    font-weight: 300;
+}
+footer {
+    background-color:#010E13;
+}
+legend h1 {
+    text-align:center;
+}
+#wrap {
+    padding-bottom:25px;
+}
+.no-padding {
+    padding:0;
+}
+#navbar-main {
+    border-radius:0;
+    background-color:#010E13;
+    margin-bottom:0;
+}
+#navbar-main li a:visited,
+ #navbar-main li a:link {
+    color:#fff;
+}
+#navbar-main li.dropdown li a:visited,
+ #navbar-main li.dropdown li a:link {
+    color:#010E13;
+}
+#navbar-main li a:hover,
+#footer a:hover {
+    color:#B1D0DD;
+}
+#navbar-profile-img {
+    height:40px;
+    margin:5px;
+}
+.navbar-header img {
+    height:40px;
+}
+a.brand {
+    text-decoration:none;
+    color: #010E13;
+}
+a.brand:hover {
+    color: #588497;
+}
+a.brand-light,
+.account-container a {
+    color: #588497;
+}
+img {
+    margin-left:auto;
+    margin-right:auto;
+}
+.post-list-container  {
+    padding:30px;
+}
+.post-list-container img {
+    opacity:0.9;
+}
+.post-list-container img:hover {
+    opacity:1;
+}
+#background {
+    background-image: url("/static/img/front.jpg");
+    background-size: cover;
+    height:600px;
+    width:100%;
+}
+#main-information span {
+    font-size:500%;
+    margin:25px 0;
+}
+.favorite {
+    cursor:pointer;
+}
+.social-buttons img,
+.social-icons img {
+    opacity:0.9
+}
+.social-buttons img:hover,
+.social-icons img:hover {
+    opacity:1
+}
+.social-buttons > div {
+    text-align: center;
+}
+.social-icons img {
+    display:inline;
+    width: 50px;
+}
+.social-icons {
+    display:inline;
+}
+.margin-top {
+    margin-top:20px;
+}
+
+@media(max-width:768px) {
+    #navbar-main li.dropdown li a:visited,
+    #navbar-main li.dropdown li a:link {
+        color:#fff;
+    }
+}
+
+/***** JQuery Autocomplete *****/
+.ui-menu-item {
+    background-color:#fff;
+    border-bottom: 1px solid #eeeeee;
+    padding:5px;
+}
+.ui-menu-item:hover {
+    background-color:#eee;
+}
+.ui-autocomplete {
+    list-style-type: none;
+    padding-left:0;
+    width:1px;
+    /* I don't know why, but width of any px puts it to be the size of the input */
+}
+
+/***** Search *****/
+/*
+Styles that apply to search functionality. These searches are applied mainly on
+the home page and the explore page.
+*/
+.search-overlay {
+    position: absolute;
+    background: rgba(61,62,66,0.7);
+    left:50%;
+    margin-left:-500px;
+    top: 250px;
+    width: 1000px;
+    padding:50px;
+    border-radius:5px;
+    transition: all 0.5s ease-out;
+}
+.search-overlay input,
+#explore-search-box input {
+    width:100%;
+    display: block-inline;
+    text-align: center;
+    font-size: 150%;
+    border:0;
+    border-radius:5px;
+}
+.search-overlay-text {
+    color:white;
+    font-size:220%;
+    font-weight:300;
+    text-align: center;
+}
+#explore-search-box-row {
+    background: rgba(61,62,66,0.7);
+}
+.explore-search-padding {
+    /* applied when the explore search bar turns to fixed */
+    padding-top: 83px;
+}
+.fixed-top {
+    position:fixed;
+    top:0;
+    width:100%;
+    z-index:100;
+}
+#explore-container > div.row:nth-of-type(odd),
+#wave-posts > div.row:nth-of-type(odd){
+    background-color:#eee;
+    border-radius: 5px;
+}
+#explore-container {
+    margin-top: 30px;
+}
+
+@media (max-width:768px) {
+    .search-overlay {
+        margin-left:-200px;
+        top: 150px;
+        width: 400px;
+    }
+    .search-overlay.drop {
+        top: 400px;
+    }
+    .search-overlay-text {
+        font-size: 150%;
+    }
+    #search-overlay-form > div ,
+    #explore-search-box form > div {
+        margin-top:15px;
+    }
+}
+
+
+/***** Blog *****/
+/*
+Styles that are applied to general blogs. These styles are typically NOT
+applied to individual blog posts, those are defined int he Post section
+*/
+#map-canvas {
+    height: 100%;
+    width: 100%;
+}
+#map-container {
+    height: 100%;
+    width: 33.33333%;
+    float:right;
+}
+.infowindow-title {
+    text-align: center;
+}
+
+#blog-header-row img {
+    max-height: 100px;
+    display: inline;
+}
+#blog-container {
+    height:100%;
+}
+#blog-header-row {
+    margin-bottom:0;
+}
+
+
+/***** Post *****/
+/*
+css styles that are specific to individual posts
+*/
+#post-main-image {
+    margin-left:auto;
+    margin-right:auto;
+    padding:20px;
+    border-radius:26px;
+}
+#other-posts img {
+    margin-left:auto;
+    margin-right:auto;
+    opacity:0.9;
+}
+#other-posts img:hover {
+    opacity:1;
+}
+#other-posts .other-post-title {
+    text-align:center;
+    text-decoration:none;
+    color: #000;
+    font-weight:300;
+}
+#other-posts a:hover {
+    text-decoration:none;
+}
+#post-footer {
+    padding:30px 0;
+}
+.no-pic {
+    height:150px;
+}
+
+
+
+/***** Bootstrap Extensions *****/
+/*
+Bootstrap is not perfect. These are modifications that are applicable or
+related to existing bootstrap css rules. Make sure to load style.css after
+loading bootstrap.css so that these rules can override.
+*/
+.status-alert {
+    margin:10px;
+}
+.container-padding {
+    padding: 25px 0;
+}
+.row-padding {
+    padding: 25px 0;
+}
+.jumbotron {
+    background-color: #B1D0DD;
+}
+.jumbotron-clear {
+    background-color: inherit;
+}
+.jumbotron h3 {
+    font-size:30px;
+}
+.navbar-brand {
+    padding:5px;
+}
+.btn-primary {
+    background-color: #27576B;
+    border-color: #27576B;
+}
+.btn-primary:hover {
+    background-color: #588497;
+    border-color: #588497;
+}
+.panel-default > div.panel-heading {
+    background-color:#B1D0DD;
+}
+.panel-title {
+    text-align:center;
+}
+.modal-header {
+    background-color: #B1D0DD;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+}
+.modal-footer {
+    background-color: #B1D0DD;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+
+/***** Forms *****/
+.form-group div.checkbox {
+    padding-top:15px;
+}
+
+
+/***** Registration *****/
+.account-container {
+    text-align:center;
+}
+.account-container input {
+    font-size:200%;
+}
+.socialaccount_ballot img {
+    margin:15px;
+    display:inline;
+}
+.login-or {
+    margin-bottom:15px;
+    font-size:150%;
+}
+.account-container input {
+    border-radius:5px;
+    text-align:center;
+    border: 2px solid #eeeeee;
+}
+.account-container ul {
+    list-style-type:none;
+}
+.account-container ul.errorlist li {
+    color:red;
+    padding-left:0;
+}

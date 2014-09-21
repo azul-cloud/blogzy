@@ -1,0 +1,54 @@
+{% extends "bloginclude/base.html" %}
+{% load static %}
+
+{% block title %}
+    Travel Blog Wave | {{ post.title }}
+{% endblock %}
+
+{% block main %}
+    <div class="jumbotron text-center">
+        <h1>{{ post.blog.title }} - {{ post.title }}</h1>
+    </div>
+    <div class="container">
+        <div id="post-content" class="well">
+            <div class="row">
+                {% if post.image %}
+                    <img src="{{ post.image.url }}" class="img-responsive" id="post-main-image" />
+                {% endif %}
+            </div>
+            <div class="container">
+                <div class="col-sm-8 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+                    <div class="row">
+                        <h1 class="text-center">{{ post.title }}</h1>
+                        {% include 'maininclude/social_share.html' %}
+                        {{ post.body|safe }}
+                        <h4 class="text-center">Read more from <a href="{{ post.blog.get_absolute_url }}">{{ post.blog }}</a></h4>
+                    </div>
+                    <div class="row" id="post-footer">
+                        {% include "maininclude/social_share.html" %}
+                        <h4>Written by {{ post.author.username }} on {{ post.create_date }}
+                        {% include "bloginclude/favorite.html" %}</h4>
+                        {% if post.blog.disqus %}
+                            {% include "bloginclude/disqus.html" %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="col-sm-3 hidden-xs">
+                    {% if other_posts %}
+                        <div id="other-posts">
+                        <h2 class="text-center">Related Posts</h2>
+                            {% for p in other_posts %}
+                                <a href="{{ p.get_absolute_url }}" class="brand">
+                                    <h4 class="other-post-title">{{ p.title }}</h4>
+                                    {% if p.image %}
+                                        <img src="{{ p.get_image_url }}" class="img-responsive img-rounded" />
+                                    {% endif %}
+                                </a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+             </div>
+        </div>
+    </div>
+{% endblock %}

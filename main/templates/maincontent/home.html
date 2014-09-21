@@ -1,0 +1,79 @@
+{% extends "maininclude/base.html" %}
+{% load static %}
+
+{% block title %}
+    Travel Blog Wave | Create and Search Travel Blogs
+{% endblock %}
+
+{% block extra_head %}
+    <script src="{% static 'js/plugins/stellar.js' %}"></script>
+    <script src="{% static 'js/stellar.js' %}"></script>
+    {% include "maininclude/place_autocomplete.html" %}
+    {% include "maininclude/topic_autocomplete.html" %}
+{% endblock %}
+
+{% block main %}
+    <div id="background" data-stellar-background-ratio="0.2"></div>
+    <div class="search-overlay">
+        <div class="row">
+            <p class="search-overlay-text">
+                Easily find detailed travel stories that match your interests
+            </p>
+        </div>
+        <div class="row">
+            <form id="search-overlay-form" method="post" action="{% url 'blog-explore' %}">
+                {% csrf_token %}
+                <div class="col-sm-5 col-xs-12">
+                    <input name="place" id="place-search" placeholder="Search by Place" />
+                </div>
+                <div class="col-sm-5 col-xs-12">
+                    <input name="topic" id="topic-search" placeholder="Search by Topic" />
+                </div>
+                <div class="col-sm-2 col-xs-12">
+                    <button type="submit" class="btn btn-primary col-xs-12">
+                        <span class="glyphicon glyphicon-search"></span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="container hidden-xs hidden-sm" id="main-information">
+        <div class="jumbotron jumbotron-clear text-center">
+            <div class="row row-padding">
+                <h1>Travel Blogs Made Simple</h1>
+            </div>
+            <div class="row row-padding">
+                <a class="brand" href="{% url 'blog-create' %}">
+                    <div class="col-md-4">
+                            <h3>Create Your Blog</h3>
+                            <span class="glyphicon glyphicon-edit"></span>
+                            <p>
+                                Easily create your own blog and reap the benefits of joining the best
+                                travel blog community
+                            </p>
+                    </div>
+                </a>
+                <a class="brand" href="{% url 'blog-explore' %}">
+                    <div class="col-md-4">
+                            <h3>Read Travel Stories</h3>
+                            <span class="glyphicon glyphicon-book"></span>
+                            <p>
+                                Sort travel blogs by city, country, or topic to find what you're looking for
+                            </p>
+                    </div>
+                </a>
+                <a class="brand" href="{% url 'blog-explore' %}">
+                    <div class="col-md-4">
+                            <h3>Travel Information</h3>
+                            <span class="glyphicon glyphicon-plane"></span>
+                            <p>
+                                There are many places to get travel information, but if you want in-depth
+                                information from <u>real</u> travelers, you found the right place
+                            </p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

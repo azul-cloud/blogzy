@@ -1,0 +1,54 @@
+<script type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}">
+</script>
+<script type="text/javascript">
+  function initialize() {
+    {% if center_lat and center_long %}
+        center_latlng = new google.maps.LatLng({{ center_lat }}, {{ center_long }})
+    {% else %}
+        center_latlng = new google.maps.LatLng(6.230833, -75.590556)
+    {% endif %}
+
+    LocationData = [
+        {% for p in blog.post_set.all %}
+            {% if p.lat and p.long %}
+                [{{ p.lat }}, {{ p.long }}, "{{ p.title }}", "{{ p.headline }}", "{{ p.get_absolute_url }}"],
+            {% endif %}
+        {% endfor %}
+    ]
+
+    var mapOptions = {
+      center: center_latlng,
+      zoom: 4
+    };
+    var map = new google.maps.Map(document.getElementById("map-canvas"),
+        mapOptions);
+
+    var infowindow = new google.maps.InfoWindow({
+        maxWidth: 300
+    });
+
+    for (var i in LocationData)
+    {
+        var p = LocationData[i];
+        var latlng = new google.maps.LatLng(p[0], p[1]);
+
+        var marker = new google.maps.Marker({
+            position: latlng,
+            map: map,
+            title: p[2],
+            headline: p[3],
+            link: p[4],
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+            content = "<h3 class='infowindow-title'><a href='" + this.link + "' class='brand'>" + this.title + "</a></h3><p>" + this.headline + "</p>"
+
+            infowindow.setContent(content);
+            infowindow.open(map, this);
+        });
+    }
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>

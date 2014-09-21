@@ -1,0 +1,25 @@
+{% extends "bloginclude/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+    Edit Travel Blog Story
+{% endblock %}
+
+{% block extra_head %}
+    {% include "maininclude/place_autocomplete.html" %}
+{% endblock %}
+
+{% block main %}
+    {% include "maininclude/tinymce.html" %}
+    <div class="container">
+        <h1 class="text-center">
+            Edit Post {{ post }}
+        </h1>
+        <div class="well">
+            {% include "maininclude/form_status.html" %}
+            <form method="post">
+                {% crispy form %}
+            </form>
+        </div>
+    </div>
+{% endblock %}

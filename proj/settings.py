@@ -39,7 +39,18 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'hello'
+    'django.contrib.sites',
+    'main',
+    'blog',
+    'internal',
+    'tastypie',
+    'south',
+    'allauth',
+    'crispy_forms',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.facebook',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -51,9 +62,22 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    "django.contrib.auth.context_processors.auth",
+
+    # Required by allauth template tags
+    "django.core.context_processors.request",
+
+    # allauth specific context processors
+    "allauth.account.context_processors.account",
+    "allauth.socialaccount.context_processors.socialaccount",
+)
+
 ROOT_URLCONF = 'proj.urls'
 
 WSGI_APPLICATION = 'proj.wsgi.application'
+
+SITE_ID = 1
 
 
 # Database
@@ -84,6 +108,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 
 # Parse database configuration from $DATABASE_URL
@@ -97,9 +124,7 @@ ALLOWED_HOSTS = ['*']
 
 # Static asset configuration
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-STATIC_ROOT = 'staticfiles'
-STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
+
+# Crispy settings
+CRISPY_TEMPLATE_PACK = 'bootstrap3'

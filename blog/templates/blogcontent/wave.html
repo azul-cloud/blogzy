@@ -1,0 +1,48 @@
+{% extends "maininclude/base.html" %}
+
+{% block title %}
+    Travel Blog List | Travel Blog Wave
+{% endblock %}
+
+{% block main %}
+    <div class="row jumbotron text-center">
+        <h1>The freshest stories</h1>
+        <h4>catered to your interests</h4>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div id="wave-posts">
+                    {% include "bloginclude/post_list.html" %}
+                    {% if not blogs %}
+                        <h3 class="text-center">Your wave is flat! <a href="{% url 'blog-explore' %}"> Explore</a>
+                            to fix that. Easy.</h3>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-md-5">
+                <div class="panel panel-default">
+                  <!-- Default panel contents -->
+                  <div class="panel-heading text-center"><h2>Blog Waves</h2></div>
+                  <div class="panel-body">
+                    <p>These blogs are in your wave. You'll receive all the posts of these blogs right here on your
+                        Wave page.</p>
+                  </div>
+
+                  <!-- Table -->
+                  <table class="table table-responsive">
+                    <tbody>
+                        {% for b in blogs %}
+                        <tr>
+                            <td><h4><a class="brand-light" href="{{ b.get_absolute_url }}">{{ b }}</a></h4></td>
+                            <td>{% include 'bloginclude/wave_modify.html' %}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

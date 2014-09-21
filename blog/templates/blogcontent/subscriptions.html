@@ -1,0 +1,23 @@
+{% extends "maininclude/base.html" %}
+
+{% block title %}
+    Travel Blog Wave | Subscriptions
+{% endblock %}
+
+{% block main %}
+    <div class="row row-padding jumbotron">
+        <h2 class="text-center">Manage Subscriptions</h2>
+    </div>
+    <div class="container">
+        {% for s in subscriptions %}
+            <div class="row row-padding">
+                <div class="col-md-6">
+                    <a href="{{ s.blog.get_absolute_url }}"><h2>{{ s.blog.title }}</h2></a>
+                </div>
+                <div class="col-md-6">
+                    Will show options here. Notification/Email types.
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
