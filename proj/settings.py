@@ -112,9 +112,14 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+MEDIA_URL = '/media/'
 
-# Parse database configuration from $DATABASE_URL
-DATABASES['default'] =  dj_database_url.config()
+
+if BASE_DIR == '/app/proj':
+    # if hosted on heroku, get the db magically
+    import dj_database_url
+    DATABASES['default'] =  dj_database_url.config()
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
@@ -128,3 +133,12 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Crispy settings
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+
+
+# allauth settings
+LOGIN_REDIRECT_URL = "/"
+ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_TEMPLATE_DIR = "allauth/account/"
+SOCIALACCOUNT_TEMPLATE_DIR = "allauth/socialaccount/"
+ACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_EMAIL_REQUIRED = True
