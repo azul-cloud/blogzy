@@ -1,0 +1,13 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1265\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Changes to AllAuth\
+\
+There are some changes needed for allauth, mainly just for the templates. This document will outline the changes that were performed on this version of django-allauth to fit the needs of this project.\
+\
+1. Copy the needed templates in /allauth/templates/ to folder in our own app to allow overriding of the templates\
+\
+2. Add a ACCOUNT_TEMPLATE_DIR setting in django.conf.settings. Make changes to /account/views.py and /account/app_settings.py to override the folder that the template comes from}
