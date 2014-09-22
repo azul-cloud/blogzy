@@ -242,17 +242,18 @@ def create_post(request):
             try:
                 user = request.user
 
-                if request.POST['topic']:
-                    topic = Topic.objects.get(id=request.POST["topic"])
-                else:
-                    topic = None
+                # TODO: need to change this code to take multiple values
+                # if request.POST['topic']:
+                #     topic = Topic.objects.get(id=request.POST["topic"])
+                # else:
+                #     topic = None
 
                 post = Post(
                     author = user,
                     blog = PersonalBlog.objects.get(owner=user),
                     title = request.POST["title"],
                     body = request.POST["body"],
-                    topic = topic,
+                    # topic = topic,
                     active = request.POST["active"],
                     place_id = request.POST["place_id"],
                     place = request.POST["place"]
@@ -279,6 +280,7 @@ def create_post(request):
 def edit_post(request, **kwargs):
     '''
     edit an existing blog post
+    TODO: edit and create share a lot of the same logic
     '''
 
     # check to make sure current user is the author of this post
@@ -299,10 +301,10 @@ def edit_post(request, **kwargs):
                     try:
                         user = request.user
 
-                        if request.POST['topic']:
-                            topic = Topic.objects.get(id=request.POST["topic"]),
-                        else:
-                            topic = None
+                        # if request.POST['topic']:
+                        #     topic = Topic.objects.get(id=request.POST["topic"]),
+                        # else:
+                        #     topic = None
 
                         # begin saving the model instance
                         form.topic = topic
@@ -345,10 +347,7 @@ def dashboard(request, **kwargs):
     status = ""
 
     blog_slug = kwargs['blog']
-    blog = get_object_or_404(PersonalBlog, slug=blog_slug)
-    blog_url = settings.BASE_URL + "/api/v1/blog/?slug=" + blog_slug + \
-        "&owner__username=" + request.user.username
-    myblog = get_json_objects(blog_url)[0]
+    blog = get_object_or_404(PersonalBlog, slug=blog_slug, owner=request.user)
 
     # handle the form submit to update blog data
     form = BlogEditForm(instance=blog)
@@ -369,8 +368,8 @@ def dashboard(request, **kwargs):
             status = "error"
 
 
-    return render(request, "blogcontent/dashboard.html", {'myblog':myblog, 'alert_message':alert_message,
-                                                          'status':status, 'form':form})
+    return render(request, "blogcontent/dashboard.html",
+                  {'myblog':blog, 'alert_message':alert_message, 'status':status, 'form':form})
 
 
 @login_required

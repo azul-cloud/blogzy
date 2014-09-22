@@ -62,6 +62,7 @@ MIDDLEWARE_CLASSES = (
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
+    "main.context_processors.main",
     "django.contrib.auth.context_processors.auth",
 
     # Required by allauth template tags
@@ -77,16 +78,6 @@ ROOT_URLCONF = 'proj.urls'
 WSGI_APPLICATION = 'proj.wsgi.application'
 
 SITE_ID = 1
-
-
-# Database
-# https://docs.djangoproject.com/en/1.6/ref/settings/#databases
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#         }
-#     }
 
 DATABASES = {}
 DATABASES['default'] =  dj_database_url.config()
@@ -133,3 +124,7 @@ ACCOUNT_TEMPLATE_DIR = "allauth/account/"
 SOCIALACCOUNT_TEMPLATE_DIR = "allauth/socialaccount/"
 ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_EMAIL_REQUIRED = True
+
+
+# google stuff
+GOOGLE_API_KEY = 'AIzaSyCsPHVZewbLPsJgz3oB8v8JzaFzNpyR0NA'

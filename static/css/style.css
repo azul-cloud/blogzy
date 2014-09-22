@@ -9,7 +9,6 @@ html, body {
     min-height: 100%;
 }
 #main {
-    overflow:hidden;
 	padding-bottom: 180px;
 	height:100%;
 }

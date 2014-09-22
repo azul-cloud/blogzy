@@ -33,7 +33,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for p in myblog.posts %}
+                                {% for p in myblog.post_set.all %}
                                     <tr>
                                         <td>
                                             <a href="{% url 'blog-post-edit' p.id %}">

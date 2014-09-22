@@ -37,8 +37,7 @@ class BlogCreateForm(ModelForm):
 class BlogPostCreateForm(ModelForm):
     place = forms.CharField(required=False, help_text="Allow post to show on maps, and for people to find your post when searching by place")
     headline = forms.CharField(required=False, help_text="100 character headline of your post. Will appear on map popup and other places")
-    topic = forms.MultipleChoiceField()
-
+    # topic = forms.MultipleChoiceField(required=False)
 
     class Meta:
         model = Post
@@ -53,14 +52,14 @@ class BlogPostCreateForm(ModelForm):
                 '',
                 Field('views', type="hidden"),
                 Field('place_id', type="hidden"),
-                Div('title', css_class="col-sm-3 col-xs-6"),
-                Div('topic', css_class="col-sm-3 col-xs-6"),
+                Div('title', css_class="col-sm-5 col-xs-6"),
+                # Div('topic', css_class="col-sm-3 col-xs-6"),
                 Div(
                     Field('place', id="place-search"),
-                    css_class="col-sm-3 col-xs-6",
+                    css_class="col-sm-5 col-xs-6",
                     # todo: hidden-xs. need to modify crispyforms
                     ),
-                Div('active', css_class="col-sm-3 hidden-xs"),
+                Div('active', css_class="col-sm-2 hidden-xs"),
                 Div('headline', css_class="col-xs-12 col-sm-offset-1 col-sm-10"),
                 Div('body', css_class="col-xs-12"),
             ),
@@ -80,14 +79,14 @@ class BlogPostEditForm(BlogPostCreateForm):
                 '',
                 Field('views', type="hidden"),
                 Field('place_id', type="hidden"),
-                Div('title', css_class="col-sm-3 col-xs-6"),
-                Div('topic', css_class="col-sm-3 col-xs-6"),
+                Div('title', css_class="col-sm-5 col-xs-6"),
+                # Div('topic', css_class="col-sm-5 col-xs-6"),
                 Div(
                     Field('place', id="place-search"),
-                    css_class="col-sm-3 col-xs-6",
+                    css_class="col-sm-5 col-xs-6",
                     # todo: hidden-xs. need to modify crispyforms
                     ),
-                Div('active', css_class="col-sm-3 hidden-xs"),
+                Div('active', css_class="col-sm-2 hidden-xs"),
                 Div('headline', css_class="col-xs-12 col-sm-offset-1 col-sm-10"),
                 Div('body', css_class="col-xs-12"),
             ),
