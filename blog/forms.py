@@ -60,7 +60,8 @@ class BlogPostCreateForm(ModelForm):
                     # todo: hidden-xs. need to modify crispyforms
                     ),
                 Div('active', css_class="col-sm-2 hidden-xs"),
-                Div('headline', css_class="col-xs-12 col-sm-offset-1 col-sm-10"),
+                Div('headline', css_class="col-xs-8 col-sm-8"),
+                Div('image', css_class="col-xs-4 col-sm-4"),
                 Div('body', css_class="col-xs-12"),
             ),
             ButtonHolder(
@@ -87,7 +88,8 @@ class BlogPostEditForm(BlogPostCreateForm):
                     # todo: hidden-xs. need to modify crispyforms
                     ),
                 Div('active', css_class="col-sm-2 hidden-xs"),
-                Div('headline', css_class="col-xs-12 col-sm-offset-1 col-sm-10"),
+                Div('headline', css_class="col-xs-8 col-sm-8"),
+                Div('image', css_class="col-xs-4 col-sm-4"),
                 Div('body', css_class="col-xs-12"),
             ),
             ButtonHolder(

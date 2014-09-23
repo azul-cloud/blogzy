@@ -264,6 +264,7 @@ css styles that are specific to individual posts
     margin-right:auto;
     padding:20px;
     border-radius:26px;
+    max-height:600px;
 }
 #other-posts img {
     margin-left:auto;

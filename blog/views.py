@@ -4,6 +4,7 @@ import datetime
 
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from django.db import IntegrityError
@@ -80,13 +81,13 @@ def explore(request, **kwargs):
 
         if place and topic:
             # user put in both place and topic filters
-            posts = posts.filter(place=place, topic__title=topic)
+            posts = posts.filter(place=place, topics__title__in=topic)
         if place:
             # user put in a place filter
             posts = posts.filter(place=place)
         elif topic:
             # user put in a topic filter
-            posts = posts.filter(topic__title=topic)
+            posts = posts.filter(topics__title__in=topic)
         else:
             # user did not put in any search criteria, take all posts
             pass
@@ -236,32 +237,26 @@ def create_post(request):
 
     if request.method == "POST":
         # attempt save the blog object
-        form = BlogPostCreateForm(request.POST)
+        form = BlogPostCreateForm(request.POST, request.FILES)
 
         if form.is_valid():
             try:
-                user = request.user
-
                 # TODO: need to change this code to take multiple values
                 # if request.POST['topic']:
                 #     topic = Topic.objects.get(id=request.POST["topic"])
                 # else:
                 #     topic = None
 
-                post = Post(
-                    author = user,
-                    blog = PersonalBlog.objects.get(owner=user),
-                    title = request.POST["title"],
-                    body = request.POST["body"],
-                    # topic = topic,
-                    active = request.POST["active"],
-                    place_id = request.POST["place_id"],
-                    place = request.POST["place"]
-                )
+                user = User.objects.get(username = request.user)
+
+                post = form.save(commit=False)
+                post.author = user
+                post.blog = PersonalBlog.objects.get(owner=user)
                 post.save()
 
                 # saved and redirect to view the post
-                post_url = reverse('blog-post', kwargs={'blog':post.blog.slug, 'post':slugify(post.title)})
+                post_url = reverse('blog-post', kwargs={'blog':post.blog.slug,
+                                                        'post':slugify(post.title)})
                 return HttpResponseRedirect(post_url)
 
             except IntegrityError:
@@ -292,7 +287,7 @@ def edit_post(request, **kwargs):
     if post.author == request.user:
         if request.method == "POST":
             # save the edited post instance
-            form = BlogPostEditForm(request.POST, instance=post)
+            form = BlogPostEditForm(request.POST, request.FILES, instance=post)
 
             if 'submit' in request.POST:
                 # user is saving the updated data. They are not trying to delete.

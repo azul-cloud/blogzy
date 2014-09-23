@@ -17,9 +17,7 @@
         </h1>
         <div class="well">
             {% include "maininclude/form_status.html" %}
-            <form method="post">
-                {% crispy form %}
-            </form>
+            {% crispy form %}
         </div>
     </div>
 {% endblock %}
