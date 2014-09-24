@@ -17,16 +17,28 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-DEFAULT_SECRET_KEY = '3iy-!-d$!pc_ll$#$elg&cpr@*tfn-d5&n9ag=)%#()t$$5%5^'
-SECRET_KEY = os.environ.get('SECRET_KEY', DEFAULT_SECRET_KEY)
+env = os.environ.get('ENV')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+if env == 'test':
+    # in heroku test env
+    DEBUG = True
+    TEMPLATE_DEBUG = True
+    ALLOWED_HOSTS = ['test.travelblogwave.com']
+    SECRET_KEY = '3iy-!-d$!pc_ll$8$elg&cpr@*tfn-d5&#9ag=)%#()t$$5%5^'
 
-TEMPLATE_DEBUG = True
+elif env == 'prod':
+    # in heroku prod env
+    DEBUG = False
+    TEMPLATE_DEBUG = False
+    ALLOWED_HOSTS = ['www.travelblogwave.com']
+    SECRET_KEY = '3iy-!-d$!pc_ll$#$elg#cpr@*tfn-d5&nAag=)%#()t$$5%5^'
 
-ALLOWED_HOSTS = []
+else:
+    # local, or lost
+    DEBUG = True
+    TEMPLATE_DEBUG = True
+    ALLOWED_HOSTS = []
+    SECRET_KEY = '3iy-!-d$!pc_1l$#$elg#cpr@*tfn-d5&JAag=)%#()t$$5%5^'
 
 
 # Application definition
@@ -39,9 +51,11 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.sites',
+
     'main',
     'blog',
     'internal',
+
     'tastypie',
     'south',
     'allauth',
@@ -50,6 +64,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
+    'storages',
 )
 
 MIDDLEWARE_CLASSES = (
