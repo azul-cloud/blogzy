@@ -32,15 +32,17 @@ if env == 'test':
 
 elif env == 'prod':
     # in heroku prod env
-    DEBUG = True
-    TEMPLATE_DEBUG = True
+    DEBUG = False
+    TEMPLATE_DEBUG = False
     ALLOWED_HOSTS = ['www.travelblogwave.com']
     SECRET_KEY = '3iy-!-d$!pc_ll$#$elg#cpr@*tfn-d5&nAag=)%#()t$$5%5^'
-    # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-    
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
+
+    if DEBUG:
+        STATICFILES_DIRS = (
+            os.path.join(BASE_DIR, 'static'),
+        )
+    else:
+        STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 else:
     # local, or lost
