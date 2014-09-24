@@ -119,9 +119,6 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-MEDIA_URL = '/media/'
-
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -143,3 +140,11 @@ ACCOUNT_EMAIL_VERIFICATION = None #no email verification sent. This will change.
 
 # google stuff
 GOOGLE_API_KEY = 'AIzaSyCsPHVZewbLPsJgz3oB8v8JzaFzNpyR0NA'
+
+# aws s3
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_S3_SECURE_URLS = False       # use http instead of https
+AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+AWS_S3_ACCESS_KEY_ID = 'AKIAJJFP34XQF2OPJD5A'     # enter your access key id
+AWS_S3_SECRET_ACCESS_KEY = 'vQGWfysb5a1ZmPyq4BD3VSyyTC9AFVCJcHLVyOuh' # enter your secret access key
+AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
