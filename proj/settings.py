@@ -26,12 +26,17 @@ if env == 'test':
     ALLOWED_HOSTS = ['test.travelblogwave.com']
     SECRET_KEY = '3iy-!-d$!pc_ll$8$elg&cpr@*tfn-d5&#9ag=)%#()t$$5%5^'
 
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+
 elif env == 'prod':
     # in heroku prod env
     DEBUG = False
     TEMPLATE_DEBUG = False
     ALLOWED_HOSTS = ['www.travelblogwave.com']
     SECRET_KEY = '3iy-!-d$!pc_ll$#$elg#cpr@*tfn-d5&nAag=)%#()t$$5%5^'
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 else:
     # local, or lost
@@ -39,6 +44,10 @@ else:
     TEMPLATE_DEBUG = True
     ALLOWED_HOSTS = []
     SECRET_KEY = '3iy-!-d$!pc_1l$#$elg#cpr@*tfn-d5&JAag=)%#()t$$5%5^'
+
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
 
 
 # Application definition
@@ -115,9 +124,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.6/howto/static-files/
 
 STATIC_URL = '/static/'
-STATICFILES_DIRS = (
-    os.path.join(BASE_DIR, 'static'),
-)
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
