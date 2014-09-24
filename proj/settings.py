@@ -124,7 +124,7 @@ ACCOUNT_TEMPLATE_DIR = "allauth/account/"
 SOCIALACCOUNT_TEMPLATE_DIR = "allauth/socialaccount/"
 ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_EMAIL_REQUIRED = True
-
+ACCOUNT_EMAIL_VERIFICATION = None #no email verification sent. This will change.
 
 # google stuff
 GOOGLE_API_KEY = 'AIzaSyCsPHVZewbLPsJgz3oB8v8JzaFzNpyR0NA'

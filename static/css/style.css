@@ -238,6 +238,11 @@ applied to individual blog posts, those are defined int he Post section
     height: 100%;
     width: 33.33333%;
     float:right;
+    overflow:hidden;
+}
+#map-side {
+    overflow:scroll;
+    height:100%;
 }
 .infowindow-title {
     text-align: center;

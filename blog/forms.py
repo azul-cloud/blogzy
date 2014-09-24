@@ -101,11 +101,12 @@ class BlogPostEditForm(BlogPostCreateForm):
 
 class BlogEditForm(ModelForm):
     description = forms.CharField(widget = forms.Textarea())
-    twitter = forms.CharField(required=False, help_text="show twitter feed, and allow people to interact with you on twitter")
-    twitter_widget_id = forms.CharField(required=False, help_text="required to show a timeline widget for your twitter account. " + \
-                                                  "<span class='glyphicon glyphicon-question-sign'></span>")
+    twitter = forms.CharField(required=False, help_text="Show twitter feed, and allow people to interact with you on twitter")
+    twitter_widget_id = forms.CharField(required=False, help_text="Required to show a timeline widget for your twitter account. ")
     instagram = forms.CharField(required=False, help_text="show instagram feed on your blog page (coming soon)")
-    disqus = forms.CharField(required=False, help_text="allow comments at the bottom of your blog posts")
+    disqus = forms.CharField(required=False, help_text="Add comments at the bottom of your blog posts. <a href='" +
+                                                    "https://disqus.com/admin/create/' target='_blank'>Sign up</a> and " +
+                                                    "then enter your disqus ID.")
 
     class Meta:
         model = PersonalBlog
