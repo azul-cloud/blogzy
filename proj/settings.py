@@ -150,6 +150,14 @@ ACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = None #no email verification sent. This will change.
 
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    "django.contrib.auth.backends.ModelBackend",
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    "allauth.account.auth_backends.AuthenticationBackend",
+)
+
 # google stuff
 GOOGLE_API_KEY = 'AIzaSyCsPHVZewbLPsJgz3oB8v8JzaFzNpyR0NA'
 
