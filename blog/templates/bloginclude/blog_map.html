@@ -12,7 +12,12 @@
     LocationData = [
         {% for p in blog.post_set.all %}
             {% if p.lat and p.long %}
-                [{{ p.lat }}, {{ p.long }}, "{{ p.title }}", "{{ p.headline }}", "{{ p.get_absolute_url }}"],
+                [{{ p.lat }},
+                {{ p.long }},
+                "{{ p }}",
+                "{{ p.headline }}",
+                "{{ p.get_absolute_url }}",
+                "{% if p.image%}{{ p.image.url }}{% endif %}"],
             {% endif %}
         {% endfor %}
     ]
@@ -25,7 +30,7 @@
         mapOptions);
 
     var infowindow = new google.maps.InfoWindow({
-        maxWidth: 300
+        maxWidth: 300,
     });
 
     for (var i in LocationData)
@@ -39,10 +44,13 @@
             title: p[2],
             headline: p[3],
             link: p[4],
+            imgURL: p[5],
         });
 
         google.maps.event.addListener(marker, 'click', function() {
-            content = "<h3 class='infowindow-title'><a href='" + this.link + "' class='brand'>" + this.title + "</a></h3><p>" + this.headline + "</p>"
+            content = "<a class='brand-light' href='" + this.link + "'><h3 class='infowindow-title'>" +
+                this.title + "</h3><img class='img-responsive' src='" + this.imgURL + "' /></a> " +
+                "<h4 class='text-center skinny'>" + this.headline + "</p>"
 
             infowindow.setContent(content);
             infowindow.open(map, this);

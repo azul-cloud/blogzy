@@ -247,6 +247,9 @@ applied to individual blog posts, those are defined int he Post section
 .infowindow-title {
     text-align: center;
 }
+#map-canvas a:hover {
+    text-decoration:none;
+}
 
 #blog-header-row img {
     max-height: 100px;

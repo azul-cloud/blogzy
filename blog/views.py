@@ -2,7 +2,7 @@ import requests
 import json
 import datetime
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.admin.views.decorators import staff_member_required
@@ -100,8 +100,12 @@ def post(request, **kwargs):
     '''
     show an individual blog post
     '''
+    blog_slug = kwargs['blog']
+    blog = get_object_or_404(PersonalBlog, slug=blog_slug)
+
     post_slug = kwargs['post']
-    post = get_object_or_404(Post, slug=post_slug)
+    post = get_object_or_404(Post, slug=post_slug, blog=blog)
+
     id = post.id
 
     # record the view
@@ -205,14 +209,16 @@ def create_blog(request):
                     title=title,
                     description=description
                 )
+                blog_obj = blog.save()
                 blog.save()
 
                 # saved and redirect to create a post
-                status = "new"
-                form = BlogEditForm(request.POST, request.FILES)
+                # status = "new"
+                # form = BlogEditForm(request.POST, request.FILES)
 
-                return render(request, "blogcontent/dashboard.html", {'status':'new', 'myblog':blog,
-                                                                      'form':form})
+                redirect_url = reverse('blog-dashboard', kwargs={'blog':blog.slug})
+
+                return redirect(redirect_url)
 
             except IntegrityError:
                 status = "error"
@@ -257,14 +263,13 @@ def create_post(request):
                 # saved and redirect to view the post
                 post_url = reverse('blog-post', kwargs={'blog':post.blog.slug,
                                                         'post':slugify(post.title)})
-                return HttpResponseRedirect(post_url)
+                return redirect(post_url)
 
-            except IntegrityError:
+            except IntegrityError as e:
                 status = "error"
-                alert_message = "You have already used that blog post title. Please choose another title."
-                pass
+                alert_message = "Your form did not validate. Have you already used this post title?"
         else:
-            alert_message = form.errors
+            alert_message = "form not valid?"
             status = "error"
 
     return render(request, "blogcontent/post_create.html", {'form':form, 'status':status,
@@ -345,7 +350,6 @@ def dashboard(request, **kwargs):
     blog = get_object_or_404(PersonalBlog, slug=blog_slug, owner=request.user)
 
     # handle the form submit to update blog data
-    form = BlogEditForm(instance=blog)
     if request.method == "POST":
         if blog.owner == request.user:
             form = BlogEditForm(request.POST, request.FILES, instance=blog)
@@ -356,11 +360,15 @@ def dashboard(request, **kwargs):
                 alert_message = "Your blog data has been updated successfully"
                 status = "saved"
             else:
-                alert_message = "There was a problem saving the data you entered. Please correct the errors above."
+                alert_message = form.instance.slug
                 status = "error"
         else:
             alert_message = "You do not have access to update this blog's information."
             status = "error"
+    else:
+        # get request
+        form = BlogEditForm(instance=blog)
+
 
 
     return render(request, "blogcontent/dashboard.html",

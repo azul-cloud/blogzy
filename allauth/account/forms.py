@@ -216,6 +216,10 @@ class BaseSignupForm(_base_signup_form_class()):
     email = forms.EmailField(widget=forms.TextInput(
                              attrs={'type': 'email',
                                    'placeholder': _('E-mail address')}))
+    first_name = forms.CharField(label="", widget=forms.TextInput(
+                                    attrs={'placeholder':'First Name'}))
+    last_name = forms.CharField(label="", widget=forms.TextInput(
+                                    attrs={'placeholder':'Last Name'}))
 
     def __init__(self, *args, **kwargs):
         email_required = kwargs.pop('email_required',

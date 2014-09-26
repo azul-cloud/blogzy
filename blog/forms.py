@@ -70,6 +70,7 @@ class BlogPostCreateForm(ModelForm):
             ),
         )
 
+
 class BlogPostEditForm(BlogPostCreateForm):
 
     def __init__(self, *args, **kwargs):
@@ -78,9 +79,8 @@ class BlogPostEditForm(BlogPostCreateForm):
         self.helper.layout = Layout(
             Fieldset(
                 '',
-                Field('views', type="hidden"),
-                Field('place_id', type="hidden"),
                 Div('title', css_class="col-sm-5 col-xs-6"),
+                Field('place_id', type="hidden"),
                 # Div('topic', css_class="col-sm-5 col-xs-6"),
                 Div(
                     Field('place', id="place-search"),
@@ -99,10 +99,12 @@ class BlogPostEditForm(BlogPostCreateForm):
             ),
         )
 
+
 class BlogEditForm(ModelForm):
     description = forms.CharField(widget = forms.Textarea())
     twitter = forms.CharField(required=False, help_text="Show twitter feed, and allow people to interact with you on twitter")
-    twitter_widget_id = forms.CharField(required=False, help_text="Required to show a timeline widget for your twitter account. ")
+    twitter_widget_id = forms.CharField(required=False, help_text="Required to show a timeline widget for your twitter account. "\
+                                                                  "For more information see <a href='https://twitter.com/settings/widgets'>Twitter Widget</a>")
     instagram = forms.CharField(required=False, help_text="show instagram feed on your blog page (coming soon)")
     disqus = forms.CharField(required=False, help_text="Add comments at the bottom of your blog posts. <a href='" +
                                                     "https://disqus.com/admin/create/' target='_blank'>Sign up</a> and " +
@@ -117,6 +119,7 @@ class BlogEditForm(ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 '<h2 class="text-center">Edit data about your blog</h2>',
+                Field('place_id', type="hidden"),
                 Field('owner', type="hidden"),
                 Field('title', type="hidden"),
                 Div('description', css_class="col-md-12"),

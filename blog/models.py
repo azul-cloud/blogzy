@@ -97,7 +97,7 @@ class Post(models.Model):
     active = models.BooleanField(default=True)
     topics = models.ManyToManyField(Topic, null=True, blank=True)
     views = models.IntegerField(default=0, blank=True, editable=False)
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(blank=True)
     lat = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
     long =  models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
 
@@ -108,6 +108,7 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-create_date']
+        unique_together = ("blog", "slug")
 
     def set_location(self):
         # use the google places API to set the latitude and longitude
