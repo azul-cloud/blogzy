@@ -23,10 +23,10 @@
                 <h1>{% if blog.logo %}<img src="{{ blog.logo.url }}" class="img-responsive img-rounded" /> {% endif %}{{ blog.title }}</h1>
             </div>
         </div>
-        {% if blog.twitter %}
-            <div class="col-sm-7">
+        {% if blog.twitter_widget_id %}
+        <div class="col-sm-7">
         {% else %}
-            <div class="col-sm-offset-1 col-sm-10">
+        <div class="col-sm-offset-1 col-sm-10">
         {% endif %}
             <div class="row row-padding">
                 <div class="text-center btn btn-primary btn-block" data-toggle="modal" data-target="#blog-info-modal">Read Blog Details</div>
