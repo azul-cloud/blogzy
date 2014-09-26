@@ -80,6 +80,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'storages',
+    'pagination',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -89,6 +90,8 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'pagination.middleware.PaginationMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -168,3 +171,5 @@ AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related quer
 AWS_S3_ACCESS_KEY_ID = 'AKIAJJFP34XQF2OPJD5A'     # enter your access key id
 AWS_S3_SECRET_ACCESS_KEY = 'vQGWfysb5a1ZmPyq4BD3VSyyTC9AFVCJcHLVyOuh' # enter your secret access key
 AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
+
+PAGINATION_TEMPLATE_PACK = "bootstrap3"
