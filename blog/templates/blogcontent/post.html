@@ -25,6 +25,7 @@
                         {% include "maininclude/social_share.html" %}
                         <h4>Written by {{ post.author.username }} on {{ post.create_date }}
                         {% include "bloginclude/favorite.html" %}</h4>
+                        {% include "google_ads/leaderboard.html" %}
                         {% if post.blog.disqus %}
                             {% include "bloginclude/disqus.html" %}
                         {% endif %}
@@ -44,6 +45,7 @@
                             {% endfor %}
                         </div>
                     {% endif %}
+                    {% include "google_ads/skyscraper.html" %}
                 </div>
              </div>
         </div>
