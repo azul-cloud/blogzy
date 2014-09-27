@@ -1,8 +1,10 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 from django.conf import settings
+from django.contrib.sitemaps import GenericSitemap
 
 from tastypie.api import Api
+from blog.models import PersonalBlog, Post
 from blog.api.resources import PostResource, BlogResource, UserFavoriteResource
 from main.api.resources import UserResource
 
@@ -15,7 +17,19 @@ v1_api.register(UserFavoriteResource())
 
 admin.autodiscover()
 
-
+#get dictionaries and build the sitemap
+post_dict = {
+    'queryset': Post.objects.all(),
+    'changefreq': 'monthly',
+}
+blog_dict = {
+    'queryset': PersonalBlog.objects.all(),
+    'changefreq': 'daily'
+}
+sitemaps = {
+    "post": GenericSitemap(post_dict, priority=1.0),
+    "blog": GenericSitemap(blog_dict, priority=0.8)
+}
 urlpatterns = patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT}),
@@ -28,6 +42,10 @@ urlpatterns = patterns('',
     (r'^accounts/', include('allauth.urls')),
 
     url(r'^internal/', include('internal.urls')),
+
+    # url(r'^robots\.txt', TemplateView.as_view(template_name="maincontent/robots.txt")),
+    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
+        {'sitemaps': sitemaps}),
 
     # blog urls need to come last because of the simple blog pattern url
     url(r'^', include('blog.urls')),
