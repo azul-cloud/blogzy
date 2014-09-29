@@ -24,6 +24,9 @@
         {% include "maininclude/modals/feedback.html" %}
       {% endif %}
       <ul class="nav navbar-nav navbar-right">
+          <li class="social-nav-container">
+              <div class="fb-like" data-href="http://www.travelblogwave.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+          </li>
         {% if not user.profile.user_blog %}
           <li><a href="{% url 'blog-create' %}"><span class="glyphicon glyphicon-plus"></span> Create Blog</a></li>
         {% else %}
