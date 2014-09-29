@@ -174,3 +174,7 @@ AWS_S3_SECRET_ACCESS_KEY = 'vQGWfysb5a1ZmPyq4BD3VSyyTC9AFVCJcHLVyOuh' # enter yo
 AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
 
 PAGINATION_TEMPLATE_PACK = "bootstrap3"
+
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
+MAILGUN_SERVER_NAME = 'travelblogwave.com'

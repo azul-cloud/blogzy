@@ -1,9 +1,11 @@
 import json
+import requests
 
 from django.shortcuts import render
 from django.conf import settings
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.core.mail import send_mail
 
 from main.utils import get_json_objects, get_json
 from main.models import Feedback
@@ -37,3 +39,11 @@ def send_feedback(request):
         return HttpResponse("feedback sent successfully")
 
     return HttpResponse("not an AJAX Post request")
+
+
+# def mail(request):
+#
+#     send_mail('Subject here', 'Here is the message.', 'travelblogwave@gmail.com',
+#         ['awwester@gmail.com'], fail_silently=False)
+#
+#     return HttpResponse("sent!")
