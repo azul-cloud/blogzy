@@ -115,7 +115,7 @@ def post(request, **kwargs):
     post_orm.save()
 
     # get other posts to display in the template
-    other_posts = Post.objects.filter(blog=post.blog).exclude(id=id)[:4]
+    other_posts = Post.objects.filter(blog=post.blog).exclude(image="").exclude(id=id)[:4]
 
     # detect if post is in the user's favorites
     favorites = get_favorites(request.user)

@@ -148,6 +148,50 @@ class Post(models.Model):
         else:
             return None
 
+    def get_blog_post_id_list(self):
+        '''
+        return a list of ordered post ids from a blog. Used to get
+        the next and previous posts
+        '''
+        posts = Post.objects.filter(blog=self.blog)
+
+        post_ids = []
+        for p in posts:
+            post_ids.append(p.id)
+
+        post_ids.sort()
+        return post_ids
+
+    def get_next_blog_post(self):
+        # get the next post by the same blog
+        curr_id = self.id
+        post_ids = self.get_blog_post_id_list()
+        curr_index = post_ids.index(curr_id)
+
+        try:
+            next_post_id = post_ids[curr_index + 1]
+            next_post = Post.objects.get(id=next_post_id)
+            return next_post
+        except IndexError:
+            return None
+
+
+    def get_prev_blog_post(self):
+        # get the previous post by the same blog
+        curr_id = self.id
+        post_ids = self.get_blog_post_id_list()
+        curr_index = post_ids.index(curr_id)
+
+        try:
+            if curr_index == 0:
+                return None
+            else:
+                prev_post_id = post_ids[curr_index - 1]
+                prev_post = Post.objects.get(id=prev_post_id)
+                return prev_post
+        except IndexError:
+            return None
+
     def __str__(self):
         return self.title
 

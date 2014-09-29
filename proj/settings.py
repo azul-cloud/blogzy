@@ -30,6 +30,9 @@ if env == 'test':
         os.path.join(BASE_DIR, 'static'),
     )
 
+    MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
+    MAILGUN_SERVER_NAME = 'travelblogwave.com'
+
 elif env == 'prod':
     # in heroku prod env
     DEBUG = False
@@ -44,6 +47,9 @@ elif env == 'prod':
     else:
         STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
+    MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
+    MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
+
 else:
     # local, or lost
     DEBUG = True
@@ -54,6 +60,9 @@ else:
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
+
+    MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
+    MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
 
 
 # Application definition
@@ -176,5 +185,3 @@ AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
 PAGINATION_TEMPLATE_PACK = "bootstrap3"
 
 EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
-MAILGUN_SERVER_NAME = 'travelblogwave.com'

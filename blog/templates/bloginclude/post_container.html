@@ -1,0 +1,21 @@
+<div class="col-sm-6 text-center post-list-container">
+    {% if div_header %}
+        <a href="{{ p.get_absolute_url }}" ><div class="alert alert-brand" role="alert">{{ div_header }}</div></a>
+    {% endif %}
+    <a class="brand-light" href="{{ p.get_absolute_url }}">
+        <img src="{{ p.get_image_url }}" class="img-responsive img-rounded{% if not p.image %} no-pic{% endif %}" />
+        <h4>{{ p.title }}</h4>
+    </a>
+    {% if p.headline %}
+        <h4>{{ p.headline }}</h4>
+    {% endif %}
+    <p>By <a class="brand-light" href="{{ p.blog.get_absolute_url }}">{{ p.blog.title }}</a>
+        {% if p.get_topics %}
+            about
+            {% for t in p.get_topics %}
+                <a class="brand-light" href="{{ t.get_absolute_url }}">{{ t }}</a>{% if not forloop.last %},{% endif %}
+            {% endfor %}
+        {% endif %}
+        on {{ p.create_date|date }}
+    </p>
+</div>

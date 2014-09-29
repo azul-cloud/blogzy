@@ -134,6 +134,12 @@ img {
     margin-top:20px;
 }
 
+.adsbygoogle {
+    text-align:center;
+    margin-left:auto;
+    margin-right:auto;
+}
+
 @media(max-width:768px) {
     #navbar-main li.dropdown li a:visited,
     #navbar-main li.dropdown li a:link {
@@ -354,6 +360,17 @@ loading bootstrap.css so that these rules can override.
     background-color: #B1D0DD;
     border-bottom-right-radius: 5px;
     border-bottom-left-radius: 5px;
+}
+.alert-brand {
+  color: black;
+  background-color: #B1D0DD;
+  border-color: #B3D2DF;
+}
+.alert-brand hr {
+  border-top-color: #c9e2b3;
+}
+.alert-brand .alert-link {
+  color: black;
 }
 
 
