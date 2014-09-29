@@ -37,7 +37,7 @@ class BlogCreateForm(ModelForm):
 class BlogPostCreateForm(ModelForm):
     place = forms.CharField(required=False, help_text="Allow post to show on maps, and for people to find your post when searching by place")
     headline = forms.CharField(required=False, help_text="100 character headline of your post. Will appear on map popup and other places")
-    # topic = forms.MultipleChoiceField(required=False)
+    # topic = forms.ModelMultipleChoiceField(required=False, queryset=Topic.objects.all())
 
     class Meta:
         model = Post
