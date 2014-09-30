@@ -5,6 +5,13 @@
     Travel Blog Wave | {{ post.title }}
 {% endblock %}
 
+{% block meta_tags %}
+    {{ block.super }}
+    {% if post.image %}
+        <meta property="og:image" content="{{ post.image.url }}"/>
+    {% endif %}
+{% endblock %}
+
 {% block main %}
     <div class="container margin-top">
         <div id="post-content" class="well">

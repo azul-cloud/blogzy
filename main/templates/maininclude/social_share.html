@@ -8,15 +8,15 @@
         <div class="social-buttons text-center">
             <!-- twitter share -->
             <a target="_blank" href="https://twitter.com/intent/tweet?hashtags=tbwave&original_referer={{ request.get_absolute_uri }}&tw_p=tweetbutton&url={{ request.get_absolute_uri }}&via=travelblogwave">
-                <img src="{% static 'img/twitter_share.png' %}"></img></a>
+                <img src="{% static 'img/twitter_share.png' %}" alt="Travel Blog Wave Twitter"></img></a>
 
             <!-- facebook share -->
             <a target="_blank" href="https://www.facebook.com/sharer.php?app_id=701025629975208&sdk=joey&u={{ request.build_absolute_uri }}&display=popup&ref=plugin">
-                <img src="{% static 'img/fb_share.png' %}"></img></a>
+                <img src="{% static 'img/fb_share.png' %}" alt="Travel Blog Wave Facebook"></img></a>
 
             <!-- google+ share -->
-            <a target="_blank" href="https://plus.google.com/share?url={{ request.build_absolute_uri }}">
-                <img src="{% static 'img/google_share.png' %}"></img></a>
+            <a target="_blank" rel="Publisher" href="https://plus.google.com/share?url={{ request.build_absolute_uri }}">
+                <img src="{% static 'img/google_share.png' %}" alt="Travel Blog Wave Google+"></img></a>
         </div>
     </div>
 </div>

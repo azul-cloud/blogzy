@@ -24,7 +24,14 @@
 
             <script src="{% static 'js/script.js' %}"></script>
         {% endblock %}
-        {% block meta_tags %}{% endblock %}
+        {% block meta_tags %}
+            <meta name="description" content="Search Travel Blogs by Country, City, Place, or Topic or create your
+            travel blog using a top of the line travel blogging platform.">
+            <meta name="robots" content="index, follow">
+            <meta charset="UTF-8">
+            <meta name="title" content="Travel Blog Wave | Create and Follow Travel Blogs">
+            <meta name="viewport" content="width=400, initial-scale=1.0">
+        {% endblock %}
         {% block extra_head %}{% endblock %}
     </head>
     <body>

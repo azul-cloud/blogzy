@@ -47,3 +47,6 @@ def send_feedback(request):
 #         ['awwester@gmail.com'], fail_silently=False)
 #
 #     return HttpResponse("sent!")
+
+def robots(request):
+    return render(request, 'maincontent/robots.txt', {})

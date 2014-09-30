@@ -46,6 +46,7 @@ urlpatterns = patterns('',
     # url(r'^robots\.txt', TemplateView.as_view(template_name="maincontent/robots.txt")),
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': sitemaps}),
+    (r'^robots\.txt', 'main.views.robots'),
 
     # blog urls need to come last because of the simple blog pattern url
     url(r'^', include('blog.urls')),
