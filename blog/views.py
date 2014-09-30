@@ -44,7 +44,7 @@ def blog(request, **kwargs):
     # get the post with a lat and a long that we want to center on. Get the
     # latest post that has a lat and a long
     eligible_posts = []
-    for p in blog.post_set.all():
+    for p in blog.post_set.filter(active=True):
         if p.lat and p.long:
             eligible_posts.append(p)
 
@@ -68,7 +68,7 @@ def explore(request, **kwargs):
 
     # used in context to display selection options
     topics = Topic.objects.all()
-    posts = Post.objects.all()
+    posts = Post.objects.filter(active=True)
 
     # remove, for testing
     topic = ""
@@ -128,7 +128,7 @@ def topic(request, **kwargs):
     # return the posts that are listed under a certain topic
     topic_slug = kwargs["topic"]
     topic = Topic.objects.get(slug=topic_slug)
-    posts = Post.objects.filter(topics__in=[topic.id])
+    posts = Post.objects.filter(topics__in=[topic.id], active=True)
 
     return render(request, "blogcontent/topic.html", {'posts':posts, 'topic':topic})
 
@@ -149,7 +149,7 @@ def wave(request):
 
         post_set = []
         for b in blogs:
-            for p in b.post_set.all():
+            for p in b.post_set.filter(active=True):
                 post_set.append(p)
 
         return render(request, "blogcontent/wave.html",
@@ -185,6 +185,7 @@ def add_wave(request, **kwargs):
             return HttpResponse("Not an ajax post")
     else:
         return HttpResponse("Not a Post request")
+
 
 @login_required
 def create_blog(request):
