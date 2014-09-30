@@ -43,11 +43,7 @@
             </div>
         </div>
         <div class="col-sm-5 margin-top">
-            {% if blog.twitter and blog.twitter_widget_id %}
-                {% with blog.twitter as twitter_handle and blog.twitter_widget_id as twitter_widget_id %}
-                    {% include "maininclude/twitter_timeline.html" %}
-                {% endwith %}
-            {% endif %}
+            {% include "maininclude/twitter_timeline.html" %}
         </div>
     </div>
     <div id="map-container">
