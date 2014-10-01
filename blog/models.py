@@ -20,6 +20,12 @@ def get_post_upload_path(instance, filename):
     return os.path.join('blog/' + str(blog_id) + '/' + filename)
 
 
+SUB_TYPE_CHOICES = (
+    ("M", "Monthly"),
+    ("B", "Every 2 weeks"),
+    ("W", "Weekly")
+)
+
 class Topic(models.Model):
     '''
     grouping of all the topics that a blog post can be grouped under. Allows
@@ -229,5 +235,16 @@ class UserStreamBlog(models.Model):
 
     def __str__(self):
         return self.user.username + ' for ' + self.blog.title
+
+
+class BlogSubscription(models.Model):
+    '''
+    Give a user a subscription to a blog. They will be able to choose
+    different attributes such as how often they will get the subscription
+    info.
+    '''
+    user = models.ForeignKey(User)
+    blog = models.ForeignKey(PersonalBlog)
+    sub_type = models.CharField(max_length=1, choices=SUB_TYPE_CHOICES)
 
 
