@@ -37,6 +37,7 @@ def blog(request, **kwargs):
     '''
     blog_slug = kwargs['blog']
     blog = get_object_or_404(PersonalBlog, slug=blog_slug)
+    posts = Post.objects.filter(blog=blog, active=True)
 
     # check if the blog is in a user's blog_wave
     wave_bool_list = get_wave_blog_list(request.user)
@@ -58,7 +59,7 @@ def blog(request, **kwargs):
 
     return render(request, "blogcontent/blog.html",
                   {'blog':blog, 'wave_bool_list':wave_bool_list, 'center_lat':center_lat,
-                   'center_long':center_long})
+                   'center_long':center_long, 'posts':posts})
 
 
 def explore(request, **kwargs):
