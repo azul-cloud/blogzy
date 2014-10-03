@@ -106,14 +106,13 @@ def post(request, **kwargs):
 
     post_slug = kwargs['post']
     post = get_object_or_404(Post, slug=post_slug, blog=blog)
-
     id = post.id
 
-    # record the view
-    post_orm = get_object_or_404(Post, id=id)
-    views = post_orm.views + 1
-    post_orm.views = views
-    post_orm.save()
+    # record the view if not the blog owner
+    if request.user != blog.owner:
+        views = post.views + 1
+        post.views = views
+        post.save()
 
     # get other posts to display in the template
     other_posts = Post.objects.filter(blog=post.blog, active=True).exclude(image="").exclude(id=id)[:3]
