@@ -100,7 +100,7 @@ class Post(models.Model):
     body = models.TextField()
     headline = models.CharField(max_length=100, null=True, blank=True)
     create_date = models.DateTimeField(auto_now_add=True)
-    active = models.BooleanField(default=True)
+    active = models.NullBooleanField(default=True, blank=True, null=True)
     topics = models.ManyToManyField(Topic, null=True, blank=True)
     views = models.IntegerField(default=0, blank=True, editable=False)
     slug = models.SlugField(blank=True)
@@ -172,31 +172,32 @@ class Post(models.Model):
         # get the next post by the same blog
         curr_id = self.id
         post_ids = self.get_blog_post_id_list()
-        curr_index = post_ids.index(curr_id)
 
         try:
+            curr_index = post_ids.index(curr_id)
             next_post_id = post_ids[curr_index + 1]
             next_post = Post.objects.get(id=next_post_id)
             return next_post
-        except IndexError:
+        except:
             return None
 
 
     def get_prev_blog_post(self):
         # get the previous post by the same blog
-        curr_id = self.id
-        post_ids = self.get_blog_post_id_list()
-        curr_index = post_ids.index(curr_id)
+        if self.active:
+            curr_id = self.id
+            post_ids = self.get_blog_post_id_list()
 
-        try:
-            if curr_index == 0:
+            try:
+                curr_index = post_ids.index(curr_id)
+                if curr_index == 0:
+                    return None
+                else:
+                    prev_post_id = post_ids[curr_index - 1]
+                    prev_post = Post.objects.get(id=prev_post_id)
+                    return prev_post
+            except:
                 return None
-            else:
-                prev_post_id = post_ids[curr_index - 1]
-                prev_post = Post.objects.get(id=prev_post_id)
-                return prev_post
-        except IndexError:
-            return None
 
     def __str__(self):
         return self.title
