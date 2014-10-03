@@ -95,7 +95,7 @@ class Post(models.Model):
     '''
     author = models.ForeignKey(User)
     blog = models.ForeignKey(PersonalBlog)
-    image = models.ImageField(upload_to=get_post_upload_path, null=True, blank=True)
+    image = models.ImageField(upload_to=get_post_upload_path)
     title = models.CharField(max_length=50)
     body = models.TextField()
     headline = models.CharField(max_length=100, null=True, blank=True)
@@ -105,8 +105,7 @@ class Post(models.Model):
     views = models.IntegerField(default=0, blank=True, editable=False)
     slug = models.SlugField(blank=True)
     lat = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
-    long =  models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
-
+    long = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
 
     # place_id comes from Google Places API
     place_id = models.CharField(max_length=40, null=True, blank=True)
