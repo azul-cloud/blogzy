@@ -159,7 +159,7 @@ class Post(models.Model):
         return a list of ordered post ids from a blog. Used to get
         the next and previous posts
         '''
-        posts = Post.objects.filter(blog=self.blog)
+        posts = Post.objects.filter(blog=self.blog, active=True)
 
         post_ids = []
         for p in posts:
