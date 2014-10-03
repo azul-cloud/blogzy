@@ -11,7 +11,7 @@ class BlogCreateForm(ModelForm):
     title = forms.CharField(help_text="What is the name of your blog?")
     description = forms.CharField(widget = forms.Textarea(),
                                   help_text="Give people an idea what your blog is all about")
-    logo = forms.ImageField(required=False, help_text="Optional. Recommended square image.")
+    logo = forms.ImageField(required=False, help_text="Optional. Recommended square image 300x300 or larger.")
 
     class Meta:
         model = PersonalBlog
@@ -24,9 +24,11 @@ class BlogCreateForm(ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 '<h1>Create Your Travel Blog</h1>',
-                Div('title', css_class="col-sm-6", css_id="title"),
-                Div('logo', css_class="col-sm-6", css_id="logo"),
-                Div('description', css_class="col-sm-12", css_id="description")
+                Div(
+                    Field('title', css_id="title"),
+                    Field('logo', css_id="logo"),
+                css_class="col-sm-6"),
+                Div('description', css_class="col-sm-6", css_id="description")
             ),
             ButtonHolder(
                 Submit('submit', 'Create Blog', css_class='btn-lg'), css_class="text-center"
