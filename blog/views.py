@@ -351,7 +351,11 @@ def dashboard(request, **kwargs):
     status = ""
 
     blog_slug = kwargs['blog']
-    blog = get_object_or_404(PersonalBlog, slug=blog_slug, owner=request.user)
+
+    if request.user.is_superuser:
+        blog = get_object_or_404(PersonalBlog, slug=blog_slug)
+    else:
+        blog = get_object_or_404(PersonalBlog, slug=blog_slug, owner=request.user)
 
     # handle the form submit to update blog data
     if request.method == "POST":
