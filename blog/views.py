@@ -271,7 +271,7 @@ def create_post(request):
                 status = "error"
                 alert_message = "Your form did not validate. Have you already used this post title?"
         else:
-            alert_message = "form not valid?"
+            alert_message = "Please fix the errors on the form"
             status = "error"
 
     return render(request, "blogcontent/post_create.html", {'form':form, 'status':status,
