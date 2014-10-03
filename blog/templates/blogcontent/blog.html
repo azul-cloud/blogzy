@@ -33,11 +33,13 @@
             </div>
             <div class="row well">
                 {% include "bloginclude/post_list.html" %}
-                {% with blog as b %}
-                    <div class="text-center">
-                        {% include 'bloginclude/wave_modify.html' %}
-                    </div>
-                {% endwith %}
+                {% if request.user.is_authenticated %}
+                    {% with blog as b %}
+                        <div class="text-center">
+                            {% include 'bloginclude/wave_modify.html' %}
+                        </div>
+                    {% endwith %}
+                {% endif %}
             </div>
         </div>
         <div class="col-sm-5 margin-top">

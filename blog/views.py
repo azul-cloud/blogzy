@@ -40,7 +40,10 @@ def blog(request, **kwargs):
     posts = Post.objects.filter(blog=blog, active=True)
 
     # check if the blog is in a user's blog_wave
-    wave_bool_list = get_wave_blog_list(request.user)
+    if request.user.is_authenticated():
+        wave_bool_list = get_wave_blog_list(request.user)
+    else:
+        wave_bool_list = None
 
     # get the post with a lat and a long that we want to center on. Get the
     # latest post that has a lat and a long
