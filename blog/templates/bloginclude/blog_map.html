@@ -41,10 +41,11 @@
         var marker = new google.maps.Marker({
             position: latlng,
             map: map,
+            icon: '/static/img/map_icon_sm.png',
             title: p[2],
             headline: p[3],
             link: p[4],
-            imgURL: p[5],
+            imgURL: p[5]
         });
 
         google.maps.event.addListener(marker, 'click', function() {
