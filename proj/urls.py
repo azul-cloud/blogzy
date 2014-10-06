@@ -30,20 +30,15 @@ sitemaps = {
     "post": GenericSitemap(post_dict, priority=1.0),
     "blog": GenericSitemap(blog_dict, priority=0.8)
 }
+
 urlpatterns = patterns('',
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT}),
-
     url(r'^', include('main.urls')),
     url(r'^admin/', include(admin.site.urls)),
-
-    # 3rd party apps
     url(r'^api/', include(v1_api.urls)),
     (r'^accounts/', include('allauth.urls')),
-
     url(r'^internal/', include('internal.urls')),
-
-    # url(r'^robots\.txt', TemplateView.as_view(template_name="maincontent/robots.txt")),
     (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': sitemaps}),
     (r'^robots\.txt', 'main.views.robots'),

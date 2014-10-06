@@ -31,7 +31,7 @@ if env == 'test':
     )
 
     MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
-    MAILGUN_SERVER_NAME = 'travelblogwave.com'
+    MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
 
 elif env == 'prod':
     # in heroku prod env
@@ -48,7 +48,7 @@ elif env == 'prod':
         STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
     MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
-    MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
+    MAILGUN_SERVER_NAME = 'travelblogwave.com'
 
 else:
     # local, or lost
