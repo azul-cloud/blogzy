@@ -1,0 +1,28 @@
+<div id="recent-carousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    {% for p in recent_posts %}
+        <li data-target="#recent-carousel" data-slide-to="0"{% if forloop.first %} class="active"{% endif %}></li>
+    {% endfor %}
+  </ol>
+
+  <!-- Wrapper for slides -->
+  <div class="carousel-inner">
+    {% for p in recent_posts %}
+        <div class="item {% if forloop.first %}active{% endif %}">
+          <img src="{{ p.get_image_url }}" alt="" class="img-responsive">
+          <div class="carousel-caption">
+            {{ p.title }}
+          </div>
+        </div>
+    {% endfor %}
+  </div>
+
+  <!-- Controls -->
+  <a class="left carousel-control" href="#recent-carousel" role="button" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+  </a>
+  <a class="right carousel-control" href="#recent-carousel" role="button" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+  </a>
+</div>

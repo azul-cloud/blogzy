@@ -42,7 +42,7 @@
             <div class="row row-padding">
                 <h1>Travel Blogs Made Simple</h1>
             </div>
-            <div class="row row-padding">
+            <div class="row row-padding info-row">
                 <a class="brand" href="{% url 'blog-create' %}">
                     <div class="col-md-4">
                             <h3>Create Your Blog</h3>
@@ -73,6 +73,11 @@
                     </div>
                 </a>
             </div>
+        </div>
+    </div>
+    <div id="recent-post-row" class="row row-padding">
+        <div class="col-sm-6 col-sm-offset-3">
+            {% include "maininclude/recent_post_carousel.html" %}
         </div>
     </div>
 {% endblock %}

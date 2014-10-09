@@ -9,13 +9,15 @@ from django.core.mail import send_mail
 
 from main.utils import get_json_objects, get_json
 from main.models import Feedback
-from blog.models import Topic
+from blog.models import Topic, Post
 
 
 def home(request):
     topics = Topic.objects.all()
+    recent_posts = Post.objects.all()[:3]
 
-    return render(request, "maincontent/home.html", {'topics':topics})
+    return render(request, "maincontent/home.html",
+                  {'topics':topics, 'recent_posts':recent_posts})
 
 
 def about(request):
