@@ -18,18 +18,6 @@ from blog.models import PersonalBlog, Post, Topic, UserFavorite
 from blog.forms import BlogCreateForm, BlogEditForm, BlogPostCreateForm, BlogPostEditForm
 from blog.utils import get_favorites, get_wave_blog_list
 
-@staff_member_required
-def blogs(request):
-    '''
-    show the home for searching personal blogs
-    '''
-
-    # get list of all blogs
-    blogs_url = settings.BASE_URL + "/api/v1/blog/"
-    blogs = get_json_objects(blogs_url)
-
-    return render(request, "blogcontent/home.html", {'blogs':blogs})
-
 
 def blog(request, **kwargs):
     '''

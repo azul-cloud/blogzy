@@ -1,6 +1,25 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.contrib.auth.models import User
+
+from blog.models import Topic, PersonalBlog
+
+
+# class DataTests(TestCase):
+#
+#     def setUp(self):
+#         self.user = User.objects.create_user('datatester', 'tester@somewhere.com', 'testpassword')
+#
+#     def test_fail_create_blog(self):
+#
+#
+#     def test_create_blog(self):
+#         blog = PersonalBlog.objects.create(title=u"test blog title", owner_id=self.user.id)
+#
+#     def test_create_post(self):
+#         return False
+
 
 class PingTests(TestCase):
 
@@ -11,11 +30,6 @@ class PingTests(TestCase):
         url = '/doesnotexist/'
         response = self.client.get(url)
         self.assertNotEqual(response.status_code, 200)
-
-    def test_home(self):
-        url = reverse(self.url_prefix + 'home')
-        response = self.client.get(url)
-        self.assertEqual(response.status_code, 200)
 
     def test_create_blog_get(self):
         # GET portion of the create blog

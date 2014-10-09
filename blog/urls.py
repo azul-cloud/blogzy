@@ -5,7 +5,6 @@ from blog import views
 app = 'blog-'
 
 urlpatterns = patterns('',
-    url(r'blogs/$', views.blogs, name = app + "home"),
     url(r'blog/create/$', views.create_blog, name = app + "create"),
     url(r'(?P<blog>\S+)/dashboard/$', views.dashboard, name = app + "dashboard"),
     url(r'blog/post/(?P<pk>\d+)/edit/$', views.edit_post, name = app + "post-edit"),
