@@ -14,7 +14,7 @@ from blog.models import Topic, Post
 
 def home(request):
     topics = Topic.objects.all()
-    recent_posts = Post.objects.all()[:3]
+    recent_posts = Post.objects.filter(active=True)[:3]
 
     return render(request, "maincontent/home.html",
                   {'topics':topics, 'recent_posts':recent_posts})
