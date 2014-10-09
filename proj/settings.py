@@ -33,6 +33,9 @@ if env == 'test':
     MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
     MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
 
+    # run the project without internet
+    OFFLINE = False
+
 elif env == 'prod':
     # in heroku prod env
     DEBUG = False
@@ -50,6 +53,9 @@ elif env == 'prod':
     MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
     MAILGUN_SERVER_NAME = 'travelblogwave.com'
 
+    # run the project without internet
+    OFFLINE = False
+
 else:
     # local, or lost
     DEBUG = True
@@ -63,6 +69,9 @@ else:
 
     MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
     MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
+
+    # run the project without internet
+    OFFLINE = False
 
 
 # Application definition
@@ -149,9 +158,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
 ALLOWED_HOSTS = ['*']
-
-# run the project without internet
-OFFLINE = True
 
 
 import sys
