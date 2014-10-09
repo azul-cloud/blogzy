@@ -302,6 +302,10 @@ css styles that are specific to individual posts
 #other-posts a:hover {
     text-decoration:none;
 }
+#other-posts div.row {
+    margin-top:10px;
+    margin-bottom:10px;
+}
 #post-footer {
     padding:30px 0;
 }
