@@ -139,6 +139,10 @@ img {
 #recent-post-row {
     background-color:#eee;
 }
+#recent-post-row h2 {
+    font-size:300%;
+    margin-bottom:20px;
+}
 
 .adsbygoogle {
     text-align:center;

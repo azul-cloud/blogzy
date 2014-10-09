@@ -10,10 +10,12 @@
   <div class="carousel-inner">
     {% for p in recent_posts %}
         <div class="item {% if forloop.first %}active{% endif %}">
-          <img src="{{ p.get_image_url }}" alt="" class="img-responsive">
-          <div class="carousel-caption">
-            {{ p.title }}
-          </div>
+            <a href="{{ p.get_absolute_url }}">
+              <img src="{{ p.get_image_url }}" alt="" class="img-responsive">
+              <div class="carousel-caption">
+                {{ p.blog }} - {{ p.title }}
+              </div>
+            </a>
         </div>
     {% endfor %}
   </div>
