@@ -20,15 +20,19 @@
             <div class="container">
                 <form method="post">
                     {% csrf_token %}
-                    <div class="col-md-6">
+                    <div class="col-sm-5">
                         <input id="place-search" name="place" value="{{ request.POST.place }}"
-                               placeholder="Filter by Place" onblur="this.form.submit();" />
+                               placeholder="Filter by Place" />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-sm-5">
                         <input id="topic-search" name="topic" value="{{ request.POST.topic }}"
-                               placeholder="Filter by Topic" onblur="this.form.submit();" />
+                               placeholder="Filter by Topic" />
                     </div>
-                    <button class="hidden" type="submit">submit</button>
+                    <div class="col-sm-1">
+                        <button class="btn btn-primary" type="submit">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </div>
                 </form>
             </div>
         </div>
