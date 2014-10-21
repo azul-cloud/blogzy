@@ -20,11 +20,11 @@
             <div class="container">
                 <form method="post">
                     {% csrf_token %}
-                    <div class="col-sm-5">
+                    <div class="col-sm-5 col-sm-offset-1">
                         <input id="place-search" name="place" value="{{ request.POST.place }}"
                                placeholder="Filter by Place" />
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-4">
                         <input id="topic-search" name="topic" value="{{ request.POST.topic }}"
                                placeholder="Filter by Topic" />
                     </div>
