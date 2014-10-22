@@ -12,7 +12,7 @@ from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect, HttpResponse
 
-from main.utils import get_json_objects, get_json
+from main.utils import get_json_objects, get_json, get_place_details
 from main.models import UserProfile
 from blog.models import PersonalBlog, Post, Topic, UserFavorite
 from blog.forms import BlogCreateForm, BlogEditForm, BlogPostCreateForm, BlogPostEditForm
@@ -149,6 +149,17 @@ def wave(request):
         # user not logged in
         wave_blog_list = None
         return render(request, "blogcontent/wave_register.html", {})
+
+
+def place(request, **kwargs):
+
+    place_id = kwargs['place_id']
+    place = get_place_details(place_id).get('result')
+
+    posts = Post.objects.filter(place_id=place_id)
+
+    return render(request, "blogcontent/place.html",
+        {'place': place, 'posts':posts})
 
 
 @login_required
