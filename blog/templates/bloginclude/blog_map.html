@@ -1,12 +1,14 @@
-<script type="text/javascript"
-  src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}">
-</script>
+{% load static %}
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}"></script>
+<script type="text/javascript" src="{% static 'js/oms.min.js' %}"></script>
 <script type="text/javascript">
   function initialize() {
+    gm = google.maps
+
     {% if center_lat and center_long %}
-        center_latlng = new google.maps.LatLng({{ center_lat }}, {{ center_long }})
+        center_latlng = new gm.LatLng({{ center_lat }}, {{ center_long }})
     {% else %}
-        center_latlng = new google.maps.LatLng(6.230833, -75.590556)
+        center_latlng = new gm.LatLng(6.230833, -75.590556)
     {% endif %}
 
     LocationData = [
@@ -17,7 +19,7 @@
                 "{{ p }}",
                 "{{ p.headline }}",
                 "{{ p.get_absolute_url }}",
-                "{% if p.image%}{{ p.image.url }}{% endif %}"]
+                "{% if p.image%}{{ p.image.url }}{% endif %}"],
             {% endif %}
         {% endfor %}
     ]
@@ -26,19 +28,22 @@
       center: center_latlng,
       zoom: 4
     };
-    var map = new google.maps.Map(document.getElementById("map-canvas"),
+    var map = new gm.Map(document.getElementById("map-canvas"),
         mapOptions);
 
-    var infowindow = new google.maps.InfoWindow({
+    // allow users to click to see markers that are in close proximity
+    var oms = new OverlappingMarkerSpiderfier(map);
+
+    var infowindow = new gm.InfoWindow({
         maxWidth: 300,
     });
 
     for (var i in LocationData)
     {
         var p = LocationData[i];
-        var latlng = new google.maps.LatLng(p[0], p[1]);
+        var latlng = new gm.LatLng(p[0], p[1]);
 
-        var marker = new google.maps.Marker({
+        var marker = new gm.Marker({
             position: latlng,
             map: map,
             icon: '/static/img/map_icon_sm.png',
@@ -48,7 +53,20 @@
             imgURL: p[5],
         });
 
-        google.maps.event.addListener(marker, 'click', function() {
+        var iw = new gm.InfoWindow();
+        oms.addListener('click', function(marker, event) {
+            content = "<a class='brand-light' href='" + marker.link + "'><h3 class='infowindow-title'>" +
+                marker.title + "</h3><img class='img-responsive' src='" + marker.imgURL + "' /></a> " +
+                "<h4 class='text-center skinny'>" + marker.headline + "</p>"
+              
+            iw.setContent(content);
+            iw.open(map, marker);
+        });
+
+        oms.addMarker(marker);
+
+        /*
+        gm.event.addListener(marker, 'click', function() {
             content = "<a class='brand-light' href='" + this.link + "'><h3 class='infowindow-title'>" +
                 this.title + "</h3><img class='img-responsive' src='" + this.imgURL + "' /></a> " +
                 "<h4 class='text-center skinny'>" + this.headline + "</p>"
@@ -56,6 +74,7 @@
             infowindow.setContent(content);
             infowindow.open(map, this);
         });
+        */
     }
   }
 
