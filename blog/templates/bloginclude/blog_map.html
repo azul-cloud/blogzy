@@ -17,7 +17,7 @@
                 "{{ p }}",
                 "{{ p.headline }}",
                 "{{ p.get_absolute_url }}",
-                "{% if p.image%}{{ p.image.url }}{% endif %}"],
+                "{% if p.image%}{{ p.image.url }}{% endif %}"]
             {% endif %}
         {% endfor %}
     ]
@@ -45,7 +45,7 @@
             title: p[2],
             headline: p[3],
             link: p[4],
-            imgURL: p[5]
+            imgURL: p[5],
         });
 
         google.maps.event.addListener(marker, 'click', function() {

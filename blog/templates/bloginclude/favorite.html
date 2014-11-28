@@ -1,7 +1,9 @@
-{% if post.id in favorites.favorite_ids %}
-<span class="favorite glyphicon glyphicon-star remove-favorite" data-id="{{ post.id }}"
-      data-toggle="tooltip" title="Remove Favorite"></span>
-{% else %}
-<span class="favorite glyphicon glyphicon-star-empty add-favorite" data-id="{{ post.id }}"
-      data-toggle="tooltip" title="Add Favorite"></span>
+{% if request.user.isauthenticated %}
+	{% if post.id in favorites.favorite_ids %}
+	<span class="favorite glyphicon glyphicon-star remove-favorite" data-id="{{ post.id }}"
+	      data-toggle="tooltip" title="Remove Favorite"></span>
+	{% else %}
+	<span class="favorite glyphicon glyphicon-star-empty add-favorite" data-id="{{ post.id }}"
+	      data-toggle="tooltip" title="Add Favorite"></span>
+	{% endif %}
 {% endif %}
