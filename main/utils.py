@@ -38,8 +38,7 @@ def get_place_details(place_id):
     data_type = "json"
 
     # build and execute property search api call
-    url = property_search_prefix + data_type + '?reference=' + place_id + '&key=' + settings.GOOGLE_API_KEY
+    url = property_search_prefix + data_type + '?placeid=' + place_id + '&key=' + settings.GOOGLE_API_KEY
     data = requests.get(url).json()
-
 
     return data
