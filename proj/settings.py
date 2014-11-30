@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
+import private
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -198,8 +199,8 @@ GOOGLE_API_KEY = 'AIzaSyCsPHVZewbLPsJgz3oB8v8JzaFzNpyR0NA'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
-AWS_S3_ACCESS_KEY_ID = 'AKIAJJFP34XQF2OPJD5A'     # enter your access key id
-AWS_S3_SECRET_ACCESS_KEY = 'vQGWfysb5a1ZmPyq4BD3VSyyTC9AFVCJcHLVyOuh' # enter your secret access key
+AWS_S3_ACCESS_KEY_ID = private.AWS_S3_ACCESS_KEY_ID
+AWS_S3_SECRET_ACCESS_KEY = private.AWS_S3_SECRET_ACCESS_KEY
 AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
 
 PAGINATION_TEMPLATE_PACK = "bootstrap3"
