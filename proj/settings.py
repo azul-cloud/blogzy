@@ -39,8 +39,8 @@ if ENV == 'test':
     MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
     MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
 
-    # AWS_S3_ACCESS_KEY_ID = S3_KEY
-    # AWS_S3_SECRET_ACCESS_KEY = S3_SECRET
+    AWS_S3_ACCESS_KEY_ID = S3_KEY
+    AWS_S3_SECRET_ACCESS_KEY = S3_SECRET
 
 
 elif ENV == 'prod':
@@ -60,8 +60,8 @@ elif ENV == 'prod':
     MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
     MAILGUN_SERVER_NAME = 'travelblogwave.com'
 
-    # AWS_S3_ACCESS_KEY_ID = S3_KEY
-    # AWS_S3_SECRET_ACCESS_KEY = S3_SECRET
+    AWS_S3_ACCESS_KEY_ID = S3_KEY
+    AWS_S3_SECRET_ACCESS_KEY = S3_SECRET
 
 else:
     # local, or lost
@@ -81,8 +81,8 @@ else:
     OFFLINE = False
 
     import private
-    # AWS_S3_ACCESS_KEY_ID = private.AWS_S3_ACCESS_KEY_ID
-    # AWS_S3_SECRET_ACCESS_KEY = private.AWS_S3_SECRET_ACCESS_KEY
+    AWS_S3_ACCESS_KEY_ID = private.AWS_S3_ACCESS_KEY_ID
+    AWS_S3_SECRET_ACCESS_KEY = private.AWS_S3_SECRET_ACCESS_KEY
 
 
 # Application definition
