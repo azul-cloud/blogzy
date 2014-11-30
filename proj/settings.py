@@ -18,8 +18,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
 ENV = os.environ.get('ENV')
-# S3_KEY = os.environ.get('S3_KEY')
-# S3_SECRET = os.environ.get('S3_SECRET')
+S3_KEY = os.environ.get('S3_KEY')
+S3_SECRET = os.environ.get('S3_SECRET')
 
 # determine if there is internet access or not. Can be turned to true
 # to load local resources instead of CDN
