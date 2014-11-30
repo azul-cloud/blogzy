@@ -25,7 +25,9 @@
                     </div>
                     <div class="row">
                         {% include 'maininclude/social_share.html' %}
-                        {{ post.body|safe }}
+                        <div id="post-body">
+                            {{ post.body|safe }}
+                        </div>
                         <h4 class="text-center">Read more from <a href="{{ post.blog.get_absolute_url }}">{{ post.blog }}</a></h4>
                     </div>
                     <div class="row">
