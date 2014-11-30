@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 import dj_database_url
-import private
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
@@ -81,6 +80,7 @@ else:
     # run the project without internet
     OFFLINE = False
 
+    import private
     # AWS_S3_ACCESS_KEY_ID = private.AWS_S3_ACCESS_KEY_ID
     # AWS_S3_SECRET_ACCESS_KEY = private.AWS_S3_SECRET_ACCESS_KEY
 
