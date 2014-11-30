@@ -35,22 +35,22 @@ def blog(request, **kwargs):
 
     # get the post with a lat and a long that we want to center on. Get the
     # latest post that has a lat and a long
-    eligible_posts = []
-    for p in blog.post_set.filter(active=True):
+    map_posts = []
+    for p in posts:
         if p.lat and p.long:
-            eligible_posts.append(p)
+            map_posts.append(p)
 
-    if eligible_posts:
+    if map_posts:
         # assign the most recent post's loc to center loc
-        center_lat = eligible_posts[0].lat
-        center_long = eligible_posts[0].long
+        center_lat = map_posts[0].lat
+        center_long = map_posts[0].long
     else:
         center_lat = None
         center_long = None
 
     return render(request, "blogcontent/blog.html",
                   {'blog':blog, 'wave_bool_list':wave_bool_list, 'center_lat':center_lat,
-                   'center_long':center_long, 'posts':posts})
+                   'center_long':center_long, 'posts':posts, 'map_posts':map_posts})
 
 
 def explore(request, **kwargs):

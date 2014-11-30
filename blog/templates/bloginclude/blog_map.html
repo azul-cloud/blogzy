@@ -12,7 +12,7 @@
     {% endif %}
 
     LocationData = [
-        {% for p in blog.post_set.all %}
+        {% for p in map_posts %}
             {% if p.lat and p.long %}
                 [{{ p.lat }},
                 {{ p.long }},
