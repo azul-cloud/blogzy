@@ -18,9 +18,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-env = os.environ.get('ENV')
+ENV = os.environ.get('ENV')
+# S3_KEY = os.environ.get('S3_KEY')
+# S3_SECRET = os.environ.get('S3_SECRET')
 
-if env == 'test':
+# determine if there is internet access or not. Can be turned to true
+# to load local resources instead of CDN
+OFFLINE = False
+
+if ENV == 'test':
     # in heroku test env
     DEBUG = True
     TEMPLATE_DEBUG = True
@@ -34,10 +40,11 @@ if env == 'test':
     MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
     MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
 
-    # run the project without internet
-    OFFLINE = False
+    # AWS_S3_ACCESS_KEY_ID = S3_KEY
+    # AWS_S3_SECRET_ACCESS_KEY = S3_SECRET
 
-elif env == 'prod':
+
+elif ENV == 'prod':
     # in heroku prod env
     DEBUG = False
     TEMPLATE_DEBUG = False
@@ -54,8 +61,8 @@ elif env == 'prod':
     MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
     MAILGUN_SERVER_NAME = 'travelblogwave.com'
 
-    # run the project without internet
-    OFFLINE = False
+    # AWS_S3_ACCESS_KEY_ID = S3_KEY
+    # AWS_S3_SECRET_ACCESS_KEY = S3_SECRET
 
 else:
     # local, or lost
@@ -73,6 +80,9 @@ else:
 
     # run the project without internet
     OFFLINE = False
+
+    # AWS_S3_ACCESS_KEY_ID = private.AWS_S3_ACCESS_KEY_ID
+    # AWS_S3_SECRET_ACCESS_KEY = private.AWS_S3_SECRET_ACCESS_KEY
 
 
 # Application definition
@@ -199,8 +209,6 @@ GOOGLE_API_KEY = 'AIzaSyCsPHVZewbLPsJgz3oB8v8JzaFzNpyR0NA'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
-AWS_S3_ACCESS_KEY_ID = private.AWS_S3_ACCESS_KEY_ID
-AWS_S3_SECRET_ACCESS_KEY = private.AWS_S3_SECRET_ACCESS_KEY
 AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
 
 PAGINATION_TEMPLATE_PACK = "bootstrap3"
