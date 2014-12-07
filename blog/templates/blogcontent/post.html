@@ -36,21 +36,23 @@
                                 {% include "bloginclude/post_container.html" %}
                             {% endwith %}
                         {% else %}
-                            <div class="col-sm-6"></div>
+                            <div class="col-xs-6"></div>
                         {% endif %}
                         {% if post.get_next_blog_post %}
                             {% with post.get_next_blog_post as p and "Next Post <span class='glyphicon glyphicon-chevron-right' ></span> " as div_header %}
                                 {% include "bloginclude/post_container.html" %}
                             {% endwith %}
                         {% else %}
-                            <div class="col-sm-6"></div>
+                            <div class="col-xs-6"></div>
                         {% endif %}
                     </div>
                     <div class="row" id="post-footer">
                         {% include "maininclude/social_share.html" %}
                         <h4>Written by {{ post.author.username }} on {{ post.create_date }}
                         {% include "bloginclude/favorite.html" %}</h4>
-                        {% include "google_ads/leaderboard.html" %}
+                        <div class="hidden-xs">
+                            {% include "google_ads/leaderboard.html" %}
+                        </div>
                         {% if post.blog.disqus %}
                             {% include "bloginclude/disqus.html" %}
                         {% endif %}
