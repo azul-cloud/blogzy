@@ -12,6 +12,7 @@ import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+OFFLINE = False
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/

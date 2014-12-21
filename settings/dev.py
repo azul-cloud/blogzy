@@ -1,7 +1,7 @@
 from .base import *
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DEBUG = True
 
 if DEBUG:
     STATICFILES_DIRS = (
