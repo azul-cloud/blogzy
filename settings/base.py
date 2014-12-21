@@ -137,4 +137,4 @@ AWS_S3_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
 
 PAGINATION_TEMPLATE_PACK = "bootstrap3"
 
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+# EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
