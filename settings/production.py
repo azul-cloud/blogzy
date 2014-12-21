@@ -15,4 +15,4 @@ if DEBUG:
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
- # AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
+ AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
