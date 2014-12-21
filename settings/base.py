@@ -18,57 +18,6 @@ SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 env = os.environ.get('ENV')
 
-if env == 'test':
-    # in heroku test env
-    DEBUG = True
-    TEMPLATE_DEBUG = True
-    ALLOWED_HOSTS = ['test.travelblogwave.com']
-
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
-
-    MAILGUN_ACCESS_KEY = os.environ['MAILGUN_ACCESS_KEY']
-    MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
-
-    # run the project without internet
-    OFFLINE = False
-
-elif env == 'prod':
-    # in heroku prod env
-    DEBUG = False
-    TEMPLATE_DEBUG = False
-    ALLOWED_HOSTS = ['www.travelblogwave.com']
-
-    if DEBUG:
-        STATICFILES_DIRS = (
-            os.path.join(BASE_DIR, 'static'),
-        )
-    else:
-        STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
-    MAILGUN_ACCESS_KEY = os.environ['MAILGUN_ACCESS_KEY']
-    MAILGUN_SERVER_NAME = 'travelblogwave.com'
-
-    # run the project without internet
-    OFFLINE = False
-
-else:
-    # local, or lost
-    DEBUG = True
-    TEMPLATE_DEBUG = True
-    ALLOWED_HOSTS = []
-
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
-
-    MAILGUN_ACCESS_KEY = os.environ['MAILGUN_ACCESS_KEY']
-    MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
-
-    # run the project without internet
-    OFFLINE = False
-
 
 # Application definition
 
@@ -196,7 +145,7 @@ AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
 AWS_S3_ACCESS_KEY_ID = os.environ['S3_KEY']
 AWS_S3_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
-AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
+AWS_STORAGE_BUCKET_NAME = 'dev.travelblogwave.media'
 
 PAGINATION_TEMPLATE_PACK = "bootstrap3"
 
