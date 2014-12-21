@@ -1,7 +1,11 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 
-class PingTests(TestCase):
+
+class ModelTests(TestCase):
+    pass
+
+class ViewTests(TestCase):
 
     def test_fail_ping(self):
         url = '/doesnotexist/'
@@ -17,3 +21,7 @@ class PingTests(TestCase):
         url = reverse('main-about')
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
+
+
+class FormTests(TestCase):
+    pass
