@@ -5,7 +5,7 @@ from .staging import *
 
 MAILGUN_SERVER_NAME = 'travelblogwave.com'
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 
 if DEBUG:
