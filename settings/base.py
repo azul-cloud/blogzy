@@ -1,9 +1,7 @@
 """
 Django settings for tbwave project.
-
 For more information on this file, see
 https://docs.djangoproject.com/en/1.6/topics/settings/
-
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.6/ref/settings/
 """
@@ -17,15 +15,65 @@ BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
 
-ENV = os.environ.get('ENV')
-SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
+env = os.environ.get('ENV')
 
-# determine if there is internet access or not. Can be turned to true
-# to load local resources instead of CDN
-OFFLINE = False
+if env == 'test':
+    # in heroku test env
+    DEBUG = True
+    TEMPLATE_DEBUG = True
+    ALLOWED_HOSTS = ['test.travelblogwave.com']
+    SECRET_KEY = '3iy-!-d$!pc_ll$8$elg&cpr@*tfn-d5&#9ag=)%#()t$$5%5^'
+
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+
+    MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
+    MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
+
+    # run the project without internet
+    OFFLINE = False
+
+elif env == 'prod':
+    # in heroku prod env
+    DEBUG = False
+    TEMPLATE_DEBUG = False
+    ALLOWED_HOSTS = ['www.travelblogwave.com']
+    SECRET_KEY = '3iy-!-d$!pc_ll$#$elg#cpr@*tfn-d5&nAag=)%#()t$$5%5^'
+
+    if DEBUG:
+        STATICFILES_DIRS = (
+            os.path.join(BASE_DIR, 'static'),
+        )
+    else:
+        STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+    MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
+    MAILGUN_SERVER_NAME = 'travelblogwave.com'
+
+    # run the project without internet
+    OFFLINE = False
+
+else:
+    # local, or lost
+    DEBUG = True
+    TEMPLATE_DEBUG = True
+    ALLOWED_HOSTS = []
+    SECRET_KEY = '3iy-!-d$!pc_1l$#$elg#cpr@*tfn-d5&JAag=)%#()t$$5%5^'
+
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+
+    MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
+    MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
+
+    # run the project without internet
+    OFFLINE = False
 
 
 # Application definition
+
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
@@ -103,6 +151,23 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# Honor the 'X-Forwarded-Proto' header for request.is_secure()
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# Allow all host headers
+ALLOWED_HOSTS = ['*']
+
+
+import sys
+if 'test' in sys.argv or 'test_coverage' in sys.argv: #Covers regular testing and django-coverage
+    DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
+    DATABASES['default']['NAME'] = '/home/studentrentit/dev/test.db'
+
+#disable south migrations while testing
+SOUTH_TESTS_MIGRATE = False
+
+SUCCESS_CODES = [200, 302]
+
 # Crispy settings
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
@@ -125,16 +190,16 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # google stuff
-GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
+GOOGLE_API_KEY = 'AIzaSyCsPHVZewbLPsJgz3oB8v8JzaFzNpyR0NA'
 
 # aws s3
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
-AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
 AWS_S3_ACCESS_KEY_ID = os.environ['S3_KEY']
 AWS_S3_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
+AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
 
 PAGINATION_TEMPLATE_PACK = "bootstrap3"
 
-# EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'

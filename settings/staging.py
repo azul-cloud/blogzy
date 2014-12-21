@@ -5,6 +5,6 @@ from .base import *
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Allow all host headers
-ALLOWED_HOSTS = ['http://tbwvtest.herokuapp.com/']
+# ALLOWED_HOSTS = ['http://tbwvtest.herokuapp.com/']
 
-MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
+# MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
