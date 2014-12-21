@@ -11,6 +11,7 @@ import os
 import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.6/howto/deployment/checklist/
@@ -22,13 +23,12 @@ if env == 'test':
     DEBUG = True
     TEMPLATE_DEBUG = True
     ALLOWED_HOSTS = ['test.travelblogwave.com']
-    SECRET_KEY = '3iy-!-d$!pc_ll$8$elg&cpr@*tfn-d5&#9ag=)%#()t$$5%5^'
 
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
 
-    MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
+    MAILGUN_ACCESS_KEY = os.environ['MAILGUN_ACCESS_KEY']
     MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
 
     # run the project without internet
@@ -39,7 +39,6 @@ elif env == 'prod':
     DEBUG = False
     TEMPLATE_DEBUG = False
     ALLOWED_HOSTS = ['www.travelblogwave.com']
-    SECRET_KEY = '3iy-!-d$!pc_ll$#$elg#cpr@*tfn-d5&nAag=)%#()t$$5%5^'
 
     if DEBUG:
         STATICFILES_DIRS = (
@@ -48,7 +47,7 @@ elif env == 'prod':
     else:
         STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-    MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
+    MAILGUN_ACCESS_KEY = os.environ['MAILGUN_ACCESS_KEY']
     MAILGUN_SERVER_NAME = 'travelblogwave.com'
 
     # run the project without internet
@@ -59,13 +58,12 @@ else:
     DEBUG = True
     TEMPLATE_DEBUG = True
     ALLOWED_HOSTS = []
-    SECRET_KEY = '3iy-!-d$!pc_1l$#$elg#cpr@*tfn-d5&JAag=)%#()t$$5%5^'
 
     STATICFILES_DIRS = (
         os.path.join(BASE_DIR, 'static'),
     )
 
-    MAILGUN_ACCESS_KEY = 'key-47816e24fe42b25aa3ade1ef01f9275d'
+    MAILGUN_ACCESS_KEY = os.environ['MAILGUN_ACCESS_KEY']
     MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
 
     # run the project without internet
@@ -190,7 +188,7 @@ AUTHENTICATION_BACKENDS = (
 )
 
 # google stuff
-GOOGLE_API_KEY = 'AIzaSyCsPHVZewbLPsJgz3oB8v8JzaFzNpyR0NA'
+GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
 
 # aws s3
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
