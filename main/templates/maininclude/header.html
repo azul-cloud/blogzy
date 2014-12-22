@@ -17,25 +17,25 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-left">
-        <li><a href="{% url 'blog-explore' %}" class="active">Explore</a></li>
-        <li><a href="{% url 'blog-wave' %}">Wave</a></li>
-        <li><a href="#" data-target="#feedback-modal" data-toggle="modal">Feedback</a></li>
+        <!-- <li class="social-nav-container" style="padding-left:20px;">
+            <div class="fb-like" data-href="http://www.travelblogwave.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+        </li> -->
       </ul>
       {% if feedback_form %}
         {% include "maininclude/modals/feedback.html" %}
       {% endif %}
       <ul class="nav navbar-nav navbar-right">
-          <li class="social-nav-container">
-              <div class="fb-like" data-href="http://www.travelblogwave.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
-          </li>
+        <li><a href="{% url 'blog-explore' %}" class="active"><span class="glyphicon glyphicon-search " ></span> EXPLORE</a></li>
+        <li><a href="{% url 'blog-wave' %}"><span class="glyphicon glyphicon-th-list " ></span> WAVE</a></li>
+        <li><a href="#" data-target="#feedback-modal" data-toggle="modal"><span class="glyphicon glyphicon-repeat " ></span> FEEDBACK</a></li>
         {% if not user.profile.user_blog %}
           <li><a href="{% url 'blog-create' %}"><span class="glyphicon glyphicon-plus"></span> Create Blog</a></li>
         {% else %}
-          <li><a href="{% url 'blog-dashboard' user.profile.user_blog.slug %}">Dashboard <span class="glyphicon glyphicon-dashboard"></span></a></li>
+          <li><a href="{% url 'blog-dashboard' user.profile.user_blog.slug %}"><span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a></li>
         {% endif %}
 
         {% if not user.is_authenticated %}
-            <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-lock"></span> Login</a></li>
+            <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-lock"></span> LOGIN</a></li>
         {% else %}
           <li class="dropdown">
               {% if request.user.socialaccount_set.all.0.get_avatar_url %}
@@ -43,7 +43,7 @@
                 <img id="navbar-profile-img" class="img-circle" src="{{ request.user.socialaccount_set.all.0.get_avatar_url }}" />
               {% else %}
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                Hi, {{ user.username }} <span class="glyphicon glyphicon-cog"></span></a>
+                <span class="glyphicon glyphicon-cog"></span> Hi, {{ user.username }}</a>
               {% endif %}
 
               <ul class="dropdown-menu" role="menu">

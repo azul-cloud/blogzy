@@ -47,6 +47,14 @@ legend h1 {
 .no-padding {
     padding:0;
 }
+
+.grow, #other-posts img, .social-buttons img {
+    transition: all 0.5s ease-out;
+}
+.grow:hover {
+    font-size: 120%;
+    font-weight: 100;
+}
 #navbar-main {
     border-radius:0;
     background-color:#010E13;
@@ -115,7 +123,7 @@ img {
 }
 .social-buttons img,
 .social-icons img {
-    opacity:0.9
+    opacity:0.7;
 }
 .social-buttons img:hover,
 .social-icons img:hover {
@@ -287,6 +295,10 @@ applied to individual blog posts, those are defined int he Post section
 /*
 css styles that are specific to individual posts
 */
+#post-title {
+    text-align: center;
+}
+
 #post-body img {
     display:block;
     width:100%;
@@ -304,32 +316,17 @@ css styles that are specific to individual posts
     border-radius:26px;
     max-height:600px;
 }
-#other-posts img {
-    margin-left:auto;
-    margin-right:auto;
-    opacity:0.9;
-}
-#other-posts img:hover {
-    opacity:1;
-}
-#other-posts .other-post-title {
-    text-align:center;
-    text-decoration:none;
-    color: #000;
-    font-weight:300;
-}
-#other-posts a:hover {
-    text-decoration:none;
-}
-#other-posts div.row {
-    margin-top:10px;
-    margin-bottom:10px;
-}
 #post-footer {
     padding:30px 0;
 }
 .no-pic {
     height:150px;
+}
+#other-posts img:hover {
+    opacity:1;
+}
+#other-posts img {
+    opacity: 0.8;
 }
 
 
@@ -360,6 +357,10 @@ loading bootstrap.css so that these rules can override.
 }
 .navbar-brand {
     padding:5px;
+}
+.navbar li {
+    font-size: 150%;
+    font-weight: 100;
 }
 .btn-primary {
     background-color: #27576B;

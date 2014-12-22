@@ -1,0 +1,12 @@
+{% if media_post %}
+  <div class="media">
+    <a class="media-left media-middle" href="{{ media_post.get_absolute_url }}">
+      <img src="{{ media_post.image.url }}" alt="{{ media_post.image_description }}"
+        class="img-responsive img-rounded">
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading text-center">{{ media_post.title }}</h4>
+      {{ media_post.headline }}
+    </div>
+  </div>
+{% endif %}
