@@ -53,7 +53,6 @@ class BlogPostCreateForm(ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 '',
-                Field('views', type="hidden"),
                 Field('place_id', type="hidden"),
                 Div('title', css_class="col-sm-5 col-xs-6"),
                 # Div('topic', css_class="col-sm-3 col-xs-6"),
@@ -122,7 +121,6 @@ class BlogEditForm(ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 '<h2 class="text-center">Edit data about your blog</h2>',
-                Field('place_id', type="hidden"),
                 Field('owner', type="hidden"),
                 Field('title', type="hidden"),
                 Div('description', css_class="col-md-12"),
