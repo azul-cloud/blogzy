@@ -5,8 +5,8 @@ from .staging import *
 
 MAILGUN_SERVER_NAME = 'travelblogwave.com'
 
-# DEBUG = False
-# TEMPLATE_DEBUG = False
+DEBUG = False
+TEMPLATE_DEBUG = False
 
 if DEBUG:
     STATICFILES_DIRS = (
