@@ -6,23 +6,32 @@ from django.conf import settings
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
+from django.views.generic import TemplateView
 
 from main.utils import get_json_objects, get_json
 from main.models import Feedback
 from blog.models import Topic, Post
 
 
-def home(request):
-    topics = Topic.objects.all()
-    recent_posts = Post.objects.filter(active=True)[:3]
+class HomeTemplateView(TemplateView):
+    # show the home page
+    template_name = "maincontent/home.html"
 
-    return render(request, "maincontent/home.html",
-                  {'topics':topics, 'recent_posts':recent_posts})
+    def get_context_data(self, **kwargs):
+        topics = Topic.objects.all()
+        recent_posts = Post.objects.filter(active=True)[:3]
+        return {'topics':topics, 'recent_posts':recent_posts}
 
 
-def about(request):
+class AboutTemplateView(TemplateView):
+    # show the about page
+    template_name = "maincontent/about.html"
 
-    return render(request, "maincontent/about.html", {})
+
+
+class RobotTemplateView(TemplateView):
+    # robots.txt for search engines
+    template_name = "maincontent/robots.txt"
 
 
 def send_feedback(request):
@@ -49,6 +58,3 @@ def send_feedback(request):
 #         ['awwester@gmail.com'], fail_silently=False)
 #
 #     return HttpResponse("sent!")
-
-def robots(request):
-    return render(request, 'maincontent/robots.txt', {})

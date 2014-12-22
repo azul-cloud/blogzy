@@ -3,7 +3,7 @@ from django.core.urlresolvers import reverse
 from django.conf import settings
 from django.contrib.auth.models import User
 
-from blog.models import Topic, PersonalBlog, Post, UserFavorite, \
+from .models import Topic, PersonalBlog, Post, UserFavorite, \
     UserStreamBlog, BlogSubscription
 
 
@@ -149,11 +149,6 @@ class BlogViewTest(BlogTestSetup):
 
         response = self.client.get(url)
 
-    # def test_explore_region(self):
-    #     url = reverse(self.prefix + "explore-region")
-
-    #     response = self.client.get(url)
-
     def test_topic(self):
         url = reverse(self.prefix + "topic", kwargs={'topic':self.topic.slug})
 
@@ -188,4 +183,29 @@ class BlogViewTest(BlogTestSetup):
 
 
 class BlogFormTest(BlogTestSetup):
-    pass
+    def test_create_blog(self):
+        pass
+        # self.client.login(username=self.user2.username, 
+        #     password='testpassword')
+        
+        # url = reverse('blog-create')
+
+        # post = {
+        #     "title":"My Test Blog",
+        #     "description":"<h1>BEST TEST BLOG EVER!</h1>",
+        # }
+
+        # response = self.client.post(url, post)
+
+        # # make sure the response has the newly created post
+        # self.assertEqual(response.status_code, 302)
+        # self.assertContains(response, post['title'])
+
+    def test_edit_blog(self):
+        pass
+
+    def test_create_post(self):
+        pass
+
+    def test_edit_post(self):
+        pass
