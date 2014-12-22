@@ -1,0 +1,36 @@
+from django.core.urlresolvers import reverse
+from django.utils.http import urlencode
+
+from allauth.socialaccount.providers.base import Provider
+from allauth.socialaccount.models import SocialApp
+
+
+class OAuth2Provider(Provider):
+    def get_login_url(self, request, **kwargs):
+        url = reverse(self.id + "_login")
+        if kwargs:
+            url = url + '?' + urlencode(kwargs)
+        return url
+
+    def get_auth_params(self, request, action):
+        settings = self.get_settings()
+        return settings.get('AUTH_PARAMS', {})
+
+    def get_scope(self):
+        settings = self.get_settings()
+        scope = settings.get('SCOPE')
+        if scope is None:
+            scope = self.get_default_scope()
+        return scope
+
+    def get_default_scope(self):
+        return []
+
+    def get_image_path(self):
+        # return the path for the image if it exists
+        social_app = SocialApp.objects.get(name=self.name)
+
+        if social_app.image:
+            return social_app.image.url
+        else:
+            return None
