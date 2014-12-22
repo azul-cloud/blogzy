@@ -11,7 +11,7 @@
     {% for p in recent_posts %}
         <div class="item {% if forloop.first %}active{% endif %}">
             <a href="{{ p.get_absolute_url }}">
-              <img src="{{ p.get_image_url }}" alt="{{ p.image_description }}" " class="img-responsive">
+              <img src="{{ p.get_image_url }}" alt="" class="img-responsive">
               <div class="carousel-caption">
                 {{ p.blog }} - {{ p.title }}
               </div>

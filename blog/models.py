@@ -96,7 +96,7 @@ class Post(models.Model):
     author = models.ForeignKey(User)
     blog = models.ForeignKey(PersonalBlog)
     image = models.ImageField(upload_to=get_post_upload_path)
-    image_description = models.CharField(max_length=100)
+    # image_description = models.CharField(max_length=100)
     title = models.CharField(max_length=50)
     body = models.TextField()
     headline = models.CharField(max_length=100, null=True, blank=True)
