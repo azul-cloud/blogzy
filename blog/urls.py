@@ -24,5 +24,5 @@ urlpatterns = patterns('',
     # needs to be last out of ALL urls including project URLs
     url(r'^topic/(?P<topic>[a-zA-Z0-9-]+)/$', views.topic, name=app + "topic"),
     url(r'(?P<blog>\S+)/(?P<post>[a-zA-Z0-9-]+)/$', views.post, name=app + "post"),
-    url(r'(?P<blog>\S+)/$', views.blog, name=app + "blog"),
+    url(r'(?P<slug>\S+)/$', views.BlogDetailView.as_view(), name=app + "blog"),
 )

@@ -82,7 +82,7 @@ class BlogViewTest(BlogTestSetup):
         response = self.client.get(url)
 
     def test_blog_home(self):
-        url = reverse(self.prefix+"blog", kwargs={'blog':self.blog.slug})
+        url = reverse(self.prefix+"blog", kwargs={'slug':self.blog.slug})
         
         response = self.client.get(url)
         self.assertContains(response, self.blog.title)

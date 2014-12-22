@@ -40,3 +40,21 @@ def get_wave_blog_list(user):
     wave_blog_list = profile.blog_wave.all()
 
     return wave_blog_list
+
+
+def get_map_posts(posts):
+    # get the posts that should be shown on a map from a list of posts
+    map_posts = []
+    for p in posts:
+        if p.lat and p.long:
+            map_posts.append(p)
+
+    if map_posts:
+        # assign the most recent post's loc to center loc
+        center_lat = map_posts[0].lat
+        center_long = map_posts[0].long
+    else:
+        center_lat = None
+        center_long = None
+
+    return map_posts

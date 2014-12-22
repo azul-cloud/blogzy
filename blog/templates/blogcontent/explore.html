@@ -16,34 +16,34 @@
         <h1 class="text-center">Filter to fit your interest</h1>
     </div>
     <div id="explore-search-box-row" class="row-padding">
-        <div id="explore-search-box">
-            <div class="container">
-                <form method="post">
-                    {% csrf_token %}
-                    <div class="col-sm-4 col-sm-offset-1 col-xs-12">
-                        <input id="place-search" name="place" value="{{ request.POST.place }}"
-                               placeholder="Filter by Place" />
-                    </div>
-                    <div class="col-sm-4 col-xs-12">
-                        <input id="topic-search" name="topic" value="{{ request.POST.topic }}"
-                               placeholder="Filter by Topic" />
-                    </div>
-                    <div class="col-sm-2 col-xs-12">
-                        <button class="btn btn-primary btn-block" type="submit">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </div>
-                </form>
+      <div id="explore-search-box">
+        <div class="container">
+          <form method="post">
+            {% csrf_token %}
+            <div class="col-sm-4 col-sm-offset-1 col-xs-12">
+              <input id="place-search" name="place" value="{{ request.POST.place }}"
+                       placeholder="Filter by Place" />
             </div>
+            <div class="col-sm-4 col-xs-12">
+              <input id="topic-search" name="topic" value="{{ request.POST.topic }}"
+                       placeholder="Filter by Topic" />
+            </div>
+            <div class="col-sm-2 col-xs-12">
+              <button class="btn btn-primary btn-block" type="submit">
+                <span class="glyphicon glyphicon-search"></span>
+              </button>
+            </div>
+          </form>
         </div>
+      </div>
     </div>
     <div id="explore-container" class="container">
         {% if posts %}
-            {% include "bloginclude/post_list.html" %}
+          {% include "bloginclude/post_list.html" %}
         {% else %}
-            <div class="row row-padding text-center">
-                <h1>There are no posts for your search criteria. Try something else?</h1>
-            </div>
+          <div class="row row-padding text-center">
+            <h1>There are no posts for your search criteria. Try something else?</h1>
+          </div>
         {% endif %}
     </div>
 {% endblock %}

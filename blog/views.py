@@ -11,47 +11,36 @@ from django.db import IntegrityError
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect, HttpResponse
+from django.views.generic import DetailView, ListView
+from django.views.generic.edit import ProcessFormView
 
+from .models import PersonalBlog, Post, Topic, UserFavorite
+from .forms import BlogCreateForm, BlogEditForm, BlogPostCreateForm, BlogPostEditForm
+from .utils import get_favorites, get_wave_blog_list, get_map_posts
 from main.utils import get_json_objects, get_json, get_place_details
 from main.models import UserProfile
-from blog.models import PersonalBlog, Post, Topic, UserFavorite
-from blog.forms import BlogCreateForm, BlogEditForm, BlogPostCreateForm, BlogPostEditForm
-from blog.utils import get_favorites, get_wave_blog_list
 
 
-def blog(request, **kwargs):
+class BlogDetailView(DetailView):
     '''
-    individual blog page
+    Show info about a blog
     '''
-    blog_slug = kwargs['blog']
-    blog = get_object_or_404(PersonalBlog, slug=blog_slug)
-    posts = Post.objects.filter(blog=blog, active=True)
+    template_name = "blogcontent/blog.html"
+    model = PersonalBlog
 
-    # check if the blog is in a user's blog_wave
-    if request.user.is_authenticated():
-        wave_bool_list = get_wave_blog_list(request.user)
-    else:
-        wave_bool_list = None
+    def get_context_data(self, **kwargs):
+        context = super(BlogDetailView, self).get_context_data(**kwargs)
+        # get a user's wave list
+        if self.request.user.is_authenticated():
+            context['wave_bool_list'] = get_wave_blog_list(self.request.user)
 
-    # get the post with a lat and a long that we want to center on. Get the
-    # latest post that has a lat and a long
-    map_posts = []
-    for p in posts:
-        if p.lat and p.long:
-            map_posts.append(p)
+        #get the posts and map posts for the blog object
+        context['posts'] = Post.objects.filter(blog=self.get_object(), 
+            active=True)
 
-    if map_posts:
-        # assign the most recent post's loc to center loc
-        center_lat = map_posts[0].lat
-        center_long = map_posts[0].long
-    else:
-        center_lat = None
-        center_long = None
+        context['map_posts'] = get_map_posts(context['posts'])
 
-    return render(request, "blogcontent/blog.html",
-                  {'blog':blog, 'wave_bool_list':wave_bool_list, 'center_lat':center_lat,
-                   'center_long':center_long, 'posts':posts, 'map_posts':map_posts})
-
+        return context
 
 def explore(request, **kwargs):
     '''
@@ -132,7 +121,6 @@ def wave(request):
     user = request.user
 
     if user.is_authenticated():
-
         # get the blogs that are in a user's wave
         wave_blog_list = get_wave_blog_list(request.user)
 

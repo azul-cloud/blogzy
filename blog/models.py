@@ -76,7 +76,7 @@ class PersonalBlog(models.Model):
         return count
 
     def get_absolute_url(self):
-        url = reverse('blog-blog', kwargs={ 'blog':self.slug })
+        url = reverse('blog-blog', kwargs={ 'slug':self.slug })
         return url
 
     def google_id(self):

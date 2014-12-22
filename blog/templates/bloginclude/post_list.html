@@ -3,9 +3,9 @@
 {% autopaginate posts 10 %}
 
 {% for p in posts %}
-    {% if forloop.first or forloop.counter0|divisibleby:"2" %}<div class="row">{% endif %}
-        {% include "bloginclude/post_container.html" %}
-    {% if forloop.last or forloop.counter|divisibleby:"2" %}</div>{% endif %}
+  {% if forloop.first or forloop.counter0|divisibleby:"2" %}<div class="row">{% endif %}
+    {% include "bloginclude/post_container.html" %}
+  {% if forloop.last or forloop.counter|divisibleby:"2" %}</div>{% endif %}
 {% endfor %}
 <div class="text-center">
     {% paginate %}
