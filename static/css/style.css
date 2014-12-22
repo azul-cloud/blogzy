@@ -360,7 +360,7 @@ loading bootstrap.css so that these rules can override.
 }
 .navbar li {
     font-size: 150%;
-    font-weight: 100;
+    font-weight: 300;
 }
 .btn-primary {
     background-color: #27576B;

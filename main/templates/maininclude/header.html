@@ -29,7 +29,7 @@
         <li><a href="{% url 'blog-wave' %}"><span class="glyphicon glyphicon-th-list " ></span> WAVE</a></li>
         <li><a href="#" data-target="#feedback-modal" data-toggle="modal"><span class="glyphicon glyphicon-repeat " ></span> FEEDBACK</a></li>
         {% if not user.profile.user_blog %}
-          <li><a href="{% url 'blog-create' %}"><span class="glyphicon glyphicon-plus"></span> Create Blog</a></li>
+          <li><a href="{% url 'blog-create' %}"><span class="glyphicon glyphicon-plus"></span> CREATE BLOG</a></li>
         {% else %}
           <li><a href="{% url 'blog-dashboard' user.profile.user_blog.slug %}"><span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a></li>
         {% endif %}
@@ -47,8 +47,8 @@
               {% endif %}
 
               <ul class="dropdown-menu" role="menu">
-                <li><a href="{% url 'blog-favorites' %}">Favorites</a></li>
-                <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-lock"></span>  Logout</a></li>
+                <li><a href="{% url 'blog-favorites' %}"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
+                <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-lock"></span> Logout</a></li>
               </ul>
           </li>
         {% endif %}

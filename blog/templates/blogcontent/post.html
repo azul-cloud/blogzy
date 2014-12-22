@@ -20,7 +20,7 @@
                     <div class="row">
                         <h1 id="post-title">{{ post.title }}</h1>
                         {% if post.image %}
-                            <img src="{{ post.image.url }}" class="img-responsive" id="post-main-image" />
+                            <img src="{{ post.image.url }}" class="img-responsive" id="post-main-image" alt="{{ post.image_description }}"/>
                         {% endif %}
                     </div>
                     <div class="row">
@@ -33,12 +33,12 @@
                     <div class="row">
                         {% with post.get_prev_blog_post as thumbnail_post %}
                           <div class="col-xs-6">
-                            {% include "bloginclude/post_thumbnail.html" %}
+                            {% include "bloginclude/thumbnail_post.html" %}
                           </div>
                         {% endwith %}
                         {% with post.get_next_blog_post as thumbnail_post %}
                           <div class="col-xs-6">
-                            {% include "bloginclude/post_thumbnail.html" %}
+                            {% include "bloginclude/thumbnail_post.html" %}
                           </div>
                         {% endwith %}
                     </div>
@@ -63,7 +63,7 @@
                           </div>
                           <div class="panel-body">
                             {% for media_post in other_posts %}
-                                {% include "bloginclude/post_media.html" %}
+                                {% include "bloginclude/media_post.html" %}
                             {% endfor %}
                           </div>
                         </div>
