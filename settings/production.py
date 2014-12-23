@@ -4,8 +4,8 @@ from .staging import *
 # Allow all host headers
 
 
-DEBUG = False
-TEMPLATE_DEBUG = False
+# DEBUG = False
+# TEMPLATE_DEBUG = False
 
 if DEBUG:
     STATICFILES_DIRS = (
