@@ -1,4 +1,4 @@
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from tastypie import fields
 from tastypie.resources import ModelResource, ALL
@@ -14,7 +14,8 @@ class UserResource(ModelResource):
     authorization = Authorization()
 
     class Meta:
-        queryset = User.objects.all()
+        user = get_user_model()
+        queryset = user.objects.all()
         allowed_methods = ['get']
         excludes = ['email', 'password', 'is_superuser', 'is_staff']
         filtering = {

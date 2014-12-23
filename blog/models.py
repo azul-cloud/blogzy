@@ -2,7 +2,6 @@ import os
 import requests
 
 from django.db import models
-from django.contrib.auth.models import User
 from django.utils.text import slugify
 from django.core.urlresolvers import reverse
 from django.conf import settings
@@ -51,7 +50,7 @@ class PersonalBlog(models.Model):
     Data about a personal blog for a specific user. The user can upload
     metadata about their blog to give it a personalized feel
     '''
-    owner = models.ForeignKey(User)
+    owner = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=50)
     description = models.TextField()
     logo = models.ImageField(upload_to=get_blog_upload_path, null=True, blank=True)
@@ -93,7 +92,7 @@ class Post(models.Model):
     '''
     Data about blog posts. The guts of everything.
     '''
-    author = models.ForeignKey(User)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL)
     blog = models.ForeignKey(PersonalBlog)
     image = models.ImageField(upload_to=get_post_upload_path)
     image_description = models.CharField(max_length=100)
@@ -208,7 +207,7 @@ class UserFavorite(models.Model):
     Mark a favorite post for a user so that it is easily accessible
     in the future
     '''
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     post = models.ForeignKey(Post)
     create_date = models.DateField(auto_now_add=True)
 
@@ -225,7 +224,7 @@ class UserStreamBlog(models.Model):
     as when they put out a new post. Users will be able to see the blog
     posts in their stream
     '''
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     blog = models.ForeignKey(PersonalBlog)
     new_post_email = models.BooleanField(default=False)
     email_newsletter = models.BooleanField(default=False)
@@ -244,7 +243,7 @@ class BlogSubscription(models.Model):
     different attributes such as how often they will get the subscription
     info.
     '''
-    user = models.ForeignKey(User)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL)
     blog = models.ForeignKey(PersonalBlog)
     sub_type = models.CharField(max_length=1, choices=SUB_TYPE_CHOICES)
 

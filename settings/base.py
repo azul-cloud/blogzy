@@ -110,6 +110,8 @@ ALLOWED_HOSTS = ['*']
 # Crispy settings
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 
+AUTH_USER_MODEL = 'main.User'
+
 
 # allauth settings
 LOGIN_REDIRECT_URL = "/"

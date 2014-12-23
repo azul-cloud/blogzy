@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+from django.contrib.auth.models import AbstractUser
 
 from blog.models import PersonalBlog, Post
 
@@ -12,17 +12,25 @@ FEEDBACK_CHOICES = (
 )
 
 
-class UserProfile(models.Model):
+class TimeStampedModel(models.Model):
     '''
-    extended information about a user
+    An abstract base class model that provides selfupdating
+    created and modified fields.
     '''
-    user = models.OneToOneField(User, related_name="profile")
+    created = models.DateTimeField(auto_now_add=True)
+    modified = models.DateTimeField(auto_now=True)
+    
+    class Meta:
+        abstract = True
+
+
+class User(AbstractUser):
+    '''
+    Extended User class
+    '''
     instagram = models.CharField(max_length=20, blank=True, null=True)
     twitter = models.CharField(max_length=20, blank=True, null=True)
     blog_wave = models.ManyToManyField(PersonalBlog, blank=True, null=True)
-
-    def __str__(self):
-        return self.user.username
 
     def user_blog(self):
         # detect if the current user has started their own blog
@@ -46,7 +54,3 @@ class Feedback(models.Model):
     user = models.ForeignKey(User, null=True, blank=True)
     status = models.CharField(max_length=1, choices=FEEDBACK_CHOICES, default="N")
     create_date = models.DateField(auto_now_add=True)
-
-
-# create a user profile if it doesn't exist
-User.profile = property(lambda u: UserProfile.objects.get_or_create(user=u)[0])

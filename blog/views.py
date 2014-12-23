@@ -4,7 +4,7 @@ import datetime
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 from django.contrib.admin.views.decorators import staff_member_required
 from django.conf import settings
 from django.db import IntegrityError
@@ -18,7 +18,6 @@ from .models import PersonalBlog, Post, Topic, UserFavorite
 from .forms import BlogCreateForm, BlogEditForm, BlogPostCreateForm, BlogPostEditForm
 from .utils import get_favorites, get_wave_blog_list, get_map_posts
 from main.utils import get_json_objects, get_json, get_place_details
-from main.models import UserProfile
 
 
 class BlogDetailView(DetailView):
@@ -124,8 +123,7 @@ def wave(request):
         # get the blogs that are in a user's wave
         wave_blog_list = get_wave_blog_list(request.user)
 
-        profile = get_object_or_404(UserProfile, user=user)
-        blogs = profile.blog_wave.all()
+        blogs = request.user.blog_wave.all()
 
         post_set = []
         for b in blogs:
@@ -161,16 +159,15 @@ def add_wave(request, **kwargs):
             id = kwargs["pk"]
             action = kwargs["action"]
 
-            profile = get_object_or_404(UserProfile, user=request.user)
             blog = get_object_or_404(PersonalBlog, id=id)
 
             if action == "add":
                 # add the blog to the current user's blog wave
-                profile.blog_wave.add(blog)
+                request.user.blog_wave.add(blog)
                 return HttpResponse("added blog " + blog.title)
             elif action == "remove":
                 # remove the blog from the current user's blog wave
-                profile.blog_wave.remove(blog)
+                request.user.blog_wave.remove(blog)
                 return HttpResponse("removed blog " + blog.title)
         else:
             return HttpResponse("Not an ajax post")
@@ -245,7 +242,7 @@ def create_post(request):
                 # else:
                 #     topic = None
 
-                user = User.objects.get(username = request.user)
+                user = get_user_model().objects.get(username = request.user)
 
                 post = form.save(commit=False)
                 post.author = user

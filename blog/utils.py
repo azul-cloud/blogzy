@@ -2,8 +2,6 @@ from django.shortcuts import get_object_or_404
 
 from blog.models import Post, UserFavorite
 
-from main.models import UserProfile
-
 
 def get_favorites(user):
     '''
@@ -36,8 +34,7 @@ def get_favorites(user):
 
 def get_wave_blog_list(user):
     # get the blogs that are in a user's wave
-    profile = get_object_or_404(UserProfile, user=user)
-    wave_blog_list = profile.blog_wave.all()
+    wave_blog_list = user.blog_wave.all()
 
     return wave_blog_list
 
