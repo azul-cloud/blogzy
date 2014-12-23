@@ -1,11 +1,12 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 
 class InternalTestSetup(TestCase):
     def setUp(self):
+        User = get_user_model()
         self.prefix = "internal-"
 
         self.admin = User.objects.create_user('admin_tester', 

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.conf import settings
-from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 from .models import Topic, PersonalBlog, Post, UserFavorite, \
     UserStreamBlog, BlogSubscription
@@ -9,6 +9,8 @@ from .models import Topic, PersonalBlog, Post, UserFavorite, \
 
 class BlogTestSetup(TestCase):
     def setUp(self):
+        User = get_user_model()
+
         self.prefix = "blog-"
 
         self.user = User.objects.create_user('blog_tester', 
