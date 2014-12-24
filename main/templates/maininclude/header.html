@@ -28,10 +28,10 @@
         <li><a href="{% url 'blog-explore' %}" class="active"><span class="glyphicon glyphicon-search " ></span> EXPLORE</a></li>
         <li><a href="{% url 'blog-wave' %}"><span class="glyphicon glyphicon-th-list " ></span> WAVE</a></li>
         <li><a href="#" data-target="#feedback-modal" data-toggle="modal"><span class="glyphicon glyphicon-repeat " ></span> FEEDBACK</a></li>
-        {% if not user.profile.user_blog %}
+        {% if not user.user_blog %}
           <li><a href="{% url 'blog-create' %}"><span class="glyphicon glyphicon-plus"></span> CREATE BLOG</a></li>
         {% else %}
-          <li><a href="{% url 'blog-dashboard' user.profile.user_blog.slug %}"><span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a></li>
+          <li><a href="{% url 'blog-dashboard' user.user_blog.slug %}"><span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a></li>
         {% endif %}
 
         {% if not user.is_authenticated %}

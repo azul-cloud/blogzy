@@ -83,6 +83,15 @@ class BlogViewTest(BlogTestSetup):
         url = reverse(self.prefix + "create")
         response = self.client.get(url)
 
+    def test_dashboard_available(self):
+        # make sure the header says dashboard if user has a blog
+        self.login()
+        url = reverse("main-home")
+        response = self.client.get(url)
+
+        self.assertNotContains(response, "CREATE BLOG")
+        self.assertContains(response, "DASHBOARD")
+
     def test_blog_home(self):
         url = reverse(self.prefix+"blog", kwargs={'slug':self.blog.slug})
         

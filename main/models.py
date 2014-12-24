@@ -35,7 +35,7 @@ class User(AbstractUser):
     def user_blog(self):
         # detect if the current user has started their own blog
         try:
-            blog = PersonalBlog.objects.get(owner=self.user)
+            blog = PersonalBlog.objects.get(owner=self)
             return blog
         except:
             return None

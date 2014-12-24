@@ -3,7 +3,6 @@ from .staging import *
 
 # Allow all host headers
 
-
 # DEBUG = False
 # TEMPLATE_DEBUG = False
 
