@@ -9,7 +9,11 @@ $(window).scroll(function() {
     var padding_class = "explore-search-padding"
     var sticky_obj = $("#explore-search-box-row")
     var container_obj = $("#explore-container")
-    //console.log(scroll)
+    
+    if ($( window ).width() < 768) {
+        // on mobile set a different breakpoint
+        breakpoint = 220
+    }
 
     if (scroll >= breakpoint) {
         // perform tasks to stick the search bar

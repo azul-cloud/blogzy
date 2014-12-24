@@ -27,7 +27,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{% url 'blog-explore' %}" class="active"><span class="glyphicon glyphicon-search " ></span> EXPLORE</a></li>
         <li><a href="{% url 'blog-wave' %}"><span class="glyphicon glyphicon-th-list " ></span> WAVE</a></li>
-        <li><a href="#" data-target="#feedback-modal" data-toggle="modal"><span class="glyphicon glyphicon-repeat " ></span> FEEDBACK</a></li>
+        <li class="hidden-sm"><a href="#" data-target="#feedback-modal" data-toggle="modal"><span class="glyphicon glyphicon-repeat " ></span> FEEDBACK</a></li>
         {% if not user.user_blog %}
           <li><a href="{% url 'blog-create' %}"><span class="glyphicon glyphicon-plus"></span> CREATE BLOG</a></li>
         {% else %}

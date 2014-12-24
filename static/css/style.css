@@ -250,6 +250,9 @@ the home page and the explore page.
     #explore-search-box form > div {
         margin-top:15px;
     }
+    .explore-search-padding {
+        padding-top: 192px;
+    }
 }
 
 
