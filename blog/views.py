@@ -278,7 +278,7 @@ def edit_post(request, **kwargs):
     status = ""
     alert_message = ""
 
-    if post.author == request.user:
+    if post.blog.owner == request.user:
         if request.method == "POST":
             # save the edited post instance
             form = BlogPostEditForm(request.POST, request.FILES, instance=post)
@@ -315,12 +315,11 @@ def edit_post(request, **kwargs):
                 form.delete()
         else:
             # request get, show the form with default
-
             form = BlogPostEditForm(instance=post)
             return render(request, "blogcontent/post_edit.html", {'post':post, 'form':form})
     else:
         # request user is not the author
-        return render(request, "blogcontent/post_edit.html", {})
+        return render(request, "blogcontent/post_edit.html", {'post':post})
 
     return render(request, "blogcontent/post_edit.html", {'form':form, 'status':status,
                                                     'alert_message':alert_message})

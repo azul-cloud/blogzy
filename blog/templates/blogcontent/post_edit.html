@@ -2,21 +2,21 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    Edit Travel Blog Story
+  Edit Travel Blog Story
 {% endblock %}
 
 {% block extra_head %}
-    {% include "maininclude/place_autocomplete.html" %}
+  {% include "maininclude/place_autocomplete.html" %}
 {% endblock %}
 
 {% block main %}
     {% include "maininclude/tinymce.html" %}
     <div class="container">
-        <h1 class="text-center">
-            Edit Post {{ post }}
-        </h1>
-        <div class="well">
-            {% crispy form %}
-        </div>
+      <h1 class="text-center">
+        Edit Post {{ post }}
+      </h1>
+      <div class="well">
+        {% crispy form %}
+      </div>
     </div>
 {% endblock %}
