@@ -2,57 +2,57 @@
 
 <nav class="navbar navbar-inverse" id="navbar-main" role="navigation">
   <div class="container">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="{% url 'main-home' %}"><img src="{% static 'img/logo_light.png' %}"
-              alt="Create and Follow Travel Blogs" /></a>
-    </div>
+  <!-- Brand and toggle get grouped for better mobile display -->
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+    <span class="sr-only">Toggle navigation</span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="{% url 'main-home' %}"><img src="{% static 'img/logo_light.png' %}"
+        alt="Create and Follow Travel Blogs" /></a>
+  </div>
 
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-left">
-        <!-- <li class="social-nav-container" style="padding-left:20px;">
-            <div class="fb-like" data-href="http://www.travelblogwave.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
-        </li> -->
-      </ul>
-      {% if feedback_form %}
-        {% include "maininclude/modals/feedback.html" %}
-      {% endif %}
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'blog-explore' %}" class="active"><span class="glyphicon glyphicon-search " ></span> EXPLORE</a></li>
-        <li><a href="{% url 'blog-wave' %}"><span class="glyphicon glyphicon-th-list " ></span> WAVE</a></li>
-        <li class="hidden-sm"><a href="#" data-target="#feedback-modal" data-toggle="modal"><span class="glyphicon glyphicon-repeat " ></span> FEEDBACK</a></li>
-        {% if not user.user_blog %}
-          <li><a href="{% url 'blog-create' %}"><span class="glyphicon glyphicon-plus"></span> CREATE BLOG</a></li>
+  <!-- Collect the nav links, forms, and other content for toggling -->
+  <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav navbar-left">
+    <!-- <li class="social-nav-container" style="padding-left:20px;">
+      <div class="fb-like" data-href="http://www.travelblogwave.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+    </li> -->
+    </ul>
+    {% if feedback_form %}
+    {% include "maininclude/modals/feedback.html" %}
+    {% endif %}
+    <ul class="nav navbar-nav navbar-right">
+    <li><a href="{% url 'blog-explore' %}" class="active"><span class="glyphicon glyphicon-search " ></span> EXPLORE</a></li>
+    <li><a href="{% url 'blog-wave' %}"><span class="glyphicon glyphicon-th-list " ></span> WAVE</a></li>
+    <li class="hidden-sm"><a href="#" data-target="#feedback-modal" data-toggle="modal"><span class="glyphicon glyphicon-repeat " ></span> FEEDBACK</a></li>
+    {% if not user.user_blog %}
+      <li><a href="{% url 'blog-create' %}"><span class="glyphicon glyphicon-plus"></span> CREATE BLOG</a></li>
+    {% else %}
+      <li><a href="{% url 'blog-dashboard' user.user_blog.slug %}"><span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a></li>
+    {% endif %}
+
+    {% if not user.is_authenticated %}
+      <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-lock"></span> LOGIN</a></li>
+    {% else %}
+      <li class="dropdown">
+        {% if request.user.socialaccount_set.all.0.get_avatar_url %}
+        <a href="#" class="dropdown-toggle" style="padding:0;" data-toggle="dropdown">
+        <img id="navbar-profile-img" class="img-circle" src="{{ request.user.socialaccount_set.all.0.get_avatar_url }}" />
         {% else %}
-          <li><a href="{% url 'blog-dashboard' user.user_blog.slug %}"><span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a></li>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-cog"></span> Hi, {{ user.username }}</a>
         {% endif %}
 
-        {% if not user.is_authenticated %}
-            <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-lock"></span> LOGIN</a></li>
-        {% else %}
-          <li class="dropdown">
-              {% if request.user.socialaccount_set.all.0.get_avatar_url %}
-                <a href="#" class="dropdown-toggle" style="padding:0;" data-toggle="dropdown">
-                <img id="navbar-profile-img" class="img-circle" src="{{ request.user.socialaccount_set.all.0.get_avatar_url }}" />
-              {% else %}
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <span class="glyphicon glyphicon-cog"></span> Hi, {{ user.username }}</a>
-              {% endif %}
-
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="{% url 'blog-favorites' %}"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
-                <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-lock"></span> Logout</a></li>
-              </ul>
-          </li>
-        {% endif %}
-      </ul>
-    </div><!-- /.navbar-collapse -->
+        <ul class="dropdown-menu" role="menu">
+        <li><a href="{% url 'blog-favorites' %}"><span class="glyphicon glyphicon-star"></span> Favorites</a></li>
+        <li><a href="{% url 'account_logout' %}"><span class="glyphicon glyphicon-lock"></span> Logout</a></li>
+        </ul>
+      </li>
+    {% endif %}
+    </ul>
+  </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>

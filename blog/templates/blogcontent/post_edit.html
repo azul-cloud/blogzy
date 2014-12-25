@@ -10,13 +10,13 @@
 {% endblock %}
 
 {% block main %}
-    {% include "maininclude/tinymce.html" %}
-    <div class="container">
-      <h1 class="text-center">
-        Edit Post {{ post }}
-      </h1>
-      <div class="well">
-        {% crispy form %}
-      </div>
+  {% include "maininclude/tinymce.html" %}
+  <div class="container">
+    <h1 class="text-center">
+    Edit Post {{ post }}
+    </h1>
+    <div class="well">
+    {% crispy form %}
     </div>
+  </div>
 {% endblock %}

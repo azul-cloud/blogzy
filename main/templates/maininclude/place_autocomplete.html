@@ -1,16 +1,16 @@
 <script src="http://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"
-        type="text/javascript"></script>
+    type="text/javascript"></script>
 
 <script type="text/javascript">
    function initialize() {
-      var input = document.getElementById('place-search');
-      var autocomplete = new google.maps.places.Autocomplete(input);
+    var input = document.getElementById('place-search');
+    var autocomplete = new google.maps.places.Autocomplete(input);
 
-      google.maps.event.addListener(autocomplete, 'place_changed', function () {
-            // set the place_id field to the Google Place ID
-            var place = autocomplete.getPlace();
-            document.getElementById('id_place_id').value = place.place_id;
-      });
+    google.maps.event.addListener(autocomplete, 'place_changed', function () {
+      // set the place_id field to the Google Place ID
+      var place = autocomplete.getPlace();
+      document.getElementById('id_place_id').value = place.place_id;
+    });
    }
    google.maps.event.addDomListener(window, 'load', initialize);
 </script>

@@ -2,27 +2,27 @@
 {% load crispy_forms_tags %}
 
 {% block modal_title %}
-    Help Us Improve
+  Help Us Improve
 {% endblock %}
 
 {% block modal_id %}feedback-modal{% endblock %}
 
 {% block modal_body %}
-    <form>
-        {% csrf_token %}
-        {% crispy feedback_form %}
-    </form>
+  <form>
+    {% csrf_token %}
+    {% crispy feedback_form %}
+  </form>
 {% endblock %}
 
 {% block modal_submit %}
-    <button type="button" class="btn btn-primary">Submit</button>
+  <button type="button" class="btn btn-primary">Submit</button>
 {% endblock %}
 
 {% block modal_footer %}
-    <div class="modal-footer">
-        <p id="form-message"></p>
-        {% if not request.user.is_authenticated %}
-              <p>If you would like a response from us, please <a href="{% url 'account_login' %}">Login or Register</a></p>
-        {% endif %}
-    </div>
+  <div class="modal-footer">
+    <p id="form-message"></p>
+    {% if not request.user.is_authenticated %}
+        <p>If you would like a response from us, please <a href="{% url 'account_login' %}">Login or Register</a></p>
+    {% endif %}
+  </div>
 {% endblock %}

@@ -1,28 +1,28 @@
 {% extends "bloginclude/base.html" %}
 
 {% block title %}
-    Travel Blog List
+  Travel Blog List
 {% endblock %}
 
 {% block main %}
-    <div class="row jumbotron text-center">
-        <h1>Create Your Wave</h1>
-    </div>
-    <div class="container-fluid">
-        <div class="container">
-            <div class="col-sm-6 col-sm-offset-3 well">
-                <h3>Have you wanted to see new posts from your favorite travel blogs in one place?
-                </h3>
-                <ul id="wave-register-list">
-                    <li>Add your favorite blogs into your wave to see all their new posts</li>
-                    <li>Choose extra notification options if you want stay updated</li>
-                </ul>
-                <p class="margin-top text-center">But first... you need to be logged in</p>
-                <div class="text-center">
-                    <h3><a class="brand-light text-center" href="{% url 'account_login' %}">
-                        <span class="glyphicon glyphicon-user"></span> Login/Register</a></h3>
-                </div>
-            </div>
+  <div class="row jumbotron text-center">
+    <h1>Create Your Wave</h1>
+  </div>
+  <div class="container-fluid">
+    <div class="container">
+      <div class="col-sm-6 col-sm-offset-3 well">
+        <h3>Have you wanted to see new posts from your favorite travel blogs in one place?
+        </h3>
+        <ul id="wave-register-list">
+          <li>Add your favorite blogs into your wave to see all their new posts</li>
+          <li>Choose extra notification options if you want stay updated</li>
+        </ul>
+        <p class="margin-top text-center">But first... you need to be logged in</p>
+        <div class="text-center">
+          <h3><a class="brand-light text-center" href="{% url 'account_login' %}">
+            <span class="glyphicon glyphicon-user"></span> Login/Register</a></h3>
         </div>
+      </div>
     </div>
+  </div>
 {% endblock %}

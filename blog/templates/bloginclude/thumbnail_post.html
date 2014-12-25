@@ -1,13 +1,13 @@
 {% if thumbnail_post %}
   <div class="thumbnail">
-    <a href="{{ thumbnail_post.get_absolute_url }}" >
-      <img src="{{ thumbnail_post.image.url }}" class="img-responsive"
-        alt="{{ thumbnail_post.image_description }}">
-    </a>
-    <div class="caption">
-      <h3>{{ thumbnail_post.title }}</h3>
-      <p>{{ thumbnail_post.headline }}</p>
-      <p class="text-center grow"><a href="{{ thumbnail_post.get_absolute_url }}" class="btn btn-primary grow" role="button">Read <span class="glyphicon glyphicon-chevron-right"></span></a></p>
-    </div>
+  <a href="{{ thumbnail_post.get_absolute_url }}" >
+    <img src="{{ thumbnail_post.image.url }}" class="img-responsive"
+    alt="{{ thumbnail_post.image_description }}">
+  </a>
+  <div class="caption">
+    <h3>{{ thumbnail_post.title }}</h3>
+    <p>{{ thumbnail_post.headline }}</p>
+    <p class="text-center grow"><a href="{{ thumbnail_post.get_absolute_url }}" class="btn btn-primary grow" role="button">Read <span class="glyphicon glyphicon-chevron-right"></span></a></p>
+  </div>
   </div>
 {% endif %}

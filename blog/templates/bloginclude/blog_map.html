@@ -3,79 +3,79 @@
 <script type="text/javascript" src="{% static 'js/oms.min.js' %}"></script>
 <script type="text/javascript">
   function initialize() {
-    gm = google.maps
+  gm = google.maps
 
-    {% if center_lat and center_long %}
-        center_latlng = new gm.LatLng({{ center_lat }}, {{ center_long }})
-    {% else %}
-        center_latlng = new gm.LatLng(6.230833, -75.590556)
-    {% endif %}
+  {% if center_lat and center_long %}
+    center_latlng = new gm.LatLng({{ center_lat }}, {{ center_long }})
+  {% else %}
+    center_latlng = new gm.LatLng(6.230833, -75.590556)
+  {% endif %}
 
-    LocationData = [
-        {% for p in map_posts %}
-            {% if p.lat and p.long %}
-                [{{ p.lat }},
-                {{ p.long }},
-                "{{ p }}",
-                "{{ p.headline }}",
-                "{{ p.get_absolute_url }}",
-                "{% if p.image%}{{ p.image.url }}{% endif %}"],
-            {% endif %}
-        {% endfor %}
-    ]
+  LocationData = [
+    {% for p in map_posts %}
+      {% if p.lat and p.long %}
+        [{{ p.lat }},
+        {{ p.long }},
+        "{{ p }}",
+        "{{ p.headline }}",
+        "{{ p.get_absolute_url }}",
+        "{% if p.image%}{{ p.image.url }}{% endif %}"],
+      {% endif %}
+    {% endfor %}
+  ]
 
-    var mapOptions = {
-      center: center_latlng,
-      zoom: 4
-    };
-    var map = new gm.Map(document.getElementById("map-canvas"),
-        mapOptions);
+  var mapOptions = {
+    center: center_latlng,
+    zoom: 4
+  };
+  var map = new gm.Map(document.getElementById("map-canvas"),
+    mapOptions);
 
-    // allow users to click to see markers that are in close proximity
-    var oms = new OverlappingMarkerSpiderfier(map);
+  // allow users to click to see markers that are in close proximity
+  var oms = new OverlappingMarkerSpiderfier(map);
 
-    var infowindow = new gm.InfoWindow({
-        maxWidth: 300,
+  var infowindow = new gm.InfoWindow({
+    maxWidth: 300,
+  });
+
+  for (var i in LocationData)
+  {
+    var p = LocationData[i];
+    var latlng = new gm.LatLng(p[0], p[1]);
+
+    var marker = new gm.Marker({
+      position: latlng,
+      map: map,
+      icon: '/static/img/map_icon_sm.png',
+      title: p[2],
+      headline: p[3],
+      link: p[4],
+      imgURL: p[5],
     });
 
-    for (var i in LocationData)
-    {
-        var p = LocationData[i];
-        var latlng = new gm.LatLng(p[0], p[1]);
+    var iw = new gm.InfoWindow();
+    oms.addListener('click', function(marker, event) {
+      content = "<a class='brand-light' href='" + marker.link + "'><h3 class='infowindow-title'>" +
+        marker.title + "</h3><img class='img-responsive' src='" + marker.imgURL + "' /></a> " +
+        "<h4 class='text-center skinny'>" + marker.headline + "</p>"
+        
+      iw.setContent(content);
+      iw.open(map, marker);
+    });
 
-        var marker = new gm.Marker({
-            position: latlng,
-            map: map,
-            icon: '/static/img/map_icon_sm.png',
-            title: p[2],
-            headline: p[3],
-            link: p[4],
-            imgURL: p[5],
-        });
+    oms.addMarker(marker);
 
-        var iw = new gm.InfoWindow();
-        oms.addListener('click', function(marker, event) {
-            content = "<a class='brand-light' href='" + marker.link + "'><h3 class='infowindow-title'>" +
-                marker.title + "</h3><img class='img-responsive' src='" + marker.imgURL + "' /></a> " +
-                "<h4 class='text-center skinny'>" + marker.headline + "</p>"
-              
-            iw.setContent(content);
-            iw.open(map, marker);
-        });
+    /*
+    gm.event.addListener(marker, 'click', function() {
+      content = "<a class='brand-light' href='" + this.link + "'><h3 class='infowindow-title'>" +
+        this.title + "</h3><img class='img-responsive' src='" + this.imgURL + "' /></a> " +
+        "<h4 class='text-center skinny'>" + this.headline + "</p>"
 
-        oms.addMarker(marker);
-
-        /*
-        gm.event.addListener(marker, 'click', function() {
-            content = "<a class='brand-light' href='" + this.link + "'><h3 class='infowindow-title'>" +
-                this.title + "</h3><img class='img-responsive' src='" + this.imgURL + "' /></a> " +
-                "<h4 class='text-center skinny'>" + this.headline + "</p>"
-
-            infowindow.setContent(content);
-            infowindow.open(map, this);
-        });
-        */
-    }
+      infowindow.setContent(content);
+      infowindow.open(map, this);
+    });
+    */
+  }
   }
 
   google.maps.event.addDomListener(window, 'load', initialize);

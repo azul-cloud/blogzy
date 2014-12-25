@@ -1,31 +1,31 @@
 {% extends "internalinclude/base.html" %}
 
 {% block title %}
-    Manage Feedback
+  Manage Feedback
 {% endblock %}
 
 {% block main %}
-    <div class="container-full jumbotron text-center">
-        <h1>Manage Feedback</h1>
-    </div>
-    <div class="container">
-        <table class="table table-responsive">
-            <thead>
-                <th>User</th>
-                <th>Create Date</th>
-                <th>Status</th>
-            </thead>
+  <div class="container-full jumbotron text-center">
+    <h1>Manage Feedback</h1>
+  </div>
+  <div class="container">
+    <table class="table table-responsive">
+      <thead>
+        <th>User</th>
+        <th>Create Date</th>
+        <th>Status</th>
+      </thead>
 
 
-            <tbody>
-                {% for f in feedback %}
-                    <tr>
-                        <td>{{ f.user }}</td>
-                        <td>{{ f.create_date }}</td>
-                        <td>{{ f.get_status_display }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
+      <tbody>
+        {% for f in feedback %}
+          <tr>
+            <td>{{ f.user }}</td>
+            <td>{{ f.create_date }}</td>
+            <td>{{ f.get_status_display }}</td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
 {% endblock %}

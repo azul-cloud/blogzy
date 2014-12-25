@@ -2,26 +2,26 @@
 {% load crispy_forms_tags %}
 
 {% block title %}
-    Create Travel Blog Story
+  Create Travel Blog Story
 {% endblock %}
 
 {% block extra_head %}
-    {% include "maininclude/place_autocomplete.html" %}
+  {% include "maininclude/place_autocomplete.html" %}
 {% endblock %}
 
 {% block main %}
-    {% include "maininclude/tinymce.html" %}
-    <div class="container">
-        {% if status == "new" %}
-            Welcome to your first post!
-        {% endif %}
-        <h1 class="text-center">
-            Create Blog Post
-        </h1>
-        <div class="well">
-            {% include "maininclude/form_status.html" %}
-            {% crispy form %}
-        </div>
+  {% include "maininclude/tinymce.html" %}
+  <div class="container">
+    {% if status == "new" %}
+      Welcome to your first post!
+    {% endif %}
+    <h1 class="text-center">
+      Create Blog Post
+    </h1>
+    <div class="well">
+      {% include "maininclude/form_status.html" %}
+      {% crispy form %}
     </div>
+  </div>
 
 {% endblock %}
