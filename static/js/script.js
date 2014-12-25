@@ -120,23 +120,35 @@ $(document).ready(function(){
    header which can be submitted from any page. Need to hit the submit
    page with the POST
    */
-   $( '#feedback-submit').click( function() {
-     var feedback = $( '#id_feedback' ).val()
+   $( '#contact-submit').click( function() {
+     console.log("contact pushed");
+     var message = $( '#id_message' ).val()
+     var type = $( '#id_type' ).val()
 
      var data = JSON.stringify({
-        feedback:feedback
+        message:message,
+        type:type
+
      });
 
-     if ( feedback != "" ) {
-         $.post( "/sendfeedback/", { "feedback": feedback } );
+     if ( message != "" ) {
+        if ( type != "" ) {
+         $.post( "/sendcontact/", { 
+            "message": message,
+            "type": type
+         } );
 
          // clean up on success
          console.log(data);
-         $( "#form-message" ).html("<h4 style='color:green;'>Your feedback has been sent successfully</h4>");
-         $( "#id_feedback" ).val("");
+         $( "#form-message" ).html("<h4 style='color:green;'>Your contact has been sent successfully</h4>");
+         $( "#id_contact" ).val("");
+        }
+        else {
+          $( "#form-message" ).html("<h4 style='color:red;'>Please choose a type</h4>");   
+        }
      }
      else {
-        $( "#form-message" ).html("<h4 style='color:red;'>Please enter feedback above</h4>");
+        $( "#form-message" ).html("<h4 style='color:red;'>Please enter message above</h4>");
      }
    });
 

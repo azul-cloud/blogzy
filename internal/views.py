@@ -4,7 +4,7 @@ from django.views.generic import ListView, TemplateView
 
 from braces.views import StaffuserRequiredMixin
 
-from main.models import Feedback
+from main.models import Contact
 
 
 class HomeTemplateView(StaffuserRequiredMixin, TemplateView):
@@ -19,5 +19,5 @@ class FeedbackListView(StaffuserRequiredMixin, ListView):
     '''
     View and respond to the various feedback that users have left
     '''
-    model = Feedback
+    queryset = Contact.objects.filter(type="F")
     template_name = "internalcontent/feedback.html"

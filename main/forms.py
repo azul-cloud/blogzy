@@ -1,29 +1,33 @@
 from django import forms
 from django.forms import ModelForm
 
-from main.models import Feedback
-
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Button, Fieldset, ButtonHolder, Field
 
+from .models import Contact
 
-class FeedbackForm(ModelForm):
-    feedback = forms.CharField(widget = forms.Textarea())
+
+class ContactForm(ModelForm):
+    message = forms.CharField(widget = forms.Textarea())
 
     class Meta:
-        model = Feedback
+        model = Contact
 
     def __init__(self, *args, **kwargs):
-        super(FeedbackForm, self).__init__(*args, **kwargs)
+        super(ContactForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_id = 'feedback-form'
+        self.helper.form_id = 'contact-form'
         self.helper.layout = Layout(
             Fieldset(
                 '',
                 Field('user', required=False, type="hidden"),
-                Div('feedback'),
+                Div('type'),
+                Div('message'),
             ),
             ButtonHolder(
-                Button('button', 'Send Feedback', css_class='btn-lg btn-primary', css_id='feedback-submit'), css_class="text-center"
+                Button('button', 'Send Contact', 
+                    css_class='btn-lg btn-primary',
+                    css_id='contact-submit'), 
+                css_class="text-center"
             )
         )

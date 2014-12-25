@@ -48,9 +48,19 @@ class User(AbstractUser):
             return None
 
 
-class Feedback(models.Model):
-    # have a user submit feedback to us
-    feedback = models.CharField(max_length=500)
+class Contact(TimeStampedModel):
+    '''
+    the users can contact us through a variety of ways
+    '''
+    CONTACT_CHOICES = (
+        ('Q', 'Question'),
+        ('A', 'Anything Else'),
+        ('F', 'Feedback'),
+        ('P', 'Problem'),
+    )
+
+    message = models.CharField(max_length=500)
+    type = models.CharField(max_length=1, choices=CONTACT_CHOICES)
     user = models.ForeignKey(User, null=True, blank=True)
     status = models.CharField(max_length=1, choices=FEEDBACK_CHOICES, default="N")
-    create_date = models.DateField(auto_now_add=True)
+

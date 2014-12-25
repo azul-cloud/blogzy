@@ -8,8 +8,8 @@ from django.contrib.auth.decorators import login_required
 from django.core.mail import send_mail
 from django.views.generic import TemplateView
 
-from main.utils import get_json_objects, get_json
-from main.models import Feedback
+from .utils import get_json_objects, get_json
+from .models import Contact
 from blog.models import Topic, Post
 
 
@@ -34,20 +34,24 @@ class RobotTemplateView(TemplateView):
     template_name = "maincontent/robots.txt"
 
 
-def send_feedback(request):
-    # have users send feedback to us. If user is logged in, attach user.
+def send_contact(request):
+    # have users send contact to us. If user is logged in, attach user.
     if request.method == "POST" and request.is_ajax:
-        feedback = request.POST.get('feedback')
+        message = request.POST.get('message')
+        type = request.POST.get('type')
 
         if request.user.is_authenticated():
             user = request.user
         else:
             user = None
 
-        feedback_obj = Feedback(feedback=feedback, user=user)
-        feedback_obj.save()
+        contact_obj = Contact(
+            message=message, 
+            type=type,
+            user=user)
+        contact_obj.save()
 
-        return HttpResponse("feedback sent successfully")
+        return HttpResponse("contact sent successfully")
 
     return HttpResponse("not an AJAX Post request")
 
