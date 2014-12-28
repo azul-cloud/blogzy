@@ -22,7 +22,6 @@ class MainViewTest(MainTestSetup):
     def test_home(self):
         url = reverse('main-home')
         response = self.client.get(url)
-
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "CREATE BLOG")
 
@@ -31,17 +30,24 @@ class MainViewTest(MainTestSetup):
         response = self.client.get(url)
         self.assertEqual(response.status_code, 200)
 
+    def test_robots(self):
+        url = reverse('robots')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
+    def test_sitemap(self):
+        url = reverse('sitemap')
+        response = self.client.get(url)
+        self.assertEqual(response.status_code, 200)
+
 
 class MainFormtest(MainTestSetup):
     def test_contact_form(self):
         url = reverse('main-contact')
-
         post = {
             "message":"hello this is a test",
             "type":"G"
         }
-
         response = self.client.post(url, post)
-
         self.assertEqual(response.status_code, 200)
 

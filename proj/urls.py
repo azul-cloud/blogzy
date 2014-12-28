@@ -7,6 +7,7 @@ from tastypie.api import Api
 from blog.models import PersonalBlog, Post
 from blog.api.resources import PostResource, BlogResource, UserFavoriteResource
 from main.api.resources import UserResource
+from main.views import RobotTemplateView
 
 
 v1_api = Api(api_name='v1')
@@ -40,9 +41,9 @@ urlpatterns = patterns('',
     (r'^accounts/', include('allauth.urls')),
     url(r'^internal/', include('internal.urls')),
     
-    (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
-        {'sitemaps': sitemaps}),
-    (r'^robots\.txt', 'main.views.RobotTemplateView'),
+    url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
+        {'sitemaps': sitemaps}, name="sitemap"),
+    url(r'^robots\.txt', RobotTemplateView.as_view(), name="robots"),
 
     # blog urls need to come last because of the simple blog pattern url
     url(r'^', include('blog.urls')),
