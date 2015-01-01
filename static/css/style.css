@@ -12,7 +12,6 @@ html, body {
 	padding-bottom: 180px;
 	height:100%;
 }
-
 /* must be same height as the footer */
 #footer {
     position: relative;

@@ -35,6 +35,7 @@ INSTALLED_APPS = (
     'main',
     'blog',
     'internal',
+    'report',
 
     'braces',
     'tastypie',

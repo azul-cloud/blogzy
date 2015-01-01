@@ -40,6 +40,7 @@ urlpatterns = patterns('',
     url(r'^api/', include(v1_api.urls)),
     (r'^accounts/', include('allauth.urls')),
     url(r'^internal/', include('internal.urls')),
+    url(r'^reports/', include('report.urls')),
     
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': sitemaps}, name="sitemap"),
