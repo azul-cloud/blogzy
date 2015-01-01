@@ -12,6 +12,7 @@ class ContactForm(ModelForm):
 
     class Meta:
         model = Contact
+        fields = ['user', 'type', 'message']
 
     def __init__(self, *args, **kwargs):
         super(ContactForm, self).__init__(*args, **kwargs)

@@ -116,6 +116,7 @@ class BlogEditForm(ModelForm):
 
     class Meta:
         model = PersonalBlog
+        exclude = ['owner', 'title']
 
     def __init__(self, *args, **kwargs):
         super(BlogEditForm, self).__init__(*args, **kwargs)
@@ -123,8 +124,6 @@ class BlogEditForm(ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 '<h2 class="text-center">Edit data about your blog</h2>',
-                Field('owner', type="hidden"),
-                Field('title', type="hidden"),
                 Div('description', css_class="col-md-12"),
                 Div('twitter', css_class="col-md-6"),
                 Div('twitter_widget_id', css_class="col-md-6"),
