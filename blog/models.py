@@ -1,5 +1,6 @@
 import os
 import requests
+import datetime
 
 from django.db import models
 from django.utils.text import slugify
@@ -92,6 +93,7 @@ class Post(models.Model):
     '''
     Data about blog posts. The guts of everything.
     '''
+
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     blog = models.ForeignKey(PersonalBlog)
     image = models.ImageField(upload_to=get_post_upload_path)
@@ -102,7 +104,6 @@ class Post(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     active = models.NullBooleanField(default=True, blank=True, null=True)
     topics = models.ManyToManyField(Topic, null=True, blank=True)
-    views = models.IntegerField(default=0, blank=True, editable=False)
     slug = models.SlugField(blank=True)
     lat = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
     long = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
@@ -200,6 +201,25 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def all_view_count(self):
+        # get the total views in the liftime of the post
+        from report.models import PostView
+        views = PostView.objects.filter(post=self)
+        return views.count()
+
+    def today_view_count(self):
+        # get the amount of views for the current day
+        from report.models import PostView
+        views = PostView.objects.filter(post=self, 
+            view_date=datetime.date.today())
+        return views.count()
+
+    def record_view(self):
+        # record the post view for metrics purposes
+        from report.models import PostView
+        PostView.objects.create(post=self)
+
 
 
 class UserFavorite(models.Model):

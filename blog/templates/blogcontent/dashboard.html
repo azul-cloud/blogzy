@@ -29,7 +29,8 @@
                 <tr>
                   <th>Edit</th>
                   <th>Title</th>
-                  <th>Views</th>
+                  <th>All Views</th>
+                  <th>Views Today</th>
                 </tr>
               </thead>
               <tbody>
@@ -44,7 +45,10 @@
                       <a class="btn btn-default btn-block" href="{{ p.get_absolute_url }}">{{ p.title }}</a>
                     </td>
                     <td>
-                      {{ p.views }}
+                      {{ p.all_view_count }}
+                    </td>
+                    <td>
+                      {{ p.today_view_count }}
                     </td>
                   </tr>
                 {% endfor %}

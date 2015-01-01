@@ -18,6 +18,7 @@ from .models import PersonalBlog, Post, Topic, UserFavorite
 from .forms import BlogCreateForm, BlogEditForm, BlogPostCreateForm, BlogPostEditForm
 from .utils import get_favorites, get_wave_blog_list, get_map_posts
 from main.utils import get_json_objects, get_json, get_place_details
+from report.models import PostView
 
 
 class BlogDetailView(DetailView):
@@ -88,10 +89,8 @@ def post(request, **kwargs):
     id = post.id
 
     # record the view if not the blog owner
-    if request.user != blog.owner:
-        views = post.views + 1
-        post.views = views
-        post.save()
+    if request.user != post.blog.owner:
+        post.record_view()
 
     # get other posts to display in the template
     other_posts = Post.objects.filter(blog=post.blog, active=True)\

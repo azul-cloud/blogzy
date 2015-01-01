@@ -6,6 +6,8 @@ from django.contrib.auth import get_user_model
 from .models import Topic, PersonalBlog, Post, UserFavorite, \
     UserStreamBlog, BlogSubscription
 
+from report.models import PostView
+
 
 class BlogTestSetup(TestCase):
     def setUp(self):
@@ -124,6 +126,10 @@ class BlogViewTest(BlogTestSetup):
         self.login_blog_user()
         blog_user_response = self.client.get(url)
         self.assertContains(blog_user_response, self.blog.title)
+
+        # make sure the post views is correctly shown
+        post_views = PostView.objects.filter(post=self.post)
+        self.assertContains(blog_user_response, str(post_views))
 
     def test_create_blog(self):
         url = reverse(self.prefix + "create")
