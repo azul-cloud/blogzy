@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'storages',
     'pagination',
     'django_mailgun',
+    'django_cron',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -142,6 +143,16 @@ AWS_S3_ACCESS_KEY_ID = os.environ['S3_KEY']
 AWS_S3_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
 AWS_STORAGE_BUCKET_NAME = 'dev.travelblogwave.media'
 
+
+# pagination
 PAGINATION_TEMPLATE_PACK = "bootstrap3"
 
+
+# mailgun
 EMAIL_BACKEND = 'django_mailgun.backends.MailgunBackend'
+
+
+# django_cron
+CRON_CLASSES = [
+    "blog.crons.SendNewsletters",
+]
