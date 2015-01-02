@@ -56,8 +56,6 @@ class PersonalBlog(models.Model):
     facebook = models.CharField(max_length=40, blank=True, null=True)
     instagram = models.CharField(max_length=40, blank=True, null=True)
 
-    objects = PersonalBlogManager()
-
     def __str__(self):
         return self.title
 
@@ -277,13 +275,5 @@ class BlogSubscription(models.Model):
 
     class Meta:
         unique_together = ("email", "blog")
-
-
-class BlogSubscriptionHistory(models.Model):
-    '''
-    keep track of data about the subscriptions that were sent out
-    '''
-    blog = models.ForeignKey(PersonalBlog)
-    sent_date = models.DateField(auto_now_add)
 
 
