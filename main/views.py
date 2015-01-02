@@ -56,9 +56,3 @@ def send_contact(request):
     return HttpResponse("not an AJAX Post request")
 
 
-# def mail(request):
-#
-#     send_mail('Subject here', 'Here is the message.', 'travelblogwave@gmail.com',
-#         ['awwester@gmail.com'], fail_silently=False)
-#
-#     return HttpResponse("sent!")

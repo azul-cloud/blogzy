@@ -15,7 +15,8 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import ProcessFormView
 
 from .models import PersonalBlog, Post, Topic, UserFavorite
-from .forms import BlogCreateForm, BlogEditForm, BlogPostCreateForm, BlogPostEditForm
+from .forms import BlogCreateForm, BlogEditForm, BlogPostCreateForm, BlogPostEditForm,\
+                   CreateBlogSubscriptionForm
 from .utils import get_favorites, get_wave_blog_list, get_map_posts
 from main.utils import get_json_objects, get_json, get_place_details
 from report.models import PostView
@@ -88,9 +89,14 @@ def post(request, **kwargs):
     post = get_object_or_404(Post, slug=post_slug, blog=blog)
     id = post.id
 
+    status = ""
+    alert_message = ""
+    
     # record the view if not the blog owner
     if request.user != post.blog.owner:
         post.record_view()
+
+    form = CreateBlogSubscriptionForm()
 
     # get other posts to display in the template
     other_posts = Post.objects.filter(blog=post.blog, active=True)\
@@ -99,8 +105,24 @@ def post(request, **kwargs):
     # detect if post is in the user's favorites
     favorites = get_favorites(request.user)
 
-    return render(request, "blogcontent/post.html", {'post':post, 'other_posts':other_posts,
-                                                     'favorites':favorites})
+    if request.method == "POST":
+        # save the blog subscription on post
+        form = CreateBlogSubscriptionForm(request.POST)
+        if form.is_valid():
+            try:
+                subscription = form.save(commit=False)
+                subscription.blog = blog
+                form.save()
+                alert_message="You have been added to the newsletter for %s" % blog
+                status = "success"
+            except IntegrityError:
+                status = "error"
+                alert_message = "It appears that you are already signed up for this %s's newsletters" % blog
+                pass
+
+    return render(request, "blogcontent/post.html", 
+        {'post':post, 'other_posts':other_posts, 'favorites':favorites,
+         'form':form, 'status':status, 'alert_message':alert_message})
 
 
 def topic(request, **kwargs):

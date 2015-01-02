@@ -1,7 +1,7 @@
 from django import forms
 from django.forms import ModelForm
 
-from blog.models import PersonalBlog, Post, Topic
+from .models import PersonalBlog, Post, Topic, BlogSubscription
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Div, Submit, Fieldset, ButtonHolder, Field, Button
@@ -75,7 +75,6 @@ class BlogPostCreateForm(ModelForm):
 
 
 class BlogPostEditForm(BlogPostCreateForm):
-
     def __init__(self, *args, **kwargs):
         # add delete button to layout for the edit form
         super(BlogPostEditForm, self).__init__(*args, **kwargs)
@@ -135,5 +134,29 @@ class BlogEditForm(ModelForm):
                 Submit('submit', 'Update Info', css_class='btn-lg'),
                 css_class="text-center"
             ),
+        )
+
+
+class CreateBlogSubscriptionForm(ModelForm):
+    class Meta:
+        model = BlogSubscription
+        exclude = ['blog']
+
+    def __init__(self, *args, **kwargs):
+        super(CreateBlogSubscriptionForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Fieldset(
+                '<h3 class="skinny text-center">Stay updated with the newsletter</h3>',
+                Div('email', css_class="col-sm-12"),
+                Div('frequency', css_class="col-sm-12"),
+                Div(
+                    Submit('submit', 'Join', css_class="btn-block"),
+                        css_class="text-center col-sm-12"
+                )
+            ),
 
         )
+
+
+

@@ -1,10 +1,12 @@
 from .base import *
 
 
-DATABASES['default']['ENGINE'] = 'django.db.backends.sqlite3'
-DATABASES['default']['NAME'] = '/home/studentrentit/dev/test.db'
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": ":memory:",
+    },
+}
 
-#disable south migrations while testing
-SOUTH_TESTS_MIGRATE = False
-
-SUCCESS_CODES = [200, 302]
+MAILGUN_ACCESS_KEY = os.environ['MAILGUN_ACCESS_KEY']
+MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'

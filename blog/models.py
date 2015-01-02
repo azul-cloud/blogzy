@@ -20,12 +20,6 @@ def get_post_upload_path(instance, filename):
     return os.path.join('blog/' + str(blog_id) + '/' + filename)
 
 
-SUB_TYPE_CHOICES = (
-    ("M", "Monthly"),
-    ("B", "Every 2 weeks"),
-    ("W", "Weekly")
-)
-
 class Topic(models.Model):
     '''
     grouping of all the topics that a blog post can be grouped under. Allows
@@ -62,6 +56,8 @@ class PersonalBlog(models.Model):
     facebook = models.CharField(max_length=40, blank=True, null=True)
     instagram = models.CharField(max_length=40, blank=True, null=True)
 
+    objects = PersonalBlogManager()
+
     def __str__(self):
         return self.title
 
@@ -87,6 +83,14 @@ class PersonalBlog(models.Model):
             return id
         except:
             return None
+
+    def subscriber_list(self):
+        # return a list of emails for a blog
+        subscribers = BlogSubscription.objects.filter(blog=self)
+        subscriber_list = []
+        for s in subscribers:
+            subscriber_list.append(s.email)
+        return subscriber_list
 
 
 class Post(models.Model):
@@ -263,8 +267,23 @@ class BlogSubscription(models.Model):
     different attributes such as how often they will get the subscription
     info.
     '''
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
+    FREQUENCY_CHOICES = (
+        ('W', 'Weekly'),
+        ('M', 'Monthly')
+    )
     blog = models.ForeignKey(PersonalBlog)
-    sub_type = models.CharField(max_length=1, choices=SUB_TYPE_CHOICES)
+    email = models.EmailField()
+    frequency = models.CharField(max_length=1, default="W", choices=FREQUENCY_CHOICES)
+
+    class Meta:
+        unique_together = ("email", "blog")
+
+
+class BlogSubscriptionHistory(models.Model):
+    '''
+    keep track of data about the subscriptions that were sent out
+    '''
+    blog = models.ForeignKey(PersonalBlog)
+    sent_date = models.DateField(auto_now_add)
 
 

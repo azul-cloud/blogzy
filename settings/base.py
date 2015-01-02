@@ -47,6 +47,7 @@ INSTALLED_APPS = (
     'allauth.socialaccount.providers.facebook',
     'storages',
     'pagination',
+    'django_mailgun',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -143,4 +144,4 @@ AWS_STORAGE_BUCKET_NAME = 'dev.travelblogwave.media'
 
 PAGINATION_TEMPLATE_PACK = "bootstrap3"
 
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
+EMAIL_BACKEND = 'django_mailgun.backends.MailgunBackend'

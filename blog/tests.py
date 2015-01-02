@@ -36,8 +36,8 @@ class BlogTestSetup(TestCase):
         self.user_stream_blog = UserStreamBlog.objects.create(user=self.user,
             blog=self.blog)
 
-        self.blog_subscription = BlogSubscription.objects.create(user=self.user,
-            blog=self.blog, sub_type="M")
+        self.blog_subscription = BlogSubscription.objects.create(email=self.user.email,
+            blog=self.blog, frequency="M")
 
     def login(self):
         '''
@@ -76,7 +76,7 @@ class BlogModelTest(BlogTestSetup):
         stream = UserStreamBlog.objects.get(user=self.user, blog=self.blog)
 
     def test_blog_subscription(self):
-        blog_subscription = BlogSubscription.objects.get(user=self.user)
+        blog_subscription = BlogSubscription.objects.get(email=self.user.email)
 
 
 class BlogViewTest(BlogTestSetup):
@@ -202,21 +202,6 @@ class BlogViewTest(BlogTestSetup):
 class BlogFormTest(BlogTestSetup):
     def test_create_blog(self):
         pass
-        # self.client.login(username=self.user2.username, 
-        #     password='testpassword')
-        
-        # url = reverse('blog-create')
-
-        # post = {
-        #     "title":"My Test Blog",
-        #     "description":"<h1>BEST TEST BLOG EVER!</h1>",
-        # }
-
-        # response = self.client.post(url, post)
-
-        # # make sure the response has the newly created post
-        # self.assertEqual(response.status_code, 302)
-        # self.assertContains(response, post['title'])
 
     def test_edit_blog(self):
         pass
@@ -226,3 +211,19 @@ class BlogFormTest(BlogTestSetup):
 
     def test_edit_post(self):
         pass
+
+    def test_add_subscription(self):
+        pass
+        # url = reverse(self.prefix+"post", kwargs={'blog':self.blog.slug,
+        #     'post':self.post.slug})
+
+        # post = {
+        #     "email":self.blog_user.email,
+        #     "frequency":"M",
+        # }
+
+        # try:
+        #     response = self.client.post(url, post)
+        #     self.assertContains(response, "You have been added")
+        # except Exception:
+        #     raise Exception
