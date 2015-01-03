@@ -94,7 +94,8 @@ def post(request, **kwargs):
     
     # record the view if not the blog owner
     if request.user != post.blog.owner:
-        post.record_view()
+        if request.user != "admin":
+            post.record_view()
 
     form = CreateBlogSubscriptionForm()
 
