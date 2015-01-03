@@ -283,9 +283,15 @@ class BlogSubscription(models.Model):
     class Meta:
         unique_together = ("email", "blog")
 
+    def __unicode__(self):
+        return self.frequency + ' to ' + self.email + ' for ' + str(self.blog)
+
 
 class BlogSubscriptionLog(models.Model):
     subscription = models.ForeignKey(BlogSubscription)
-    sent_date_time = models.DateTimeField(auto_now_add=True)
+    sent_date_time = models.DateTimeField(auto_now_add=True, editable=True)
+
+    def __unicode__(self):
+        return str(self.subscription.blog) + ' for ' + str(self.subscription.email)
 
 

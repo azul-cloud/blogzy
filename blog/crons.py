@@ -11,7 +11,7 @@ from .models import PersonalBlog, Post, BlogSubscription, BlogSubscriptionLog
 
 
 class NewsletterJob(CronJobBase):
-    RUN_EVERY_MINS = 1
+    RUN_EVERY_MINS = 0
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
     blogs = PersonalBlog.objects.all()
     days_ago = 1
@@ -64,7 +64,7 @@ class NewsletterJob(CronJobBase):
 
 
 class SendWeeklyNewsletters(NewsletterJob):
-    RUN_EVERY_MINS = 5  #1 week
+    RUN_EVERY_MINS = 60 * 24 * 7  #1 week
     days_ago = 7
     code = 'send_weekly_newsletters'
     frequency = "W"
