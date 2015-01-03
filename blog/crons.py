@@ -64,15 +64,15 @@ class NewsletterJob(CronJobBase):
 
 
 class SendWeeklyNewsletters(NewsletterJob):
-    RUN_EVERY_MINS = 5  #1 week
-    days_ago = 20
+    RUN_EVERY_MINS = 60 * 24 * 7 #1 week
+    days_ago = 7
     code = 'send_weekly_newsletters'
     frequency = "W"
     schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
 
 
 class SendMonthlyNewsletters(NewsletterJob):
-    RUN_EVERY_MINS = 15  #1 month... just about
+    RUN_EVERY_MINS = 60 * 24 * 31  #1 month... just about
     days_ago = 31
     code = 'send_monthly_newsletters'
     frequency = "M"
