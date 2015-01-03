@@ -1,0 +1,21 @@
+<div id="email-body" style="background-color:#eee; padding:20px;">
+  <div style="background-color:white; border-radius:5px; margin:20px;">
+    <div id="header-row" style="border-bottom:5px solid black; 
+        color:black; background-color: #B1D0DD; padding:15px;">
+      <div style="margin-left:10%; width:15%; float:left;">
+        <img style="width:100%; height:auto;" src="{{ logo_url }}" />
+      </div>
+      <div style="width:75%; text-align:center;">
+        <h1>
+          {% block email_header %}{% endblock %}
+        </h1>
+      </div>
+    </div>
+
+    <div id="body-row" style="margin:20px;">
+      <div>
+        {% block email_body %}{% endblock %}
+      </div>
+    </div>
+  </div>
+</div>

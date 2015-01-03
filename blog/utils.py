@@ -55,3 +55,14 @@ def get_map_posts(posts):
         center_long = None
 
     return map_posts
+
+
+# def get_weekly_newsletter(blog):
+    # return html with the active blogs of the past week
+    
+     
+
+# def get_monthly_newsletter(blog):
+    # return html with the active blogs of the past month
+
+

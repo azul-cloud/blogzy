@@ -154,5 +154,6 @@ EMAIL_BACKEND = 'django_mailgun.backends.MailgunBackend'
 
 # django_cron
 CRON_CLASSES = [
-    "blog.crons.SendNewsletters",
+    "blog.crons.SendWeeklyNewsletters",
+    "blog.crons.SendMonthlyNewsletters",
 ]

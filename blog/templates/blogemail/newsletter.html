@@ -1,0 +1,32 @@
+{% extends "mainemail/base.html" %}
+{% load static %}
+
+{% block email_header %}
+    New Posts from {{ blog }}
+{% endblock %}
+
+
+{% block email_body %}
+  <table>
+    <tbody>
+      {% for p in posts %}
+        <tr>
+            <td style="width:40%">
+              <a href="{{ p.get_absolute_url }}">
+                <img style="width:100%; height:auto;" 
+                  src="{{ p.image.url }}" />
+              </a>
+            </td>
+            <td style="width:60%; padding:10px;">
+              <a href="{{ p.get_absolute_url }}" style="text-decoration:none;">
+                <h2 style="text-align: center; color:black;">{{ p.title }}</h2>
+                <p style="color:black;">{{ p.headline }}</p>
+                <p style="color:black; font-size:80%; text-align:center;">posted on {{ p.create_date }}</p> 
+              </a>
+            </td>
+          </a>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+{% endblock %}

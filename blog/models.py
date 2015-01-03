@@ -2,10 +2,11 @@ import os
 import requests
 import datetime
 
-from django.db import models
-from django.utils.text import slugify
 from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.db import models
+from django.utils import timezone
+from django.utils.text import slugify
 
 from main.utils import slugify_no_hyphen, get_place_details
 
@@ -83,12 +84,18 @@ class PersonalBlog(models.Model):
             return None
 
     def subscriber_list(self):
-        # return a list of emails for a blog
+        # return a list of blogsubscribe objects
         subscribers = BlogSubscription.objects.filter(blog=self)
-        subscriber_list = []
+        return subscribers
+
+    def get_subscriber_emails(self, frequency):
+        subscribers = BlogSubscription.objects.filter(blog=self, 
+            frequency=frequency)
+        email_list = []
         for s in subscribers:
-            subscriber_list.append(s.email)
-        return subscriber_list
+            email_list.append(s.email)
+
+        return email_list
 
 
 class Post(models.Model):
@@ -214,7 +221,7 @@ class Post(models.Model):
         # get the amount of views for the current day
         from report.models import PostView
         views = PostView.objects.filter(post=self, 
-            view_date=datetime.date.today())
+            view_date=timezone.now().today())
         return views.count()
 
     def record_view(self):
@@ -275,5 +282,10 @@ class BlogSubscription(models.Model):
 
     class Meta:
         unique_together = ("email", "blog")
+
+
+class BlogSubscriptionLog(models.Model):
+    subscription = models.ForeignKey(BlogSubscription)
+    sent_date_time = models.DateTimeField(auto_now_add=True)
 
 
