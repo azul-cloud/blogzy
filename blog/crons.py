@@ -4,6 +4,7 @@ from django.conf import settings
 from django.core.mail import send_mail
 from django.template import Context
 from django.template.loader import get_template
+from django.utils import timezone
 
 from django_cron import CronJobBase, Schedule
 
@@ -11,10 +12,9 @@ from .models import PersonalBlog, Post, BlogSubscription, BlogSubscriptionLog
 
 
 class NewsletterJob(CronJobBase):
-    RUN_EVERY_MINS = 0
-    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
+    RUN_EVERY_MINS = None
     blogs = PersonalBlog.objects.all()
-    days_ago = 1
+    days_ago = 0
     frequency = ""
 
     def do(self):
@@ -54,7 +54,7 @@ class NewsletterJob(CronJobBase):
     def get_posts(self, blog):
         # get all the posts that should be included in the email
         posts = Post.objects.filter(active=True, blog=blog,
-            create_date__gte=datetime.date.today() - datetime.timedelta(days=self.days_ago))
+            create_date__gte=timezone.now().today() - datetime.timedelta(days=self.days_ago))
         return posts
 
     def get_subscribers(self, blog):
@@ -64,17 +64,19 @@ class NewsletterJob(CronJobBase):
 
 
 class SendWeeklyNewsletters(NewsletterJob):
-    RUN_EVERY_MINS = 60 * 24 * 7  #1 week
-    days_ago = 7
+    RUN_EVERY_MINS = 5  #1 week
+    days_ago = 20
     code = 'send_weekly_newsletters'
     frequency = "W"
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
 
 
 class SendMonthlyNewsletters(NewsletterJob):
-    RUN_EVERY_MINS = 60 * 24 * 31  #1 month... just about
+    RUN_EVERY_MINS = 15  #1 month... just about
     days_ago = 31
     code = 'send_monthly_newsletters'
     frequency = "M"
+    schedule = Schedule(run_every_mins=RUN_EVERY_MINS)
 
 
 
