@@ -41,7 +41,7 @@ class NewsletterJob(CronJobBase):
                     send_mail(
                         'New posts from %s' % b,
                         '', # use html_message
-                        self.b.title + ' <noreply@travelblogwave.com>', 
+                        b.title + ' <noreply@travelblogwave.com>', 
                         [s],
                         html_message=newsletter
                     )
@@ -64,7 +64,7 @@ class NewsletterJob(CronJobBase):
 
 
 class SendWeeklyNewsletters(NewsletterJob):
-    RUN_EVERY_MINS = 60 * 24 * 7 #1 week
+    RUN_EVERY_MINS = 60 * 24 * 7 # 1 week
     days_ago = 7
     code = 'send_weekly_newsletters'
     frequency = "W"
