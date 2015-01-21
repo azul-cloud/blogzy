@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth import get_user_model
 
 from .models import Contact
-from .factories import UserFactory, ContactFactory
+from testing.factories import UserFactory, ContactFactory
 
 
 class MainTestSetup(TestCase):
