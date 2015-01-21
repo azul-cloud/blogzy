@@ -33,7 +33,7 @@ class NewsletterJob(CronJobBase):
                 newsletter = get_template('blogemail/newsletter.html').render(Context({
                     'posts': self.get_posts(b),
                     'blog': b,
-                    'logo_url': settings.WEB_ROOT_URL + '/static/img/logo_dark.png'
+                    'WEB_ROOT_URL': settings.WEB_ROOT_URL,
                 }))
             
                 # send an individual email to each of the subscribers

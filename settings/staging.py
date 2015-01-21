@@ -7,7 +7,12 @@ from .base import *
 DEBUG = False
 TEMPLATE_DEBUG = False
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+if DEBUG:
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+else:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Allow all host headers
 # ALLOWED_HOSTS = ['http://tbwvtest.herokuapp.com/']
@@ -15,7 +20,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MAILGUN_ACCESS_KEY = os.environ['MAILGUN_ACCESS_KEY']
 MAILGUN_SERVER_NAME = 'sandboxbea330ddebf24842829144f24a61eaa1.mailgun.org'
 
-WEB_ROOT_URL = 'http://test.travelblogwave.com/'
+WEB_ROOT_URL = 'http://test.travelblogwave.com'
 
 DATABASES = {}
 DATABASES['default'] =  dj_database_url.config()

@@ -12,7 +12,7 @@ if DEBUG:
     )
 else:
     """ STATICFILES_DIRS can come from settings.staging if debug is True
-        so we need to override it here\
+        so we need to override it here
     """
     STATICFILES_DIRS = ""
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
@@ -21,4 +21,4 @@ AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
 
 MAILGUN_SERVER_NAME = 'travelblogwave.com'
 
-WEB_ROOT_URL = 'http://www.travelblogwave.com/'
+WEB_ROOT_URL = 'http://www.travelblogwave.com'

@@ -292,6 +292,7 @@ class BlogSubscriptionLog(models.Model):
     sent_date_time = models.DateTimeField(auto_now_add=True, editable=True)
 
     def __unicode__(self):
-        return str(self.subscription.blog) + ' for ' + str(self.subscription.email)
+        return str(self.subscription.blog) + ' for ' + str(self.subscription.email) + \
+            ' on ' + str(self.sent_date_time)
 
 
