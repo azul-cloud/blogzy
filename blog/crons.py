@@ -41,7 +41,7 @@ class NewsletterJob(CronJobBase):
                     send_mail(
                         'New posts from %s' % b,
                         '', # use html_message
-                        'noreply@travelblogwave.com', 
+                        self.b.title + ' <noreply@travelblogwave.com>', 
                         [s],
                         html_message=newsletter
                     )
