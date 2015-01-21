@@ -13,15 +13,14 @@
         <tr>
             <td style="width:40%">
               <a href="{{ WEB_ROOT_URL }}{{ p.get_absolute_url }}">
-                <img style="width:100%; height:auto;" 
-                  src="http://travelblogwave.com/{% static 'img/logo_dark.png' %}" />
+                <img style="width:100%; height:auto;" src="{{ p.image.url }}" />
               </a>
             </td>
             <td style="width:60%; padding:10px;">
               <a href="{{ WEB_ROOT_URL }}{{ p.get_absolute_url }}" style="text-decoration:none;">
                 <h2 style="text-align: center; color:black;">{{ p.title }}</h2>
                 <p style="color:black;">{{ p.headline }}</p>
-                <p style="color:black; font-size:80%; text-align:center;">posted on {{ p.create_date }}</p>
+                <p style="color:black; font-size:80%; text-align:center;">posted on {{ p.create_date }}</p> 
               </a>
             </td>
           </a>
