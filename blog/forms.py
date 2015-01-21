@@ -20,7 +20,7 @@ class BlogCreateForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(BlogCreateForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_method = 'post'
+        self.helper.form_id = 'blog-create-form'
         self.helper.layout = Layout(
             Fieldset(
                 '<h1>Create Your Travel Blog</h1>',
@@ -49,7 +49,7 @@ class BlogPostCreateForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(BlogPostCreateForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
-        self.helper.form_method = 'post'
+        self.helper.form_id = 'blog-post-create-form'
         self.helper.layout = Layout(
             Fieldset(
                 '',
@@ -78,6 +78,8 @@ class BlogPostEditForm(BlogPostCreateForm):
     def __init__(self, *args, **kwargs):
         # add delete button to layout for the edit form
         super(BlogPostEditForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = 'blog-post-edit-form'
         self.helper.layout = Layout(
             Fieldset(
                 '',
@@ -120,6 +122,7 @@ class BlogEditForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(BlogEditForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
+        self.helper.form_id = 'blog-edit-form'
         self.helper.layout = Layout(
             Fieldset(
                 '<h2 class="text-center">Edit data about your blog</h2>',
@@ -145,6 +148,7 @@ class CreateBlogSubscriptionForm(ModelForm):
     def __init__(self, *args, **kwargs):
         super(CreateBlogSubscriptionForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
+        self.helper.form_id = 'blog-subscription-form'
         self.helper.layout = Layout(
             Fieldset(
                 '<h3 class="skinny text-center">Stay updated with the newsletter</h3>',

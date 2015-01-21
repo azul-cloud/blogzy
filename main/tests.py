@@ -1,22 +1,18 @@
+#8.889 seconds before refactor
+
 from django.test import TestCase
 from django.core.urlresolvers import reverse
 from django.contrib.auth import get_user_model
 
 from .models import Contact
+from .factories import UserFactory, ContactFactory
 
 
 class MainTestSetup(TestCase):
     def setUp(self):
-        self.user = get_user_model().objects.create_user(
-            'main_test_user', 
-            'testuser@domain.com',
-            'testpassword'
-        )
-        self.contact = Contact.objects.create(
-            message='i''m sending you this message',
-            type='G',
-            user=self.user
-        )
+        self.user = UserFactory.create()
+        self.contact = ContactFactory.create(user=self.user)
+
 
 class MainViewTest(MainTestSetup):
     def test_home(self):

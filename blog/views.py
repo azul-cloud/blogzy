@@ -294,7 +294,7 @@ def edit_post(request, **kwargs):
     TODO: edit and create share a lot of the same logic
     '''
 
-    # check to make sure current user is the author of this post
+    # check to make sure current user is the owner of the blog
     id = kwargs['pk']
     post = get_object_or_404(Post, id=id)
     status = ""
@@ -341,7 +341,7 @@ def edit_post(request, **kwargs):
             return render(request, "blogcontent/post_edit.html", {'post':post, 'form':form})
     else:
         # request user is not the author
-        return render(request, "blogcontent/post_edit.html", {'post':post})
+        return HttpResponseRedirect('blog-explore')
 
     return render(request, "blogcontent/post_edit.html", {'form':form, 'status':status,
                                                     'alert_message':alert_message})
