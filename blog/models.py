@@ -11,11 +11,6 @@ from django.utils.text import slugify
 from main.utils import slugify_no_hyphen, get_place_details
 
 
-def get_blog_upload_path(instance, filename):
-    blog_id = instance.id
-    return os.path.join('blog/' + str(blog_id) + '/' + filename)
-
-
 def get_post_upload_path(instance, filename):
     blog_id = instance.blog.id
     return os.path.join('blog/' + str(blog_id) + '/' + filename)
@@ -49,7 +44,6 @@ class PersonalBlog(models.Model):
     owner = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=50)
     description = models.TextField()
-    logo = models.ImageField(upload_to=get_blog_upload_path, null=True, blank=True)
     slug = models.SlugField(unique=True, blank=True)
     disqus = models.CharField(max_length=30, blank=True, null=True)
     twitter = models.CharField(max_length=15, blank=True, null=True)

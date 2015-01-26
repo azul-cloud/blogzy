@@ -8,10 +8,9 @@ from crispy_forms.layout import Layout, Div, Submit, Fieldset, ButtonHolder, Fie
 
 
 class BlogCreateForm(ModelForm):
-    title = forms.CharField(help_text="What is the name of your blog?")
+    title = forms.CharField(help_text="What is the name of your blog? This is the name of your blog, <b><u>not</u></b> an individual post.")
     description = forms.CharField(widget = forms.Textarea(),
                                   help_text="Give people an idea what your blog is all about")
-    logo = forms.ImageField(required=False, help_text="Optional. Recommended square image 300x300 or larger.")
 
     class Meta:
         model = PersonalBlog
@@ -24,11 +23,8 @@ class BlogCreateForm(ModelForm):
         self.helper.layout = Layout(
             Fieldset(
                 '<h1>Create Your Travel Blog</h1>',
-                Div(
-                    Field('title', css_id="title"),
-                    Field('logo', css_id="logo"),
-                css_class="col-sm-6"),
-                Div('description', css_class="col-sm-6", css_id="description")
+                Div('title', css_id="title"),
+                Div('description', css_id="description")
             ),
             ButtonHolder(
                 Submit('submit', 'Create Blog', css_class='btn-lg'), css_class="text-center"
@@ -131,7 +127,6 @@ class BlogEditForm(ModelForm):
                 Div('twitter_widget_id', css_class="col-md-6"),
                 Div('instagram', css_class="col-md-6"),
                 Div('disqus', css_class="col-md-6"),
-                Div('logo', css_class="col-md-12"),
             ),
             ButtonHolder(
                 Submit('submit', 'Update Info', css_class='btn-lg'),

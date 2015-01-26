@@ -29,7 +29,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('title', models.CharField(max_length=50)),
                 ('description', models.TextField()),
-                ('logo', models.ImageField(null=True, upload_to=blog.models.get_blog_upload_path, blank=True)),
+                ('logo', models.ImageField(null=True, upload_to="", blank=True)),
                 ('slug', models.SlugField(unique=True, blank=True)),
                 ('disqus', models.CharField(max_length=30, null=True, blank=True)),
                 ('twitter', models.CharField(max_length=15, null=True, blank=True)),
