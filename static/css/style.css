@@ -46,7 +46,9 @@ legend h1 {
 .no-padding {
     padding:0;
 }
-
+.transition {
+    transition: all 1.0s ease;
+}
 .grow, #other-posts img, .social-buttons img {
     transition: all 0.5s ease-out;
 }
@@ -331,8 +333,6 @@ css styles that are specific to individual posts
     opacity: 0.8;
 }
 
-
-
 /***** Bootstrap Extensions *****/
 /*
 Bootstrap is not perfect. These are modifications that are applicable or
@@ -366,6 +366,10 @@ loading bootstrap.css so that these rules can override.
 .navbar li {
     font-size: 150%;
     font-weight: 300;
+}
+.navbar-nav>li.label {
+    padding-top: 15px;
+    padding-bottom: 15px;
 }
 .btn-primary {
     background-color: #27576B;
@@ -401,6 +405,9 @@ loading bootstrap.css so that these rules can override.
 }
 .alert-brand .alert-link {
   color: black;
+}
+.nav img {
+    height: 30px;
 }
 
 

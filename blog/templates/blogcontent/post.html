@@ -13,6 +13,10 @@
   {% endif %}
 {% endblock %}
 
+{% block extra_head %}
+  <script src="{% static 'js/post_footer.js' %}"></script>
+{% endblock %}
+
 {% block main %}
   <div class="margin-top container">
     <div id="post-content" class="well">
@@ -45,7 +49,6 @@
             {% endwith %}
           </div>
           <div class="row" id="post-footer">
-            {% include "maininclude/social_share.html" %}
             <h4>Written by {{ post.author.username }} on {{ post.create_date }}
             {% include "bloginclude/favorite.html" %}</h4>
             <div class="hidden-xs">
@@ -70,7 +73,7 @@
             {% endif %}
           {% endif %}
           {% if not request.user.email in post.blog.subscriber_list %}
-            {# don't show if the user is already signed up #}
+            {# dont show if the user is already signed up #}
             {% crispy form %}
           {% endif %}
           {% if other_posts %}
@@ -98,6 +101,7 @@
 
         </div>
       </div>
-    </div>
+    </div>    
   </div>
+  {% include "bloginclude/post_footer.html" %}
 {% endblock %}
