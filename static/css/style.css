@@ -113,7 +113,6 @@ img {
     background-size: cover;
     height:600px;
     width:100%;
-
 }
 .info-row span {
     font-size:500%;
@@ -237,9 +236,9 @@ the home page and the explore page.
 
 @media (max-width:768px) {
     .search-overlay {
-        margin-left:-200px;
+        margin-left:-180px;
         top: 150px;
-        width: 400px;
+        width: 360px;
     }
     .search-overlay.drop {
         top: 400px;
