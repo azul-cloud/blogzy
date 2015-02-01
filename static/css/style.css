@@ -9,7 +9,7 @@ html, body {
     min-height: 100%;
 }
 #main {
-	padding-bottom: 150px;
+	padding-bottom: 180px;
 	height:100%;
 }
 /* must be same height as the footer */
@@ -449,4 +449,9 @@ loading bootstrap.css so that these rules can override.
 .account-container ul.errorlist li {
     color:red;
     padding-left:0;
+}
+@media(max-width:768px) {
+    .account-container input {
+        font-size:120%;
+    }
 }
