@@ -13,8 +13,10 @@
   {% endif %}
 {% endblock %}
 
-{% block extra_head %}
+{% block javascript %}
+  {{ block.super }}
   <script src="{% static 'js/post_footer.js' %}"></script>
+  }
 {% endblock %}
 
 {% block main %}

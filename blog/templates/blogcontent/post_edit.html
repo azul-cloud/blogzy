@@ -5,7 +5,8 @@
   Edit Travel Blog Story
 {% endblock %}
 
-{% block extra_head %}
+{% block javascript %}
+  {{ block.super }}
   {% include "maininclude/place_autocomplete.html" %}
 {% endblock %}
 

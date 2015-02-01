@@ -5,7 +5,8 @@
   Search Travel Blogs
 {% endblock %}
 
-{% block extra_head %}
+{% block javascript %}
+  {{ block.super }}
   <script src="{% static 'js/explore.js' %}"></script>
   {% include "maininclude/place_autocomplete.html" %}
   {% include "maininclude/topic_autocomplete.html" %}

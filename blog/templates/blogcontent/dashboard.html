@@ -5,7 +5,8 @@
   Dashboard for {{ myblog.title }}
 {% endblock %}
 
-{% block extra_head %}
+{% block javascript %}
+  {{ block.super }}
   {% include "maininclude/tinymce.html" %}
 {% endblock %}
 
