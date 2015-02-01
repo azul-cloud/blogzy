@@ -10,10 +10,8 @@
   <div class="container container-padding">
     <div class="col-sm-6 col-sm-offset-3">
       {% if not user.profile.user_blog %}
-      <form method="post" enctype="multipart/form-data">
         {% crispy form %}
-      </form>
-      {% include "maininclude/form_status.html" %}
+        {% include "maininclude/form_status.html" %}
       {% else %}
         <div class="text-center">
           <h3>You already have a blog on this account. If you'd like to create a new blog, you'll need to create a new account.</h3>

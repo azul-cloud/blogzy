@@ -59,6 +59,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
     'pagination.middleware.PaginationMiddleware',
+    'htmlmin.middleware.HtmlMinifyMiddleware',
+    'htmlmin.middleware.MarkRequestMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
@@ -153,3 +155,6 @@ CRON_CLASSES = [
     "blog.crons.SendWeeklyNewsletters",
     "blog.crons.SendMonthlyNewsletters",
 ]
+
+HTML_MINIFY = True
+
