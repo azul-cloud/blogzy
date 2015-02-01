@@ -13,17 +13,18 @@ html, body {
 	height:100%;
 }
 /* must be same height as the footer */
-#footer {
+footer {
     position: relative;
 	margin-top: -180px; /* negative value of footer height */
 	height: 180px;
 	clear:both;
 	padding: 50px;
-	font-size:150%;
+    color: white;
+    background-color:#010E13;
 }
-#footer a:link,
-#footer a:visited {
-    color: #fff;
+footer a:link,
+footer a:visited {
+    color: #eee;
 }
 
 /* end sticky footer */
@@ -33,9 +34,6 @@ html {
 }
 h1, h2 {
     font-weight: 300;
-}
-footer {
-    background-color:#010E13;
 }
 legend h1 {
     text-align:center;
@@ -70,7 +68,7 @@ legend h1 {
     color:#010E13;
 }
 #navbar-main li a:hover,
-#footer a:hover {
+footer a:hover {
     color:#B1D0DD;
 }
 .fb-like {
@@ -146,6 +144,8 @@ img {
 }
 #recent-post-row {
     background-color:#eee;
+    margin-bottom: -30px;
+    padding-bottom: 60px;
 }
 #recent-post-row h2 {
     font-size:300%;
