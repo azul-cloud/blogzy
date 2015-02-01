@@ -234,11 +234,18 @@ the home page and the explore page.
     margin-top: 30px;
 }
 
+@media (max-width:992px) {
+    .search-overlay {
+        margin-left:-350px;
+        top: 150px;
+        width: 700px;
+    }
+}
 @media (max-width:768px) {
     .search-overlay {
-        margin-left:-180px;
+        margin-left:-150px;
         top: 150px;
-        width: 360px;
+        width: 300px;
     }
     .search-overlay.drop {
         top: 400px;
