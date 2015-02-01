@@ -38,7 +38,6 @@ INSTALLED_APPS = (
     'report',
 
     'braces',
-    'tastypie',
     'crispy_forms',
     'allauth',
     'allauth.account',

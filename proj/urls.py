@@ -9,13 +9,6 @@ from blog.api.resources import PostResource, BlogResource, UserFavoriteResource
 from main.api.resources import UserResource
 from main.views import RobotTemplateView
 
-
-v1_api = Api(api_name='v1')
-v1_api.register(PostResource())
-v1_api.register(BlogResource())
-v1_api.register(UserResource())
-v1_api.register(UserFavoriteResource())
-
 admin.autodiscover()
 
 #get dictionaries and build the sitemap
@@ -37,7 +30,6 @@ urlpatterns = patterns('',
         'document_root': settings.MEDIA_ROOT}),
     url(r'^', include('main.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/', include(v1_api.urls)),
     (r'^accounts/', include('allauth.urls')),
     url(r'^internal/', include('internal.urls')),
     url(r'^reports/', include('report.urls')),
