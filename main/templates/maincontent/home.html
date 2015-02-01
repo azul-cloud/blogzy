@@ -5,7 +5,8 @@
   Travel Blog Wave | Create and Search Travel Blogs
 {% endblock %}
 
-{% block extra_head %}
+{% block javascript %}
+  {{ block.super }}
   <script src="{% static 'js/plugins/stellar.js' %}"></script>
   <script src="{% static 'js/stellar.js' %}"></script>
   {% include "maininclude/place_autocomplete.html" %}

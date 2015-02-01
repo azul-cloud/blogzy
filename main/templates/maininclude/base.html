@@ -5,8 +5,7 @@
     <title>
       {% block title %}Travel Blog Wave{% endblock %}
     </title>
-    {% include "maininclude/installs.html" %}
-    
+
     {% block stylesheets %}
       {% if offline %}
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
@@ -16,17 +15,6 @@
       {% endif %}
       <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
       <link rel="icon" href="{% static 'img/logo.ico' %}">
-    {% endblock %}
-
-    {% block javascript %}
-      <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      {% if offline %}
-        <script src="{% static 'js/jquery.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-      {% else %}
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-      {% endif %}
-      <script src="{% static 'js/script.js' %}"></script>
     {% endblock %}
 
     {% block meta_tags %}
@@ -52,6 +40,17 @@
     {% block footer %}
       {# allow removal of footer. Used when displaying 100% height map #}
       {% include "maininclude/footer.html" %}
+    {% endblock %}
+    {% block javascript %}
+      {% if offline %}
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      {% else %}
+        {% include "maininclude/installs.html" %}
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+      {% endif %}
+      <script src="{% static 'js/script.js' %}"></script>
     {% endblock %}
   </body>
 </html>
