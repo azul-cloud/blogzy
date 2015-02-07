@@ -147,7 +147,7 @@ PAGINATION_TEMPLATE_PACK = "bootstrap3"
 
 
 # mailgun
-EMAIL_BACKEND = 'django_mailgun.backends.MailgunBackend'
+EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
 
 
 # django_cron
