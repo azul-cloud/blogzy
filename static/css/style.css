@@ -107,7 +107,7 @@ img {
     opacity:1;
 }
 #background {
-    background-image: url("/static/img/front.jpg");
+    background-image: url("http://dev.travelblogwave.media.s3.amazonaws.com/img/front.jpg");
     background-size: cover;
     height:600px;
     width:100%;

@@ -24,7 +24,3 @@ WEB_ROOT_URL = 'http://test.travelblogwave.com'
 
 DATABASES = {}
 DATABASES['default'] =  dj_database_url.config()
-
-STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-
-STATIC_URL = 'http://%s.s3.amazonaws.com/' % AWS_STORAGE_BUCKET_NAME

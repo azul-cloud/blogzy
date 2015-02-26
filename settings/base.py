@@ -161,4 +161,3 @@ CRON_CLASSES = [
 ]
 
 HTML_MINIFY = True
-
