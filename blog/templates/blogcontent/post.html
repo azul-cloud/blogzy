@@ -13,6 +13,10 @@
   {% endif %}
 {% endblock %}
 
+{% block meta_title %}
+  <meta name="title" content="{{ post.blog.title }} | {{ post.title }}">
+{% endblock %}
+
 {% block javascript %}
   {{ block.super }}
   <script src="{% static 'js/post_footer.js' %}"></script>

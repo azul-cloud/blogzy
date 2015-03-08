@@ -22,7 +22,9 @@
       travel blog using a top of the line travel blogging platform.">
       <meta name="robots" content="index, follow">
       <meta charset="UTF-8">
-      <meta name="title" content="Travel Blog Wave | Create and Follow Travel Blogs">
+      {% block meta_title %}
+        <meta name="title" content="Travel Blog Wave | Create and Follow Travel Blogs">
+      {% endblock %}
       <meta name="viewport" content="width=device-width, initial-scale=1">
     {% endblock %}
   </head>
