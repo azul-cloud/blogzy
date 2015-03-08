@@ -18,8 +18,9 @@
     {% endblock %}
 
     {% block meta_tags %}
-      <meta name="description" content="Search Travel Blogs by Country, City, Place, or Topic or create your
-      travel blog using a top of the line travel blogging platform.">
+      {% block meta_description %}
+        <meta name="description" content="Search Travel Blogs by Country, City, Place, or Topic or create your travel blog using a top of the line travel blogging platform.">
+      {% endblock %}
       <meta name="robots" content="index, follow">
       <meta charset="UTF-8">
       {% block meta_title %}

@@ -64,6 +64,7 @@ class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
 
         # make sure the meta content is correct
         assert '<meta content="%s | %s" name="title"/>' % (self.blog.title, self.post.title) in response
+        assert '<meta content="%s" name="description"/>' % self.post.headline
 
     def test_blog_topic(self):
         url = reverse(self.prefix+"topic", kwargs={'topic':self.topic.slug})

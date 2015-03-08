@@ -17,6 +17,10 @@
   <meta name="title" content="{{ post.blog.title }} | {{ post.title }}">
 {% endblock %}
 
+{% block meta_description %}
+  <meta name="description" content="{{ post.headline }}">
+{% endblock %}
+
 {% block javascript %}
   {{ block.super }}
   <script src="{% static 'js/post_footer.js' %}"></script>
