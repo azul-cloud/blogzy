@@ -59,9 +59,21 @@ class PersonalBlog(models.Model):
         self.slug = slugify_no_hyphen(self.title)
         super(PersonalBlog, self).save(*args, **kwargs)
 
-    def total_subscription_count(self):
-        # TODO: get the total number of subscriptions for a blog
+    def follower_count(self):
+        """
+        The amount of people that have the blog in their wave
+        """
+        # TODO
         count = 0
+        return count
+
+    def subscription_count(self):
+        """
+        get the amount of people who are subscribed to the blog and are 
+        receiving email newletters
+        """
+        from blog.models import BlogSubscription
+        count = BlogSubscription.objects.filter(blog=self).count()
         return count
 
     def get_absolute_url(self):

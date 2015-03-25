@@ -55,7 +55,14 @@
                 {% endfor %}
               </tbody>
             </table>
-            <p class="text-center">Followers: {{ myblog.total_subscription_count }}</p>
+            <p class="text-center">
+              <span class="col-sm-3">
+                Followers: <span class="badge">{{ myblog.follower_count }}</span>
+              </span>
+              <span class="col-sm-3 col-sm-offset-6">
+                Subscribers: <span class="badge">{{ myblog.subscription_count }}</span>
+              </span>
+            </p>
           </div>
         </div>
       </div>

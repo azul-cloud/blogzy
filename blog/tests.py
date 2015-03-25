@@ -36,6 +36,12 @@ class BlogTestSetup(TestCase):
         self.prefix = "blog-"
 
 
+class BlogModelTest(BlogTestSetup):
+    def test_blog_subscription_count(self):
+        count = self.blog.subscription_count()
+
+        assert count == 1
+
 class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
     def test_create_blog(self):
         url = reverse(self.prefix + "create")
