@@ -42,6 +42,11 @@ class BlogModelTest(BlogTestSetup):
 
         assert count == 1
 
+    def test_blog_subscription_latest(self):
+        # get when the latest weekly and monhtly email were sent
+        latest_dict = self.blog.last_subscription_sent()
+        
+
 class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
     def test_create_blog(self):
         url = reverse(self.prefix + "create")

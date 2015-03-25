@@ -55,14 +55,17 @@
                 {% endfor %}
               </tbody>
             </table>
-            <p class="text-center">
-              <span class="col-sm-3">
-                Followers: <span class="badge">{{ myblog.follower_count }}</span>
-              </span>
-              <span class="col-sm-3 col-sm-offset-6">
-                Subscribers: <span class="badge">{{ myblog.subscription_count }}</span>
-              </span>
-            </p>
+            <div class="row">
+              <div class="col-sm-9">
+                <p class="text-center">Last Newsletters sent</p>
+                <p class="badge">Weekly: {{ myblog.last_subscription_sent.weekly }}</p>
+                <p class="badge">Monthly: {{ myblog.last_subscription_sent.monthly }}</p>
+              </div>
+              <div class="col-sm-3">
+                <span class="badge">Subscribers: {{ myblog.subscription_count }}</span>
+                <span class="badge">Followers: {{ myblog.follower_count }}</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

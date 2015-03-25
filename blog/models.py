@@ -94,7 +94,16 @@ class PersonalBlog(models.Model):
         subscribers = BlogSubscription.objects.filter(blog=self)
         return subscribers
 
+    def get_log(self):
+        # return the subscription log for the blog
+        log = BlogSubscriptionLog.objects.filter(subscription__blog=self)
+        return log
+
+
     def get_subscriber_emails(self, frequency):
+        """
+        get all the emails for a specific blog
+        """
         subscribers = BlogSubscription.objects.filter(blog=self, 
             frequency=frequency)
         email_list = []
@@ -102,6 +111,23 @@ class PersonalBlog(models.Model):
             email_list.append(s.email)
 
         return email_list
+
+    def last_subscription_sent(self):
+        # get the date and time the last weekly email was sent
+        from blog.models import BlogSubscriptionLog
+        weekly = "never"
+        monthly = "never"
+        log = self.get_log()
+
+        weekly_log = log.filter(subscription__frequency="W")
+        if weekly_log:
+            weekly = weekly_log.order_by('-id')[0].sent_date_time
+
+        monthly_log = log.filter(subscription__frequency="M")
+        if monthly_log:
+            monthly = monthly_log.order_by('-id')[0].sent_date_time
+
+        return {'weekly':weekly, 'monthly':monthly}
 
 
 class Post(models.Model):
