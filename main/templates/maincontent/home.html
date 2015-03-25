@@ -14,9 +14,11 @@
 {% endblock %}
 
 {% block main %}
-  <div id="background" data-stellar-background-ratio="0.2" class="hidden-xs"></div>
+  <div id="background" data-stellar-background-ratio="0.4" class="hidden-xs"></div>
   <div id="background" class="hidden-sm hidden-md hidden-lg"></div>
-  <div class="search-overlay">
+
+  
+  <section class="search-overlay">
     <div class="row">
       <p class="search-overlay-text">
         Easily find detailed travel stories that match your interests
@@ -38,8 +40,9 @@
         </div>
       </form>
     </div>
-  </div>
-  <div class="container hidden-xs hidden-sm" id="main-information">
+  </section>
+
+  <section class="container hidden-xs hidden-sm" id="main-information">
     <div class="jumbotron jumbotron-clear text-center">
       <div class="row row-padding">
         <h1>Travel Blogs Made Simple</h1>
@@ -76,12 +79,15 @@
         </a>
       </div>
     </div>
-  </div>
-  <div id="recent-post-row" class="row row-padding hidden-xs">
-    <div class="col-sm-6 col-sm-offset-3">
-      <h2 class="text-center">Recent Posts</h2>
-      {% include "maininclude/recent_post_carousel.html" %}
+  </section>
+
+  <section id="recent-post-row" class="container-fluid">
+    <div class="row row-padding hidden-xs">
+      <div class="col-sm-6 col-sm-offset-3">
+        <h2 class="text-center">Recent Posts</h2>
+        {% include "maininclude/recent_post_carousel.html" %}
+      </div>
     </div>
-  </div>
+  </section>
 {% endblock %}
 
