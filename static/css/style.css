@@ -346,7 +346,7 @@ css styles that are specific to individual posts
 }
 @media(max-width:768px) {
     #post-body .img-half {
-        display: hidden;
+        display: none;
     }
 }
 
