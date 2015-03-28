@@ -315,6 +315,12 @@ css styles that are specific to individual posts
     max-width:100%;
     height:auto;
 }
+#post-body .img-half {
+    width:50%;
+    float:right;
+    margin-left: 20px ;
+    margin-bottom: 20px ;
+}
 #post-body .caption {
     text-align: center;
     font-style: italic;
@@ -337,6 +343,11 @@ css styles that are specific to individual posts
 }
 #other-posts img {
     opacity: 0.8;
+}
+@media(max-width:768px) {
+    #post-body .img-half {
+        display: hidden;
+    }
 }
 
 /***** Bootstrap Extensions *****/
