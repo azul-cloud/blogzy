@@ -369,7 +369,7 @@ def edit_post(request, **kwargs):
             return render(request, "blogcontent/post_edit.html", {'post':post, 'form':form})
     else:
         # request user is not the author
-        return HttpResponseRedirect('blog-explore')
+        return HttpResponseRedirect('blog-recent-posts')
 
     return render(request, "blogcontent/post_edit.html", {'form':form, 'status':status,
                                                     'alert_message':alert_message})

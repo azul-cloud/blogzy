@@ -15,7 +15,7 @@
         <div id="wave-posts">
           {% include "bloginclude/post_list.html" %}
           {% if not blogs %}
-            <h3 class="text-center">Your wave is flat! <a href="{% url 'blog-explore' %}"> Explore</a>
+            <h3 class="text-center">Your wave is flat! <a href="{% url 'blog-recent-posts' %}"> Explore</a>
               to fix that. Easy.</h3>
           {% endif %}
         </div>

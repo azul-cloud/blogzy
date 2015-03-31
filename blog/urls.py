@@ -9,9 +9,9 @@ urlpatterns = patterns('',
     url(r'(?P<blog>\S+)/dashboard/$', views.dashboard, name=app + "dashboard"),
     url(r'blog/post/(?P<pk>\d+)/edit/$', views.edit_post, name=app + "post-edit"),
     url(r'blog/post/create/$', views.create_post, name=app + "post-create"),
+    url(r'recent/$', views.explore, name=app + "recent-posts"),
 
     # explore is where we search for groupings of blog posts based on region or topic
-    url(r'explore/$', views.explore, name=app + "explore"),
     url(r'explore/map/(?P<place_id>\S+)/$', views.ExploreMapListView.as_view(), name=app + "explore-map"),
     url(r'explore/region/(?P<region>\S+)/$', views.explore, name=app + "explore-region"),
     url(r'explore/topic/(?P<topic>\S+)/$', views.explore, name=app + "explore-topic"),

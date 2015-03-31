@@ -102,13 +102,15 @@ class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
         self.login_required(url)
 
     def test_explore(self):
-        url = reverse(self.prefix + "explore")
+        url = reverse(self.prefix + "recent-posts")
         response = self.app.get(url)
 
         assert "Filter to fit your interest" in response
 
     def test_explore_map(self):
-        url = reverse(self.prefix + "explore-map", kwargs={'google_id':'ChIJQ77mcJFvR44RegoSeGbgTFU'})
+        url = reverse(self.prefix + "explore-map", kwargs={
+            'place_id':'ChIJQ77mcJFvR44RegoSeGbgTFU'
+        })
         response = self.app.get(url)
 
         assert response.status_code == 200
