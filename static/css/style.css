@@ -158,12 +158,21 @@ img {
     margin-right:auto;
 }
 
+.img-info-window {
+    max-width: 300px;
+}
+
 @media(max-width:768px) {
     #navbar-main li.dropdown li a:visited,
     #navbar-main li.dropdown li a:link {
         color:#fff;
     }
+    .img-info-window {
+        max-width: 150px;
+    }
 }
+
+
 
 /***** JQuery Autocomplete *****/
 .ui-menu-item {
@@ -274,7 +283,6 @@ applied to individual blog posts, those are defined int he Post section
 }
 #map-container {
     height: 100%;
-    width: 33.33333%;
     float:right;
     overflow:hidden;
 }
@@ -425,6 +433,13 @@ loading bootstrap.css so that these rules can override.
 }
 .nav img {
     height: 30px;
+}
+.no-gutter {
+    padding-right:0;
+    padding-left:0;
+}
+.full-height {
+    height: 100%;
 }
 
 

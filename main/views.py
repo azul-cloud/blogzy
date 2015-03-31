@@ -24,13 +24,10 @@ class HomeTemplateView(TemplateView):
 
 
 class AboutTemplateView(TemplateView):
-    # show the about page
     template_name = "maincontent/about.html"
 
 
-
 class RobotTemplateView(TemplateView):
-    # robots.txt for search engines
     template_name = "maincontent/robots.txt"
 
 

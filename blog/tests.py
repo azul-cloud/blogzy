@@ -107,6 +107,12 @@ class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
 
         assert "Filter to fit your interest" in response
 
+    def test_explore_map(self):
+        url = reverse(self.prefix + "explore-map", kwargs={'google_id':'ChIJQ77mcJFvR44RegoSeGbgTFU'})
+        response = self.app.get(url)
+
+        assert response.status_code == 200
+
     def test_topic(self):
         url = reverse(self.prefix + "topic", kwargs={'topic':self.topic.slug})
         response = self.app.get(url)

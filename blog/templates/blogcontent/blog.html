@@ -3,7 +3,7 @@
 {% load static from staticfiles %}
 
 {% block title %}
-  {{ blog }} |Travel Blog
+  {{ personalblog }} | Travel Blog
 {% endblock %}
 
 {% block javascript %}
@@ -27,19 +27,19 @@
       </div>
       <div class="row well">
         {% for thumbnail_post in posts %}
-        {% if forloop.first or forloop.counter|divisibleby:"2" %}
-          <div class="row">
-        {% endif %}
-          {% if forloop.first %}
-            <div class="col-sm-12">
-          {% else %}
-            <div class="col-sm-6">
+          {% if forloop.first or forloop.counter|divisibleby:"2" %}
+            <div class="row">
           {% endif %}
-          {% include "bloginclude/thumbnail_post.html" %}
-          </div>
-        {% if forloop.last or forloop.counter0|divisibleby:"2" %}
-          </div>
-        {% endif %}
+            {% if forloop.first %}
+              <div class="col-sm-12">
+            {% else %}
+              <div class="col-sm-6">
+            {% endif %}
+            {% include "bloginclude/thumbnail_post.html" %}
+            </div>
+          {% if forloop.last or forloop.counter0|divisibleby:"2" %}
+            </div>
+          {% endif %}
         {% endfor %}
         <div class="text-center">
           {% paginate %}
@@ -54,12 +54,11 @@
       </div>
     </div>
   </div>
-  <div id="map-container" class="hidden-xs">
+  <div id="map-container" class="hidden-xs col-sm-4 no-gutter">
     {% include "bloginclude/blog_map.html" %}
     <div id="map-canvas"></div>
   </div>
   {% include "bloginclude/modals/blog_info.html" %}
 {% endblock %}
 
-{% block footer %}
-{% endblock %}
+{% block footer %}{% endblock %}

@@ -42,3 +42,5 @@ def get_place_details(place_id):
     data = requests.get(url).json()
 
     return data
+
+    

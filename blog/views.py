@@ -1,6 +1,4 @@
-import requests
-import json
-import datetime
+import requests, json, datetime
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
@@ -22,9 +20,28 @@ from main.utils import get_json_objects, get_json, get_place_details
 from report.models import PostView
 
 
+class PlaceDetailsMixin(object):
+    '''
+    get place details and return the data in context
+    '''
+    def get_details(self):
+        # get the coordinates to center based on the place_id kwarg
+        place_id = self.kwargs["place_id"]
+        place_details = get_place_details(place_id)
+        return place_details
+
+    def get_context_data(self, **kwargs):
+        context = super(PlaceDetailsMixin, self).get_context_data(**kwargs)
+        place_details = self.get_details()
+        context["place_details"] = place_details
+        context["loc"] = place_details.get("result").get("geometry").get("location")
+        return context
+
+
 class BlogDetailView(DetailView):
     '''
-    Show info about a blog
+    Show the blog home page which will have a list of the latest articles
+    as well as a map of all their posts
     '''
     template_name = "blogcontent/blog.html"
     model = PersonalBlog
@@ -38,10 +55,21 @@ class BlogDetailView(DetailView):
         #get the posts and map posts for the blog object
         context['posts'] = Post.objects.filter(blog=self.get_object(), 
             active=True)
-
-        context['map_posts'] = get_map_posts(context['posts'])
+        context['post_list'] = get_map_posts(context['posts'])
+        context['loc'] = self.object.last_post_loc()
 
         return context
+
+
+class ExploreMapListView(PlaceDetailsMixin, ListView):
+    template_name = "blogcontent/explore_map.html"
+    model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super(ExploreMapListView, self).get_context_data(**kwargs)
+        context["map_zoom"] = 11
+        return context
+
 
 def explore(request, **kwargs):
     '''

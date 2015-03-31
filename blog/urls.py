@@ -12,8 +12,10 @@ urlpatterns = patterns('',
 
     # explore is where we search for groupings of blog posts based on region or topic
     url(r'explore/$', views.explore, name=app + "explore"),
+    url(r'explore/map/(?P<place_id>\S+)/$', views.ExploreMapListView.as_view(), name=app + "explore-map"),
     url(r'explore/region/(?P<region>\S+)/$', views.explore, name=app + "explore-region"),
     url(r'explore/topic/(?P<topic>\S+)/$', views.explore, name=app + "explore-topic"),
+    
     url(r'place/(?P<place_id>\S+)/$', views.place, name=app + "place"),
     url(r'^wave/$', views.wave, name=app + "wave"),
     url(r'^wave/(?P<action>add)/(?P<pk>\d+)/$', views.add_wave, name=app + "wave-add"),

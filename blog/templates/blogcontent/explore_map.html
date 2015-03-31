@@ -1,0 +1,28 @@
+{% extends "bloginclude/base.html" %}
+
+{% block title %}
+  Search Travel Blogs
+{% endblock %}
+
+
+{% block main %}
+  <div class="row full-height">
+    <div id="map-container">
+      {% include "bloginclude/blog_map.html" %}
+    </div>
+    <div id="map-canvas"></div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  {{ block.super }}
+  <script>
+    $(document).ready( function() {
+      $("#wrap").addClass("full-height");
+      $("#main").css("padding-bottom", "0");
+    });
+  </script>
+{% endblock %}
+
+{% block footer %}
+{% endblock %}

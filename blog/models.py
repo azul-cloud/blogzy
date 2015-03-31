@@ -99,7 +99,6 @@ class PersonalBlog(models.Model):
         log = BlogSubscriptionLog.objects.filter(subscription__blog=self)
         return log
 
-
     def get_subscriber_emails(self, frequency):
         """
         get all the emails for a specific blog
@@ -129,6 +128,30 @@ class PersonalBlog(models.Model):
 
         return {'weekly':weekly, 'monthly':monthly}
 
+    def last_post_loc(self):
+        '''
+        return the location that the map for a blog should be centered on.
+        Get the latest 10 posts and then exit when finding one with a lat
+        and a lng
+        '''
+        posts = self.post_set.all()[:10]
+        loc = {}
+        
+        for post in posts:
+            if post.lat and post.long:
+                loc = {
+                    'lat': str(post.lat),
+                    'lng': str(post.long),
+                }
+                continue
+
+        if not loc:
+            loc = {
+                'lat': '6.2253012',
+                'lng': '-75.5421334',
+            }
+
+        return loc
 
 class Post(models.Model):
     '''

@@ -10,35 +10,40 @@
   <script src="{% static 'js/plugins/stellar.js' %}"></script>
   <script src="{% static 'js/stellar.js' %}"></script>
   {% include "maininclude/place_autocomplete.html" %}
-  {% include "maininclude/topic_autocomplete.html" %}
+
+  <script>
+  $( "#search-overlay-form" ).submit(function() {
+    // set the form action based on the place id
+    var place_id = $("#id_place_id").val();
+    console.log(place_id);
+
+    $( "#search-overlay-form" ).attr("action", url = '/explore/map/' + place_id);
+    console.log($( "#search-overlay-form" ).attr("action"));
+    
+    $( "#search-overlay-form" ).submit();
+  });
+  </script>
 {% endblock %}
 
 {% block main %}
   <div id="background" data-stellar-background-ratio="0.4" class="hidden-xs"></div>
   <div id="background" class="hidden-sm hidden-md hidden-lg"></div>
 
-  
   <section class="search-overlay">
     <div class="row">
       <p class="search-overlay-text">
-        Easily find detailed travel stories that match your interests
+        Where do you want to know about?
       </p>
     </div>
     <div class="row">
-      <form id="search-overlay-form" method="post" action="{% url 'blog-explore' %}">
-        {% csrf_token %}
-        <div class="col-sm-5 col-xs-12">
+        <div class="col-xs-12 col-sm-6 col-sm-offset-2">
           <input name="place" id="place-search" placeholder="Search by Place" />
         </div>
-        <div class="col-sm-5 col-xs-12">
-          <input name="topic" id="topic-search" placeholder="Search by Topic" />
-        </div>
         <div class="col-sm-2 col-xs-12">
-          <button type="submit" class="btn btn-primary col-xs-12">
+          <a id="home-search" class="btn btn-primary col-xs-12" href="">
             <span class="glyphicon glyphicon-search"></span>
-          </button>
+          </a>
         </div>
-      </form>
     </div>
   </section>
 
@@ -90,4 +95,3 @@
     </div>
   </section>
 {% endblock %}
-
