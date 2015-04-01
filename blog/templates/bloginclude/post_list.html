@@ -1,8 +1,8 @@
 {% load static from staticfiles %}
 {% load pagination_tags %}
-{% autopaginate posts 10 %}
+{% autopaginate post_list 10 %}
 
-{% for p in posts %}
+{% for p in post_list %}
   {% if forloop.first or forloop.counter0|divisibleby:"2" %}<div class="row">{% endif %}
     {% include "bloginclude/post_container.html" %}
   {% if forloop.last or forloop.counter|divisibleby:"2" %}</div>{% endif %}

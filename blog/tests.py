@@ -105,7 +105,7 @@ class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
         url = reverse(self.prefix + "recent-posts")
         response = self.app.get(url)
 
-        assert "Filter to fit your interest" in response
+        assert "The Most Recent Posts" in response
 
     def test_explore_map(self):
         url = reverse(self.prefix + "explore-map", kwargs={

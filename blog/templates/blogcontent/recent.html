@@ -1,0 +1,21 @@
+{% extends "bloginclude/base.html" %}
+{% load static from staticfiles %}
+
+{% block title %}
+  Search Travel Blogs
+{% endblock %}
+
+{% block main %}
+  <div class="jumbotron" style="margin-bottom:0;">
+    <h1 class="text-center">The Most Recent Posts</h1>
+  </div>
+  <div id="explore-container" class="container">
+    {% if post_list %}
+      {% include "bloginclude/post_list.html" %}
+    {% else %}
+      <div class="row row-padding text-center">
+      <h1>There are no posts for your search criteria. Try something else?</h1>
+      </div>
+    {% endif %}
+  </div>
+{% endblock %}

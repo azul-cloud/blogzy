@@ -71,39 +71,12 @@ class ExploreMapListView(PlaceDetailsMixin, ListView):
         return context
 
 
-def explore(request, **kwargs):
+class RecentPostListView(ListView):
     '''
     Search for blog posts. Can search by different places/topics.
     '''
-
-    # used in context to display selection options
-    topics = Topic.objects.all()
-    posts = Post.objects.filter(active=True)
-
-    # remove, for testing
-    topic = ""
-    place = ""
-
-    if request.method == "POST":
-        # filter requests by topic and/or place
-        place = request.POST["place"]
-        topic = request.POST["topic"]
-
-        if place and topic:
-            # user put in both place and topic filters
-            posts = posts.filter(place=place, topics__title__in=topic)
-        if place:
-            # user put in a place filter
-            posts = posts.filter(place=place)
-        elif topic:
-            # user put in a topic filter
-            posts = posts.filter(topics__title__in=topic)
-        else:
-            # user did not put in any search criteria, take all posts
-            pass
-
-    return render(request, "blogcontent/explore.html",
-                  {'posts':posts, 'topics':topics, 'topic':topic, 'place':place})
+    template_name = "blogcontent/recent.html"
+    model = Post
 
 
 def post(request, **kwargs):
@@ -152,6 +125,31 @@ def post(request, **kwargs):
     return render(request, "blogcontent/post.html", 
         {'post':post, 'other_posts':other_posts, 'favorites':favorites,
          'form':form, 'status':status, 'alert_message':alert_message})
+
+
+def blog_subscribe(request):
+    '''
+    receive an ajax post request to subscribe to a blog
+    '''
+    if request.method == "POST":
+        status = ""
+        alert_message = ""
+        form = CreateBlogSubscriptionForm()
+
+        if request.method == "POST":
+            # save the blog subscription on post
+            form = CreateBlogSubscriptionForm(request.POST)
+            if form.is_valid():
+                try:
+                    subscription = form.save(commit=False)
+                    subscription.blog = blog
+                    form.save()
+                    alert_message="You have been added to the newsletter for %s" % blog
+                    status = "success"
+                except IntegrityError:
+                    status = "error"
+                    alert_message = "It appears that you are already signed up for this %s's newsletters" % blog
+                    pass
 
 
 def topic(request, **kwargs):
