@@ -3,10 +3,7 @@ from django.contrib import admin
 from django.conf import settings
 from django.contrib.sitemaps import GenericSitemap
 
-from tastypie.api import Api
 from blog.models import PersonalBlog, Post
-from blog.api.resources import PostResource, BlogResource, UserFavoriteResource
-from main.api.resources import UserResource
 from main.views import RobotTemplateView
 
 admin.autodiscover()
