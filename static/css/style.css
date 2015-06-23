@@ -159,7 +159,7 @@ img {
 }
 
 .img-info-window {
-    max-width: 300px;
+    width: 100%;
 }
 
 @media(max-width:768px) {
