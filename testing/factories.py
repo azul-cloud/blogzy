@@ -2,7 +2,6 @@ from factory.django import DjangoModelFactory
 
 from django.contrib.auth import get_user_model
 
-from main.models import Contact
 from blog.models import PersonalBlog, Topic, Post, UserFavorite, UserStreamBlog, \
                         BlogSubscription
 
@@ -48,14 +47,6 @@ class AdminFactory(UserFactory):
     last_name = 'User'
     is_staff = True
     is_superuser = True
-
-
-class ContactFactory(DjangoModelFactory):
-    class Meta:
-        model = Contact
-
-    message='this is a test message'
-    type='G'
 
 
 ##### BLOG #####

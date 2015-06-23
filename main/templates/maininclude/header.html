@@ -21,15 +21,9 @@
         <div class="fb-like" data-href="http://www.travelblogwave.com" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
       </li> -->
       </ul>
-      {% if contact_form %}
-        {% include "maininclude/modals/contact.html" %}
-      {% endif %}
       <ul class="nav navbar-nav navbar-right">
         <li><a href="{% url 'blog-recent-posts' %}" class="active">
           <span class="glyphicon glyphicon-refresh" ></span> LATEST</a>
-        </li>
-        <li class="hidden-sm"><a href="#" data-target="#contact-modal" data-toggle="modal">
-          <span class="glyphicon glyphicon-envelope" ></span> CONTACT</a>
         </li>
         {% if not user.user_blog %}
           <li><a href="{% url 'blog-create' %}">

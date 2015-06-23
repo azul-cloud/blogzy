@@ -4,8 +4,6 @@ from django.views.generic import ListView, TemplateView
 
 from braces.views import StaffuserRequiredMixin
 
-from main.models import Contact
-
 
 class HomeTemplateView(StaffuserRequiredMixin, TemplateView):
     '''
@@ -13,11 +11,3 @@ class HomeTemplateView(StaffuserRequiredMixin, TemplateView):
     of a dashboard eventually
     '''
     template_name = "internalcontent/home.html"
-
-
-class FeedbackListView(StaffuserRequiredMixin, ListView):
-    '''
-    View and respond to the various feedback that users have left
-    '''
-    queryset = Contact.objects.filter(type="F")
-    template_name = "internalcontent/feedback.html"

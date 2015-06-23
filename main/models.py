@@ -47,20 +47,3 @@ class User(AbstractUser):
         except:
             return None
 
-
-class Contact(TimeStampedModel):
-    '''
-    the users can contact us through a variety of ways
-    '''
-    CONTACT_CHOICES = (
-        ('Q', 'Question'),
-        ('A', 'Anything Else'),
-        ('F', 'Feedback'),
-        ('P', 'Problem'),
-    )
-
-    message = models.CharField(max_length=500)
-    type = models.CharField(max_length=1, choices=CONTACT_CHOICES)
-    user = models.ForeignKey(User, null=True, blank=True)
-    status = models.CharField(max_length=1, choices=FEEDBACK_CHOICES, default="N")
-

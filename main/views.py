@@ -9,7 +9,6 @@ from django.core.mail import send_mail
 from django.views.generic import TemplateView
 
 from .utils import get_json_objects, get_json
-from .models import Contact
 from blog.models import Topic, Post
 
 
@@ -29,27 +28,5 @@ class AboutTemplateView(TemplateView):
 
 class RobotTemplateView(TemplateView):
     template_name = "maincontent/robots.txt"
-
-
-def send_contact(request):
-    # have users send contact to us. If user is logged in, attach user.
-    if request.method == "POST" and request.is_ajax:
-        message = request.POST.get('message')
-        type = request.POST.get('type')
-
-        if request.user.is_authenticated():
-            user = request.user
-        else:
-            user = None
-
-        contact_obj = Contact(
-            message=message, 
-            type=type,
-            user=user)
-        contact_obj.save()
-
-        return HttpResponse("contact sent successfully")
-
-    return HttpResponse("not an AJAX Post request")
 
 

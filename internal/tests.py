@@ -33,16 +33,6 @@ class InternalViewTest(InternalTestSetup):
         admin_response = self.client.get(url)
         self.assertContains(admin_response, "Internal Home")
 
-    def test_feedback(self):
-        url = reverse(self.prefix + "feedback")
-        
-        anon_response = self.client.get(url)
-        self.assertEqual(anon_response.status_code, 302)
-        
-        self.login_admin()
-        admin_response = self.client.get(url)
-        self.assertContains(admin_response, "Feedback")
-
 
 
 
