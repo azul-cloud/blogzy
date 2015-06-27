@@ -45,7 +45,7 @@ legend h1 {
 }
 #navbar-main {
   border-radius:0;
-  background-color:#010E13;
+  background-color:$brand-darkest;
   margin-bottom:0;
 
   li a:visited,
@@ -55,13 +55,13 @@ legend h1 {
 
   li.dropdown li a:visited,
   li.dropdown li a:link {
-    color:#010E13;
+    color:$brand-darkest;
   }
 }
 
 #navbar-main li a:hover,
 footer a:hover {
-  color:#B1D0DD;
+  color:$brand-lightest;
 }
 
 .fb-like {

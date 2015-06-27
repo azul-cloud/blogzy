@@ -21,7 +21,7 @@
 
 /***** Jumbotron *****/
 .jumbotron {
-  background-color: #B1D0DD;
+  background-color: $brand-lightest;
 
   h3 {
     font-size:30px;
@@ -49,18 +49,18 @@
 
 /***** Buttons *****/
 .btn-primary {
-  background-color: #27576B;
-  border-color: #27576B;
+  background-color: $brand-medium;
+  border-color: $brand-medium;
 
   &:hover{
-    background-color: #588497;
-    border-color: #588497;
+    background-color: $brand-light;
+    border-color: $brand-light;
   }
 }
 
 /***** Panels *****/
 .panel-default > div.panel-heading {
-  background-color:#B1D0DD;
+  background-color:$brand-lightest;
 }
 .panel-title {
   text-align:center;
@@ -68,12 +68,12 @@
 
 /***** Modals *****/
 .modal-header {
-  background-color: #B1D0DD;
+  background-color: $brand-lightest;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
 .modal-footer {
-  background-color: #B1D0DD;
+  background-color: $brand-lightest;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
@@ -81,7 +81,7 @@
 /***** Alerts *****/
 .alert-brand {
   color: black;
-  background-color: #B1D0DD;
+  background-color: $brand-lightest;
   border-color: #B3D2DF;
 
   hr {

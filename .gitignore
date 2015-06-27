@@ -1,9 +1,11 @@
-.idea
-venv
 *.pyc
+*.css.map
+
+venv
 staticfiles
-.env
 db.sqlite3
-static/css/style.css.map
 media/
+
+.idea
+.env
 .sass-cache/
