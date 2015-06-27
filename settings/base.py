@@ -134,6 +134,7 @@ AUTHENTICATION_BACKENDS = (
 
 # google stuff
 GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
+USERREPORT_KEY = os.environ.get('USERREPORT_KEY', '')
 
 # aws s3
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
