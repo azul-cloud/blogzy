@@ -4,5 +4,6 @@ venv
 staticfiles
 .env
 db.sqlite3
+static/css/style.css.map
 media/
 .sass-cache/
