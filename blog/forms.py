@@ -103,13 +103,17 @@ class BlogPostEditForm(BlogPostCreateForm):
 
 class BlogEditForm(ModelForm):
     description = forms.CharField(widget = forms.Textarea())
-    twitter = forms.CharField(required=False, help_text="Show twitter feed, and allow people to interact with you on twitter")
-    twitter_widget_id = forms.CharField(required=False, help_text="Required to show a timeline widget for your twitter account. "\
-                                                                  "For more information see <a href='https://twitter.com/settings/widgets'>Twitter Widget</a>")
-    instagram = forms.CharField(required=False, help_text="show instagram feed on your blog page (coming soon)")
-    disqus = forms.CharField(required=False, help_text="Add comments at the bottom of your blog posts. <a href='" +
-                                                    "https://disqus.com/admin/create/' target='_blank'>Sign up</a> and " +
-                                                    "then enter your disqus ID.")
+    twitter = forms.CharField(required=False, 
+        help_text="Show twitter feed, and allow people to interact with you on twitter")
+    twitter_widget_id = forms.CharField(required=False, 
+        help_text="Required to show a timeline widget for your twitter account. "\
+        "For more information see <a href='https://twitter.com/settings/widgets'>Twitter Widget</a>")
+    instagram = forms.CharField(required=False, 
+        help_text="show instagram feed on your blog page",
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Coming soon',
+            'disabled': True,
+        }))
 
     class Meta:
         model = PersonalBlog
@@ -126,7 +130,6 @@ class BlogEditForm(ModelForm):
                 Div('twitter', css_class="col-md-6"),
                 Div('twitter_widget_id', css_class="col-md-6"),
                 Div('instagram', css_class="col-md-6"),
-                Div('disqus', css_class="col-md-6"),
             ),
             ButtonHolder(
                 Submit('submit', 'Update Info', css_class='btn-lg'),

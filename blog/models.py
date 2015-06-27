@@ -45,7 +45,6 @@ class PersonalBlog(models.Model):
     title = models.CharField(max_length=50)
     description = models.TextField()
     slug = models.SlugField(unique=True, blank=True)
-    disqus = models.CharField(max_length=30, blank=True, null=True)
     twitter = models.CharField(max_length=15, blank=True, null=True)
     twitter_widget_id = models.CharField(max_length=18, blank=True, null=True)
     facebook = models.CharField(max_length=40, blank=True, null=True)
