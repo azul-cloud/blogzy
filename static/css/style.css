@@ -20,7 +20,7 @@ footer {
   clear: both;
   padding: 50px;
   color: white;
-  background-color: #010E13; }
+  background-color: rgba(0, 0, 0, 0.8); }
   footer a:link,
   footer a:visited {
     color: #eee; }
@@ -167,7 +167,7 @@ the home page and the explore page.
   border-radius: 5px; }
 
 #explore-search-box-row {
-  background: rgba(61, 62, 66, 0.7); }
+  background: rgba(0, 0, 0, 0.8); }
 
 .explore-search-padding {
   /* applied when the explore search bar turns to fixed */
@@ -270,6 +270,9 @@ css styles that are specific to individual posts
   float: right;
   margin-left: 20px;
   margin-bottom: 20px; }
+
+#post-fixed-footer {
+  background-color: rgba(0, 0, 0, 0.8); }
 
 #post-main-image {
   margin-left: auto;

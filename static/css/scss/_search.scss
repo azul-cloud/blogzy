@@ -30,7 +30,7 @@ the home page and the explore page.
   border-radius:5px;
 }
 #explore-search-box-row {
-  background: rgba(61,62,66,0.7);
+  background: $dark-transparent;
 }
 .explore-search-padding {
   /* applied when the explore search bar turns to fixed */
