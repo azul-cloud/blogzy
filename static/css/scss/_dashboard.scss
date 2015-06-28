@@ -44,6 +44,14 @@
   .well-post {
     margin-top: 15px;
   }
+
+  .table-posts {
+    margin-top: 15px;
+
+    .image-cell {
+      max-width: 100px;
+    }
+  }
 }
 .nav-posts {
   font-size: 20px;
