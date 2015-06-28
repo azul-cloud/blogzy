@@ -101,7 +101,7 @@ class BlogEditForm(ModelForm):
         self.helper.form_id = 'blog-edit-form'
         self.helper.layout = Layout(
             Fieldset(
-                '<h1 class="text-center">Edit Blog Info</h1>',
+                '',
                 Div('description', css_class="col-md-12"),
                 Div('twitter', css_class="col-md-6"),
                 Div('twitter_widget_id', css_class="col-md-6"),

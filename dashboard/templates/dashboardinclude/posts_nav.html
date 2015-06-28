@@ -1,16 +1,16 @@
 <ul class="nav nav-pills nav-justified nav-posts">
 	<li role="presentation" {% if posts_page == "overview"%}class="active"{% endif %}>
-		<a href="{% url 'dashboard-posts' object.slug %}"> 
+		<a href="{% url 'dashboard-posts' personalblog.slug %}"> 
 			<span class="glyphicon glyphicon-list"></span> Overview
 		</a>
 	</li>
 	<li role="presentation" {% if posts_page == "create"%}class="active"{% endif %}>
-		<a href="{% url 'dashboard-post-create' object.slug %}"> 
+		<a href="{% url 'dashboard-post-create' personalblog.slug %}"> 
 			<span class="glyphicon glyphicon-plus"></span> New Post
 		</a>
 	</li>
 	<li role="presentation" {% if posts_page == "edit"%}class="active"{% endif %}>
-		<a href="{% url 'dashboard-posts' object.slug %}"> 
+		<a href="{% url 'dashboard-posts' personalblog.slug %}"> 
 			<span class="glyphicon glyphicon-edit"></span> Edit Post
 		</a>
 	</li>

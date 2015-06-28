@@ -68,6 +68,11 @@ class PostEdit(PostMixin, UpdateView):
     form_class = BlogPostUpdateForm
     model = Post
 
+    def get_context_data(self, **kwargs):
+        context = super(PostEdit, self).get_context_data(**kwargs)
+        context['personalblog'] = self.get_object().blog
+        return context
+
 
 class Stats(DetailView):
     model = PersonalBlog

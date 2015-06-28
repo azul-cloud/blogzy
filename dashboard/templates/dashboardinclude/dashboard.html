@@ -5,15 +5,15 @@
 	<aside class="dashboard-navbar col-sm-2">
 		<ul>
 			<li {% if page == "blog"%}class="active"{% endif %}>
-				<a href="{% url 'dashboard-blog' object.slug %}">
+				<a href="{% url 'dashboard-blog' personalblog.slug %}">
 					<span class="glyphicon glyphicon-home"></span> Blog</a>
 			</li>
 			<li {% if page == "posts"%}class="active"{% endif %}>
-				<a href="{% url 'dashboard-posts' object.slug %}">
+				<a href="{% url 'dashboard-posts' personalblog.slug %}">
 					<span class="glyphicon glyphicon-edit"></span> Posts</a>
 			</li>
 			<li {% if page == "stats"%}class="active"{% endif %}>
-				<a href="{% url 'dashboard-stats' object.slug %}">
+				<a href="{% url 'dashboard-stats' personalblog.slug %}">
 					<span class="glyphicon glyphicon-stats"></span> Stats</a>
 			</li>
 		</ul>

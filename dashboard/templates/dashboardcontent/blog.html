@@ -4,6 +4,10 @@
 {% block dashboard_content %}
   {% include "maininclude/tinymce.html" %}
 
+  <h1 class="jumbotron text-center" style="border-radius:15px;">
+  	{{ object.title }} Dashboard
+  </h1>
+
   <div class="well well-post">
     {% include "maininclude/form_status.html" %}
     {% crispy form %}
