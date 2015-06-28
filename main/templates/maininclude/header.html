@@ -30,7 +30,7 @@
             <span class="glyphicon glyphicon-plus"></span> CREATE BLOG</a>
           </li>
         {% else %}
-          <li><a href="{% url 'blog-dashboard' user.user_blog.slug %}">
+          <li><a href="{% url 'dashboard-blog' user.user_blog.slug %}">
             <span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a>
           </li>
         {% endif %}

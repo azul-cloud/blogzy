@@ -1,5 +1,94 @@
 /* Colors Light to Dark #B1D0DD, #588497, #27576B, #092F3F, #010E13 */
 /***** General *****/
+.thumbnail {
+  padding: 0; }
+
+.status-alert {
+  margin: 10px; }
+
+.container-padding {
+  padding: 25px 0; }
+
+.row-padding {
+  padding: 25px 0; }
+
+.no-gutter {
+  padding-right: 0;
+  padding-left: 0; }
+
+.full-height {
+  height: 100%; }
+
+/***** Jumbotron *****/
+.jumbotron {
+  background-color: #B1D0DD; }
+  .jumbotron h3 {
+    font-size: 30px; }
+
+.jumbotron-clear {
+  background-color: inherit; }
+
+/***** Nav *****/
+.nav img {
+  height: 30px; }
+.nav li a {
+  transition: all 0.3s ease-in-out; }
+  .nav li a:hover {
+    background-color: #588497;
+    color: white; }
+.nav li.active a {
+  background-color: #010E13; }
+  .nav li.active a:hover {
+    background-color: #588497; }
+
+.navbar-brand {
+  padding: 5px; }
+
+.navbar li {
+  font-size: 150%;
+  font-weight: 300; }
+
+.navbar-nav > li.label {
+  padding-top: 15px;
+  padding-bottom: 15px; }
+
+/***** Buttons *****/
+.btn-primary {
+  background-color: #27576B;
+  border-color: #27576B; }
+  .btn-primary:hover {
+    background-color: #588497;
+    border-color: #588497; }
+
+/***** Panels *****/
+.panel-default > div.panel-heading {
+  background-color: #B1D0DD; }
+
+.panel-title {
+  text-align: center; }
+
+/***** Modals *****/
+.modal-header {
+  background-color: #B1D0DD;
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px; }
+
+.modal-footer {
+  background-color: #B1D0DD;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px; }
+
+/***** Alerts *****/
+.alert-brand {
+  color: black;
+  background-color: #B1D0DD;
+  border-color: #B3D2DF; }
+  .alert-brand hr {
+    border-top-color: #c9e2b3; }
+  .alert-brand .alert-link {
+    color: black; }
+
+/***** General *****/
 /* sticky footer */
 html, body {
   height: 100%; }
@@ -40,6 +129,9 @@ legend h1 {
 
 .no-padding {
   padding: 0; }
+
+.mute {
+  opacity: 0.6; }
 
 #navbar-main {
   border-radius: 0;
@@ -248,9 +340,6 @@ applied to individual blog posts, those are defined int he Post section
     display: inline; }
 
 /***** Post *****/
-/*
-css styles that are specific to individual posts
-*/
 .post-list-container {
   padding: 30px; }
   .post-list-container img {
@@ -299,6 +388,64 @@ css styles that are specific to individual posts
 @media (max-width: 768px) {
   #post-body .img-half {
     display: none; } }
+/***** Blog Dashboard *****/
+.dashboard-navbar {
+  background-color: #010E13;
+  color: white;
+  padding: 0; }
+  .dashboard-navbar > ul {
+    list-style: none;
+    text-align: center;
+    font-size: 24px;
+    padding-left: 0;
+    padding-top: 30px; }
+    .dashboard-navbar > ul > li {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      transition: all 0.3s ease-in-out; }
+      .dashboard-navbar > ul > li.active {
+        background-color: #27576B; }
+      .dashboard-navbar > ul > li:hover {
+        background-color: #B1D0DD;
+        color: #010E13; }
+        .dashboard-navbar > ul > li:hover a {
+          color: #010E13; }
+    .dashboard-navbar > ul a {
+      color: white;
+      text-decoration: none;
+      min-width: 100%; }
+
+.dashboard-content {
+  padding: 30px; }
+  .dashboard-content .well-post {
+    margin-top: 15px; }
+  .dashboard-content .table-posts {
+    margin-top: 15px; }
+    .dashboard-content .table-posts .image-cell {
+      max-width: 100px; }
+
+.nav-posts {
+  font-size: 20px; }
+
+.dashboard-stats {
+  text-align: center; }
+  .dashboard-stats label {
+    font-size: 20px;
+    opacity: 0.7; }
+  .dashboard-stats content {
+    font-size: 80px;
+    font-weight: 300;
+    display: block; }
+  .dashboard-stats section {
+    transition: all 0.3s ease-in-out;
+    border-radius: 20px; }
+    .dashboard-stats section:hover {
+      background-color: #27576B;
+      color: white;
+      cursor: default; }
+  .dashboard-stats .row {
+    margin-top: 30px; }
+
 /***** Registration *****/
 .account-container {
   text-align: center; }
@@ -342,85 +489,5 @@ css styles that are specific to individual posts
   list-style-type: none;
   padding-left: 0;
   width: 1px; }
-
-/***** General *****/
-.thumbnail {
-  padding: 0; }
-
-.status-alert {
-  margin: 10px; }
-
-.container-padding {
-  padding: 25px 0; }
-
-.row-padding {
-  padding: 25px 0; }
-
-.no-gutter {
-  padding-right: 0;
-  padding-left: 0; }
-
-.full-height {
-  height: 100%; }
-
-/***** Jumbotron *****/
-.jumbotron {
-  background-color: #B1D0DD; }
-  .jumbotron h3 {
-    font-size: 30px; }
-
-.jumbotron-clear {
-  background-color: inherit; }
-
-/***** Nav *****/
-.nav img {
-  height: 30px; }
-
-.navbar-brand {
-  padding: 5px; }
-
-.navbar li {
-  font-size: 150%;
-  font-weight: 300; }
-
-.navbar-nav > li.label {
-  padding-top: 15px;
-  padding-bottom: 15px; }
-
-/***** Buttons *****/
-.btn-primary {
-  background-color: #27576B;
-  border-color: #27576B; }
-  .btn-primary:hover {
-    background-color: #588497;
-    border-color: #588497; }
-
-/***** Panels *****/
-.panel-default > div.panel-heading {
-  background-color: #B1D0DD; }
-
-.panel-title {
-  text-align: center; }
-
-/***** Modals *****/
-.modal-header {
-  background-color: #B1D0DD;
-  border-top-right-radius: 5px;
-  border-top-left-radius: 5px; }
-
-.modal-footer {
-  background-color: #B1D0DD;
-  border-bottom-right-radius: 5px;
-  border-bottom-left-radius: 5px; }
-
-/***** Alerts *****/
-.alert-brand {
-  color: black;
-  background-color: #B1D0DD;
-  border-color: #B3D2DF; }
-  .alert-brand hr {
-    border-top-color: #c9e2b3; }
-  .alert-brand .alert-link {
-    color: black; }
 
 /*# sourceMappingURL=style.css.map */

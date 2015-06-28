@@ -36,5 +36,6 @@ urlpatterns = patterns('',
     url(r'^robots\.txt', RobotTemplateView.as_view(), name="robots"),
 
     # blog urls need to come last because of the simple blog pattern url
+    url(r'^dashboard/', include('dashboard.urls')),
     url(r'^', include('blog.urls')),
 )

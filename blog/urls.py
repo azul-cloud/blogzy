@@ -5,10 +5,8 @@ from blog import views
 app = 'blog-'
 
 urlpatterns = patterns('',
+
     url(r'blog/create/$', views.create_blog, name=app + "create"),
-    url(r'(?P<blog>\S+)/dashboard/$', views.dashboard, name=app + "dashboard"),
-    url(r'blog/post/(?P<pk>\d+)/edit/$', views.edit_post, name=app + "post-edit"),
-    url(r'blog/post/create/$', views.create_post, name=app + "post-create"),
     url(r'recent/$', views.RecentPostListView.as_view(), name=app + "recent-posts"),
 
     # explore is where we search for groupings of blog posts based on region or topic
@@ -26,4 +24,7 @@ urlpatterns = patterns('',
     url(r'^topic/(?P<topic>[a-zA-Z0-9-]+)/$', views.topic, name=app + "topic"),
     url(r'(?P<blog>\S+)/(?P<post>[a-zA-Z0-9-]+)/$', views.post, name=app + "post"),
     url(r'(?P<slug>\S+)/$', views.BlogDetailView.as_view(), name=app + "blog"),
+
+    # url(r'blog/post/(?P<pk>\d+)/edit/$', views.edit_post, name=app + "post-edit"),
+    # url(r'blog/post/create/$', views.create_post, name=app + "post-create"),
 )

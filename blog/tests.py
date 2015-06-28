@@ -54,14 +54,6 @@ class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
 
         assert response.status_code == 200
 
-    def test_dashboard_available(self):
-        # make sure the header says dashboard if user has a blog
-        url = reverse("main-home")
-        response = self.app.get(url, user=self.blog_user)
-
-        assert "CREATE BLOG" not in response
-        assert "DASHBOARD" in response
-
     def test_blog_home(self):
         url = reverse(self.prefix+"blog", kwargs={'slug':self.blog.slug})
         response = self.app.get(url)
@@ -83,22 +75,8 @@ class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
 
         assert self.topic.title in response
 
-    def test_blog_dashboard(self):
-        url = reverse(self.prefix + "dashboard", kwargs={'blog':self.blog.slug})
-        blog_user_response = self.app.get(url, user=self.blog_user)
-
-        assert self.blog.title in blog_user_response
-
     def test_create_blog(self):
         url = reverse(self.prefix + "create")
-        self.login_required(url)
-
-    def test_blog_post_edit(self):
-        url = reverse(self.prefix + "post-edit", kwargs={'pk':self.post.id})
-        self.blog_admin_access(url)
-
-    def test_blog_post_create(self):
-        url = reverse(self.prefix + "post-create")
         self.login_required(url)
 
     def test_explore(self):
@@ -151,46 +129,9 @@ class BlogFormTest(BlogTestSetup, WebTest):
         form["title"] = "Joes Blog"
         form["description"] = "This is Joe's Blog. It's a test."
         
-        response = form.submit()
+        response = form.submit().follow()
 
-        # 302 because it redirects to the dashboard
-        self.assertEqual(response.status_code, 302)
-
-    def test_edit_blog(self):
-        url = reverse(self.prefix + "dashboard", kwargs={'blog':self.blog.slug})
-        form = self.app.get(url, user=self.blog_user).forms['blog-edit-form']
-        form['description'].value = 'This is the edited description for the test blog.'
-        response = form.submit()
-
-        # make sure the description was changed successfully
-        self.assertContains(response, form["description"].value)
-        self.assertNotContains(response, self.blog.description)
-
-    def test_create_post(self):
-        url = reverse(self.prefix + "post-create")
-
-        form = self.app.get(url, user=self.blog_user).forms['blog-post-create-form']
-        form["place_id"] = "ak34dfkjo2la"
-        form["title"] = "My New Test Post"
-        form["active"] = True
-        form["body"] = 'This is my new post.'
-        form["headline"] = "This is my test post, read it."
-        form["image"] = ""
-        form["image_description"] = "this is the alt tag"
- 
-        response = form.submit()
-        assert form["body"].value in response
-        
-
-    def test_edit_post(self):
-        url = reverse(self.prefix + "post-edit", kwargs={'pk':self.post.id})
-
-        form = self.app.get(url, user=self.blog_user).forms['blog-post-edit-form']
-        form["body"] = 'This is my updated body. Sexy huh?'
-
-        response = form.submit()
-        assert form["body"].value in response
-        assert self.post.body not in response
+        self.assertEqual(response.status_code, 200)
 
     def test_add_subscription(self):
         url = reverse(self.prefix+"post", kwargs={
