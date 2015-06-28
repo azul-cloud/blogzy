@@ -113,3 +113,8 @@ class BlogEditForm(ModelForm):
             ),
         )
 
+    def clean_twitter(self):
+        raw = self.cleaned_data['twitter']
+        cleaned = raw.replace('@', '')
+        return cleaned
+
