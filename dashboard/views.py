@@ -4,11 +4,13 @@ from django.views.generic.edit import CreateView, UpdateView
 
 
 from blog.models import PersonalBlog, Post
-from .forms import BlogPostCreateForm, BlogPostUpdateForm
+from .forms import BlogPostCreateForm, BlogPostUpdateForm, BlogEditForm
 
 
-class Blog(TemplateView):
+class Blog(UpdateView):
     template_name = "dashboardcontent/blog.html"
+    model = PersonalBlog
+    form_class = BlogEditForm
 
     def get_context_data(self, **kwargs):
         context = super(Blog, self).get_context_data(**kwargs)

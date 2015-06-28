@@ -6,18 +6,26 @@
 	<table class="table table-striped table-bordered table-hover table-posts">
 	<tbody data-link="row" class="rowlink">
 		{% for post in object_list %}
-    	<tr>
-    		<td class="image-cell">
-    			<a href="{{ post.get_update_url }}">
-    				<img src="{{ post.image.url }}" class="img-responsive"/>
-    			</a>
-    		</td>
-    		<td>
-    			<h2>{{ post.title }}</h2>
-    			<p class="mute">{{ post.headline }}</p>
-    		</td>
-    	</tr>
-    {% endfor %}
+		<tr>
+			<td class="image-cell">
+				<a href="{{ post.get_update_url }}">
+					<img src="{{ post.image.url }}" class="img-responsive"/>
+				</a>
+			</td>
+			<td>
+				<h2>{{ post.title }}</h2>
+				<p class="mute">{{ post.headline }}</p>
+			</td>
+			<td>
+				<p>
+					<span class="badge">{{ post.all_view_count }} Views</span>
+				</p>
+				<p>
+					<span class="badge">{{ post.today_view_count }} Today</span>
+				</p>
+			</td>
+		</tr>
+	{% endfor %}
   </tbody>
 </table>
 {% endblock %}

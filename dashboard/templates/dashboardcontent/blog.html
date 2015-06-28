@@ -1,5 +1,11 @@
 {% extends "dashboardinclude/dashboard.html" %}
+{% load crispy_forms_tags %}
 
 {% block dashboard_content %}
-  Blog Settings
+  {% include "maininclude/tinymce.html" %}
+
+  <div class="well well-post">
+    {% include "maininclude/form_status.html" %}
+    {% crispy form %}
+  </div>
 {% endblock %}
