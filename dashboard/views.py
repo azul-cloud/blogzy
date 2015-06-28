@@ -1,4 +1,7 @@
-from django.views.generic import TemplateView
+from django.shortcuts import get_object_or_404
+from django.views.generic import TemplateView, ListView, DetailView
+
+from blog.models import PersonalBlog, Post
 
 
 class Blog(TemplateView):
@@ -9,13 +12,15 @@ class Blog(TemplateView):
         context['page'] = 'blog'
         return context
 
-
-class Posts(TemplateView):
-    template_name = "dashboardcontent/posts.html"
-    posts_page = "overview"
+class PostMixin(object):
+    """
+    include logic involved in all the post views
+    """
+    posts_page = ""
 
     def get_context_data(self, **kwargs):
-        context = super(Posts, self).get_context_data(**kwargs)
+        context = super(PostMixin, self).get_context_data(**kwargs)
+        # determines which side nav is active
         context['page'] = 'posts'
 
         # determines which post nav is active
@@ -23,12 +28,24 @@ class Posts(TemplateView):
         return context
 
 
-class PostCreate(Posts):
+
+class Posts(PostMixin, DetailView):
+    template_name = "dashboardcontent/posts.html"
+    model = PersonalBlog
+    posts_page = "overview"
+
+    def get_context_data(self, **kwargs):
+        context = super(Posts, self).get_context_data(**kwargs)
+        context['object_list'] = Post.objects.filter(blog=self.get_object())
+        return context
+
+
+class PostCreate(PostMixin, TemplateView):
     template_name = "dashboardcontent/post_create.html"
     posts_page = "create"
 
 
-class PostEdit(Posts):
+class PostEdit(PostMixin, TemplateView):
     template_name = "dashboardcontent/post_edit.html"
     posts_page = "edit"
 
