@@ -36,6 +36,7 @@ INSTALLED_APPS = (
     'blog',
     'internal',
     'report',
+    'dashboard',
 
     'braces',
     'crispy_forms',
