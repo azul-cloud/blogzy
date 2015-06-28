@@ -247,10 +247,38 @@ applied to individual blog posts, those are defined int he Post section
     max-height: 100px;
     display: inline; }
 
+/***** Blog Dashboard *****/
+.dashboard-navbar {
+  height: 100%;
+  background-color: #010E13;
+  color: white;
+  padding: 0; }
+  .dashboard-navbar > ul {
+    list-style: none;
+    text-align: center;
+    font-size: 24px;
+    padding-left: 0;
+    padding-top: 30px; }
+    .dashboard-navbar > ul > li {
+      padding-top: 10px;
+      padding-bottom: 10px;
+      transition: all 0.3s ease-in-out; }
+      .dashboard-navbar > ul > li.active {
+        background-color: #27576B; }
+      .dashboard-navbar > ul > li:hover {
+        background-color: #B1D0DD;
+        color: #010E13; }
+        .dashboard-navbar > ul > li:hover a {
+          color: #010E13; }
+    .dashboard-navbar > ul a {
+      color: white;
+      text-decoration: none;
+      min-width: 100%; }
+
+.dashboard-content {
+  padding: 30px; }
+
 /***** Post *****/
-/*
-css styles that are specific to individual posts
-*/
 .post-list-container {
   padding: 30px; }
   .post-list-container img {

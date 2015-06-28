@@ -83,11 +83,23 @@ class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
 
         assert self.topic.title in response
 
-    def test_blog_dashboard(self):
-        url = reverse(self.prefix + "dashboard", kwargs={'blog':self.blog.slug})
-        blog_user_response = self.app.get(url, user=self.blog_user)
+    def test_dashboard_blog(self):
+        url = reverse("%sdashboard" % self.prefix, kwargs={'slug':self.blog.slug})
+        response = self.app.get(url, user=self.blog_user)
+        
+        self.assertEqual(response.status_code, 200)
 
-        assert self.blog.title in blog_user_response
+    def test_dashboard_posts(self):
+        url = reverse("%sdashboard-posts" % self.prefix, kwargs={'slug':self.blog.slug})
+        response = self.app.get(url, user=self.blog_user)
+        
+        self.assertEqual(response.status_code, 200)
+
+    def test_dashboard_stats(self):
+        url = reverse("%sdashboard-stats" % self.prefix, kwargs={'slug':self.blog.slug})
+        response = self.app.get(url, user=self.blog_user)
+        
+        self.assertEqual(response.status_code, 200)
 
     def test_create_blog(self):
         url = reverse(self.prefix + "create")

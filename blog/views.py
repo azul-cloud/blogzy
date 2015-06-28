@@ -9,7 +9,7 @@ from django.db import IntegrityError
 from django.core.urlresolvers import reverse
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect, HttpResponse
-from django.views.generic import DetailView, ListView
+from django.views.generic import DetailView, ListView, TemplateView
 from django.views.generic.edit import ProcessFormView
 
 from .models import PersonalBlog, Post, Topic, UserFavorite
@@ -373,6 +373,34 @@ def edit_post(request, **kwargs):
                                                     'alert_message':alert_message})
 
 
+class DashboardBlog(TemplateView):
+    template_name = "blogcontent/dashboard_blog.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardBlog, self).get_context_data(**kwargs)
+        context['page'] = 'blog'
+        return context
+
+
+class DashboardPosts(TemplateView):
+    template_name = "blogcontent/dashboard_posts.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardPosts, self).get_context_data(**kwargs)
+        context['page'] = 'posts'
+        return context
+
+
+class DashboardStats(TemplateView):
+    template_name = "blogcontent/dashboard_stats.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(DashboardStats, self).get_context_data(**kwargs)
+        context['page'] = 'stats'
+        return context
+
+
+"""
 @login_required
 def dashboard(request, **kwargs):
     '''
@@ -413,7 +441,7 @@ def dashboard(request, **kwargs):
 
     return render(request, "blogcontent/dashboard.html",
                   {'myblog':blog, 'alert_message':alert_message, 'status':status, 'form':form})
-
+"""
 
 @login_required
 def favorites(request):
@@ -426,3 +454,4 @@ def favorites(request):
     # favorites = get_json(favorites_url)
 
     return render(request, "blogcontent/favorites.html", {'favorites':favorites})
+

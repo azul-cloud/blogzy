@@ -1,0 +1,40 @@
+{% extends "bloginclude/base.html" %}
+
+
+{% block main %}
+<div class="row full-height">
+	<aside class="dashboard-navbar col-sm-2">
+		<ul>
+			<li {% if page == "blog"%}class="active"{% endif %}>
+				<a href="{% url 'blog-dashboard' 'stepsofatravelerlocal' %}">
+					<span class="glyphicon glyphicon-home"></span> Blog</a>
+			</li>
+			<li {% if page == "posts"%}class="active"{% endif %}>
+				<a href="{% url 'blog-dashboard-posts' 'stepsofatravelerlocal' %}">
+					<span class="glyphicon glyphicon-edit"></span> Posts</a>
+			</li>
+			<li {% if page == "stats"%}class="active"{% endif %}>
+				<a href="{% url 'blog-dashboard-stats' 'stepsofatravelerlocal' %}">
+					<span class="glyphicon glyphicon-stats"></span> Stats</a>
+			</li>
+		</ul>
+	</aside>
+	<section class="dashboard-content col-sm-10">
+		{% block dashboard_content %}{% endblock %}
+	</section>
+</div>
+{% endblock %}
+
+
+{% block javascript %}
+  {{ block.super }}
+  <script>
+  	// need to put this in shared template, shared with explore-map
+    $(document).ready(function() {
+      $("#wrap").addClass("full-height").css("padding-bottom", "0");
+      $("#main").css("padding-bottom", "0");
+    });
+  </script>
+{% endblock %}
+
+{% block footer %}{% endblock %}
