@@ -144,6 +144,37 @@ img {
   padding-top:15px;
 }
 
+.info-row {
+
+}
+
+a {
+  text-decoration:none;
+  color: $brand-darkest;
+  
+  &:hover {
+    color: $brand-light;
+  }
+}
+
+.info-row {
+  div, a {
+    transition: $transition;
+  }
+
+  div {
+    border-radius: 5px;
+  }
+
+  a:hover {
+    color: white;
+
+    div {
+      background-color: $brand-dark;
+    }
+  }
+}
+
 @media(max-width:768px) {
   #navbar-main li.dropdown li a:visited,
   #navbar-main li.dropdown li a:link {

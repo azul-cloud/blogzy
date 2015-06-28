@@ -118,6 +118,21 @@ img {
 .form-group div.checkbox {
   padding-top: 15px; }
 
+a {
+  text-decoration: none;
+  color: #010E13; }
+  a:hover {
+    color: #588497; }
+
+.info-row div, .info-row a {
+  transition: all 0.3s ease-in-out; }
+.info-row div {
+  border-radius: 5px; }
+.info-row a:hover {
+  color: white; }
+  .info-row a:hover div {
+    background-color: #092F3F; }
+
 @media (max-width: 768px) {
   #navbar-main li.dropdown li a:visited,
   #navbar-main li.dropdown li a:link {
@@ -328,17 +343,6 @@ css styles that are specific to individual posts
   list-style-type: none;
   padding-left: 0;
   width: 1px; }
-
-a.brand {
-  text-decoration: none;
-  color: #010E13; }
-
-a.brand:hover {
-  color: #588497; }
-
-a.brand-light,
-.account-container a {
-  color: #588497; }
 
 /***** General *****/
 .thumbnail {
