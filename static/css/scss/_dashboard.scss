@@ -1,0 +1,47 @@
+/***** Blog Dashboard *****/
+.dashboard-navbar {
+  height: 100%;
+  background-color: $brand-darkest;
+  color: white;
+  padding: 0;
+
+  > ul {
+    list-style: none;
+    text-align: center;
+    font-size: 24px;
+    padding-left: 0;
+    padding-top: 30px;
+
+    > li {
+      $padding: 10px;
+      padding-top: $padding;
+      padding-bottom: $padding;
+      transition: $transition;
+
+      &.active {
+        background-color: $brand-medium;
+      }
+
+      &:hover {
+        background-color: $brand-lightest;
+        color: $brand-darkest;
+
+        a {
+          color: $brand-darkest;
+        }
+      }
+    }
+
+    a {
+      color: white;
+      text-decoration: none;  
+      min-width: 100%;
+    }
+  }
+}
+.dashboard-content {
+  padding: 30px; 
+}
+.nav-posts {
+  font-size: 20px;
+}

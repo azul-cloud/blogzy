@@ -12,19 +12,25 @@ class Blog(TemplateView):
 
 class Posts(TemplateView):
     template_name = "dashboardcontent/posts.html"
+    posts_page = "overview"
 
     def get_context_data(self, **kwargs):
         context = super(Posts, self).get_context_data(**kwargs)
         context['page'] = 'posts'
+
+        # determines which post nav is active
+        context['posts_page'] = self.posts_page
         return context
 
 
 class PostCreate(Posts):
     template_name = "dashboardcontent/post_create.html"
+    posts_page = "create"
 
 
 class PostEdit(Posts):
     template_name = "dashboardcontent/post_edit.html"
+    posts_page = "edit"
 
 
 class Stats(TemplateView):

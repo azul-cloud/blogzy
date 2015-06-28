@@ -32,8 +32,27 @@
 }
 
 /***** Nav *****/
-.nav img {
-  height: 30px;
+.nav {
+  img {
+    height: 30px;
+  }
+
+  li a {
+    transition: $transition;
+
+    &:hover {
+      background-color: $brand-light;
+      color: white;
+    }
+  }
+
+  li.active a {
+    background-color: $brand-darkest;
+
+    &:hover {
+      background-color: $brand-light;
+    }
+  }
 }
 .navbar-brand {
   padding:5px;
