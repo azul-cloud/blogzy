@@ -23,7 +23,7 @@
     {% endif %}
 
     {% if not user.is_authenticated %}
-      <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-lock"></span> Login</a></li>
+      <li><a href="{% url 'account_login' %}"><span class="glyphicon glyphicon-user"></span> Login</a></li>
     {% else %}
       <li class="dropdown">
         {% if request.user.socialaccount_set.all.0.get_avatar_url %}
