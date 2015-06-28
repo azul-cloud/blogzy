@@ -13,8 +13,7 @@ from django.views.generic import DetailView, ListView
 from django.views.generic.edit import ProcessFormView
 
 from .models import PersonalBlog, Post, Topic, UserFavorite
-from .forms import BlogCreateForm, BlogEditForm, BlogPostCreateForm, BlogPostEditForm,\
-                   CreateBlogSubscriptionForm
+from .forms import BlogCreateForm, CreateBlogSubscriptionForm
 from .utils import get_favorites, get_wave_blog_list, get_map_posts
 from main.utils import get_json_objects, get_json, get_place_details
 from report.models import PostView

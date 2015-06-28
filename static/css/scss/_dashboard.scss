@@ -1,6 +1,5 @@
 /***** Blog Dashboard *****/
 .dashboard-navbar {
-  height: 100%;
   background-color: $brand-darkest;
   color: white;
   padding: 0;
@@ -41,6 +40,10 @@
 }
 .dashboard-content {
   padding: 30px; 
+
+  .well-post {
+    margin-top: 15px;
+  }
 }
 .nav-posts {
   font-size: 20px;

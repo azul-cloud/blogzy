@@ -28,10 +28,12 @@
 {% block javascript %}
 	{{ block.super }}
   <script>
-  	// need to put this in shared template, shared with explore-map
     $(document).ready(function() {
       $("#wrap").addClass("full-height").css("padding-bottom", "0");
       $("#main").css("padding-bottom", "0");
+
+      // such a bad hack
+      $(".dashboard-navbar").height($(document).height() + 55);
     });
   </script>
 {% endblock %}

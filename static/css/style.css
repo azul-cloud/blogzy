@@ -387,7 +387,6 @@ applied to individual blog posts, those are defined int he Post section
     display: none; } }
 /***** Blog Dashboard *****/
 .dashboard-navbar {
-  height: 100%;
   background-color: #010E13;
   color: white;
   padding: 0; }
@@ -415,6 +414,8 @@ applied to individual blog posts, those are defined int he Post section
 
 .dashboard-content {
   padding: 30px; }
+  .dashboard-content .well-post {
+    margin-top: 15px; }
 
 .nav-posts {
   font-size: 20px; }
