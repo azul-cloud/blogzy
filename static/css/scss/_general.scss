@@ -158,12 +158,9 @@ a {
 }
 
 .info-row {
-  div, a {
-    transition: $transition;
-  }
-
   div {
-    border-radius: 5px;
+    transition: $transition;
+    border-radius: $border-radius-lg;
   }
 
   a:hover {

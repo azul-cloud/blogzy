@@ -124,10 +124,9 @@ a {
   a:hover {
     color: #588497; }
 
-.info-row div, .info-row a {
-  transition: all 0.3s ease-in-out; }
 .info-row div {
-  border-radius: 5px; }
+  transition: all 0.3s ease-in-out;
+  border-radius: 10px; }
 .info-row a:hover {
   color: white; }
   .info-row a:hover div {
