@@ -427,6 +427,25 @@ applied to individual blog posts, those are defined int he Post section
 .nav-posts {
   font-size: 20px; }
 
+.dashboard-stats {
+  text-align: center; }
+  .dashboard-stats label {
+    font-size: 20px;
+    opacity: 0.7; }
+  .dashboard-stats content {
+    font-size: 80px;
+    font-weight: 300;
+    display: block; }
+  .dashboard-stats section {
+    transition: all 0.3s ease-in-out;
+    border-radius: 20px; }
+    .dashboard-stats section:hover {
+      background-color: #27576B;
+      color: white;
+      cursor: default; }
+  .dashboard-stats .row {
+    margin-top: 30px; }
+
 /***** Registration *****/
 .account-container {
   text-align: center; }

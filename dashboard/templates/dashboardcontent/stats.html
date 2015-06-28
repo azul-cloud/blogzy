@@ -1,7 +1,39 @@
 {% extends "dashboardinclude/dashboard.html" %}
 
 {% block dashboard_content %}
-	<h1 class="jumbotron text-center">
-		<span class="glyphicon glyphicon-wrench"></span> Coming Soon <span class="glyphicon glyphicon-wrench"></span> 
-	</h1>
+	<div class="dashboard-stats">
+		<div class="row">
+			<section class="col-sm-4">
+				<content>781</content>
+				<label>Views Today</label>
+			</section>
+
+			<section class="col-sm-4">
+				<content>1038</content>
+				<label>Week Views</label>
+			</section>
+
+			<section class="col-sm-4">
+				<content>8293</content>
+				<label>Total Views</label>
+			</section>
+		</div>
+
+		<div class="row">
+			<section class="col-sm-4">
+				<content>22</content>
+				<label>Articles</label>
+			</section>
+
+			<section class="col-sm-4">
+				<content>94</content>
+				<label>Subscribers</label>
+			</section>
+
+			<section class="col-sm-4">
+				<content>283</content>
+				<label>Awesomeness</label>
+			</section>
+		</div>
+	</div>
 {% endblock %}
