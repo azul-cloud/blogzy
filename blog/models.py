@@ -152,6 +152,18 @@ class PersonalBlog(models.Model):
 
         return loc
 
+    def today_view_count(self):
+        return 25
+
+    def week_view_count(self):
+        return 102
+
+    def total_view_count(self):
+        return 9203
+
+    def article_count(self):
+        return 22
+
 class Post(models.Model):
     '''
     Data about blog posts. The guts of everything.
