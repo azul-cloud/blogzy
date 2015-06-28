@@ -76,7 +76,7 @@ class RecentPostListView(ListView):
     Search for blog posts. Can search by different places/topics.
     '''
     template_name = "blogcontent/recent.html"
-    model = Post
+    queryset = Post.objects.filter(active=True)
 
 
 def post(request, **kwargs):
