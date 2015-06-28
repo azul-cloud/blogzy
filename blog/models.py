@@ -202,6 +202,12 @@ class Post(models.Model):
         url = reverse('blog-post', kwargs={'blog':self.blog.slug, 'post':self.slug})
         return url
 
+    def get_update_url(self):
+        url = reverse('dashboard-post-edit', 
+            kwargs={'blog':self.blog.slug, 'pk':self.id})
+        
+        return url
+
     def get_image_url(self):
         if self.image:
             return self.image.url

@@ -4,7 +4,7 @@ from django.views.generic.edit import CreateView, UpdateView
 
 
 from blog.models import PersonalBlog, Post
-from .forms import BlogPostCreateForm
+from .forms import BlogPostCreateForm, BlogPostUpdateForm
 
 
 class Blog(TemplateView):
@@ -60,9 +60,11 @@ class PostCreate(PostMixin, CreateView):
 
 
 
-class PostEdit(PostMixin, TemplateView):
+class PostEdit(PostMixin, UpdateView):
     template_name = "dashboardcontent/post_edit.html"
     posts_page = "edit"
+    form_class = BlogPostUpdateForm
+    model = Post
 
 
 class Stats(TemplateView):

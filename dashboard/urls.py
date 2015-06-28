@@ -7,7 +7,7 @@ app = 'dashboard-'
 urlpatterns = patterns('',
     url(r'(?P<slug>\S+)/posts/$', views.Posts.as_view(), 
         name=app + "posts"),
-    url(r'(?P<slug>\S+)/posts/(?P<pk>\d+)/$', views.PostEdit.as_view(), 
+    url(r'(?P<blog>\S+)/posts/(?P<pk>\d+)/$', views.PostEdit.as_view(), 
         name=app + "post-edit"),
     url(r'(?P<slug>\S+)/posts/create/$', views.PostCreate.as_view(), 
         name=app + "post-create"),

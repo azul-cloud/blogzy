@@ -46,10 +46,10 @@ class BlogPostCreateForm(ModelForm):
         )
 
 
-class BlogPostEditForm(BlogPostCreateForm):
+class BlogPostUpdateForm(BlogPostCreateForm):
     def __init__(self, *args, **kwargs):
         # add delete button to layout for the edit form
-        super(BlogPostEditForm, self).__init__(*args, **kwargs)
+        super(BlogPostUpdateForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
         self.helper.form_id = 'blog-post-edit-form'
         self.helper.layout = Layout(

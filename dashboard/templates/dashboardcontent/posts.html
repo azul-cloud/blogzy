@@ -2,5 +2,8 @@
 
 {% block dashboard_content %}
 	{% include 'dashboardinclude/posts_nav.html' %}
-	{{ object_list }}
+
+	{% for post in object_list %}
+		<p>{{post.title}} - <a href="{{post.get_update_url}}">Edit</a></p>
+	{% endfor %}
 {% endblock %}
