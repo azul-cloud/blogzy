@@ -25,13 +25,17 @@
         <li><a href="{% url 'blog-recent-posts' %}" class="active">
           <span class="glyphicon glyphicon-refresh" ></span> LATEST</a>
         </li>
-        {% if not user.user_blog %}
-          <li><a href="{% url 'blog-create' %}">
+        {% if user.user_blog %}
+          <li><a href="{% url 'dashboard-blog' user.user_blog.slug %}">
+            <span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a>
+          </li>
+        {% elif not user.is_authenticated %}
+          <li><a href="{% url 'account_signup' %}?next={% url 'blog-create' %}">
             <span class="glyphicon glyphicon-plus"></span> CREATE BLOG</a>
           </li>
         {% else %}
-          <li><a href="{% url 'dashboard-blog' user.user_blog.slug %}">
-            <span class="glyphicon glyphicon-dashboard"></span> DASHBOARD</a>
+          <li><a href="{% url 'blog-create' %}">
+            <span class="glyphicon glyphicon-plus"></span> CREATE BLOG</a>
           </li>
         {% endif %}
 

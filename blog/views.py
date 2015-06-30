@@ -52,7 +52,7 @@ class BlogDetailView(DetailView):
             context['wave_bool_list'] = get_wave_blog_list(self.request.user)
 
         #get the posts and map posts for the blog object
-        context['posts'] = Post.objects.filter(blog=self.get_object(), 
+        context['posts'] = Post.objects.filter(blog=self.get_object(),
             active=True)
         context['post_list'] = get_map_posts(context['posts'])
         context['loc'] = self.object.last_post_loc()
@@ -91,7 +91,7 @@ def post(request, **kwargs):
 
     status = ""
     alert_message = ""
-    
+
     # record the view if not the blog owner
     if request.user != post.blog.owner:
         if request.user != "admin":
@@ -121,7 +121,7 @@ def post(request, **kwargs):
                 alert_message = "It appears that you are already signed up for this %s's newsletters" % blog
                 pass
 
-    return render(request, "blogcontent/post.html", 
+    return render(request, "blogcontent/post.html",
         {'post':post, 'other_posts':other_posts, 'favorites':favorites,
          'form':form, 'status':status, 'alert_message':alert_message})
 
@@ -252,7 +252,7 @@ def create_blog(request):
                 # status = "new"
                 # form = BlogEditForm(request.POST, request.FILES)
 
-                redirect_url = reverse('dashboard-blog', kwargs={'blog':blog.slug})
+                redirect_url = reverse('dashboard-blog', kwargs={'slug':blog.slug})
 
                 return redirect(redirect_url)
 
@@ -281,4 +281,3 @@ def favorites(request):
     # favorites = get_json(favorites_url)
 
     return render(request, "blogcontent/favorites.html", {'favorites':favorites})
-
