@@ -25,6 +25,11 @@
 				</p>
 			</td>
 		</tr>
+	{% empty %}
+		<div class="text-center jumbotron margin-top" style="background:inherit;">
+			<h2>You don't have any posts :( <a href="{% url 'dashboard-post-create'}">
+				Create one?</a></h2>
+		</div>
 	{% endfor %}
   </tbody>
 </table>

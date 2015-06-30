@@ -21,7 +21,9 @@
 
 /***** Jumbotron *****/
 .jumbotron {
-  background-color: #B1D0DD; }
+  background-color: inherit; }
+  .jumbotron h2 {
+    font-size: 40px; }
   .jumbotron h3 {
     font-size: 30px; }
 

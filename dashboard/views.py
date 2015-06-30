@@ -17,6 +17,7 @@ class Blog(UpdateView):
         context['page'] = 'blog'
         return context
 
+
 class PostMixin(object):
     """
     include logic involved in all the post views
@@ -32,7 +33,6 @@ class PostMixin(object):
         # determines which post nav is active
         context['posts_page'] = self.posts_page
         return context
-
 
 
 class Posts(PostMixin, DetailView):
@@ -60,6 +60,10 @@ class PostCreate(PostMixin, CreateView):
         form.instance.author = self.request.user
         return super(PostCreate, self).form_valid(form)
 
+    def get_context_data(self, **kwargs):
+        context = super(PostCreate, self).get_context_data(**kwargs)
+        context['personalblog'] = self.get_object()
+        return context
 
 
 class PostEdit(PostMixin, UpdateView):

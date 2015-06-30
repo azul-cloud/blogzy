@@ -21,7 +21,11 @@
 
 /***** Jumbotron *****/
 .jumbotron {
-  background-color: $brand-lightest;
+  background-color: inherit;
+
+  h2 {
+    font-size:40px;
+  }
 
   h3 {
     font-size:30px;
@@ -111,4 +115,3 @@
   color: black;
   }
 }
-
