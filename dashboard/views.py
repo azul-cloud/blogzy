@@ -1,13 +1,49 @@
+from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404
 from django.views.generic import TemplateView, DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
 
+from braces.views import LoginRequiredMixin, UserPassesTestMixin
+
 from blog.models import PersonalBlog, Post
 from .forms import BlogPostCreateForm, BlogPostUpdateForm, BlogEditForm
 
 
-class Blog(UpdateView):
+class DashboardBaseView(LoginRequiredMixin, UserPassesTestMixin):
+    """
+    a view that all dashboard views should inherit from
+    """
+    def get_login_url(self):
+        user = self.request.user
+        if user.is_authenticated() and user.user_blog():
+            return reverse('dashboard-blog', kwargs={
+                'slug': user.user_blog().slug
+            })
+        else:
+            return reverse('main-home')
+
+    def test_func(self, user):
+        """
+        check if the user is the owner of the blog
+        """
+        kwargs = self.kwargs
+        if 'slug' in kwargs:
+            slug = kwargs['slug']
+        elif 'blog' in kwargs:
+            slug = kwargs['blog']
+
+        try:
+            if slug:
+                PersonalBlog.objects.get(slug=slug, owner=self.request.user)
+                return True
+        except PersonalBlog.DoesNotExist:
+            pass
+
+        return False
+
+
+class Blog(DashboardBaseView, UpdateView):
     template_name = "dashboardcontent/blog.html"
     model = PersonalBlog
     form_class = BlogEditForm
@@ -35,7 +71,7 @@ class PostMixin(object):
         return context
 
 
-class Posts(PostMixin, DetailView):
+class Posts(DashboardBaseView, PostMixin, DetailView):
     template_name = "dashboardcontent/posts.html"
     posts_page = "overview"
     model = PersonalBlog
@@ -46,7 +82,7 @@ class Posts(PostMixin, DetailView):
         return context
 
 
-class PostCreate(PostMixin, CreateView):
+class PostCreate(DashboardBaseView, PostMixin, CreateView):
     template_name = "dashboardcontent/post_create.html"
     posts_page = "create"
     form_class = BlogPostCreateForm
@@ -66,7 +102,7 @@ class PostCreate(PostMixin, CreateView):
         return context
 
 
-class PostEdit(PostMixin, UpdateView):
+class PostEdit(DashboardBaseView, PostMixin, UpdateView):
     template_name = "dashboardcontent/post_edit.html"
     posts_page = "edit"
     form_class = BlogPostUpdateForm
@@ -78,6 +114,6 @@ class PostEdit(PostMixin, UpdateView):
         return context
 
 
-class Stats(DetailView):
+class Stats(DashboardBaseView, DetailView):
     model = PersonalBlog
     template_name = "dashboardcontent/stats.html"

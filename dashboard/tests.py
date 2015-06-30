@@ -15,7 +15,7 @@ class BlogTestSetup(TestCase):
         self.blog = PersonalBlogFactory.create(owner=self.blog_user)
         self.post = PostFactory.create(blog=self.blog, author=self.blog_user)
         self.prefix = "dashboard-"
-        
+
 
 class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
     def test_dashboard_available(self):
@@ -29,7 +29,7 @@ class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
     def test_dashboard_blog(self):
         url = reverse("%sblog" % self.prefix, kwargs={'slug':self.blog.slug})
         response = self.app.get(url, user=self.blog_user)
-        
+
         self.assertEqual(response.status_code, 200)
 
     def test_dashboard_posts(self):
@@ -43,18 +43,18 @@ class BlogViewTest(AccessMixin, BlogTestSetup, WebTest):
     def test_dashboard_stats(self):
         url = reverse("%sstats" % self.prefix, kwargs={'slug':self.blog.slug})
         response = self.app.get(url, user=self.blog_user)
-        
+
         self.assertEqual(response.status_code, 200)
 
     def test_blog_post_edit(self):
         url = reverse(self.prefix + "post-edit", kwargs={
             'blog':self.blog.id, 'pk':self.post.id})
-        
-        self.blog_admin_access(url, user=self.blog_user)
+
+        self.blog_admin_access(url)
 
     def test_blog_post_create(self):
         url = reverse(self.prefix + "post-create", kwargs={'slug':self.blog.slug})
-        self.login_required(url, user=self.blog_user)
+        self.login_required(url)
 
 
 class BlogFormTest(BlogTestSetup, WebTest):
@@ -79,10 +79,10 @@ class BlogFormTest(BlogTestSetup, WebTest):
         form["headline"] = "This is my test post, read it."
         form["image"] = ""
         form["image_description"] = "this is the alt tag"
- 
+
         response = form.submit()
         assert form["body"].value in response
-        
+
 
     def test_edit_post(self):
         url = reverse(self.prefix + "post-edit", kwargs={
@@ -94,5 +94,3 @@ class BlogFormTest(BlogTestSetup, WebTest):
         response = form.submit()
         assert form["body"].value in response
         assert self.post.body not in response
-
-
