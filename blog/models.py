@@ -8,6 +8,7 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 
+from report.models import PostView
 from main.utils import slugify_no_hyphen, get_place_details
 
 
@@ -68,7 +69,7 @@ class PersonalBlog(models.Model):
 
     def subscription_count(self):
         """
-        get the amount of people who are subscribed to the blog and are 
+        get the amount of people who are subscribed to the blog and are
         receiving email newletters
         """
         from blog.models import BlogSubscription
@@ -102,7 +103,7 @@ class PersonalBlog(models.Model):
         """
         get all the emails for a specific blog
         """
-        subscribers = BlogSubscription.objects.filter(blog=self, 
+        subscribers = BlogSubscription.objects.filter(blog=self,
             frequency=frequency)
         email_list = []
         for s in subscribers:
@@ -135,7 +136,7 @@ class PersonalBlog(models.Model):
         '''
         posts = self.post_set.all()[:10]
         loc = {}
-        
+
         for post in posts:
             if post.lat and post.long:
                 loc = {
@@ -153,16 +154,33 @@ class PersonalBlog(models.Model):
         return loc
 
     def today_view_count(self):
-        return 25
+        views = PostView.objects.filter(
+            post__blog=self,
+            view_date=timezone.now().today()
+        )
+        return views.count()
 
     def week_view_count(self):
-        return 102
+        week_ago = timezone.now().today() - timezone.timedelta(days=7)
+        views = PostView.objects.filter(
+            post__blog=self,
+            view_date__gte=week_ago
+        )
+        return views.count()
 
     def total_view_count(self):
-        return 9203
+        views = PostView.objects.filter(post__blog=self)
+        return views.count()
 
     def article_count(self):
-        return 22
+        article_list = Post.objects.filter(blog=self)
+        return article_list.count()
+
+    def awesomeness(self):
+        from random import randint
+        return randint(0,99)
+
+
 
 class Post(models.Model):
     '''
@@ -215,9 +233,9 @@ class Post(models.Model):
         return url
 
     def get_update_url(self):
-        url = reverse('dashboard-post-edit', 
+        url = reverse('dashboard-post-edit',
             kwargs={'blog':self.blog.slug, 'pk':self.id})
-        
+
         return url
 
     def get_image_url(self):
@@ -285,20 +303,17 @@ class Post(models.Model):
 
     def all_view_count(self):
         # get the total views in the liftime of the post
-        from report.models import PostView
         views = PostView.objects.filter(post=self)
         return views.count()
 
     def today_view_count(self):
         # get the amount of views for the current day
-        from report.models import PostView
-        views = PostView.objects.filter(post=self, 
+        views = PostView.objects.filter(post=self,
             view_date=timezone.now().today())
         return views.count()
 
     def record_view(self):
         # record the post view for metrics purposes
-        from report.models import PostView
         PostView.objects.create(post=self)
 
 
@@ -366,5 +381,3 @@ class BlogSubscriptionLog(models.Model):
     def __unicode__(self):
         return str(self.subscription.blog) + ' for ' + str(self.subscription.email) + \
             ' on ' + str(self.sent_date_time)
-
-

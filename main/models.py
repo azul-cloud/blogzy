@@ -19,7 +19,7 @@ class TimeStampedModel(models.Model):
     '''
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
-    
+
     class Meta:
         abstract = True
 
@@ -37,7 +37,7 @@ class User(AbstractUser):
         try:
             blog = PersonalBlog.objects.get(owner=self)
             return blog
-        except:
+        except PersonalBlog.DoesNotExist:
             return None
 
     def google_account(self):
@@ -46,4 +46,3 @@ class User(AbstractUser):
             return SocialAccount.objects.get(user=self.user)
         except:
             return None
-
