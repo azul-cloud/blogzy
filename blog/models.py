@@ -168,6 +168,11 @@ class PersonalBlog(models.Model):
         )
         return views.count()
 
+    def month_view_count(self):
+        week_ago = timezone.now().today() - timezone.timedelta(days=31)
+        views = PostView.objects.filter(post__blog=self)
+        return views.count()
+
     def total_view_count(self):
         views = PostView.objects.filter(post__blog=self)
         return views.count()

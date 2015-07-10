@@ -117,3 +117,8 @@ class PostEdit(DashboardBaseView, PostMixin, UpdateView):
 class Stats(DashboardBaseView, DetailView):
     model = PersonalBlog
     template_name = "dashboardcontent/stats.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(Stats, self).get_context_data(**kwargs)
+        context['page'] = 'stats'
+        return context
