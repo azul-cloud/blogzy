@@ -112,6 +112,11 @@
   }
 
   .alert-link {
-  color: black;
+    color: black;
   }
+}
+
+/***** Wells *****/
+.well {
+  background-color: $brand-lightest;
 }

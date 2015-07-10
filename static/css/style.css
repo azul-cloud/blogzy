@@ -36,12 +36,12 @@
 .nav li a {
   transition: all 0.3s ease-in-out; }
   .nav li a:hover {
-    background-color: #588497;
+    background-color: #ed8c72;
     color: white; }
 .nav li.active a {
-  background-color: #010E13; }
+  background-color: #101010; }
   .nav li.active a:hover {
-    background-color: #588497; }
+    background-color: #ed8c72; }
 
 .navbar-brand {
   padding: 5px; }
@@ -56,39 +56,43 @@
 
 /***** Buttons *****/
 .btn-primary {
-  background-color: #27576B;
-  border-color: #27576B; }
+  background-color: #2988bc;
+  border-color: #2988bc; }
   .btn-primary:hover {
-    background-color: #588497;
-    border-color: #588497; }
+    background-color: #ed8c72;
+    border-color: #ed8c72; }
 
 /***** Panels *****/
 .panel-default > div.panel-heading {
-  background-color: #B1D0DD; }
+  background-color: #f8f5f2; }
 
 .panel-title {
   text-align: center; }
 
 /***** Modals *****/
 .modal-header {
-  background-color: #B1D0DD;
+  background-color: #f8f5f2;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px; }
 
 .modal-footer {
-  background-color: #B1D0DD;
+  background-color: #f8f5f2;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px; }
 
 /***** Alerts *****/
 .alert-brand {
   color: black;
-  background-color: #B1D0DD;
+  background-color: #f8f5f2;
   border-color: #B3D2DF; }
   .alert-brand hr {
     border-top-color: #c9e2b3; }
   .alert-brand .alert-link {
     color: black; }
+
+/***** Wells *****/
+.well {
+  background-color: #f8f5f2; }
 
 /***** General *****/
 /* sticky footer */
@@ -137,18 +141,18 @@ legend h1 {
 
 #navbar-main {
   border-radius: 0;
-  background-color: #010E13;
+  background-color: #101010;
   margin-bottom: 0; }
   #navbar-main li a:visited,
   #navbar-main li a:link {
     color: #fff; }
   #navbar-main li.dropdown li a:visited,
   #navbar-main li.dropdown li a:link {
-    color: #010E13; }
+    color: #101010; }
 
 #navbar-main li a:hover,
 footer a:hover {
-  color: #B1D0DD; }
+  color: #f8f5f2; }
 
 .fb-like {
   padding-top: 15px; }
@@ -214,9 +218,9 @@ img {
 
 a {
   text-decoration: none;
-  color: #010E13; }
+  color: #101010; }
   a:hover {
-    color: #588497; }
+    color: #ed8c72; }
 
 .info-row div {
   transition: all 0.3s ease-in-out;
@@ -224,7 +228,7 @@ a {
 .info-row a:hover {
   color: white; }
   .info-row a:hover div {
-    background-color: #092F3F; }
+    background-color: #1d1d1d; }
 
 @media (max-width: 768px) {
   #navbar-main li.dropdown li a:visited,
@@ -392,7 +396,7 @@ applied to individual blog posts, those are defined int he Post section
     display: none; } }
 /***** Blog Dashboard *****/
 .dashboard-navbar {
-  background-color: #010E13;
+  background-color: #101010;
   color: white;
   padding: 0; }
   .dashboard-navbar > ul {
@@ -406,12 +410,12 @@ applied to individual blog posts, those are defined int he Post section
       padding-bottom: 10px;
       transition: all 0.3s ease-in-out; }
       .dashboard-navbar > ul > li.active {
-        background-color: #27576B; }
+        background-color: #2988bc; }
       .dashboard-navbar > ul > li:hover {
-        background-color: #B1D0DD;
-        color: #010E13; }
+        background-color: #f8f5f2;
+        color: #101010; }
         .dashboard-navbar > ul > li:hover a {
-          color: #010E13; }
+          color: #101010; }
     .dashboard-navbar > ul a {
       color: white;
       text-decoration: none;
@@ -442,7 +446,7 @@ applied to individual blog posts, those are defined int he Post section
     transition: all 0.3s ease-in-out;
     border-radius: 20px; }
     .dashboard-stats section:hover {
-      background-color: #27576B;
+      background-color: #2988bc;
       color: white;
       cursor: default; }
   .dashboard-stats .row {
