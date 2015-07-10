@@ -456,32 +456,31 @@ applied to individual blog posts, those are defined int he Post section
   .dashboard-stats .row {
     margin-top: 30px; }
 
-/***** Registration *****/
 .account-container {
-  text-align: center; }
-
-.account-container input {
-  font-size: 200%; }
-
-.socialaccount_ballot img {
-  margin: 15px;
-  display: inline; }
-
-.login-or {
-  margin-bottom: 15px;
-  font-size: 150%; }
-
-.account-container input {
-  border-radius: 5px;
   text-align: center;
-  border: 2px solid #eeeeee; }
-
-.account-container ul {
-  list-style-type: none; }
-
-.account-container ul.errorlist li {
-  color: red;
-  padding-left: 0; }
+  background: #f8f5f2;
+  margin-bottom: -25px; }
+  .account-container form {
+    margin-top: 15px; }
+  .account-container input {
+    font-size: 200%;
+    border-radius: 5px;
+    text-align: center;
+    border: 2px solid #eeeeee; }
+  .account-container ul {
+    list-style-type: none; }
+    .account-container ul .errorlist li {
+      color: red;
+      padding-left: 0; }
+  .account-container .panel-heading {
+    background: #2988bc;
+    color: #f8f5f2; }
+  .account-container .panel-body > p > a {
+    color: #ed8c72;
+    font-weight: bold; }
+  .account-container .socialaccount_ballot img {
+    margin: 15px;
+    display: inline; }
 
 @media (max-width: 768px) {
   .account-container input {

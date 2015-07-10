@@ -1,30 +1,44 @@
-/***** Registration *****/
+
 .account-container {
-    text-align:center;
-}
-.account-container input {
+  text-align:center;
+  background: $brand-lightest;
+  margin-bottom: -25px;
+
+  form {
+    margin-top:15px;
+  }
+  input {
     font-size:200%;
-}
-.socialaccount_ballot img {
-    margin:15px;
-    display:inline;
-}
-.login-or {
-    margin-bottom:15px;
-    font-size:150%;
-}
-.account-container input {
     border-radius:5px;
     text-align:center;
     border: 2px solid #eeeeee;
-}
-.account-container ul {
+  }
+  ul {
     list-style-type:none;
+
+    .errorlist li {
+      color:red;
+      padding-left:0;
+    }
+  }
+  
+  .panel-heading {
+    background: $brand-medium;
+    color: $brand-lightest;
+  }
+  .panel-body {
+    > p > a {
+      color: $brand-light;
+      font-weight: bold;
+    }
+  }
+  .socialaccount_ballot img {
+      margin:15px;
+      display:inline;
+  }
 }
-.account-container ul.errorlist li {
-    color:red;
-    padding-left:0;
-}
+
+
 @media(max-width:768px) {
     .account-container input {
         font-size:120%;
