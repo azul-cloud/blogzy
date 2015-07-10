@@ -33,7 +33,7 @@
 
     a {
       color: white;
-      text-decoration: none;  
+      text-decoration: none;
       min-width: 100%;
     }
   }
@@ -41,7 +41,7 @@
 
 
 .dashboard-content {
-  padding: 30px; 
+  padding: 30px;
 
   .well-post {
     margin-top: 15px;
@@ -79,7 +79,7 @@
     border-radius: 20px;
 
     &:hover {
-      background-color: $brand-medium;
+      background-color: $brand-light;
       color: white;
       cursor: default;
     }

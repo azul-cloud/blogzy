@@ -2,9 +2,9 @@
   {% if div_header %}
     <a href="{{ p.get_absolute_url }}" ><div class="alert alert-brand" role="alert">{{ div_header }}</div></a>
   {% endif %}
-  <a class="brand-light" href="{{ p.get_absolute_url }}">
+  <a href="{{ p.get_absolute_url }}">
+    <h2>{{ p.title }}</h2>
     <img src="{{ p.get_image_url }}" class="img-responsive img-rounded{% if not p.image %} no-pic{% endif %}" alt="{{ p.image_description }}" />
-    <h4>{{ p.title }}</h4>
   </a>
   {% if p.headline %}
     <h4>{{ p.headline }}</h4>

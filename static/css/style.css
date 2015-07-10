@@ -349,6 +349,9 @@ applied to individual blog posts, those are defined int he Post section
 /***** Post *****/
 .post-list-container {
   padding: 30px; }
+  .post-list-container a {
+    text-decoration: none;
+    font-weight: bold; }
   .post-list-container img {
     opacity: 0.9; }
     .post-list-container img:hover {
@@ -447,7 +450,7 @@ applied to individual blog posts, those are defined int he Post section
     transition: all 0.3s ease-in-out;
     border-radius: 20px; }
     .dashboard-stats section:hover {
-      background-color: #2988bc;
+      background-color: #ed8c72;
       color: white;
       cursor: default; }
   .dashboard-stats .row {
