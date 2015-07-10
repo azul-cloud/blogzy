@@ -10,16 +10,15 @@
   <script src="{% static 'js/plugins/stellar.js' %}"></script>
   <script src="{% static 'js/stellar.js' %}"></script>
   {% include "maininclude/place_autocomplete.html" %}
-
   <script>
-  $( "#search-overlay-form" ).submit(function() {
+  $("#search-overlay-form" ).submit(function() {
     // set the form action based on the place id
     var place_id = $("#id_place_id").val();
     console.log(place_id);
 
     $( "#search-overlay-form" ).attr("action", url = '/explore/map/' + place_id);
     console.log($( "#search-overlay-form" ).attr("action"));
-    
+
     $( "#search-overlay-form" ).submit();
   });
   </script>
@@ -45,6 +44,11 @@
           </a>
         </div>
     </div>
+  </section>
+
+  <section class="map-row">
+    <div id="map-container">{% include "bloginclude/blog_map.html" %}</div>
+    <div id="map-canvas" class="map-height map-home" style="height: 400px;"></div>
   </section>
 
   <section class="container hidden-xs hidden-sm" id="main-information">
@@ -82,15 +86,6 @@
             </p>
           </div>
         </a>
-      </div>
-    </div>
-  </section>
-
-  <section id="recent-post-row" class="container-fluid">
-    <div class="row row-padding hidden-xs">
-      <div class="col-sm-6 col-sm-offset-3">
-        <h2 class="text-center">Recent Posts</h2>
-        {% include "maininclude/recent_post_carousel.html" %}
       </div>
     </div>
   </section>

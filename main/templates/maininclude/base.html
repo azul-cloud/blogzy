@@ -29,20 +29,6 @@
       {% endblock %}
       <meta name="viewport" content="width=device-width, initial-scale=1">
     {% endblock %}
-  </head>
-  <body>
-    {% block header %}
-      {% include "maininclude/header.html" %}
-    {% endblock %}
-    <div id="wrap">
-      <div id="main" role="main">
-        {% block main %}{% endblock %}
-      </div>
-    </div>
-    {% block footer %}
-      {# allow removal of footer. Used when displaying 100% height map #}
-      {% include "maininclude/footer.html" %}
-    {% endblock %}
     {% block javascript %}
       {% if offline %}
         <script src="{% static 'js/jquery.min.js' %}"></script>
@@ -52,6 +38,7 @@
         <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
       {% endif %}
       <script src="{% static 'js/script.js' %}"></script>
 
@@ -66,6 +53,21 @@
           })();
         </script>
       {% endif %}
+    {% endblock %}
+
+  </head>
+  <body>
+    {% block header %}
+      {% include "maininclude/header.html" %}
+    {% endblock %}
+    <div id="wrap">
+      <div id="main" role="main">
+        {% block main %}{% endblock %}
+      </div>
+    </div>
+    {% block footer %}
+      {# allow removal of footer. Used when displaying 100% height map #}
+      {% include "maininclude/footer.html" %}
     {% endblock %}
   </body>
 </html>

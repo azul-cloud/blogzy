@@ -18,8 +18,16 @@ class HomeTemplateView(TemplateView):
 
     def get_context_data(self, **kwargs):
         topics = Topic.objects.all()
-        recent_posts = Post.objects.filter(active=True)[:3]
-        return {'topics':topics, 'recent_posts':recent_posts}
+        post_list = Post.objects.filter(active=True)
+
+        return {
+            'topics':topics,
+            'post_list':post_list,
+            'loc': {
+                'lat': '6.2253012',
+                'lng': '-75.5421334',
+            }
+        }
 
 
 class AboutTemplateView(TemplateView):
@@ -28,5 +36,3 @@ class AboutTemplateView(TemplateView):
 
 class RobotTemplateView(TemplateView):
     template_name = "maincontent/robots.txt"
-
-

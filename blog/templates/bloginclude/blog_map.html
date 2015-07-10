@@ -1,5 +1,4 @@
 {% load static from staticfiles %}
-<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}"></script>
 <script type="text/javascript" src="{% static 'js/oms.min.js' %}"></script>
 <script type="text/javascript">
   function initialize() {
@@ -22,7 +21,8 @@
 
     var mapOptions = {
       center: center_latlng,
-      zoom: {% if map_zoom %}{{ map_zoom }}{% else %}4{% endif %}
+      zoom: {% if map_zoom %}{{ map_zoom }}{% else %}4{% endif %},
+      scrollwheel: false,
     };
     var map = new gm.Map(document.getElementById("map-canvas"),
       mapOptions);
