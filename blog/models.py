@@ -8,6 +8,9 @@ from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
 
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
+
 from report.models import PostView
 from main.utils import slugify_no_hyphen, get_place_details
 
@@ -194,7 +197,10 @@ class Post(models.Model):
 
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     blog = models.ForeignKey(PersonalBlog)
-    image = models.ImageField(upload_to=get_post_upload_path)
+    image = ProcessedImageField(upload_to=get_post_upload_path,
+                                           processors=[ResizeToFill(1200, 720)],
+                                           format='JPEG',
+                                           options={'quality': 60})
     image_description = models.CharField(max_length=100)
     title = models.CharField(max_length=50)
     body = models.TextField()
@@ -208,7 +214,7 @@ class Post(models.Model):
 
     # place_id comes from Google Places API
     place_id = models.CharField(max_length=40, null=True, blank=True)
-    place = models.CharField(max_length=60, null=True, blank=True)
+    place = models.CharField(max_length=100, null=True, blank=True)
 
     class Meta:
         ordering = ['-create_date']

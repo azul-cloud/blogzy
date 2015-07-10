@@ -13,10 +13,13 @@ defusedxml==0.4.1
 dj-database-url==0.3.0
 dj-static==0.0.6
 django-allauth==0.18.0
+django-appconf==1.0.1
 django-braces==1.4.0
 django-common-helpers==0.6.3
 django-crispy-forms==1.4.0
 django-cron==0.3.5
+django-imagekit==3.2.6
+django-tastypie==0.12.1
 django-toolbelt==0.0.1
 django-webtest==1.7.7
 factory-boy==2.4.1
@@ -26,6 +29,7 @@ gunicorn==19.0.0
 html5lib==0.999
 kombu==3.0.24
 oauthlib==0.6.3
+pilkit==1.1.12
 psycopg2==2.5.3
 python-dateutil==2.3
 python-mimeparse==0.1.4
