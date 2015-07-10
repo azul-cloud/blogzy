@@ -55,7 +55,9 @@
     </div>
   </div>
   <div id="map-container" class="hidden-xs col-sm-4 no-gutter">
-    {% include "bloginclude/blog_map.html" %}
+    {% with posts as post_list %}
+      {% include "bloginclude/blog_map.html" %}
+    {% endwith %}
     <div id="map-canvas"></div>
   </div>
   {% include "bloginclude/modals/blog_info.html" %}

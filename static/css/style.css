@@ -497,4 +497,14 @@ applied to individual blog posts, those are defined int he Post section
   padding-left: 0;
   width: 1px; }
 
+.alert-brand {
+  background-color: #ed8c72;
+  border-color: #ea7a5b;
+  color: #101010; }
+  .alert-brand a {
+    text-decoration: underline;
+    transition: color 0.2s ease; }
+    .alert-brand a:hover {
+      color: #f8f5f2; }
+
 /*# sourceMappingURL=style.css.map */

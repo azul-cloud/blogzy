@@ -43,7 +43,7 @@
             <div id="post-body">
               {{ post.body|safe }}
             </div>
-            <h4 class="text-center alert alert-success">Read more from <a href="{{ post.blog.get_absolute_url }}">{{ post.blog }}</a></h4>
+            <h4 class="text-center alert alert-brand">Read more from <a href="{{ post.blog.get_absolute_url }}">{{ post.blog }}</a></h4>
           </div>
           <div class="row">
             {% with post.get_prev_blog_post as thumbnail_post %}
@@ -108,7 +108,7 @@
 
         </div>
       </div>
-    </div>    
+    </div>
   </div>
   {% include "bloginclude/post_footer.html" %}
 {% endblock %}

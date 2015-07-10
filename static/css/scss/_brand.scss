@@ -1,0 +1,13 @@
+
+.alert-brand {
+  background-color: $brand-light;
+  border-color: darken($brand-light, 5%);
+  color: $brand-darkest;
+
+  a {
+    text-decoration: underline;
+    transition: color 0.2s ease;
+
+    &:hover{color: $brand-lightest;}
+  }
+}

@@ -7,7 +7,7 @@
     loc = {{ loc|safe }}
     center_latlng = new gm.LatLng(loc.lat, loc.lng)
 
-    LocationData = [
+    locationData = [
       {% for p in post_list %}
         {% if p.lat and p.long %}
           [{{ p.lat }},
@@ -34,9 +34,9 @@
       maxWidth: 300,
     });
 
-    for (var i in LocationData)
+    for (var i in locationData)
     {
-      var p = LocationData[i];
+      var p = locationData[i];
       var latlng = new gm.LatLng(p[0], p[1]);
 
       var marker = new gm.Marker({
@@ -54,7 +54,7 @@
         content = "<a class='brand-light' href='" + marker.link + "'><h3 class='infowindow-title'>" +
           marker.title + "</h3><img class='img-responsive img-info-window' src='" + marker.imgURL + "' /></a> " +
           "<h4 class='text-center skinny'>" + marker.headline + "</p>"
-          
+
         iw.setContent(content);
         iw.open(map, marker);
       });
