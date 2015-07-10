@@ -71,12 +71,13 @@
 
 /***** Modals *****/
 .modal-header {
-  background-color: #f8f5f2;
+  background-color: #2988bc;
+  color: #f8f5f2;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px; }
 
 .modal-footer {
-  background-color: #f8f5f2;
+  background-color: #2988bc;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px; }
 

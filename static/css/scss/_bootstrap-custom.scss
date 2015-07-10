@@ -71,6 +71,7 @@
 }
 
 /***** Buttons *****/
+
 .btn-primary {
   background-color: $brand-medium;
   border-color: $brand-medium;
@@ -91,12 +92,13 @@
 
 /***** Modals *****/
 .modal-header {
-  background-color: $brand-lightest;
+  background-color: $brand-medium;
+  color: $brand-lightest;
   border-top-right-radius: 5px;
   border-top-left-radius: 5px;
 }
 .modal-footer {
-  background-color: $brand-lightest;
+  background-color: $brand-medium;
   border-bottom-right-radius: 5px;
   border-bottom-left-radius: 5px;
 }
