@@ -10,6 +10,7 @@
   <script src="{% static 'js/plugins/stellar.js' %}"></script>
   <script src="{% static 'js/stellar.js' %}"></script>
   {% include "maininclude/place_autocomplete.html" %}
+
   <script>
   $("#search-overlay-form" ).submit(function() {
     // set the form action based on the place id
@@ -39,7 +40,7 @@
           <input name="place" id="place-search" placeholder="Search by Place" />
         </div>
         <div class="col-sm-2 col-xs-12">
-          <a id="home-search" class="btn btn-primary col-xs-12" href="">
+          <a id="home-search" class="btn btn-primary col-xs-12" href="{% url 'blog-explore-map-base' %}">
             <span class="glyphicon glyphicon-search"></span>
           </a>
         </div>

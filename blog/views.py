@@ -20,12 +20,17 @@ from report.models import PostView
 
 
 class PlaceDetailsMixin(object):
-    '''
+    """
     get place details and return the data in context
-    '''
+    """
     def get_details(self):
         # get the coordinates to center based on the place_id kwarg
-        place_id = self.kwargs["place_id"]
+        if self.kwargs.get("place_id"):
+            place_id = self.kwargs["place_id"]
+        else:
+            # default to medellin, for now
+            place_id = 'ChIJBa0PuN8oRI4RVju1x_x8E0I'
+
         place_details = get_place_details(place_id)
         return place_details
 
@@ -66,7 +71,12 @@ class ExploreMapListView(PlaceDetailsMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ExploreMapListView, self).get_context_data(**kwargs)
-        context["map_zoom"] = 11
+
+        if self.kwargs.get("place_id"):
+            context["map_zoom"] = 11
+        else:
+            context["map_zoom"] = 3
+
         return context
 
 
@@ -186,7 +196,6 @@ def wave(request):
 
 
 def place(request, **kwargs):
-
     place_id = kwargs['place_id']
     place = get_place_details(place_id).get('result')
 
