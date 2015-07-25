@@ -49,6 +49,7 @@ INSTALLED_APPS = (
     'pagination',
     'django_mailgun',
     'django_cron',
+    'rest_framework',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -159,3 +160,7 @@ CRON_CLASSES = [
     "blog.crons.SendWeeklyNewsletters",
     "blog.crons.SendMonthlyNewsletters",
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
+}

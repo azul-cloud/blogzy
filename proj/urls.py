@@ -5,6 +5,7 @@ from django.contrib.sitemaps import GenericSitemap
 
 from blog.models import PersonalBlog, Post
 from main.views import RobotTemplateView
+from .routers import router
 
 admin.autodiscover()
 
@@ -23,6 +24,7 @@ sitemaps = {
 }
 
 urlpatterns = patterns('',
+    url(r'^v1/', include(router.urls)),
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT}),
     url(r'^', include('main.urls')),
@@ -30,7 +32,7 @@ urlpatterns = patterns('',
     (r'^accounts/', include('allauth.urls')),
     url(r'^internal/', include('internal.urls')),
     url(r'^reports/', include('report.urls')),
-    
+
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': sitemaps}, name="sitemap"),
     url(r'^robots\.txt', RobotTemplateView.as_view(), name="robots"),
