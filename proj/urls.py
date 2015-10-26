@@ -29,12 +29,11 @@ urlpatterns = patterns('',
         'document_root': settings.MEDIA_ROOT}),
     url(r'^', include('main.urls')),
     url(r'^admin/', include(admin.site.urls)),
-    (r'^accounts/', include('allauth.urls')),
+
+    url(r'^accounts/', include('allauth.urls')),
+    url(r'^blog/', include('blog.urls')),
 
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': sitemaps}, name="sitemap"),
     url(r'^robots\.txt', RobotTemplateView.as_view(), name="robots"),
-
-    # blog urls need to come last because of the simple blog pattern url
-    url(r'^blog/', include('blog.urls')),
 )

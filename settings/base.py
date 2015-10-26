@@ -70,16 +70,30 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
+
 TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.core.context_processors.request',
     "django.contrib.auth.context_processors.auth",
-
-    # Required by allauth template tags
-    "django.core.context_processors.request",
-
-    # allauth specific context processors
-    "allauth.account.context_processors.account",
-    "allauth.socialaccount.context_processors.socialaccount",
 )
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # Django-related contexts here
+                "django.contrib.auth.context_processors.auth",
+
+                # allauth context processors
+                'django.template.context_processors.request',
+                "allauth.account.context_processors.account",
+                "allauth.socialaccount.context_processors.socialaccount",
+            ],
+        },
+    },
+]
 
 ROOT_URLCONF = 'proj.urls'
 
