@@ -1,12 +1,12 @@
 *.pyc
 *.map
+.idea
+.env
+.sass-cache/
 
 venv
 staticfiles
 db.sqlite3
-media/
-static/css/style.css.map
 
-.idea
-.env
-.sass-cache/
+media/
+bower_components/

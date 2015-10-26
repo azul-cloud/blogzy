@@ -1,10 +1,27 @@
+{% load staticfiles %}
+
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Travel Blog Wave</title>
+    {% block head %}
+      <meta charset="utf-8">
+      <title>Travel Blog Wave</title>
+      <link rel="stylesheet" href="{% static 'Materialize/dist/css/materialize.min.css' %}">
+      <link rel="stylesheet" href="{% static 'Materialize/dist/font/material-design-icons/Material-Design-Icons.eot' %}">
+      <link rel="stylesheet" href="{% static 'Materialize/dist/font/material-design-icons/Material-Design-Icons.svg' %}">
+      <link rel="stylesheet" href="{% static 'Materialize/dist/font/material-design-icons/Material-Design-Icons.ttf' %}">
+      <link rel="stylesheet" href="{% static 'Materialize/dist/font/material-design-icons/Material-Design-Icons.woff' %}">
+      <link rel="stylesheet" href="{% static 'Materialize/dist/font/material-design-icons/Material-Design-Icons.woff2' %}">
+
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    {% endblock %}
   </head>
   <body>
     {% block body %}{% endblock %}
+    {% block js %}
+      <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'materialize/dist/js/materialize.min.js' %}"></script>
+    {% endblock %}
   </body>
 </html>
