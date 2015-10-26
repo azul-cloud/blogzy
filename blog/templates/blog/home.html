@@ -1,0 +1,9 @@
+{% extends "bloginclude/base.html" %}
+
+{% block body %}
+  {% for blog in personalblog_list %}
+    <p><a href="{{blog.get_absolute_url}}">{{blog}}</a></p>
+  {% endfor %}
+
+  <a href="{% url 'main-home' %}">Home</a>
+{% endblock %}

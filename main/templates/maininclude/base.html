@@ -1,73 +1,10 @@
-{% load staticfiles %}
 <!DOCTYPE html>
 <html>
   <head>
-    <title>
-      {% block title %}Travel Blog Wave{% endblock %}
-    </title>
-
-    {% block stylesheets %}
-      {% if offline %}
-        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}" />
-      {% else %}
-        <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
-        <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600,300' rel='stylesheet' type='text/css'>
-      {% endif %}
-      <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" />
-      <link rel="icon" href="{% static 'img/logo.ico' %}">
-    {% endblock %}
-
-    {% block meta_tags %}
-      {% block meta_description %}
-        <meta name="description" content="Search Travel Blogs by Country, City, Place, or Topic or create your travel blog using a top of the line travel blogging platform.">
-      {% endblock %}
-      <meta name="robots" content="index, follow">
-      <meta charset="UTF-8">
-      {% block meta_title %}
-        <meta name="title" content="Travel Blog Wave | Create and Follow Travel Blogs">
-      {% endblock %}
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-    {% endblock %}
-    {% block javascript %}
-      {% if offline %}
-        <script src="{% static 'js/jquery.min.js' %}"></script>
-        <script src="{% static 'js/bootstrap.min.js' %}"></script>
-      {% else %}
-        {% include "maininclude/installs.html" %}
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
-        <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
-        <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
-      {% endif %}
-      <script src="{% static 'js/script.js' %}"></script>
-
-      {% if userreport_key %}
-        <script type="text/javascript">
-          var _urq = _urq || [];
-          _urq.push(['initSite', '{{ userreport_key }}']);
-          (function() {
-          var ur = document.createElement('script'); ur.type = 'text/javascript'; ur.async = true;
-          ur.src = ('https:' == document.location.protocol ? 'https://cdn.userreport.com/userreport.js' : 'http://cdn.userreport.com/userreport.js');
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ur, s);
-          })();
-        </script>
-      {% endif %}
-    {% endblock %}
-
+    <meta charset="utf-8">
+    <title>Travel Blog Wave</title>
   </head>
   <body>
-    {% block header %}
-      {% include "maininclude/header.html" %}
-    {% endblock %}
-    <div id="wrap">
-      <div id="main" role="main">
-        {% block main %}{% endblock %}
-      </div>
-    </div>
-    {% block footer %}
-      {# allow removal of footer. Used when displaying 100% height map #}
-      {% include "maininclude/footer.html" %}
-    {% endblock %}
+    {% block body %}{% endblock %}
   </body>
 </html>

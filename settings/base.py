@@ -8,7 +8,6 @@ https://docs.djangoproject.com/en/1.6/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
-import dj_database_url
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
@@ -34,21 +33,14 @@ INSTALLED_APPS = (
 
     'main',
     'blog',
-    'internal',
-    'report',
-    'dashboard',
 
     'braces',
-    'crispy_forms',
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
     'storages',
-    'pagination',
-    'django_mailgun',
-    'django_cron',
     'rest_framework',
 )
 
@@ -57,14 +49,12 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-
-    'pagination.middleware.PaginationMiddleware',
 )
 
 TEMPLATE_CONTEXT_PROCESSORS = (
-    "main.context_processors.main",
     "django.contrib.auth.context_processors.auth",
 
     # Required by allauth template tags
@@ -111,9 +101,6 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 
-# Crispy settings
-CRISPY_TEMPLATE_PACK = 'bootstrap3'
-
 AUTH_USER_MODEL = 'main.User'
 
 
@@ -121,10 +108,10 @@ AUTH_USER_MODEL = 'main.User'
 LOGIN_REDIRECT_URL = "/"
 ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_TEMPLATE_DIR = "allauth/account/"
-SOCIALACCOUNT_TEMPLATE_DIR = "allauth/socialaccount/"
 ACCOUNT_EMAIL_REQUIRED = True
-SOCIALACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = None #no email verification sent. This will change.
+SOCIALACCOUNT_EMAIL_REQUIRED = True
+SOCIALACCOUNT_TEMPLATE_DIR = "allauth/socialaccount/"
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -134,11 +121,12 @@ AUTHENTICATION_BACKENDS = (
     "allauth.account.auth_backends.AuthenticationBackend",
 )
 
+
 # google stuff
 GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
-USERREPORT_KEY = os.environ.get('USERREPORT_KEY', '')
 
-# aws s3
+
+# AWS
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 AWS_S3_SECURE_URLS = False       # use http instead of https
 AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
@@ -146,20 +134,6 @@ AWS_S3_ACCESS_KEY_ID = os.environ['S3_KEY']
 AWS_S3_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
 AWS_STORAGE_BUCKET_NAME = 'dev.travelblogwave.media'
 
-
-# pagination
-PAGINATION_TEMPLATE_PACK = "bootstrap3"
-
-
-# mailgun
-EMAIL_BACKEND = 'django_mailgun.MailgunBackend'
-
-
-# django_cron
-CRON_CLASSES = [
-    "blog.crons.SendWeeklyNewsletters",
-    "blog.crons.SendMonthlyNewsletters",
-]
 
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)

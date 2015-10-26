@@ -30,14 +30,11 @@ urlpatterns = patterns('',
     url(r'^', include('main.urls')),
     url(r'^admin/', include(admin.site.urls)),
     (r'^accounts/', include('allauth.urls')),
-    url(r'^internal/', include('internal.urls')),
-    url(r'^reports/', include('report.urls')),
 
     url(r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': sitemaps}, name="sitemap"),
     url(r'^robots\.txt', RobotTemplateView.as_view(), name="robots"),
 
     # blog urls need to come last because of the simple blog pattern url
-    url(r'^dashboard/', include('dashboard.urls')),
-    url(r'^', include('blog.urls')),
+    url(r'^blog/', include('blog.urls')),
 )

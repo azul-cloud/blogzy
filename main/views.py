@@ -1,38 +1,9 @@
-import json
-import requests
-
-from django.shortcuts import render
-from django.conf import settings
-from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.core.mail import send_mail
 from django.views.generic import TemplateView
 
-from .utils import get_json_objects, get_json
-from blog.models import Topic, Post
 
-
-class HomeTemplateView(TemplateView):
-    # show the home page
-    template_name = "maincontent/home.html"
-
-    def get_context_data(self, **kwargs):
-        topics = Topic.objects.all()
-        post_list = Post.objects.filter(active=True)
-
-        return {
-            'topics':topics,
-            'post_list':post_list,
-            'loc': {
-                'lat': '6.2253012',
-                'lng': '-75.5421334',
-            }
-        }
-
-
-class AboutTemplateView(TemplateView):
-    template_name = "maincontent/about.html"
+class HomeView(TemplateView):
+    template_name = "main/home.html"
 
 
 class RobotTemplateView(TemplateView):
-    template_name = "maincontent/robots.txt"
+    template_name = "main/robots.txt"

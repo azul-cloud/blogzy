@@ -11,8 +11,7 @@ from django.utils.text import slugify
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
-from report.models import PostView
-from main.utils import slugify_no_hyphen, get_place_details
+from main.utils import slugify_no_hyphen
 
 
 def get_post_upload_path(instance, filename):
@@ -62,132 +61,9 @@ class PersonalBlog(models.Model):
         self.slug = slugify_no_hyphen(self.title)
         super(PersonalBlog, self).save(*args, **kwargs)
 
-    def follower_count(self):
-        """
-        The amount of people that have the blog in their wave
-        """
-        # TODO
-        count = 0
-        return count
-
-    def subscription_count(self):
-        """
-        get the amount of people who are subscribed to the blog and are
-        receiving email newletters
-        """
-        from blog.models import BlogSubscription
-        count = BlogSubscription.objects.filter(blog=self).count()
-        return count
-
     def get_absolute_url(self):
         url = reverse('blog-blog', kwargs={ 'slug':self.slug })
         return url
-
-    def google_id(self):
-        # returns the google id associated with the google account of the blog owner
-        try:
-            google_account = self.owner.profile.google_account()
-            id = google_account.uid
-            return id
-        except:
-            return None
-
-    def subscriber_list(self):
-        # return a list of blogsubscribe objects
-        subscribers = BlogSubscription.objects.filter(blog=self)
-        return subscribers
-
-    def get_log(self):
-        # return the subscription log for the blog
-        log = BlogSubscriptionLog.objects.filter(subscription__blog=self)
-        return log
-
-    def get_subscriber_emails(self, frequency):
-        """
-        get all the emails for a specific blog
-        """
-        subscribers = BlogSubscription.objects.filter(blog=self,
-            frequency=frequency)
-        email_list = []
-        for s in subscribers:
-            email_list.append(s.email)
-
-        return email_list
-
-    def last_subscription_sent(self):
-        # get the date and time the last weekly email was sent
-        from blog.models import BlogSubscriptionLog
-        weekly = "never"
-        monthly = "never"
-        log = self.get_log()
-
-        weekly_log = log.filter(subscription__frequency="W")
-        if weekly_log:
-            weekly = weekly_log.order_by('-id')[0].sent_date_time
-
-        monthly_log = log.filter(subscription__frequency="M")
-        if monthly_log:
-            monthly = monthly_log.order_by('-id')[0].sent_date_time
-
-        return {'weekly':weekly, 'monthly':monthly}
-
-    def last_post_loc(self):
-        '''
-        return the location that the map for a blog should be centered on.
-        Get the latest 10 posts and then exit when finding one with a lat
-        and a lng
-        '''
-        posts = self.post_set.all()[:10]
-        loc = {}
-
-        for post in posts:
-            if post.lat and post.long:
-                loc = {
-                    'lat': str(post.lat),
-                    'lng': str(post.long),
-                }
-                continue
-
-        if not loc:
-            loc = {
-                'lat': '6.2253012',
-                'lng': '-75.5421334',
-            }
-
-        return loc
-
-    def today_view_count(self):
-        views = PostView.objects.filter(
-            post__blog=self,
-            view_date=timezone.now().today()
-        )
-        return views.count()
-
-    def week_view_count(self):
-        week_ago = timezone.now().today() - timezone.timedelta(days=7)
-        views = PostView.objects.filter(
-            post__blog=self,
-            view_date__gte=week_ago
-        )
-        return views.count()
-
-    def month_view_count(self):
-        week_ago = timezone.now().today() - timezone.timedelta(days=31)
-        views = PostView.objects.filter(post__blog=self)
-        return views.count()
-
-    def total_view_count(self):
-        views = PostView.objects.filter(post__blog=self)
-        return views.count()
-
-    def article_count(self):
-        article_list = Post.objects.filter(blog=self)
-        return article_list.count()
-
-    def awesomeness(self):
-        from random import randint
-        return randint(0,99)
-
 
 
 class Post(models.Model):
@@ -196,7 +72,7 @@ class Post(models.Model):
     '''
 
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
-    blog = models.ForeignKey(PersonalBlog)
+    blog = models.ForeignKey(PersonalBlog, related_name="posts")
     image = ProcessedImageField(upload_to=get_post_upload_path,
                                            processors=[ResizeToFill(1200, 720)],
                                            format='JPEG',
@@ -240,29 +116,8 @@ class Post(models.Model):
         super(Post, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        url = reverse('blog-post', kwargs={'blog':self.blog.slug, 'post':self.slug})
+        url = reverse('blog-post', kwargs={'blog':self.blog.slug, 'slug':self.slug})
         return url
-
-    def get_update_url(self):
-        url = reverse('dashboard-post-edit',
-            kwargs={'blog':self.blog.slug, 'pk':self.id})
-
-        return url
-
-    def get_image_url(self):
-        if self.image:
-            return self.image.url
-        else:
-            return settings.STATIC_URL + 'img/logo_dark.png'
-
-    def get_topics(self):
-        # return the topics that have been listed for the post object
-        topics = self.topics.all()
-
-        if topics:
-            return topics
-        else:
-            return None
 
     def get_blog_post_id_list(self):
         '''
@@ -311,84 +166,3 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
-
-    def all_view_count(self):
-        # get the total views in the liftime of the post
-        views = PostView.objects.filter(post=self)
-        return views.count()
-
-    def today_view_count(self):
-        # get the amount of views for the current day
-        views = PostView.objects.filter(post=self,
-            view_date=timezone.now().today())
-        return views.count()
-
-    def record_view(self):
-        # record the post view for metrics purposes
-        PostView.objects.create(post=self)
-
-
-
-class UserFavorite(models.Model):
-    '''
-    Mark a favorite post for a user so that it is easily accessible
-    in the future
-    '''
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    post = models.ForeignKey(Post)
-    create_date = models.DateField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ("user", "post")
-
-    def __str__(self):
-        return self.user.username + ' for ' + self.post.title
-
-
-class UserStreamBlog(models.Model):
-    '''
-    Add a blog to stream to get notifications on certain events, such
-    as when they put out a new post. Users will be able to see the blog
-    posts in their stream
-    '''
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    blog = models.ForeignKey(PersonalBlog)
-    new_post_email = models.BooleanField(default=False)
-    email_newsletter = models.BooleanField(default=False)
-    create_date = models.DateField(auto_now_add=True)
-
-    class Meta:
-        unique_together = ("user", "blog")
-
-    def __str__(self):
-        return self.user.username + ' for ' + self.blog.title
-
-
-class BlogSubscription(models.Model):
-    '''
-    Give a user a subscription to a blog. They will be able to choose
-    different attributes such as how often they will get the subscription
-    info.
-    '''
-    FREQUENCY_CHOICES = (
-        ('W', 'Weekly'),
-        ('M', 'Monthly')
-    )
-    blog = models.ForeignKey(PersonalBlog)
-    email = models.EmailField()
-    frequency = models.CharField(max_length=1, default="W", choices=FREQUENCY_CHOICES)
-
-    class Meta:
-        unique_together = ("email", "blog")
-
-    def __unicode__(self):
-        return self.frequency + ' to ' + self.email + ' for ' + str(self.blog)
-
-
-class BlogSubscriptionLog(models.Model):
-    subscription = models.ForeignKey(BlogSubscription)
-    sent_date_time = models.DateTimeField(auto_now_add=True, editable=True)
-
-    def __unicode__(self):
-        return str(self.subscription.blog) + ' for ' + str(self.subscription.email) + \
-            ' on ' + str(self.sent_date_time)
