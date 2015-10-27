@@ -1,0 +1,55 @@
+{% extends "maininclude/base.html" %}
+
+{% block body %}
+<div class="page-start">
+  <div class="navbar-fixed">
+    <nav class="nav-icons">
+      <div class="nav-wrapper">
+        {% include 'maininclude/logo.html' %}
+        <ul class="left">
+          <li class="hover-right">
+            <a href="#" onclick="scrollMap()">Back <i class="material-icons left">arrow_back</i></a>
+          </li>
+        </ul>
+        <ul class="right">
+          <li class="hover-left">
+            <a href="{% url 'main-start' %}">Search <i class="material-icons right">search</i></a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="col s12 m8 offset-m2">
+        <ul class="tabs">
+          <li class="tab col m4 s4"><a class="active" href="#register">Register</a></li>
+          <li class="tab col m4 s4"><a href="#login">Login</a></li>
+          <li class="tab col m4 s4"><a href="#posts">Posts</a></li>
+        </ul>
+      </div>
+      <div id="register" class="col s12">Test 1</div>
+      <div id="login" class="col s12">Test 2</div>
+      <div id="posts" class="col s12">
+        {% for post in post_list %}
+          <div class="col s12 m6">
+            <div class="card medium">
+              <div class="card-image">
+                <img src="{{post.image.url}}">
+                <span class="card-title">{{post.title}}</span>
+              </div>
+              <div class="card-content">
+                <p>{{post.headline}}</p>
+              </div>
+              <div class="card-action">
+                <a href="#">This is a link</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

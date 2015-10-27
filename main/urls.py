@@ -6,4 +6,5 @@ app = 'main-'
 
 urlpatterns = patterns('',
     url(r'^$', views.HomeView.as_view(), name = app + "home"),
+    url(r'^start$', views.StartView.as_view(), name = app + "start"),
 )

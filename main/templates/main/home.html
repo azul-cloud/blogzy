@@ -1,14 +1,11 @@
 {% extends "maininclude/base.html" %}
 
 {% block body %}
-  <div class="home">
+  <div class="page-home">
     <div class="navbar-fixed">
       <nav class="nav-icons">
         <div class="nav-wrapper">
-          <a href="#" class="brand-logo center">Logo</a>
-          <!-- <a href="#" data-activates="nav-mobile" class="button-collapse">
-            <i class="material-icons">menu</i>
-          </a> -->
+          {% include 'maininclude/logo.html' %}
           <ul class="left">
             <li class="hover-right">
               <a href="#" onclick="scrollMap()">Map <i class="material-icons left">map</i></a>
@@ -16,7 +13,7 @@
           </ul>
           <ul class="right">
             <li class="hover-left">
-              <a href="sass.html">Start <i class="material-icons right">arrow_forward</i></a>
+              <a href="{% url 'main-start' %}">Start <i class="material-icons right">arrow_forward</i></a>
             </li>
           </ul>
         </div>

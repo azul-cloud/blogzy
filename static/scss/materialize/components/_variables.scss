@@ -8,6 +8,9 @@ $success-color: color("green", "base") !default;
 $error-color: color("red", "base") !default;
 $link-color: color("light-blue", "darken-1") !default;
 
+$dark-transparent: rgba(0,0,0,0.7);
+$light-transparent: rgba(0,0,0,0.2);
+
 /*** Badges ***/
 $badge-bg-color: $secondary-color !default;
 

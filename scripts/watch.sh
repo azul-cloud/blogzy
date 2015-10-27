@@ -1,1 +1,1 @@
-sass --watch static/scss/tbwave.scss:static/css/style.min.css --style compressed
+sass --watch static/scss/app.scss:static/css/style.min.css --style compressed
