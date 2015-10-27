@@ -21,6 +21,24 @@ nav { background-color: rgba(0,0,0,0.7); }
 
 .no-padding { padding: 0; }
 
+.brand-logo {
+  $spacing: 10px;
+
+  @mixin logo-img($height) {
+    img {
+      width: $height - $spacing;
+      padding-bottom: $spacing/2 - 2px;
+      padding-top: $spacing/2;
+    }
+  }
+
+  @include logo-img($navbar-height);
+
+  @media(max-width:$small-screen){
+    @include logo-img($navbar-height-mobile);
+  }
+}
+
 @media(max-width:$small-screen){
   .nav-icons {
     i { line-height: $navbar-height-mobile; }
