@@ -109,3 +109,12 @@
   </div>
 </div>
 {% endblock %}
+
+{% block js %}
+  {{block.super}}
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(document.body).addClass('light-texture');
+    });
+  </script>
+{% endblock %}

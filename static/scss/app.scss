@@ -17,7 +17,14 @@ img {
   height: auto;
 }
 
-nav { background-color: rgba(0,0,0,0.7); }
+nav { background: transparentize(black, 0.2); }
+
+footer { background: $dark-texture; }
+
+// textures
+.light-texture { background: $light-texture; }
+.medium-texture { background: $medium-texture; }
+.dark-texture { background: $dark-texture; }
 
 .no-padding { padding: 0; }
 
@@ -82,13 +89,16 @@ $movement-size: 10px;
 
 .page-start {
   .tabs {
+    @extend .light-texture;
     margin-top: 10px;
     margin-bottom: 10px;
   }
 
   form {
-    // background-color: $brand-light-gray;
-    // border-radius: $border-radius;
+    border-radius: $border-radius;
+    padding: 10px;
+
+    button { margin-bottom: 10px; }
   }
 }
 
