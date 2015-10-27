@@ -5,8 +5,9 @@
 
 /*
   1. Global
-  2. Main
-  3. Blog
+  2. Hover
+  3. Main
+  4. Blog
 */
 
 
@@ -20,8 +21,27 @@ img {
   padding: 0;
 }
 
+@media(max-width:$small-screen){
+  .nav-icons {
+    i { line-height: $navbar-height-mobile; }
+  }
+}
 
-// ===== 2. MAIN ===== //
+
+// ===== 2. HOVER ===== //
+@mixin hover-transform($transform) {
+  transition: transform 0.5s ease;
+
+  &:hover {
+    transform: $transform;
+  }
+}
+$movement-size: 10px;
+.hover-right { @include hover-transform(translateX($movement-size)) }
+.hover-left { @include hover-transform(translateX(-$movement-size)) }
+
+
+// ===== 3. MAIN ===== //
 .home {
   section {
     padding-top: 1em;
@@ -45,4 +65,4 @@ img {
 }
 
 
-// ===== 3. BLOG ===== //
+// ===== 4. BLOG ===== //

@@ -3,16 +3,21 @@
 {% block body %}
   <div class="home">
     <div class="navbar-fixed">
-      <nav>
+      <nav class="nav-icons">
         <div class="nav-wrapper">
           <a href="#" class="brand-logo center">Logo</a>
-          <ul id="nav-mobile" class="left hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
-            <li><a href="badges.html">Components</a></li>
-            <li><a href="collapsible.html">JavaScript</a></li>
+          <!-- <a href="#" data-activates="nav-mobile" class="button-collapse">
+            <i class="material-icons">menu</i>
+          </a> -->
+          <ul class="left">
+            <li class="hover-right">
+              <a href="#" onclick="scrollMap()">Map <i class="material-icons left">map</i></a>
+            </li>
           </ul>
-          <ul id="nav-mobile" class="right hide-on-med-and-down">
-            <li><a href="sass.html">Sass</a></li>
+          <ul class="right">
+            <li class="hover-left">
+              <a href="sass.html">Start <i class="material-icons right">arrow_forward</i></a>
+            </li>
           </ul>
         </div>
       </nav>
@@ -100,7 +105,7 @@
       </div>
     </section>
 
-    <section class="map">
+    <section class="map" id="section-map">
       <div id="home-map"></div>
     </section>
 
@@ -136,21 +141,23 @@
   {{block.super}}
   <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
   <script type="text/javascript">
+    function scrollMap(){
+      $('html, body').animate({
+        scrollTop: $("#section-map").offset().top
+      }, 2000);
+    }
+
     $(document).ready(function(){
       // initializations
       $('.parallax').parallax();
+      $(".button-collapse").sideNav();
 
-      function initialize(){
-        console.log('init map...');
-        // Create a map object and specify the DOM element for display.
-        var map = new google.maps.Map(document.getElementById('home-map'), {
-          center: {lat: -34.397, lng: 150.644},
-          scrollwheel: false,
-          zoom: 8
-        });
-      }
-
-      initialize();
+      // Create a map object and specify the DOM element for display.
+      var map = new google.maps.Map(document.getElementById('home-map'), {
+        center: {lat: -34.397, lng: 150.644},
+        scrollwheel: false,
+        zoom: 8
+      });
     });
   </script>
 {% endblock %}
