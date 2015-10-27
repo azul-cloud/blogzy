@@ -28,6 +28,11 @@ footer { background: $dark-texture; }
 
 .no-padding { padding: 0; }
 
+.nav-transparent {
+  background-color: $transparent;
+  box-shadow: none;
+}
+
 .brand-logo {
   $spacing: 10px;
 

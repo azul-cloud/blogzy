@@ -17,3 +17,8 @@ class BlogView(DetailView):
 class BlogPostView(DetailView):
     template_name = "blog/post.html"
     model = Post
+
+
+class AllPostsView(ListView):
+    template_name = "blog/all_posts.html"
+    model = Post
