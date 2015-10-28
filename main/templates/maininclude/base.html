@@ -10,14 +10,14 @@
       <link rel="stylesheet" href="{% static 'css/style.min.css' %}">
       <link rel="shortcut icon" href="{% static 'img/logo.ico' %}">
 
+      <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
+      <script type="text/javascript" src="{% static 'materialize/dist/js/materialize.min.js' %}"></script>
+
     {% endblock %}
   </head>
   <body>
     {% block body %}{% endblock %}
 
-    {% block js %}
-      <script type="text/javascript" src="{% static 'jquery/dist/jquery.min.js' %}"></script>
-      <script type="text/javascript" src="{% static 'materialize/dist/js/materialize.min.js' %}"></script>
-    {% endblock %}
+    {% block js %}{% endblock %}
   </body>
 </html>

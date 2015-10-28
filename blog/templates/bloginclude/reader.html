@@ -1,3 +1,30 @@
 {% extends "bloginclude/base.html" %}
 
 {# inherit this template for views intended for our VIEWING audience #}
+
+{% block body %}
+  <nav>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+    </ul>
+    <ul id="slide-out" class="side-nav">
+      <li><a href="#!">First Sidebar Link</a></li>
+      <li><a href="#!">Second Sidebar Link</a></li>
+    </ul>
+    <a href="#" data-activates="slide-out" class="button-collapse">
+      <i class="mdi-navigation-menu"></i>
+    </a>
+  </nav>
+
+  {% block reader_body %}{% endblock %}
+{% endblock %}
+
+{% block js %}
+  {{block.super}}
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(".button-collapse").sideNav();
+    });
+  </script>
+{% endblock %}
