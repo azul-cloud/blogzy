@@ -20,10 +20,10 @@ def get_post_upload_path(instance, filename):
 
 
 class Topic(models.Model):
-    '''
+    """
     grouping of all the topics that a blog post can be grouped under. Allows
     users to search for a specific type of blog post
-    '''
+    """
     title = models.CharField(max_length=20)
     slug = models.SlugField(unique=True, blank=True)
 
@@ -40,10 +40,10 @@ class Topic(models.Model):
 
 
 class PersonalBlog(models.Model):
-    '''
+    """
     Data about a personal blog for a specific user. The user can upload
     metadata about their blog to give it a personalized feel
-    '''
+    """
     owner = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=50)
     description = models.TextField()
@@ -67,9 +67,9 @@ class PersonalBlog(models.Model):
 
 
 class Post(models.Model):
-    '''
+    """
     Data about blog posts. The guts of everything.
-    '''
+    """
 
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     blog = models.ForeignKey(PersonalBlog, related_name="posts")
@@ -116,14 +116,17 @@ class Post(models.Model):
         super(Post, self).save(*args, **kwargs)
 
     def get_absolute_url(self):
-        url = reverse('blog-post', kwargs={'blog':self.blog.slug, 'slug':self.slug})
+        url = reverse('blog-post', kwargs={
+            'blog':self.blog.slug,
+            'slug':self.slug
+        })
         return url
 
     def get_blog_post_id_list(self):
-        '''
+        """
         return a list of ordered post ids from a blog. Used to get
         the next and previous posts
-        '''
+        """
         posts = Post.objects.filter(blog=self.blog, active=True)
 
         post_ids = []

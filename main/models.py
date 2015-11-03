@@ -13,10 +13,10 @@ FEEDBACK_CHOICES = (
 
 
 class TimeStampedModel(models.Model):
-    '''
+    """
     An abstract base class model that provides selfupdating
     created and modified fields.
-    '''
+    """
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
@@ -25,9 +25,9 @@ class TimeStampedModel(models.Model):
 
 
 class User(AbstractUser):
-    '''
+    """
     Extended User class
-    '''
+    """
     instagram = models.CharField(max_length=20, blank=True, null=True)
     twitter = models.CharField(max_length=20, blank=True, null=True)
     blog_wave = models.ManyToManyField(PersonalBlog, blank=True, null=True)
@@ -38,11 +38,4 @@ class User(AbstractUser):
             blog = PersonalBlog.objects.get(owner=self)
             return blog
         except PersonalBlog.DoesNotExist:
-            return None
-
-    def google_account(self):
-        # get the google account for a user if it exists
-        try:
-            return SocialAccount.objects.get(user=self.user)
-        except:
             return None

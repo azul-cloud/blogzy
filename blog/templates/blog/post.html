@@ -1,9 +1,42 @@
-{% extends "bloginclude/base.html" %}
+{% extends "bloginclude/side_layout.html" %}
 
-{% block body %}
-  <h2>{{post.title}}</h2>
-  <img src="{{post.image.url}}">
-  <p>{{post.body|safe}}</p>
-  <a href="{{post.blog.get_absolute_url}}">{{post.blog}}</a>
-  <a href="{% url 'blog-home' %}">Blog Home</a>
+{% block sidelayout_content %}
+  <div class="blog-article">
+    <div class="container">
+      <section class="blog-article__header">
+        <h2>{{post.title}}</h2>
+        <img class="img-main" src="{{post.image.url}}">
+        <h5 class="headline">{{post.headline}}</h5>
+        <div class="divider"></div>
+      </section>
+
+      <section class="blog-article__body">
+        <p>{{post.body|safe}}</p>
+      </section>
+
+      <section class="blog-article__footer row">
+        <div class="col m3">
+          <img src="http://placehold.it/400x400" class="circle">
+        </div>
+        <div class="col m9">
+          <p class="signature">
+            Written by {{post.author.get_full_name}} on {{post.create_date}}
+          </p>
+          <p class="social-row">
+            <i class="fa fa-2x fa-twitter"></i>
+            <i class="fa fa-2x fa-google"></i>
+            <i class="fa fa-2x fa-facebook"></i>
+          </p>
+        </div>
+
+      </section>
+
+      <a class="btn left hover-left" href="{% url 'blog-all-posts' %}">
+        All Posts  <i class="material-icons left">arrow_back</i>
+      </a>
+      <a class="btn right hover-right" href="{{post.blog.get_absolute_url}}">
+        {{post.blog}} <i class="material-icons right">arrow_forward</i>
+      </a>
+    </div>
+  </div>
 {% endblock %}

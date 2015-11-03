@@ -4,6 +4,7 @@ $secondary-color: #ED8C72;
 
 // brand colors
 $brand-light-gray: #eee;
+$brand-medium-gray: #777;
 
 $dark-texture: url("/static/img/textures/texture_dark.png") repeat;
 $medium-texture: url("/static/img/textures/texture_medium.png") repeat;
@@ -14,3 +15,4 @@ $transparent: transparentize(white, 1);
 
 // property defaults
 $border-radius: 5px;
+$transition: all 0.5s ease;
