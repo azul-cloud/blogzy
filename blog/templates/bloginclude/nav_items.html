@@ -1,2 +1,17 @@
-<li><a href="#!">First Sidebar Link</a></li>
-<li><a href="#!">Second Sidebar Link</a></li>
+<li>
+  <a href="{% url 'blog-all-posts' %}"><i class="material-icons left">people</i>Posts</a>
+</li>
+<li>
+  <a href="{% url 'blog-all-blogs' %}">
+    <i class="material-icons left">whatshot</i>Blogs
+  </a>
+</li>
+{% if request.user.user_blog %}
+  <li>
+    <a href="{% url 'blog-settings' %}"><i class="material-icons left">settings</i> Settings</a>
+  </li>
+{% else %}
+  <li>
+    <a href="{% url 'blog-create' %}"><i class="material-icons left">add</i> Create Blog</a>
+  </li>
+{% endif %}

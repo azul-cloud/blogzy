@@ -1,4 +1,5 @@
 {% extends "bloginclude/base.html" %}
+{% load staticfiles %}
 
 {# inherit this template for views intended for our VIEWING audience #}
 
@@ -6,6 +7,9 @@
 <div class="side-layout">
   {% block sidelayout_nav %}
     <nav>
+      <div class="logo-container">
+        <img class="logo" src="{% static 'img/logo_light.png' %}">
+      </div>
       <ul class="hide-on-med-and-down">
         {% include "bloginclude/nav_items.html" %}
       </ul>
