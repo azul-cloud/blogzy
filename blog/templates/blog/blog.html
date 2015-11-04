@@ -2,23 +2,17 @@
 
 {% block sidelayout_content %}
   <div class="col s12 blog-home">
-    <div class="inner-container">
+    <div class="container inner-container">
       <h1 class="center-align">{{personalblog}}</h1>
 
       {% for post in personalblog.posts.all %}
-        <img src="{{post.image.url}}">
-        <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+        {% include "bloginclude/post_preview.html" %}
       {% endfor %}
 
       <a href="{% url 'blog-home' %}">Blog Home</a>
     </div>
   </div>
   <aside>
-    Hello
+
   </aside>
-{% endblock %}
-
-
-{% block sidelayout_aside %}
-  This is the aside
 {% endblock %}

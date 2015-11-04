@@ -4,18 +4,7 @@
   <div class="all-posts container">
     <div class="row">
       {% for post in post_list %}
-        <div class="article-container">
-          <h1>{{post.title}}</h1>
-          <a href="{{post.get_absolute_url}}">
-            <img src="{{post.image.url}}">
-          </a>
-          <h5 class="accent-text">{{post.headline}}</h5>
-          <p class="preview">{{post.body|safe|truncatewords_html:30}}</p>
-          <a href="{{post.get_absolute_url}}" class="btn right hover-right">
-            Read More <i class="material-icons right">arrow_forward</i>
-          </a>
-          <br>
-        </div>
+        {% include "bloginclude/post_preview.html" %}
       {% endfor %}
     </div>
   </div>

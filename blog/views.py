@@ -20,6 +20,7 @@ class BlogView(DetailView):
 class BlogPostView(DetailView):
     template_name = "blog/post.html"
     model = Post
+    
 
 class BlogMapView(ListView):
     template_name = "blog/map.html"
