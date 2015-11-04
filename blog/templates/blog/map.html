@@ -21,6 +21,10 @@
         scrollwheel: false,
         zoom: 8
       });
+
+      {% for post in post_list %}
+        {% include "bloginclude/map_markers.html" %}
+      {% endfor %}
     });
   </script>
 {% endblock %}

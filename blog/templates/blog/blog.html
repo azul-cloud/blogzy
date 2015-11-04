@@ -30,16 +30,8 @@
         zoom: 8
       });
 
-      var markerIcon = "{% static 'img/map_icon_sm.png' %}";
-
-      {% for post in personalblog.posts.all %}
-        console.log("{{post}}");
-        var marker = new google.maps.Marker({
-          position: {lat: {{post.lat}}, lng: {{post.lng}}},
-          map: map,
-          title: 'Hello World!',
-          icon: markerIcon
-        });
+      {% for personalblog.posts.all as post_list %}
+        {% include "bloginclude/map_markers.html" %}
       {% endfor %}
     });
   </script>

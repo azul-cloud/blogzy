@@ -1,0 +1,14 @@
+{% load staticfiles %}
+
+var markerIcon = "{% static 'img/map_icon_sm.png' %}";
+
+{% for post in post_list %}
+  {% if post.lat and post.lng %}
+    var marker = new google.maps.Marker({
+      position: {lat: {{post.lat}}, lng: {{post.lng}}},
+      map: map,
+      title: 'Hello World!',
+      icon: markerIcon
+    });
+  {% endif %}
+{% endfor %}
