@@ -100,7 +100,7 @@ class Post(models.Model):
     topics = models.ManyToManyField(Topic, null=True, blank=True)
     slug = models.SlugField(blank=True, editable=False)
     lat = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
-    long = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
+    lng = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
 
     # place_id comes from Google Places API
     place_id = models.CharField(max_length=40, null=True, blank=True)

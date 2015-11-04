@@ -1,18 +1,46 @@
 {% extends "layouts/3col.html" %}
+{% load staticfiles %}
 
 {% block sidelayout_content %}
   <div class="col s12 blog-home">
     <div class="container inner-container">
       <h1 class="center-align">{{personalblog}}</h1>
-
       {% for post in personalblog.posts.all %}
         {% include "bloginclude/post_preview.html" %}
       {% endfor %}
-
-      <a href="{% url 'blog-home' %}">Blog Home</a>
     </div>
   </div>
   <aside>
-
+    <div id="blog-map"></div>
   </aside>
+{% endblock %}
+
+{% block js %}
+  {{block.super}}
+  <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      // initializations
+      $(".button-collapse").sideNav();
+
+      // Create a map object and specify the DOM element for display.
+      var map = new google.maps.Map(document.getElementById('blog-map'), {
+        center: {lat: -34.397, lng: 150.644},
+        scrollwheel: false,
+        zoom: 8
+      });
+
+      var markerIcon = "{% static 'img/map_icon_sm.png' %}";
+
+      {% for post in personalblog.posts.all %}
+        console.log("{{post}}");
+        var marker = new google.maps.Marker({
+          position: {lat: {{post.lat}}, lng: {{post.lng}}},
+          map: map,
+          title: 'Hello World!',
+          icon: markerIcon
+        });
+      {% endfor %}
+    });
+  </script>
 {% endblock %}

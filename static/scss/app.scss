@@ -229,8 +229,8 @@ $movement-size: 10px;
 
 // ===== 5. SIDE LAYOUT ===== //
 .side-layout {
-  $nav-width: 20%;
-  $aside-width: 15%;
+  $nav-width: 15%;
+  $aside-width: 30%;
   $i-line-height: 2.5em;
 
   @extend .full-height;
@@ -299,7 +299,7 @@ $movement-size: 10px;
 
         aside {
           height: 100%;
-          width: 15%;
+          width: $aside-width;
           position: fixed;
           right: 0;
           background: $brand-light-gray;
@@ -312,6 +312,11 @@ $movement-size: 10px;
       right: 0;
       height: 100%;
       width: $aside-width;
+
+      #blog-map {
+        height: 100%;
+        width: 100%;
+      }
     }
   }
 }
