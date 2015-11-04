@@ -15,10 +15,10 @@
       </section>
 
       <section class="blog-article__footer row">
-        <div class="col m3">
+        <div class="col s5 m3">
           <img src="http://placehold.it/400x400" class="circle">
         </div>
-        <div class="col m9">
+        <div class="col s7 m9">
           <p class="signature">
             Written by {{post.author.get_full_name}} on {{post.create_date}}
           </p>
@@ -31,12 +31,14 @@
 
       </section>
 
-      <a class="btn left hover-left" href="{% url 'blog-all-posts' %}">
-        All Posts  <i class="material-icons left">arrow_back</i>
-      </a>
-      <a class="btn right hover-right" href="{{post.blog.get_absolute_url}}">
-        {{post.blog}} <i class="material-icons right">arrow_forward</i>
-      </a>
+      <div class="footer-button-container">
+        <a class="btn left hover-left" href="{% url 'blog-all-posts' %}">
+          All Posts  <i class="material-icons left">arrow_back</i>
+        </a>
+        <a class="btn right hover-right" href="{{post.blog.get_absolute_url}}">
+          <span class="hide-on-small-only">{{post.blog}}</span><span clas="hide-on-med-and-up">Blog</span> <i class="material-icons right">arrow_forward</i>
+        </a>
+      </div>
     </div>
   </div>
 {% endblock %}

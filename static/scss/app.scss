@@ -143,7 +143,17 @@ $movement-size: 10px;
 }
 
 .blog-article {
+  $footer-button-padding: 10px;
   margin-bottom: 20px;
+
+  @media(max-width:$small-screen){
+    .footer-button-container {
+      a {
+        padding-left: $footer-button-padding;
+        padding-right: $footer-button-padding;
+      }
+    }
+  }
 }
 
 .blog-article__header{
