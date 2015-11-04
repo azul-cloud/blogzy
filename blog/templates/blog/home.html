@@ -1,8 +1,7 @@
-{% extends "bloginclude/base.html" %}
+{% extends "layouts/2col.html" %}
 {% load account %}
 
-
-{% block body %}
+{% block sidelayout_content %}
   <i class="material-icons">accessibility</i>
   {% for blog in personalblog_list %}
     <p><a href="{{blog.get_absolute_url}}">{{blog}}</a></p>

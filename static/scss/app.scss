@@ -147,8 +147,12 @@ $movement-size: 10px;
   }
 }
 
-.blog-home {
+.all-blog-home {
+  // blog home page for all blogs
+}
 
+.blog-home {
+  
 }
 
 .blog-article {
@@ -227,6 +231,7 @@ $nav-width: 20%;
 
 .side-layout {
   $i-line-height: 2.5em;
+
   @extend .full-height;
 
   nav {
