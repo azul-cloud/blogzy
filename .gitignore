@@ -9,4 +9,3 @@ staticfiles
 db.sqlite3
 
 media/
-bower_components/
