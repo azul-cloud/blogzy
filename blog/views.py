@@ -7,6 +7,15 @@ from .models import PersonalBlog, Post
 User = get_user_model()
 
 
+class PageMixin(object):
+    page = ""
+
+    def get_context_data(self, **kwargs):
+        context = super(PageMixin, self).get_context_data(**kwargs)
+        context['page'] = self.page
+        return context
+
+
 class BlogHomeView(ListView):
     template_name = "blog/home.html"
     model = PersonalBlog
@@ -20,51 +29,31 @@ class BlogView(DetailView):
 class BlogPostView(DetailView):
     template_name = "blog/post.html"
     model = Post
-    
 
-class BlogMapView(ListView):
+
+class BlogMapView(PageMixin, ListView):
     template_name = "blog/map.html"
     model = Post
-
-    def get_context_data(self, **kwargs):
-        context = super(BlogMapView, self).get_context_data(**kwargs)
-        context['page'] = "map"
-        return context
+    page = "map"
 
 
-class AllPostsView(ListView):
+class AllPostsView(PageMixin, ListView):
     template_name = "blog/all_posts.html"
     model = Post
-
-    def get_context_data(self, **kwargs):
-        context = super(AllPostsView, self).get_context_data(**kwargs)
-        context['page'] = "posts"
-        return context
+    page = "posts"
 
 
-class AllBlogsView(ListView):
+class AllBlogsView(PageMixin, ListView):
     template_name = "blog/all_blogs.html"
     model = PersonalBlog
-
-    def get_context_data(self, **kwargs):
-        context = super(AllBlogsView, self).get_context_data(**kwargs)
-        context['page'] = "blogs"
-        return context
+    page = "blogs"
 
 
-class BlogSettingsView(TemplateView):
+class BlogSettingsView(PageMixin, TemplateView):
     template_name = "blog/settings.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(BlogSettingsView, self).get_context_data(**kwargs)
-        context['page'] = "settings"
-        return context
+    page = "settings"
 
 
-class CreateBlogView(TemplateView):
+class CreateBlogView(PageMixin, TemplateView):
     template_name = "blog/create.html"
-
-    def get_context_data(self, **kwargs):
-        context = super(CreateBlogView, self).get_context_data(**kwargs)
-        context['page'] = "create"
-        return context
+    page = "create"
