@@ -214,6 +214,7 @@ $movement-size: 10px;
 
 .all-blogs {
   .img-blog {
+    background: $light-texture;
     transition: $transition;
 
     &:hover { @include filter(grayscale(50%)); }
@@ -265,6 +266,7 @@ $nav-width: 20%;
             &.active {
               background-color: $tertiary-color;
               color: #333;
+              font-weight: 400;
             }
           }
 

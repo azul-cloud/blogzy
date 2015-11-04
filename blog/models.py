@@ -78,7 +78,7 @@ class PersonalBlog(models.Model):
         if self.image:
             return self.image.url
         else:
-            return static("img/blog_default.jpg")
+            return static("img/blog_default.png")
 
 
 class Post(models.Model):
