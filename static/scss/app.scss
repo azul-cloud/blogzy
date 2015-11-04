@@ -71,6 +71,15 @@ ul.horizontal {
   font-style: italic;
 }
 
+.btn-primary {
+  @extend .btn;
+  background-color: $primary-color;
+
+  &:hover {
+    background-color: $primary-color-light;
+  }
+}
+
 @media(max-width:$small-screen){
   .nav-icons {
     i { line-height: $navbar-height-mobile; }
@@ -179,7 +188,14 @@ $movement-size: 10px;
         @extend .z-depth-2;
       }
     }
+  }
+}
 
+.all-blogs {
+  .img-blog {
+    transition: $transition;
+
+    &:hover { @include filter(grayscale(50%)); }
   }
 }
 

@@ -1,13 +1,13 @@
 {% extends "bloginclude/side_layout.html" %}
 
 {% block sidelayout_content %}
-  <div class="container">
+  <div class=" all-blogs container">
     {% for blog in personalblog_list %}
       <div class="row">
         <div class="col s12 m12">
           <div class="card">
             <div class="card-image waves-effect waves-block waves-light">
-              <img class="activator" src="{{ blog.get_image_url }}">
+              <img class="activator img-blog" src="{{ blog.get_image_url }}">
             </div>
             <div class="card-content">
               <span class="card-title activator grey-text text-darken-4">{{blog}}<i class="material-icons right">more_vert</i></span>
@@ -18,6 +18,7 @@
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">{{blog}}<i class="material-icons right">close</i></span>
               <p>{{blog.description}}</p>
+              <a href="{{blog.get_absolute_url}}" class="btn-primary right hover-right">View Blog <i class="material-icons right">arrow_forward</i></a>
             </div>
           </div>
         </div>
