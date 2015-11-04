@@ -21,6 +21,15 @@ class BlogPostView(DetailView):
     template_name = "blog/post.html"
     model = Post
 
+class BlogMapView(ListView):
+    template_name = "blog/map.html"
+    model = Post
+
+    def get_context_data(self, **kwargs):
+        context = super(BlogMapView, self).get_context_data(**kwargs)
+        context['page'] = "map"
+        return context
+
 
 class AllPostsView(ListView):
     template_name = "blog/all_posts.html"

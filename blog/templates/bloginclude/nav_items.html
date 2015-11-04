@@ -8,6 +8,11 @@
     <i class="material-icons left">whatshot</i> Blogs
   </a>
 </li>
+<li>
+  <a {% if page == "map" %}class="active"{% endif %} href="{% url 'blog-map' %}">
+    <i class="material-icons left">map</i> Map
+  </a>
+</li>
 
 {% if request.user.user_blog %}
   <li>
@@ -16,9 +21,9 @@
     </a>
   </li>
 {% else %}
-  <li>
-    <a {% if page == "create" %}class="active"{% endif %} href="{% url 'blog-create' %}">
-      <i class="material-icons left">add</i> Create Blog
-    </a>
-  </li>
+<li>
+  <a {% if page == "create" %}class="active"{% endif %} href="{% url 'blog-create' %}">
+    <i class="material-icons left">add</i> Create Blog
+  </a>
+</li>
 {% endif %}
