@@ -1,0 +1,45 @@
+{% extends "maininclude/base.html" %}
+{% load staticfiles %}
+
+{% block body %}
+  <div class="auth row">
+    <div class="upper col m4 offset-m4">
+      <img src="{% static 'img/logo_dark.png' %}">
+
+      <div class="lower">
+        {% if messages %}
+          <div>
+            <strong>Messages:</strong>
+            <ul>
+              {% for message in messages %}
+                <li>{{message}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <div class="row">
+          <ul class="options col s12">
+            {% if user.is_authenticated %}
+              <li><a class="btn left" href="{% url 'account_email' %}">Change E-mail</a></li>
+              <li><a class="btn right" href="{% url 'account_logout' %}">Sign Out</a></li>
+            {% else %}
+              <li><a class="btn left" href="{% url 'account_login' %}">Sign In</a></li>
+              <li><a class="btn right" href="{% url 'account_signup' %}">Sign Up</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="row">
+          <div class="auth__content col s12">
+            {% block content %}{% endblock %}
+          </div>
+        </div>
+        <div class="row">
+          <div class="auth__extra-body col s12">
+            {% block extra_body %}{% endblock %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

@@ -140,6 +140,7 @@ ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_TEMPLATE_DIR = "allauth/account/"
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = None #no email verification sent. This will change.
+ACCOUNT_SESSION_REMEMBER = True
 SOCIALACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_TEMPLATE_DIR = "allauth/socialaccount/"
 

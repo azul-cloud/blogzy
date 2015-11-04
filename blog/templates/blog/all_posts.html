@@ -1,13 +1,22 @@
 {% extends "bloginclude/side_layout.html" %}
 
 {% block sidelayout_content %}
-  <div class="container">
-    {% for post in post_list %}
-        <h3>{{post.title}}</h3>
-        <a href="{{post.get_absolute_url}}">
-          <img src="{{post.image.url}}">
-        </a>
-      <p>{{post.headline}}</p>
-    {% endfor %}
+  <div class="all-posts container">
+    <div class="row">
+      {% for post in post_list %}
+        <div class="article-container">
+          <h1>{{post.title}}</h1>
+          <a href="{{post.get_absolute_url}}">
+            <img src="{{post.image.url}}">
+          </a>
+          <h5 class="accent-text">{{post.headline}}</h5>
+          <p class="preview">{{post.body|safe|truncatewords_html:30}}</p>
+          <button class="btn right hover-right">
+            Read More <i class="material-icons right">arrow_forward</i>
+          </button>
+          <br>
+        </div>
+      {% endfor %}
+    </div>
   </div>
 {% endblock %}
