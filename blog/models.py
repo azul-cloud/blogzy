@@ -2,8 +2,9 @@ import os
 import requests
 import datetime
 
-from django.core.urlresolvers import reverse
 from django.conf import settings
+from django.contrib.staticfiles.templatetags.staticfiles import static
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
@@ -17,6 +18,10 @@ from main.utils import slugify_no_hyphen
 def get_post_upload_path(instance, filename):
     blog_id = instance.blog.id
     return os.path.join('blog/' + str(blog_id) + '/' + filename)
+
+def get_blog_upload_path(instance, filename):
+    blog_id = instance.id
+    return os.path.join('blog/' + str(blog_id) + '/main_' + filename)
 
 
 class Topic(models.Model):
@@ -46,8 +51,12 @@ class PersonalBlog(models.Model):
     """
     owner = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=50)
+    image = ProcessedImageField(blank=True, null=True, upload_to=get_blog_upload_path,
+                               processors=[ResizeToFill(1200, 720)],
+                               format='JPEG',
+                               options={'quality': 60})
     description = models.TextField()
-    slug = models.SlugField(unique=True, blank=True)
+    slug = models.SlugField(unique=True, blank=True, editable=False)
     twitter = models.CharField(max_length=15, blank=True, null=True)
     twitter_widget_id = models.CharField(max_length=18, blank=True, null=True)
     facebook = models.CharField(max_length=40, blank=True, null=True)
@@ -65,12 +74,17 @@ class PersonalBlog(models.Model):
         url = reverse('blog-blog', kwargs={ 'slug':self.slug })
         return url
 
+    def get_image_url(self):
+        if self.image:
+            return self.image.url
+        else:
+            return static("img/blog_default.jpg")
+
 
 class Post(models.Model):
     """
     Data about blog posts. The guts of everything.
     """
-
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     blog = models.ForeignKey(PersonalBlog, related_name="posts")
     image = ProcessedImageField(upload_to=get_post_upload_path,
@@ -84,7 +98,7 @@ class Post(models.Model):
     create_date = models.DateTimeField(auto_now_add=True)
     active = models.NullBooleanField(default=True, blank=True, null=True)
     topics = models.ManyToManyField(Topic, null=True, blank=True)
-    slug = models.SlugField(blank=True)
+    slug = models.SlugField(blank=True, editable=False)
     lat = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
     long = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
 
