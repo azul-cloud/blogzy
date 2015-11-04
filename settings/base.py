@@ -37,27 +37,12 @@ INSTALLED_APPS = (
     'braces',
     'storages',
     'rest_framework',
-    'djangobower',
 
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.facebook',
-)
-
-# add bower to staticfiles
-STATICFILES_FINDERS = (
-    'django.contrib.staticfiles.finders.FileSystemFinder',
-    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'djangobower.finders.BowerFinder',
-)
-
-BOWER_COMPONENTS_ROOT = BASE_DIR
-
-BOWER_INSTALLED_APPS = (
-    'materialize',
-    'scroll-reveal',
 )
 
 MIDDLEWARE_CLASSES = (
