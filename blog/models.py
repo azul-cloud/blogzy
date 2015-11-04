@@ -80,6 +80,11 @@ class PersonalBlog(models.Model):
         else:
             return static("img/blog_default.png")
 
+    def get_last_post_with_loc(self):
+        for post in self.posts.all():
+            if post.lat and post.lng:
+                return post
+
 
 class Post(models.Model):
     """

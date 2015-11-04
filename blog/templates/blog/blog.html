@@ -25,14 +25,17 @@
 
       // Create a map object and specify the DOM element for display.
       var map = new google.maps.Map(document.getElementById('blog-map'), {
-        center: {lat: -34.397, lng: 150.644},
+        center: {
+          lat: {{last_post_with_loc.lat}},
+          lng: {{last_post_with_loc.lng}}
+        },
         scrollwheel: false,
-        zoom: 8
+        zoom: 6
       });
 
-      {% for personalblog.posts.all as post_list %}
+      {% with personalblog.posts.all as post_list %}
         {% include "bloginclude/map_markers.html" %}
-      {% endfor %}
+      {% endwith %}
     });
   </script>
 {% endblock %}

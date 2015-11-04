@@ -25,6 +25,11 @@ class BlogView(DetailView):
     template_name = "blog/blog.html"
     model = PersonalBlog
 
+    def get_context_data(self, **kwargs):
+        context = super(BlogView, self).get_context_data(**kwargs)
+        context['last_post_with_loc'] = self.object.get_last_post_with_loc()
+        return context
+
 
 class BlogPostView(DetailView):
     template_name = "blog/post.html"
