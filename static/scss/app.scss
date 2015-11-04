@@ -152,7 +152,7 @@ $movement-size: 10px;
 }
 
 .blog-home {
-  
+  padding: 1em;
 }
 
 .blog-article {
@@ -227,14 +227,15 @@ $movement-size: 10px;
 
 
 // ===== 5. SIDE LAYOUT ===== //
-$nav-width: 20%;
-
 .side-layout {
+  $nav-width: 20%;
+  $aside-width: 15%;
   $i-line-height: 2.5em;
 
   @extend .full-height;
 
   nav {
+    background: #333;
     ul {
       li {
         i { line-height: $i-line-height; }
@@ -254,15 +255,13 @@ $nav-width: 20%;
       height: 100%;
       min-height: 100%;
       width: $nav-width;
-      float: left;
+      position: fixed;
 
       ul {
         li {
           display: block;
           width: 100%;
           transition: $transition;
-
-          i { line-height: $i-line-height; }
 
           a {
             font-size: 1.5em;
@@ -290,8 +289,28 @@ $nav-width: 20%;
     }
 
     main {
-      width: (100 - $nav-width);
-      padding-bottom: 20px;
+      margin-left: $nav-width;
+
+      &.col2 { width: (100 - $nav-width); }
+      &.col3 {
+        width: (100 - $nav-width - $aside-width);
+        margin-right: 0;
+
+        aside {
+          height: 100%;
+          width: 15%;
+          position: fixed;
+          right: 0;
+          background: $brand-light-gray;
+        }
+      }
+    }
+
+    aside {
+      position: fixed;
+      right: 0;
+      height: 100%;
+      width: $aside-width;
     }
   }
 }

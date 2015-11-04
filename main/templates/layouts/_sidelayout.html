@@ -1,31 +1,29 @@
 {% extends "bloginclude/base.html" %}
 {% load staticfiles %}
 
-{# inherit this template for views intended for our VIEWING audience #}
+{# inherit this template for full-height column based templates #}
 
 {% block body %}
-<div class="side-layout">
-  {% block sidelayout_nav %}
-    <nav>
-      <div class="logo-container hide-on-med-and-down">
-        <img class="logo" src="{% static 'img/logo_light.png' %}">
-      </div>
-      <ul class="hide-on-med-and-down">
-        {% include "bloginclude/nav_items.html" %}
-      </ul>
-      <ul id="slide-out" class="side-nav">
-        {% include "bloginclude/nav_items.html" %}
-      </ul>
-      <a href="#" data-activates="slide-out" class="button-collapse">
-        <i class="mdi-navigation-menu"></i>
-      </a>
-    </nav>
-  {% endblock %}
+  <div class="side-layout">
+    {% block sidelayout_left %}
+      <nav>
+        <div class="logo-container hide-on-med-and-down">
+          <img class="logo" src="{% static 'img/logo_light.png' %}">
+        </div>
+        <ul class="hide-on-med-and-down">
+          {% include "bloginclude/nav_items.html" %}
+        </ul>
+        <ul id="slide-out" class="side-nav">
+          {% include "bloginclude/nav_items.html" %}
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse">
+          <i class="mdi-navigation-menu"></i>
+        </a>
+      </nav>
+    {% endblock %}
 
-  <main>
-    {% block sidelayout_content %}{% endblock %}
-  </main>
-</div>
+    {% block sidelayout_right %}{% endblock %}
+  </div>
 {% endblock %}
 
 {% block js %}

@@ -1,19 +1,24 @@
-{% extends "layouts/2col.html" %}
+{% extends "layouts/3col.html" %}
 
 {% block sidelayout_content %}
-  <div class="blog-home">
+  <div class="col s12 blog-home">
     <div class="inner-container">
-      <h1 class="align-center">{{personalblog}}</h1>
+      <h1 class="center-align">{{personalblog}}</h1>
 
       {% for post in personalblog.posts.all %}
+        <img src="{{post.image.url}}">
         <a href="{{post.get_absolute_url}}">{{post.title}}</a>
       {% endfor %}
 
       <a href="{% url 'blog-home' %}">Blog Home</a>
     </div>
-
-    <aside style="height: 100%; right: 0; position: fixed; background: black;">
-      Hello
-    </aside>
   </div>
+  <aside>
+    Hello
+  </aside>
+{% endblock %}
+
+
+{% block sidelayout_aside %}
+  This is the aside
 {% endblock %}

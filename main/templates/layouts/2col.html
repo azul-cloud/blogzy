@@ -1,1 +1,8 @@
 {% extends "layouts/_sidelayout.html" %}
+{# create a navigation and a scrollable main section #}
+
+{% block sidelayout_right %}
+  <main class="col2">
+    {% block sidelayout_content %}{% endblock %}
+  </main>
+{% endblock %}
