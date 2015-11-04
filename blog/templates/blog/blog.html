@@ -6,6 +6,7 @@
   {% for post in personalblog.posts.all %}
     <a href="{{post.get_absolute_url}}">{{post.title}}</a>
   {% endfor %}
+  
 
   <a href="{% url 'blog-home' %}">Blog Home</a>
 {% endblock %}
