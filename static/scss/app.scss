@@ -188,43 +188,62 @@ $movement-size: 10px;
 $nav-width: 20%;
 
 .side-layout {
+  $i-line-height: 2.5em;
   @extend .full-height;
-  overflow-y: hidden;
 
   nav {
-    @extend .full-height;
-    width: $nav-width;
-    float: left;
-
     ul {
       li {
-        @extend .hover-right;
-
-        display: block;
-        width: 100%;
-
-        i { line-height: 2.5em; }
-
-        a.active {
-          background-color: $tertiary-color;
-          color: #333;
-        }
+        i { line-height: $i-line-height; }
       }
-    }
-
-    .logo-container {
-      text-align: center;
-
-      padding-right: 20%;
-      padding-left: 20%;
     }
   }
 
   main {
     @extend .full-height;
-    width: (100 - $nav-width);
     overflow-y: scroll;
-    padding-bottom: 20px;
+  }
+
+  @media(min-width: $small-screen){
+    overflow-y: hidden;
+
+    nav {
+      height: 100%;
+      min-height: 100%;
+      width: $nav-width;
+      float: left;
+
+      ul {
+        li {
+          display: block;
+          width: 100%;
+          transition: $transition;
+
+          i { line-height: $i-line-height; }
+
+          a.active {
+            background-color: $tertiary-color;
+            color: #333;
+          }
+
+          &:hover {
+            transform: translateX(15px);
+          }
+        }
+      }
+
+      .logo-container {
+        text-align: center;
+
+        padding-right: 20%;
+        padding-left: 20%;
+      }
+    }
+
+    main {
+      width: (100 - $nav-width);
+      padding-bottom: 20px;
+    }
   }
 }
 
