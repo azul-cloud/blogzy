@@ -28,7 +28,7 @@ img {
   height: auto;
 }
 
-nav { background: transparentize(black, 0.2); }
+nav { background: $dark-transparent; }
 
 footer { background: $dark-texture; }
 
@@ -204,6 +204,11 @@ $nav-width: 20%;
         width: 100%;
 
         i { line-height: 2.5em; }
+
+        a.active {
+          background-color: $tertiary-color;
+          color: #333;
+        }
       }
     }
 

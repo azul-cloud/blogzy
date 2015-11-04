@@ -26,15 +26,35 @@ class AllPostsView(ListView):
     template_name = "blog/all_posts.html"
     model = Post
 
+    def get_context_data(self, **kwargs):
+        context = super(AllPostsView, self).get_context_data(**kwargs)
+        context['page'] = "posts"
+        return context
+
 
 class AllBlogsView(ListView):
     template_name = "blog/all_blogs.html"
     model = PersonalBlog
 
+    def get_context_data(self, **kwargs):
+        context = super(AllBlogsView, self).get_context_data(**kwargs)
+        context['page'] = "blogs"
+        return context
+
 
 class BlogSettingsView(TemplateView):
     template_name = "blog/settings.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(BlogSettingsView, self).get_context_data(**kwargs)
+        context['page'] = "settings"
+        return context
+
 
 class CreateBlogView(TemplateView):
     template_name = "blog/create.html"
+
+    def get_context_data(self, **kwargs):
+        context = super(CreateBlogView, self).get_context_data(**kwargs)
+        context['page'] = "create"
+        return context
