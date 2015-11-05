@@ -4,11 +4,26 @@ var markerIcon = "{% static 'img/map_icon_sm.png' %}";
 
 {% for post in post_list %}
   {% if post.lat and post.lng %}
-    var marker = new google.maps.Marker({
+    var contentString{{post.id}} =
+        '<div class="info-window">'+
+        '<h1 class="center-align">{{post.title}}</h1>'+
+        '<img src="{{post.image.url}}">'+
+        '<h5 class="post-headline accent-text center-align">{{post.headline}}</h5>'+
+        '</div>';
+
+    var infowindow{{post.id}} = new google.maps.InfoWindow({
+      content: contentString{{post.id}}
+    });
+
+    var marker{{post.id}} = new google.maps.Marker({
       position: {lat: {{post.lat}}, lng: {{post.lng}}},
       map: map,
       title: 'Hello World!',
       icon: markerIcon
+    });
+
+    marker{{post.id}}.addListener('click', function() {
+      infowindow{{post.id}}.open(map, marker{{post.id}});
     });
   {% endif %}
 {% endfor %}

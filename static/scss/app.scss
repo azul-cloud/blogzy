@@ -11,6 +11,7 @@
   4. Blog
   5. Side Layout
   6. Auth
+  7. Map
 */
 
 
@@ -469,5 +470,20 @@ $movement-size: 10px;
 
   .socialaccount_providers {
     img { border-radius: $border-radius; }
+  }
+}
+
+// ===== 7. MAP ===== //
+.info-window {
+  max-width: 500px;
+
+  h1 {
+    font-size: 2.5em;
+  }
+
+  img {
+    width: 80%;
+    margin-left: 10%;
+    border-radius: $border-radius;
   }
 }
