@@ -106,9 +106,10 @@ $movement-size: 10px;
   }
 
   .header {
-    img {
-      @include filter(blur(5px));
+    .title {
+      font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
     }
+
     .overlay {
       text-align: center;
       position: absolute;
@@ -118,7 +119,7 @@ $movement-size: 10px;
       left: 50%;
 
       > .inner {
-        background-color: $light-transparent;
+        background-color: $dark-transparent;
         border-radius: $border-radius;
         padding: 15px;
         color: white;
@@ -126,13 +127,19 @@ $movement-size: 10px;
         position: relative;
         left: -50%;
 
-        h1, p { font-weight: 200; }
+        h1, a { font-weight: 200; }
       }
     }
   }
 
   .summary {
-    li.tab { font-size: 2em; }
+    li.tab {
+      font-size: 3em;
+
+      a {
+        color: black;
+      }
+    }
 
     .card-row {
       $icon-size: 50px;
