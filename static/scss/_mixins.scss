@@ -2,3 +2,17 @@
   -webkit-filter: $filter;
           filter: $filter;
 }
+
+@mixin transform($transform){
+  -webkit-transform: rotate($transform); /* Chrome, Safari, Opera */
+      -ms-transform: rotate($transform); /* IE 9 */
+          transform: rotate($transform);
+}
+
+@mixin hover-transform($transform) {
+  transition: transform 0.5s ease;
+
+  &:hover {
+    @include transform($transform);
+  }
+}

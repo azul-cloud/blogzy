@@ -86,6 +86,18 @@ class PersonalBlog(models.Model):
                 return post
 
 
+class PostManager(models.Manager):
+
+    def public(self):
+        return self.filter(public=True)
+
+    def map_eligible(self):
+        return self.public().filter(
+            lat__isnull=False,
+            lng__isnull=False,
+        )
+
+
 class Post(models.Model):
     """
     Data about blog posts. The guts of everything.
@@ -101,7 +113,7 @@ class Post(models.Model):
     body = models.TextField()
     headline = models.CharField(max_length=100, null=True, blank=True)
     create_date = models.DateTimeField(auto_now_add=True)
-    active = models.NullBooleanField(default=True, blank=True, null=True)
+    public = models.NullBooleanField(default=True, blank=True, null=True)
     topics = models.ManyToManyField(Topic, null=True, blank=True)
     slug = models.SlugField(blank=True, editable=False)
     lat = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
@@ -110,6 +122,8 @@ class Post(models.Model):
     # place_id comes from Google Places API
     place_id = models.CharField(max_length=40, null=True, blank=True)
     place = models.CharField(max_length=100, null=True, blank=True)
+
+    objects = PostManager()
 
     class Meta:
         ordering = ['-create_date']
