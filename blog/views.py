@@ -1,6 +1,7 @@
+from django.contrib.auth import get_user_model
+from django.db.models import Q
 from django.views.generic import ListView, TemplateView
 from django.views.generic.detail import DetailView
-from django.contrib.auth import get_user_model
 
 from .models import PersonalBlog, Post
 
@@ -46,6 +47,22 @@ class AllPostsView(PageMixin, ListView):
     template_name = "blog/all_posts.html"
     model = Post
     page = "posts"
+
+
+class PostSearchView(AllPostsView):
+
+    def post(self, request, *args, **kwargs):
+
+        self.queryset = Post.objects.filter(
+            Q(title__icontains=self.request.POST["search"]) |
+            Q(headline__icontains=self.request.POST["search"]) |
+            Q(body__icontains=self.request.POST["search"]))
+        return self.get(request)
+
+    # def get_queryset(self):
+    #     print(self.kwargs["search_term"])
+    #     return Post.objects.filter(
+    #         title__icontains=self.kwargs["search_term"])
 
 
 class AllBlogsView(PageMixin, ListView):

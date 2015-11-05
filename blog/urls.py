@@ -6,9 +6,12 @@ app = 'blog-'
 
 urlpatterns = patterns('',
     url(r'posts/$', views.AllPostsView.as_view(), name=app + "all-posts"),
+    url(r'posts/search/$', views.PostSearchView.as_view(),
+        name=app + "search-posts"),
     url(r'blogs/$', views.AllBlogsView.as_view(), name=app + "all-blogs"),
     url(r'create/$', views.CreateBlogView.as_view(), name=app + "create"),
-    url(r'settings/$', views.BlogSettingsView.as_view(), name=app + "settings"),
+    url(r'settings/$', views.BlogSettingsView.as_view(),
+        name=app + "settings"),
     url(r'map/$', views.BlogMapView.as_view(), name=app + "map"),
 
     url(r'(?P<blog>[a-zA-Z0-9-]+)/(?P<slug>[a-zA-Z0-9-]+)/$',

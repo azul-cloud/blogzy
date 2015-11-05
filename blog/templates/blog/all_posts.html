@@ -1,15 +1,22 @@
 {% extends "layouts/2col.html" %}
 
 {% block sidelayout_content %}
+
   <div class="row">
-    <form class="search-form">
+    <form class="search-form" action="{% url 'blog-search-posts' %}" method="POST">
+      {% csrf_token %}
       <div class="input-field col m4 s8">
         <i class="material-icons prefix">search</i>
-        <input id="search" type="text" class="validate">
+        <input name="search" type="text" class="validate">
         <label for="search">Search</label>
       </div>
       <div class="col s4">
-        <button type="submit" class="btn">Go</button>
+        <button type="submit" class="btn btn-primary">Go</button>
+        {% if request.method == "POST" %}
+          <a href="{% url 'blog-all-posts' %}" class="btn">
+            <i class="material-icons">clear</i>
+          </a>
+        {% endif %}
       </div>
     </form>
   </div>
