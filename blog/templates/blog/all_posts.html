@@ -1,31 +1,33 @@
 {% extends "layouts/2col.html" %}
 
 {% block sidelayout_content %}
+  <div class="all-posts">
+    <div class="row fixed">
+      <form class="search-form" action="{% url 'blog-search-posts' %}" method="POST">
+        {% csrf_token %}
+        <div class="input-field col m4 s8">
+          <i class="material-icons prefix">search</i>
+          <input name="search" type="text" class="validate">
+          <label for="search">Search</label>
+        </div>
+        <div class="col s4">
+          <button type="submit" class="btn btn-primary">Go</button>
+          {% if request.method == "POST" %}
+            <a href="{% url 'blog-all-posts' %}" class="btn">
+              <i class="material-icons">clear</i>
+            </a>
+          {% endif %}
+        </div>
+      </form>
+    </div>
 
-  <div class="row">
-    <form class="search-form" action="{% url 'blog-search-posts' %}" method="POST">
-      {% csrf_token %}
-      <div class="input-field col m4 s8">
-        <i class="material-icons prefix">search</i>
-        <input name="search" type="text" class="validate">
-        <label for="search">Search</label>
-      </div>
-      <div class="col s4">
-        <button type="submit" class="btn btn-primary">Go</button>
-        {% if request.method == "POST" %}
-          <a href="{% url 'blog-all-posts' %}" class="btn">
-            <i class="material-icons">clear</i>
-          </a>
-        {% endif %}
-      </div>
-    </form>
-  </div>
-  <div class="row">
-    <div class="all-posts container">
-      <div class="row">
-        {% for post in post_list %}
-          {% include "bloginclude/post_preview.html" %}
-        {% endfor %}
+    <div class="row inner-content">
+      <div class="all-posts container">
+        <div class="row">
+          {% for post in post_list %}
+            {% include "bloginclude/post_preview.html" %}
+          {% endfor %}
+        </div>
       </div>
     </div>
   </div>

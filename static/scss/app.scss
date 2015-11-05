@@ -218,7 +218,21 @@ $movement-size: 10px;
 }
 
 .all-posts {
+  $fixed-nav-height: 70px;
+  $fixed-background-color: white;
 
+  .fixed {
+    position: fixed;
+    top: 0;
+    height: $fixed-nav-height;
+    width: 100%;
+    background-color: $fixed-background-color;
+    border-bottom: 1px solid darken($fixed-background-color, 5%);
+  }
+
+  .inner-content {
+    margin-top: $fixed-nav-height;
+  }
 }
 
 .all-blogs {
