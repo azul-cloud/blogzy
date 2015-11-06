@@ -156,7 +156,6 @@
             <p class="grey-text text-lighten-4">Enjoy your travel blog on the platform built by travel bloggers for travel bloggers</p>
           </div>
           <div class="col l4 offset-l2 s12">
-            <h5 class="white-text">Links</h5>
             <ul>
               <li><a class="grey-text text-lighten-3" href="{% url 'blog-create' %}">Create Travel Blog</a></li>
               <li><a class="grey-text text-lighten-3" href="{% url 'blog-map' %}">Travel Blog Map</a></li>
@@ -168,7 +167,9 @@
       <div class="footer-copyright">
         <div class="container">
         <a class="grey-text text-lighten-4 left" href="http://www.adamwester.me">© 2015 Travel Blog Wave</a>
-        <a class="grey-text text-lighten-4 right" href="{% url 'blog-create' %}" data-sr="enter left, over 2s, move 100px">Register, be awesome</a>
+        <div class="right">
+          {% include "maininclude/social_icons.html" %}
+        </div>
         </div>
       </div>
     </footer>

@@ -72,6 +72,23 @@ ul.horizontal {
   font-style: italic;
 }
 
+.social-icons {
+  li {
+    padding-left: 5px;
+    padding-right: 5px;
+    display: inline;
+  }
+
+  i { font-size: 30px; }
+
+  a {
+    color: white;
+    transition: $transition;
+
+    &:hover { color: $secondary-color; }
+  }
+}
+
 .btn-primary {
   @extend .btn;
   background-color: $primary-color;
