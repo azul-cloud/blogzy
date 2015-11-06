@@ -125,12 +125,15 @@ ACCOUNT_LOGOUT_ON_GET = True
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_TEMPLATE_DIR = "allauth/account/"
 
-
 ACCOUNT_EMAIL_VERIFICATION = None #no email verification sent. This will change.
 ACCOUNT_USER_MODEL_USERNAME_FIELD = None
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
+
+ACCOUNT_FORMS = ({
+    'signup': 'main.forms.CustomSignupForm',
+})
 
 SOCIALACCOUNT_EMAIL_REQUIRED = True
 SOCIALACCOUNT_TEMPLATE_DIR = "allauth/socialaccount/"

@@ -478,6 +478,16 @@ $movement-size: 10px;
 }
 
 .auth__content {
+  h1 {
+    margin-left: -17px;
+    margin-right: -17px;
+    margin-top: -5px;
+    padding: 20px;
+    border-top-right-radius: $border-radius;
+    border-top-left-radius: $border-radius;
+    background-color: $secondary-color;
+  }
+
   p { text-align: left; }
 
   input[type="submit"],
