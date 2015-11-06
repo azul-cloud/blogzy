@@ -1,5 +1,22 @@
 {% extends "layouts/2col.html" %}
 
 {% block sidelayout_content %}
-  This is the blog settings
+  <div class="my-blog">
+    <div class="row">
+      <div class="col s12">
+        <ul class="tabs">
+          <li class="tab col s3"><a class="active" href="#new-blog-post">New Post</a></li>
+          <li class="tab col s3"><a href="#my-blog-posts">Posts</a></li>
+          <li class="tab col s3"><a href="#my-blog-blog">Blog</a></li>
+          <li class="tab col s3"><a href="#my-blog-stats">Stats</a></li>
+        </ul>
+      </div>
+      <div class="inner-content">
+        <div id="new-blog-post" class="col s12">Write new post</div>
+        <div id="my-blog-posts" class="col s12">Edit posts</div>
+        <div id="my-blog-blog" class="col s12">Edit your blog info</div>
+        <div id="my-blog-stats" class="col s12">Coming Soon</div>
+      </div>
+    </div>
+  <div>
 {% endblock %}

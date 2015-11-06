@@ -7,9 +7,9 @@
 /*
   1. Global
   2. Hover
-  3. Main
-  4. Blog
-  5. Side Layout
+  3. Side Layout
+  4. Main
+  5. Blog
   6. Auth
   7. Map
 */
@@ -115,7 +115,102 @@ $movement-size: 10px;
 .hover-shrink { @include hover-transform(scale(0.9)) }
 
 
-// ===== 3. MAIN ===== //
+// ===== 3. SIDE LAYOUT ===== //
+$nav-width: 15%;
+
+.side-layout {
+  $aside-width: 30%;
+  $i-line-height: 2.5em;
+
+  @extend .full-height;
+
+  nav {
+    background: #333;
+    ul {
+      li {
+        i { line-height: $i-line-height; }
+      }
+    }
+  }
+
+  main {
+    @extend .full-height;
+    overflow-y: scroll;
+  }
+
+  @media(min-width: $small-screen){
+    overflow-y: hidden;
+
+    nav {
+      height: 100%;
+      min-height: 100%;
+      width: $nav-width;
+      position: fixed;
+
+      ul {
+        li {
+          display: block;
+          width: 100%;
+          transition: $transition;
+
+          a {
+            font-size: 1.5em;
+            font-weight: 200;
+
+            &.active {
+              background-color: $tertiary-color;
+              color: #333;
+              font-weight: 400;
+            }
+          }
+
+          &:hover {
+            transform: translateX(15px);
+          }
+        }
+      }
+
+      .logo-container {
+        text-align: center;
+
+        padding-right: 20%;
+        padding-left: 20%;
+      }
+    }
+
+    main {
+      margin-left: $nav-width;
+
+      &.col2 { width: (100 - $nav-width); }
+      &.col3 {
+        width: (100 - $nav-width - $aside-width);
+        margin-right: 0;
+
+        aside {
+          height: 100%;
+          width: $aside-width;
+          position: fixed;
+          right: 0;
+          background: $brand-light-gray;
+        }
+      }
+    }
+
+    aside {
+      position: fixed;
+      right: 0;
+      height: 100%;
+      width: $aside-width;
+
+      #blog-map {
+        height: 100%;
+        width: 100%;
+      }
+    }
+  }
+}
+
+// ===== 4. MAIN ===== //
 .page-home {
   section {
     padding-top: 1em;
@@ -249,7 +344,7 @@ $movement-size: 10px;
 }
 
 
-// ===== 4. BLOG ===== //
+// ===== 5. BLOG ===== //
 .article-container {
   h1 { font-size: 2.3em; }
 
@@ -356,98 +451,19 @@ $movement-size: 10px;
   }
 }
 
+.my-blog {
+  .tabs {
+    position: fixed;
+    top: 0;
+    width: (100% - $nav-width)!important;
 
-// ===== 5. SIDE LAYOUT ===== //
-.side-layout {
-  $nav-width: 15%;
-  $aside-width: 30%;
-  $i-line-height: 2.5em;
-
-  @extend .full-height;
-
-  nav {
-    background: #333;
-    ul {
-      li {
-        i { line-height: $i-line-height; }
-      }
-    }
+    li { border-bottom: 2px solid $brand-light-gray; }
   }
 
-  main {
-    @extend .full-height;
-    overflow-y: scroll;
-  }
+  .inner-content {
+    margin-top: 48px;
 
-  @media(min-width: $small-screen){
-    overflow-y: hidden;
-
-    nav {
-      height: 100%;
-      min-height: 100%;
-      width: $nav-width;
-      position: fixed;
-
-      ul {
-        li {
-          display: block;
-          width: 100%;
-          transition: $transition;
-
-          a {
-            font-size: 1.5em;
-            font-weight: 200;
-
-            &.active {
-              background-color: $tertiary-color;
-              color: #333;
-              font-weight: 400;
-            }
-          }
-
-          &:hover {
-            transform: translateX(15px);
-          }
-        }
-      }
-
-      .logo-container {
-        text-align: center;
-
-        padding-right: 20%;
-        padding-left: 20%;
-      }
-    }
-
-    main {
-      margin-left: $nav-width;
-
-      &.col2 { width: (100 - $nav-width); }
-      &.col3 {
-        width: (100 - $nav-width - $aside-width);
-        margin-right: 0;
-
-        aside {
-          height: 100%;
-          width: $aside-width;
-          position: fixed;
-          right: 0;
-          background: $brand-light-gray;
-        }
-      }
-    }
-
-    aside {
-      position: fixed;
-      right: 0;
-      height: 100%;
-      width: $aside-width;
-
-      #blog-map {
-        height: 100%;
-        width: 100%;
-      }
-    }
+    > div { padding-top: 15px; }
   }
 }
 
