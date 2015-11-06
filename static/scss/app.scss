@@ -468,6 +468,13 @@ $movement-size: 10px;
     padding: 5px;
     border-radius: $border-radius;
   }
+
+  .errorlist {
+    background-color: $error-color;
+    color: white;
+    border-radius: $border-radius;
+    padding: 10px;
+  }
 }
 
 .auth__content {
