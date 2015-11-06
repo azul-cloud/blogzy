@@ -12,7 +12,15 @@
         </ul>
       </div>
       <div class="inner-content">
-        <div id="new-blog-post" class="col s12">Write new post</div>
+        <div id="new-blog-post" class="col s12">
+          <div class="container" style="margin-top:20px;">
+            <form method="post" action="{% url 'blog-post-create' %}" enctype="multipart/form-data">
+              {% csrf_token %}
+              {{post_create_form.as_p}}
+              <button class="btn" type="submit">Submit</button>
+            </form>
+          </div>
+        </div>
         <div id="my-blog-posts" class="col s12">Edit posts</div>
         <div id="my-blog-blog" class="col s12">Edit {{ object }}</div>
         <div id="my-blog-stats" class="col s12">Coming Soon</div>

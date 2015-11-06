@@ -102,7 +102,6 @@ class Post(models.Model):
     """
     Data about blog posts. The guts of everything.
     """
-    author = models.ForeignKey(settings.AUTH_USER_MODEL)
     blog = models.ForeignKey(PersonalBlog, related_name="posts")
     image = ProcessedImageField(upload_to=get_post_upload_path,
                                            processors=[ResizeToFill(1200, 720)],
