@@ -16,8 +16,8 @@
 
 {% if request.user.user_blog %}
   <li>
-    <a {% if page == "settings" %}class="active"{% endif %} href="{% url 'blog-settings' %}">
-      <i class="material-icons left">settings</i> Settings
+    <a {% if page == "myblog" %}class="active"{% endif %} href="{% url 'blog-my-blog' %}">
+      <i class="material-icons left">settings</i> My Blog
     </a>
   </li>
 {% else %}

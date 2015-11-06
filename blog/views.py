@@ -71,9 +71,9 @@ class AllBlogsView(PageMixin, ListView):
     page = "blogs"
 
 
-class BlogSettingsView(PageMixin, TemplateView):
-    template_name = "blog/settings.html"
-    page = "settings"
+class MyBlogView(PageMixin, TemplateView):
+    template_name = "blog/my_blog.html"
+    page = "myblog"
 
 
 class CreateBlogView(PageMixin, TemplateView):
