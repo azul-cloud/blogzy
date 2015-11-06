@@ -31,7 +31,9 @@ class User(AbstractUser):
     """
     instagram = models.CharField(max_length=20, blank=True, null=True)
     twitter = models.CharField(max_length=20, blank=True, null=True)
-    blog_wave = models.ManyToManyField(PersonalBlog, blank=True, null=True)
+
+    def __str__(self):
+        return self.email
 
     def user_blog(self):
         # detect if the current user has started their own blog
