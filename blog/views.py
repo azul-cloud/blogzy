@@ -71,9 +71,14 @@ class AllBlogsView(PageMixin, ListView):
     page = "blogs"
 
 
-class MyBlogView(PageMixin, TemplateView):
+class MyBlogView(PageMixin, DetailView):
     template_name = "blog/my_blog.html"
     page = "myblog"
+
+    def get_object(self):
+        print(self.request.user)
+        obj = PersonalBlog.objects.get(owner=self.request.user)
+        return obj
 
 
 class CreateBlogView(PageMixin, TemplateView):
