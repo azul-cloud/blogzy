@@ -42,3 +42,11 @@ class PostCreateForm(ModelForm):
         model = Post
         exclude = ['author', 'blog', 'lat', 'lng', 'place',
             'place_id']
+
+
+class PostEditForm(PostCreateForm):
+
+    class Meta:
+        model = Post
+        exclude = ['author', 'blog', 'lat', 'lng', 'place',
+            'place_id']

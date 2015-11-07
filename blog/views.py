@@ -6,7 +6,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
 
 from .models import PersonalBlog, Post
-from .forms import PostCreateForm
+from .forms import PostCreateForm, PostEditForm
 
 User = get_user_model()
 
@@ -86,6 +86,7 @@ class MyBlogView(PageMixin, DetailView):
     def get_context_data(self, **kwargs):
         context = super(MyBlogView, self).get_context_data(**kwargs)
         context['post_create_form'] = PostCreateForm
+        context['post_edit_form'] = PostEditForm
         return context
 
 

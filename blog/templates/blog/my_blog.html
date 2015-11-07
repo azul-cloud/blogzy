@@ -23,27 +23,46 @@
           </div>
         </div>
         <div id="my-blog-posts" class="col s12">
-          <table class="responsive-table bordered">
-            <tbody>
-              {% for post in object.posts.all %}
-                <tr id="row-{{post.id}}">
-                  <td><a class="btn-primary" href="{{post.get_absolute_url}}">
-                    {{post.title}} <i class="material-icons left">arrow_back</i>
-                  </a></td>
-                  <td>
-                    <button class="btn">
-                      Edit <i class="material-icons right">edit</i>
-                    </button>
-                  </td>
-                  <td>
-                    <button class="btn" onclick="openDeleteModal({{post.id}})">
-                      Delete <i class="material-icons right">delete</i>
-                    </button>
-                  </td>
-                </tr>
-              {% endfor %}
-            </tbody>
-          </table>
+          <div id="inner-my-posts">
+            <table class="responsive-table bordered">
+              <tbody>
+                {% for post in object.posts.all %}
+                  <tr id="row-{{post.id}}">
+                    <td><a class="btn-primary" href="{{post.get_absolute_url}}">
+                      {{post.title}} <i class="material-icons left">arrow_back</i>
+                    </a></td>
+                    <td>
+                      <button class="btn" onclick="showEditPost({{post.id}})">
+                        Edit <i class="material-icons right">edit</i>
+                      </button>
+                    </td>
+                    <td>
+                      <button class="btn" onclick="openDeleteModal({{post.id}})">
+                        Delete <i class="material-icons right">delete</i>
+                      </button>
+                    </td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div id="inner-edit-post" class="hide">
+            <div class="row">
+              <div class="col s2">
+                <button class="btn" onclick="showMyPosts()">
+                  <i class="material-icons left">arrow_back</i>Go Back
+                </button>
+              </div>
+              <div class="col s10">
+                <h1 id="edit-form-header"></h1>
+              </div>
+            </div>
+            <div class="row">
+              <div class="container edit-form-container">
+                {% crispy post_edit_form %}
+              </div>
+            </div>
+          </div>
         </div>
         <div id="my-blog-blog" class="col s12">Edit {{ object }}</div>
         <div id="my-blog-stats" class="col s12">Coming Soon</div>
@@ -72,6 +91,9 @@
   {% include "maininclude/tinymce.html" %}
 
   <script>
+    var editPostSection = $("#inner-edit-post");
+    var myPostsSection = $("#inner-my-posts");
+
     function openDeleteModal(postId){
       $('#modal-delete').data('postId', postId);
       $('#modal-delete').openModal();
@@ -85,6 +107,24 @@
       });
 
       $("#row-" + postId).remove();
+    }
+
+    function setData(){
+      var postId = editPostSection.data("id", postId);
+    }
+
+    function showEditPost(postId){
+      myPostsSection.addClass("hide");
+      editPostSection.removeClass("hide");
+      editPostSection.data("id", postId);
+
+      setData();
+    }
+
+    function showMyPosts(){
+      myPostsSection.removeClass("hide");
+      editPostSection.addClass("hide");
+      editPostSection.data("id", "");
     }
 
     $(document).ready(function() {
