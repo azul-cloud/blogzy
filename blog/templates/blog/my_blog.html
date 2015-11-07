@@ -32,6 +32,8 @@
 
 
 {% block js %}
+  {% include "maininclude/tinymce.html" %}
+  
   <script>
     $(document).ready(function() {
       $('select').material_select();
