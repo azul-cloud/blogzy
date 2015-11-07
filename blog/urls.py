@@ -12,6 +12,8 @@ urlpatterns = patterns('',
     url(r'post/create/$', views.PostCreateView.as_view(),
         name=app + "post-create"),
     url(r'post/delete/$', views.delete_post, name=app + "post-delete"),
+    url(r'post/edit/(?P<pk>\d+)/$', views.PostEditView.as_view(),
+        name=app + "edit-post"),
 
     # blog URLs
     url(r'blogs/$', views.AllBlogsView.as_view(), name=app + "all-blogs"),

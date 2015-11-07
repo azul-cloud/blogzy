@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.http import HttpResponse
 from django.views.generic import ListView, TemplateView
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, UpdateView
 
 from .models import PersonalBlog, Post
 from .forms import PostCreateForm, PostEditForm
@@ -102,6 +102,12 @@ class PostCreateView(CreateView):
     def form_valid(self, form):
         form.instance.blog = PersonalBlog.objects.get(owner=self.request.user)
         return super(PostCreateView, self).form_valid(form)
+
+
+class PostEditView(UpdateView):
+    template_name = "blog/post_edit.html"
+    form_class = PostEditForm
+    model = Post
 
 
 def delete_post(request):

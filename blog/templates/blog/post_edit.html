@@ -1,0 +1,16 @@
+{% extends "layouts/2col.html" %}
+{% load crispy_forms_tags %}
+
+{% block sidelayout_content %}
+  <h1>Edit {{ object }}</h1>
+  <div class="container">
+    <form method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      {% crispy form %}
+    </form>
+  </div>
+{% endblock %}
+
+{% block js %}
+  {% include "maininclude/tinymce.html" %}
+{% endblock %}

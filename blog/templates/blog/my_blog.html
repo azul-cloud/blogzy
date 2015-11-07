@@ -29,7 +29,7 @@
                 {% for post in object.posts.all %}
                   <tr id="row-{{post.id}}">
                     <td><a class="btn-primary" href="{{post.get_absolute_url}}">
-                      {{post.title}} <i class="material-icons left">arrow_back</i>
+                      {{post.title}} <i class="material-icons left">library_books</i>
                     </a></td>
                     <td>
                       <button class="btn" onclick="showEditPost({{post.id}})">
@@ -58,6 +58,7 @@
               </div>
             </div>
             <div class="row">
+              {% csrf_token %}
               <div class="container edit-form-container">
                 <!-- dyanamically add form into here -->
               </div>
@@ -112,12 +113,34 @@
 
     function setData(){
       var postId = editPostSection.data("id");
-      var data = $.get('/api/posts/' + postId).then(function(data){
+
+      $.get('/api/posts/' + postId).then(function(data){
         $("#edit-form-title").text(data.title);
 
         // insert generated form HTML from API
-        var form = $.get('/api/forms/editpost/' + postId + '' ).then(function(data){
-          editFormContainer.append(data.html);
+        $.get('/api/forms/editpost/' + postId + '' ).then(function(data){
+          editFormContainer.prepend(data.html);
+          $("#edit-post-form").append("{% csrf_token %}");
+
+          $('select').material_select();
+
+
+          // need to set a unique id for the body for tinymce
+          editFormContainer.find("#id_body").attr("id", "id_edit_body");
+          tinymce.init({selector:'textarea'});
+
+          // set active labels where they should be active
+          var textInputArray = $("#edit-post-form input[type='text']");
+
+          for (var i=0; i<textInputArray.length; i++) {
+            var input = textInputArray[i];
+
+            if(input.value){
+              // apply active to the input's label
+              var label = $("label[for='" + input.id + "']");
+              label.addClass("active");
+            }
+          }
         });
       });
     }
@@ -131,7 +154,6 @@
       editPostSection.data("id", postId);
 
       setData();
-      tinymce.init({selector:'textarea'})
     }
 
     function showMyPosts(){
