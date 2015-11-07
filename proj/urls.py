@@ -24,7 +24,10 @@ sitemaps = {
 }
 
 urlpatterns = patterns('',
-    url(r'^v1/', include(router.urls)),
+    # API Urls
+    url(r'^api/', include(router.urls)),
+    url(r'^api/', include('main.api.urls')),
+
     (r'^media/(?P<path>.*)$', 'django.views.static.serve', {
         'document_root': settings.MEDIA_ROOT}),
     url(r'^', include('main.urls')),
