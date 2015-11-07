@@ -58,7 +58,6 @@
               </div>
             </div>
             <div class="row">
-              {% csrf_token %}
               <div class="container edit-form-container">
                 <!-- dyanamically add form into here -->
               </div>
@@ -112,6 +111,10 @@
     }
 
     function setData(){
+      /* Set the data of the dynamically created form by accessing the API and
+         retreiving the form. Various other tasks need to be
+         performed as well. */
+
       var postId = editPostSection.data("id");
 
       $.get('/api/posts/' + postId).then(function(data){
@@ -127,7 +130,7 @@
 
           // need to set a unique id for the body for tinymce
           editFormContainer.find("#id_body").attr("id", "id_edit_body");
-          tinymce.init({selector:'textarea'});
+          tinymce.init({selector:'textarea', height: 400});
 
           // set active labels where they should be active
           var textInputArray = $("#edit-post-form input[type='text']");
@@ -146,6 +149,7 @@
     }
 
     function showEditPost(postId){
+      // Switch the template to show the form to edit a post
       myPostsSection.animate({
         opacity: 0.25,
         height: "toggle"
@@ -157,6 +161,7 @@
     }
 
     function showMyPosts(){
+      // Switch the template to show all posts, and choose which to edit
       myPostsSection.animate({
         opacity: 1,
         height: "toggle"

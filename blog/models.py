@@ -24,26 +24,6 @@ def get_blog_upload_path(instance, filename):
     return os.path.join('blog/' + str(blog_id) + '/main_' + filename)
 
 
-class Topic(models.Model):
-    """
-    grouping of all the topics that a blog post can be grouped under. Allows
-    users to search for a specific type of blog post
-    """
-    title = models.CharField(max_length=20)
-    slug = models.SlugField(unique=True, blank=True)
-
-    def __str__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        url = reverse('blog-topic', kwargs={'topic':self.slug})
-        return url
-
-    def save(self, *args, **kwargs):
-        self.slug = slugify_no_hyphen(self.title)
-        super(Topic, self).save(*args, **kwargs)
-
-
 class PersonalBlog(models.Model):
     """
     Data about a personal blog for a specific user. The user can upload
@@ -115,7 +95,6 @@ class Post(models.Model):
         help_text="100 characters to catch reader's attention")
     create_date = models.DateTimeField(auto_now_add=True)
     public = models.BooleanField(default=False, help_text="Should the article be publically viewable now?")
-    topics = models.ManyToManyField(Topic, null=True, blank=True)
     slug = models.SlugField(blank=True, editable=False)
     lat = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
     lng = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)

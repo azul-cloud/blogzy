@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from crispy_forms.templatetags.crispy_forms_tags import CrispyFormNode
 
 from blog.models import Post
-from blog.forms import PostEditForm, PostHelper
+from blog.forms import PostEditForm, EditPostHelper
 
 
 class EditPostFormHtml(APIView):
@@ -18,7 +18,7 @@ class EditPostFormHtml(APIView):
         pk = self.kwargs['pk']
         instance = Post.objects.get(id=pk)
         form = PostEditForm(instance=instance)
-        helper = PostHelper()
+        helper = EditPostHelper()
 
         # we need to use crispy forms to add the form + button + materialize render
         context = Context({
