@@ -14,6 +14,7 @@
   7. Map
   8. Materialize Crispy
   9. Forms
+  10. Modals
 */
 
 
@@ -39,7 +40,7 @@ ul.horizontal {
   li { display: inline; }
 }
 
-h1, h2, h3 {
+h1, h2, h3, h4 {
   font-weight: 200;
   text-align: center;
 }
@@ -592,4 +593,16 @@ form {
   label { color: #333; }
 
   select { height: 100px; }
+}
+
+// ===== 10. MODALS ===== //
+.modal {
+  .modal-content {
+    h1, h2, h3, h4 {
+      text-align: center;
+    }
+  }
+  .modal-footer {
+    background-color: $secondary-color;
+  }
 }

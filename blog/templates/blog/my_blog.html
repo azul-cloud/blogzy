@@ -26,7 +26,7 @@
           <table class="responsive-table bordered">
             <tbody>
               {% for post in object.posts.all %}
-                <tr>
+                <tr id="row-{{post.id}}">
                   <td><a class="btn-primary" href="{{post.get_absolute_url}}">
                     {{post.title}} <i class="material-icons left">arrow_back</i>
                   </a></td>
@@ -36,7 +36,7 @@
                     </button>
                   </td>
                   <td>
-                    <button class="btn">
+                    <button class="btn" onclick="openDeleteModal({{post.id}})">
                       Delete <i class="material-icons right">delete</i>
                     </button>
                   </td>
@@ -50,15 +50,46 @@
       </div>
     </div>
   <div>
+
+  <!-- Delete Confirm Modal -->
+  <div id="modal-delete" class="modal">
+    {% csrf_token %}
+    <div class="modal-content">
+      <h4>Are you sure?</h4>
+      <p>Deleting this post is irreversible, you won't ever be able to recover it. You can also set it to be not public and no one will be able to view it.</p>
+    </div>
+    <div class="modal-footer">
+      <button class="modal-action modal-close btn-flat" onclick="deletePost()">
+        Delete forever <i class="material-icons left">delete</i>
+      </button>
+    </div>
+  </div>
 {% endblock %}
 
 
 {% block js %}
+  {{block.super}}
   {% include "maininclude/tinymce.html" %}
 
   <script>
+    function openDeleteModal(postId){
+      $('#modal-delete').data('postId', postId);
+      $('#modal-delete').openModal();
+    }
+
+    function deletePost(){
+      var postId = $("#modal-delete").data("postId");
+
+      $.post("{% url 'blog-post-delete' %}", {
+        'postId': postId
+      });
+
+      $("#row-" + postId).remove();
+    }
+
     $(document).ready(function() {
       $('select').material_select();
+      $('.modal-trigger').leanModal();
     });
   </script>
 {% endblock %}

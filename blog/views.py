@@ -1,5 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.db.models import Q
+from django.http import HttpResponse
 from django.views.generic import ListView, TemplateView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView
@@ -100,3 +101,19 @@ class PostCreateView(CreateView):
     def form_valid(self, form):
         form.instance.blog = PersonalBlog.objects.get(owner=self.request.user)
         return super(PostCreateView, self).form_valid(form)
+
+
+def delete_post(request):
+    try:
+        post_id = request.POST.get("postId")
+        post = Post.objects.get(id=post_id)
+
+        if post.blog.owner.id == request.user.id:
+            post.delete()
+        else:
+            return HttpResponse(403)
+
+        return HttpResponse(200)
+    except Exception as e:
+        print(e)
+        return HttpResponse(500)
