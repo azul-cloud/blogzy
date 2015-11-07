@@ -59,7 +59,7 @@
             </div>
             <div class="row">
               <div class="container edit-form-container">
-                {% crispy post_edit_form %}
+                <!-- dyanamically add form into here -->
               </div>
             </div>
           </div>
@@ -93,6 +93,7 @@
   <script>
     var editPostSection = $("#inner-edit-post");
     var myPostsSection = $("#inner-my-posts");
+    var editFormContainer = $(".edit-form-container");
 
     function openDeleteModal(postId){
       $('#modal-delete').data('postId', postId);
@@ -111,35 +112,13 @@
 
     function setData(){
       var postId = editPostSection.data("id");
-
       var data = $.get('/api/posts/' + postId).then(function(data){
-        // set data elements on the form and edit form section
         $("#edit-form-title").text(data.title);
 
-        // form input fields
-        if(data.title){
-          var fieldContainer = $("#edit-post-form #div_id_title");
-
-          fieldContainer.find('label').addClass("active");
-          $("#edit-post-form #id_title").val(data.title);
-        }
-
-        if(data.headline){
-          var fieldContainer = $("#edit-post-form #div_id_headline");
-
-          fieldContainer.find('label').addClass("active");
-          $("#edit-post-form #id_headline").val(data.headline);
-        }
-
-        if(data.image_description){
-          var fieldContainer = $("#edit-post-form #div_id_image_description");
-
-          fieldContainer.find('label').addClass("active");
-          $("#edit-post-form #id_image_description").val(data.headline);
-        }
-
-
-        // $("#edit-post-form #id_headline").val(data.headline);
+        // insert generated form HTML from API
+        var form = $.get('/api/forms/editpost/' + postId + '' ).then(function(data){
+          editFormContainer.append(data.html);
+        });
       });
     }
 
@@ -162,6 +141,7 @@
       }, 300);
 
       editPostSection.addClass("hide");
+      editFormContainer.html("");
       editPostSection.data("id", "");
     }
 
