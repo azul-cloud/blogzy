@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'braces',
     'storages',
     'rest_framework',
+    'crispy_forms',
 
     'allauth',
     'allauth.account',
@@ -163,3 +164,6 @@ AWS_STORAGE_BUCKET_NAME = 'dev.travelblogwave.media'
 REST_FRAMEWORK = {
     'DEFAULT_FILTER_BACKENDS': ('rest_framework.filters.DjangoFilterBackend',)
 }
+
+
+CRISPY_TEMPLATE_PACK = 'materialize'

@@ -106,13 +106,15 @@ class Post(models.Model):
     image = ProcessedImageField(upload_to=get_post_upload_path,
                                            processors=[ResizeToFill(1200, 720)],
                                            format='JPEG',
-                                           options={'quality': 60})
-    image_description = models.CharField(max_length=100)
+                                           options={'quality': 60},
+                                           help_text='main image for your article')
+    image_description = models.CharField(max_length=100, help_text="What is your image? (ex: San Andres Beach Colombia)")
     title = models.CharField(max_length=50)
     body = models.TextField()
-    headline = models.CharField(max_length=100, null=True, blank=True)
+    headline = models.CharField(max_length=100, null=True, blank=True,
+        help_text="100 characters to catch reader's attention")
     create_date = models.DateTimeField(auto_now_add=True)
-    public = models.NullBooleanField(default=True, blank=True, null=True)
+    public = models.BooleanField(default=False, help_text="Should the article be publically viewable now?")
     topics = models.ManyToManyField(Topic, null=True, blank=True)
     slug = models.SlugField(blank=True, editable=False)
     lat = models.DecimalField(max_digits=12, decimal_places=6, null=True, blank=True)
