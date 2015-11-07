@@ -22,7 +22,29 @@
             </form>
           </div>
         </div>
-        <div id="my-blog-posts" class="col s12">Edit posts</div>
+        <div id="my-blog-posts" class="col s12">
+          <table class="responsive-table bordered">
+            <tbody>
+              {% for post in object.posts.all %}
+                <tr>
+                  <td><a class="btn-primary" href="{{post.get_absolute_url}}">
+                    {{post.title}} <i class="material-icons left">arrow_back</i>
+                  </a></td>
+                  <td>
+                    <button class="btn">
+                      Edit <i class="material-icons right">edit</i>
+                    </button>
+                  </td>
+                  <td>
+                    <button class="btn">
+                      Delete <i class="material-icons right">delete</i>
+                    </button>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
         <div id="my-blog-blog" class="col s12">Edit {{ object }}</div>
         <div id="my-blog-stats" class="col s12">Coming Soon</div>
       </div>
@@ -33,7 +55,7 @@
 
 {% block js %}
   {% include "maininclude/tinymce.html" %}
-  
+
   <script>
     $(document).ready(function() {
       $('select').material_select();
