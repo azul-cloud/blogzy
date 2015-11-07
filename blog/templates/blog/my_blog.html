@@ -49,12 +49,12 @@
           <div id="inner-edit-post" class="hide">
             <div class="row">
               <div class="col s2">
-                <button class="btn" onclick="showMyPosts()">
-                  <i class="material-icons left">arrow_back</i>Go Back
+                <button class="btn hover-left" onclick="showMyPosts()">
+                  All<i class="material-icons left">arrow_back</i>
                 </button>
               </div>
               <div class="col s10">
-                <h1 id="edit-form-header"></h1>
+                <h1 id="edit-form-title"></h1>
               </div>
             </div>
             <div class="row">
@@ -110,19 +110,57 @@
     }
 
     function setData(){
-      var postId = editPostSection.data("id", postId);
+      var postId = editPostSection.data("id");
+
+      var data = $.get('/api/posts/' + postId).then(function(data){
+        // set data elements on the form and edit form section
+        $("#edit-form-title").text(data.title);
+
+        // form input fields
+        if(data.title){
+          var fieldContainer = $("#edit-post-form #div_id_title");
+
+          fieldContainer.find('label').addClass("active");
+          $("#edit-post-form #id_title").val(data.title);
+        }
+
+        if(data.headline){
+          var fieldContainer = $("#edit-post-form #div_id_headline");
+
+          fieldContainer.find('label').addClass("active");
+          $("#edit-post-form #id_headline").val(data.headline);
+        }
+
+        if(data.image_description){
+          var fieldContainer = $("#edit-post-form #div_id_image_description");
+
+          fieldContainer.find('label').addClass("active");
+          $("#edit-post-form #id_image_description").val(data.headline);
+        }
+
+
+        // $("#edit-post-form #id_headline").val(data.headline);
+      });
     }
 
     function showEditPost(postId){
-      myPostsSection.addClass("hide");
+      myPostsSection.animate({
+        opacity: 0.25,
+        height: "toggle"
+      }, 300);
       editPostSection.removeClass("hide");
       editPostSection.data("id", postId);
 
       setData();
+      tinymce.init({selector:'textarea'})
     }
 
     function showMyPosts(){
-      myPostsSection.removeClass("hide");
+      myPostsSection.animate({
+        opacity: 1,
+        height: "toggle"
+      }, 300);
+
       editPostSection.addClass("hide");
       editPostSection.data("id", "");
     }
