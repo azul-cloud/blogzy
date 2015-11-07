@@ -389,6 +389,11 @@ $nav-width: 15%;
   $footer-button-padding: 10px;
   margin-bottom: 20px;
 
+  blockquote {
+    @extend .accent-text;
+    font-size: 1.5em;
+  }
+
   @media(max-width:$small-screen){
     .footer-button-container {
       margin-bottom: 10px;
@@ -584,11 +589,7 @@ form {
 .input-field {
   margin-top: 2em;
 
-  label {
-    color: #333;
-  }
+  label { color: #333; }
 
-  select {
-    height: 100px;
-  }
+  select { height: 100px; }
 }
