@@ -366,6 +366,7 @@ $nav-width: 15%;
 }
 
 .search-form {
+  .input-field { margin-top: 1em; }
   button, a { margin-top: 20px;}
 }
 
@@ -472,6 +473,19 @@ $nav-width: 15%;
     z-index: 1;
 
     li { border-bottom: 2px solid $brand-light-gray; }
+
+    form {
+      border-radius: $border-radius;
+      padding: 1em;
+    }
+
+    .input-field {
+      margin-top: 2em;
+
+      label { color: #333; }
+
+      select { height: 100px; }
+    }
   }
 
   .inner-content {
@@ -580,20 +594,6 @@ input[type="checkbox"] + label {
   margin-bottom: 15px;
 }
 
-
-// ===== 9. FORMS ===== //
-form {
-  border-radius: $border-radius;
-  padding: 1em;
-}
-
-.input-field {
-  margin-top: 2em;
-
-  label { color: #333; }
-
-  select { height: 100px; }
-}
 
 // ===== 10. MODALS ===== //
 .modal {
