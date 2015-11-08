@@ -566,14 +566,23 @@ $nav-width: 15%;
 .info-window {
   max-width: 500px;
 
+  a { color: black; }
+
   h1 {
     font-size: 2.5em;
   }
 
   img {
+    transition: $transition;
     width: 80%;
     margin-left: 10%;
     border-radius: $border-radius;
+  }
+
+  &:hover {
+    img {
+      @include transform(scale(1.05));
+    }
   }
 }
 

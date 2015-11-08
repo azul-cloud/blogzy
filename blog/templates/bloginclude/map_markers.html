@@ -6,10 +6,13 @@ var markerIcon = "{% static 'img/map_icon_sm.png' %}";
   {% if post.lat and post.lng %}
     var contentString{{post.id}} =
         '<div class="info-window">'+
+        '<a href="{{post.get_absolute_url}}">' +
         '<h1 class="center-align">{{post.title}}</h1>'+
         '<img src="{{post.image.url}}">'+
         '<h5 class="post-headline accent-text center-align">{{post.headline}}</h5>'+
-        '</div>';
+        '</a>'+
+        '</div>'
+        ;
 
     var infowindow{{post.id}} = new google.maps.InfoWindow({
       content: contentString{{post.id}}
