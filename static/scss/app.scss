@@ -473,19 +473,19 @@ $nav-width: 15%;
     z-index: 1;
 
     li { border-bottom: 2px solid $brand-light-gray; }
+  }
 
-    form {
-      border-radius: $border-radius;
-      padding: 1em;
-    }
+  form {
+    border-radius: $border-radius;
+    padding: 1em;
+  }
 
-    .input-field {
-      margin-top: 2em;
+  .input-field {
+    margin-top: 1em;
 
-      label { color: #333; }
+    label { color: #333; }
 
-      select { height: 100px; }
-    }
+    select { height: 100px; }
   }
 
   .inner-content {

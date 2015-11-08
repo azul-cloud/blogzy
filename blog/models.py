@@ -37,10 +37,12 @@ class PersonalBlog(models.Model):
                                options={'quality': 60})
     description = models.TextField()
     slug = models.SlugField(unique=True, blank=True, editable=False)
-    twitter = models.CharField(max_length=15, blank=True, null=True)
-    twitter_widget_id = models.CharField(max_length=18, blank=True, null=True)
-    facebook = models.CharField(max_length=40, blank=True, null=True)
-    instagram = models.CharField(max_length=40, blank=True, null=True)
+    twitter = models.CharField(max_length=15, blank=True, null=True,
+        help_text="What is your Twitter handle? (Don't put @)")
+    twitter_widget_id = models.CharField(max_length=18, blank=True, null=True,
+        help_text="We need your widget ID to display your twitter")
+    facebook = models.CharField(max_length=40, blank=True, null=True,
+        help_text="Just the last part of your facebook URL (i.e. travelblogwave)")
 
     def __str__(self):
         return self.title

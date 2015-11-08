@@ -13,7 +13,7 @@
         </ul>
       </div>
       <div class="inner-content">
-        <div id="new-blog-post" class="col s12">
+        <div id="new-blog-post" class="my-blog__new-post col s12">
           <h1>Create a new post</h1>
           <div class="container">
             <form method="post" action="{% url 'blog-post-create' %}" enctype="multipart/form-data">
@@ -22,7 +22,7 @@
             </form>
           </div>
         </div>
-        <div id="my-blog-posts" class="col s12">
+        <div id="my-blog-posts" class="my-blog__posts col s12">
           <div id="inner-my-posts">
             <table class="responsive-table bordered">
               <tbody>
@@ -59,13 +59,18 @@
             </div>
             <div class="row">
               <div class="container edit-form-container">
-                <!-- dyanamically add form into here -->
+                <!-- dyanamically add edit form into here -->
               </div>
             </div>
           </div>
         </div>
-        <div id="my-blog-blog" class="col s12">Edit {{ object }}</div>
-        <div id="my-blog-stats" class="col s12">
+        <div id="my-blog-blog" class="my-blog__blog col s12">
+          <h1>Edit your blog</h1>
+          <div class="container">
+            {% crispy blog_edit_form %}
+          </div>
+        </div>
+        <div id="my-blog-stats" class="my-blog__stats col s12">
           <h2>Coming Soon</h2>
         </div>
       </div>

@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, Field, Fieldset, ButtonHolder, Submit, Div
 
-from .models import Post
+from .models import Post, PersonalBlog
 
 
 class PostHelper(FormHelper):
@@ -87,3 +87,37 @@ class PostEditForm(PostCreateForm):
         model = Post
         exclude = ['author', 'blog', 'lat', 'lng', 'place',
             'place_id']
+
+class BlogEditForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(BlogEditForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.form_id = "edit-blog-form"
+        self.helper.form_action = reverse('blog-edit', kwargs={'pk': self.instance.id})
+        self.helper.layout = Layout(
+            Fieldset(
+                '',
+                Div(
+                    Div('title', css_class="col m6 s12"),
+                    Div('image', css_class="col m6 s12"),
+                    css_class="row"
+                ),
+                Div(
+                    Div('description', css_class="col s12"),
+                    css_class="row"
+                ),
+                Div(
+                    Div('twitter', css_class="col s12 m6"),
+                    Div('twitter_widget_id', css_class="col s12 m6"),
+                    Div('facebook', css_class="col s12 m6"),
+                    css_class="row"
+                ),
+            ),
+            ButtonHolder(
+                Submit('submit', 'Save', css_class='btn right hover-right')
+            )
+        )
+
+    class Meta:
+        model = PersonalBlog
+        exclude = ['owner',]

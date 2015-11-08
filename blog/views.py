@@ -6,7 +6,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
 from .models import PersonalBlog, Post
-from .forms import PostCreateForm, PostEditForm
+from .forms import PostCreateForm, PostEditForm, BlogEditForm
 
 User = get_user_model()
 
@@ -55,17 +55,12 @@ class AllPostsView(PageMixin, ListView):
 class PostSearchView(AllPostsView):
 
     def post(self, request, *args, **kwargs):
-
         self.queryset = Post.objects.filter(
             Q(title__icontains=self.request.POST["search"]) |
             Q(headline__icontains=self.request.POST["search"]) |
             Q(body__icontains=self.request.POST["search"]))
-        return self.get(request)
 
-    # def get_queryset(self):
-    #     print(self.kwargs["search_term"])
-    #     return Post.objects.filter(
-    #         title__icontains=self.kwargs["search_term"])
+        return self.get(request)
 
 
 class AllBlogsView(PageMixin, ListView):
@@ -87,6 +82,7 @@ class MyBlogView(PageMixin, DetailView):
         context = super(MyBlogView, self).get_context_data(**kwargs)
         context['post_create_form'] = PostCreateForm
         context['post_edit_form'] = PostEditForm
+        context['blog_edit_form'] = BlogEditForm(instance=self.get_object())
         return context
 
 
@@ -108,6 +104,12 @@ class PostEditView(UpdateView):
     template_name = "blog/post_edit.html"
     form_class = PostEditForm
     model = Post
+
+
+class BlogEditView(UpdateView):
+    template_name = "blog/blog_edit.html"
+    form_class = BlogEditForm
+    model = PersonalBlog
 
 
 def delete_post(request):

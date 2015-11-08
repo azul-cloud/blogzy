@@ -17,13 +17,15 @@ urlpatterns = patterns('',
 
     # blog URLs
     url(r'blogs/$', views.AllBlogsView.as_view(), name=app + "all-blogs"),
+    url(r'edit/(?P<pk>\d+)/$', views.BlogEditView.as_view(),
+        name=app + "edit"),
     url(r'create/$', views.CreateBlogView.as_view(), name=app + "create"),
     url(r'myblog/$', views.MyBlogView.as_view(),
         name=app + "my-blog"),
     url(r'map/$', views.BlogMapView.as_view(), name=app + "map"),
-
     url(r'(?P<blog>[a-zA-Z0-9-]+)/(?P<slug>[a-zA-Z0-9-]+)/$',
         views.BlogPostView.as_view(), name=app + "post"),
-    url(r'(?P<slug>[a-zA-Z0-9-]+)/$', views.BlogView.as_view(), name=app + "blog"),
+    url(r'(?P<slug>[a-zA-Z0-9-]+)/$', views.BlogView.as_view(),
+        name=app + "blog"),
     url(r'$', views.BlogHomeView.as_view(), name=app + "home"),
 )
