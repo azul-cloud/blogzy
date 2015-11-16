@@ -3,16 +3,31 @@
 
 {% block sidelayout_content %}
   <div class="col s12 blog-home">
+    <h1 class="center-align">
+      <a class="modal-trigger" href="#blog-description-modal">
+        {{personalblog}}
+      </a>
+    </h1>
     <div class="container inner-container">
-      <h1 class="center-align">{{personalblog}}</h1>
       {% for post in personalblog.posts.all %}
         {% include "bloginclude/post_preview.html" %}
       {% endfor %}
     </div>
   </div>
-  <aside>
+  <aside data-sr="enter right, move 50px">
     <div id="blog-map"></div>
   </aside>
+
+  <!-- Modal Structure -->
+  <div id="blog-description-modal" class="modal">
+    <div class="modal-content">
+      <h4>{{ personalblog.title }}</h4>
+      <p>{{ personalblog.description|safe }}</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 {% endblock %}
 
 {% block js %}

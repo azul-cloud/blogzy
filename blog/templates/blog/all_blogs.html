@@ -17,7 +17,7 @@
             </div>
             <div class="card-reveal">
               <span class="card-title grey-text text-darken-4">{{blog}}<i class="material-icons right">close</i></span>
-              <p>{{blog.description}}</p>
+              <p>{{blog.description|safe}}</p>
               <a href="{{blog.get_absolute_url}}" class="btn-primary right hover-right">View Blog <i class="material-icons right">arrow_forward</i></a>
             </div>
           </div>

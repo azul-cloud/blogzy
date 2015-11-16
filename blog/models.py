@@ -35,7 +35,7 @@ class PersonalBlog(models.Model):
                                processors=[ResizeToFill(1200, 720)],
                                format='JPEG',
                                options={'quality': 60})
-    description = models.TextField()
+    description = models.TextField(help_text="Tell us a bit about your blog and yourself")
     slug = models.SlugField(unique=True, blank=True, editable=False)
     twitter = models.CharField(max_length=15, blank=True, null=True,
         help_text="What is your Twitter handle? (Don't put @)")
