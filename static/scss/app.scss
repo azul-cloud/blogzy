@@ -336,6 +336,39 @@ $nav-width: 15%;
   footer { margin-top: 0; }
 }
 
+@media(max-width:$small-screen){
+  .page-home {
+    .summary {
+      margin-top: 10px;
+
+      li.tab {
+        font-size: 1em;
+      }
+    }
+
+    .card-row {
+      $icon-size: 20px;
+      $icon-padding: 4px;
+
+      margin-top: $icon-size;
+
+      .card-panel {
+        i { font-size: $icon-size!important; }
+
+        h3 { font-size: 2em; }
+
+        .text-container { height: 9em!important; }
+
+        .icon-container {
+          top: -($icon-size/2 + $icon-padding)!important;
+        }
+      }
+    }
+
+    #home-map { height: 400px; }
+  }
+}
+
 .page-start {
   .tabs {
     @extend .light-texture;
