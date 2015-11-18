@@ -39,8 +39,6 @@ class PersonalBlog(models.Model):
     slug = models.SlugField(unique=True, blank=True, editable=False)
     twitter = models.CharField(max_length=15, blank=True, null=True,
         help_text="What is your Twitter handle? (Don't put @)")
-    twitter_widget_id = models.CharField(max_length=18, blank=True, null=True,
-        help_text="We need your widget ID to display your twitter")
     facebook = models.CharField(max_length=40, blank=True, null=True,
         help_text="Just the last part of your facebook URL (i.e. travelblogwave)")
 

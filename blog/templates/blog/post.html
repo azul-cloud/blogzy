@@ -23,12 +23,14 @@
             Written by {{post.author.get_full_name}} on {{post.create_date}}
           </p>
           <p class="social-row">
-            <i class="fa fa-2x fa-twitter"></i>
-            <i class="fa fa-2x fa-google"></i>
-            <i class="fa fa-2x fa-facebook"></i>
+            {% if post.blog.twitter %}
+              <a href="https://twitter.com/{{post.blog.twitter}}"> <i class="fa fa-2x fa-twitter"></i></a>
+            {% endif %}
+            {% if post.blog.facebook %}
+              <a href="https://facebook.com/{{post.blog.facebook}}"> <i class="fa fa-2x fa-facebook"></i></a>
+            {% endif %}
           </p>
         </div>
-
       </section>
 
       <div class="footer-button-container">
