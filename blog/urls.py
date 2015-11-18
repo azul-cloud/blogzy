@@ -27,5 +27,4 @@ urlpatterns = patterns('',
         views.BlogPostView.as_view(), name=app + "post"),
     url(r'(?P<slug>[a-zA-Z0-9-]+)/$', views.BlogView.as_view(),
         name=app + "blog"),
-    url(r'$', views.BlogHomeView.as_view(), name=app + "home"),
 )

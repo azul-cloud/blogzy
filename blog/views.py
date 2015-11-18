@@ -20,11 +20,6 @@ class PageMixin(object):
         return context
 
 
-class BlogHomeView(ListView):
-    template_name = "blog/home.html"
-    model = PersonalBlog
-
-
 class BlogView(DetailView):
     template_name = "blog/blog.html"
     model = PersonalBlog
