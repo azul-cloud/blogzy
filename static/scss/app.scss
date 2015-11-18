@@ -536,6 +536,20 @@ $nav-width: 15%;
   }
 }
 
+@media(max-width:$small-screen){
+  .my-blog {
+    .tabs {
+      position: fixed;
+      top: 57px;
+      width: 100%!important;
+      z-index: 1;
+      margin-left: -10px;
+
+      li { border-bottom: 2px solid $brand-light-gray; }
+    }
+  }
+}
+
 
 // ===== 6. AUTHORIZATION ===== //
 // override django all auth styles
