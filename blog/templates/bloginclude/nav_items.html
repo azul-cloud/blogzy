@@ -13,11 +13,13 @@
     <i class="material-icons left">map</i> Map
   </a>
 </li>
-<li>
-  <a {% if page == "profile" %}class="active"{% endif %} href="{% url 'main-profile-update' %}">
-    <i class="material-icons left">person</i> Me
-  </a>
-</li>
+{% if request.user.is_authenticated %}
+  <li>
+    <a {% if page == "profile" %}class="active"{% endif %} href="{% url 'main-profile-update' %}">
+      <i class="material-icons left">person</i> Me
+    </a>
+  </li>
+{% endif %}
 
 {% if request.user.user_blog %}
   <li>
@@ -28,7 +30,7 @@
 {% else %}
 <li>
   <a {% if page == "create" %}class="active"{% endif %} href="{% url 'blog-create' %}">
-    <i class="material-icons left">add</i> Create Blog
+    <i class="material-icons left">add</i> Create
   </a>
 </li>
 {% endif %}
