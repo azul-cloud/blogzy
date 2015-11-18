@@ -1,10 +1,14 @@
+import os
+
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.core.urlresolvers import reverse
 
-from blog.models import PersonalBlog, Post
-
 from allauth.socialaccount.models import SocialAccount
+from imagekit.models import ProcessedImageField
+from imagekit.processors import ResizeToFill
+
+from blog.models import PersonalBlog, Post
 
 
 FEEDBACK_CHOICES = (
@@ -29,6 +33,14 @@ class User(AbstractUser):
     """
     Extended User class
     """
+    def get_user_image_upload_path(instance, filename):
+        return os.path.join('users/' + str(instance.id) + '/' + filename)
+
+    image = ProcessedImageField(blank=True, null=True,
+                               upload_to=get_user_image_upload_path,
+                               processors=[ResizeToFill(250, 250)],
+                               format='JPEG',
+                               options={'quality': 70})
 
     def __str__(self):
         return self.email

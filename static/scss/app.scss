@@ -336,6 +336,14 @@ $nav-width: 15%;
   footer { margin-top: 0; }
 }
 
+.profile-update {
+  padding: 15px;
+
+  .input-field {
+    margin-top: 15px;
+  }
+}
+
 @media(max-width:$small-screen){
   .page-home {
     .summary {

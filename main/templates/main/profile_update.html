@@ -1,0 +1,16 @@
+{% extends "layouts/2col.html" %}
+{% load crispy_forms_tags %}
+
+{% block sidelayout_content %}
+  <div class="profile-update">
+    {% crispy form %}
+  </div>
+{% endblock %}
+
+{% block js %}
+  {% if success %}
+    <script type="text/javascript">
+      Materialize.toast('Profile Updated! :D', 2000);
+    </script>
+  {% endif %}
+{% endblock %}

@@ -13,6 +13,11 @@
     <i class="material-icons left">map</i> Map
   </a>
 </li>
+<li>
+  <a {% if page == "profile" %}class="active"{% endif %} href="{% url 'main-profile-update' %}">
+    <i class="material-icons left">person</i> Me
+  </a>
+</li>
 
 {% if request.user.user_blog %}
   <li>

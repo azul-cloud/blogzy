@@ -16,11 +16,17 @@
 
       <section class="blog-article__footer row">
         <div class="col s5 m3">
-          <img src="http://placehold.it/400x400" class="circle">
+          {% with post.blog.owner as author %}
+            {% if author.image %}
+              <img src="{{author.image.url}}" class="circle" alt="{{author.first_name}} {{author.last_name}}">
+            {% else %}
+              <img src="http://placehold.it/400x400" class="circle">
+            {% endif %}
+          {% endwith %}
         </div>
         <div class="col s7 m9">
           <p class="signature">
-            Written by {{post.author.get_full_name}} on {{post.create_date}}
+            Written by {{post.blog.owner.get_full_name}} on {{post.create_date}}
           </p>
           <p class="social-row">
             {% if post.blog.twitter %}
