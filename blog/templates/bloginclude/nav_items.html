@@ -13,24 +13,35 @@
     <i class="material-icons left">map</i> Map
   </a>
 </li>
-{% if request.user.is_authenticated %}
-  <li>
-    <a {% if page == "profile" %}class="active"{% endif %} href="{% url 'main-profile-update' %}">
-      <i class="material-icons left">person</i> Me
-    </a>
-  </li>
-{% endif %}
 
-{% if request.user.user_blog %}
-  <li>
-    <a {% if page == "myblog" %}class="active"{% endif %} href="{% url 'blog-my-blog' %}">
-      <i class="material-icons left">settings</i> My Blog
-    </a>
-  </li>
-{% else %}
-<li>
-  <a {% if page == "create" %}class="active"{% endif %} href="{% url 'blog-create' %}">
-    <i class="material-icons left">add</i> Create
-  </a>
-</li>
-{% endif %}
+<div class="hide-on-med-and-up">
+  {% if request.user.is_authenticated %}
+    {% if request.user.has_blog %}
+      <li>
+        <a {% if page == "myblog" %}class="active"{% endif %} href="{% url 'blog-my-blog' %}">
+          <i class="material-icons left">settings</i> My Blog
+        </a>
+      </li>
+    {% else %}
+      <li>
+        <a {% if page == "create" %}class="active"{% endif %} href="{% url 'blog-create' %}">
+          <i class="material-icons left">add</i> Create
+        </a>
+      </li>
+    {% endif %}
+    <li>
+      <a {% if page == "profile" %}class="active"{% endif %} href="{% url 'main-profile-update' %}">
+        <i class="material-icons left">person</i> Me
+      </a>
+    </li>
+    <li>
+      <a href="{% url 'account_logout' %}">
+        <i class="material-icons left">lock</i> Logout
+      </a>
+    </li>
+  {% else %}
+    <li>
+      <a href="{% url 'main-start' %}">Login <i class="material-icons left">person</i></a>
+    </li>
+  {% endif %}
+</div>

@@ -146,6 +146,13 @@ $nav-width: 15%;
     overflow-y: scroll;
   }
 
+  .collapsible-header {
+    background-color: inherit;
+    line-height: 2.5em;
+  }
+
+  .collapsible { border-top: none; }
+
   @media(min-width: $small-screen){
     overflow-y: hidden;
 
@@ -174,6 +181,10 @@ $nav-width: 15%;
 
           &:hover {
             transform: translateX(15px);
+          }
+
+          &.no-push:hover {
+            transform: none;
           }
         }
       }
@@ -483,6 +494,8 @@ $nav-width: 15%;
   $fixed-nav-height: 70px;
   $fixed-background-color: white;
 
+  margin-top: 100px;
+
   .fixed {
     position: fixed;
     top: 0;
@@ -625,9 +638,7 @@ $nav-width: 15%;
 
   a { color: black; }
 
-  h1 {
-    font-size: 2.5em;
-  }
+  h1 { font-size: 2.5em; }
 
   img {
     transition: $transition;
