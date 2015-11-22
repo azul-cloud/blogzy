@@ -10,23 +10,12 @@
   <h1>{% trans "Login" %}</h1>
 
   <div class="socialaccount_ballot">
-    <ul class="socialaccount_providers horizontal">
-      <li>
-        <a title="Facebook" class="socialaccount_provider facebook"
-           href="/accounts/facebook/login/?process=login">
-           <img src="{% static 'img/social/facebook.png' %}">
-         </a>
-      </li>
-      <li>
-        <a title="Google" class="socialaccount_provider google"
-           href="/accounts/google/login/?process=login">
-          <img src="{% static 'img/social/google.png' %}">
-        </a>
-      </li>
-    </ul>
+    {% include "accountinclude/social_providers.html" %}
     <div class="divider"></div>
   </div>
   {% include "socialaccount/snippets/login_extra.html" %}
+
+  <p>No account? Then please <a href="{% url 'account_signup' %}">register</a>.</p>
 
   <form class="login" method="POST" action="{% url 'account_login' %}">
     {% csrf_token %}

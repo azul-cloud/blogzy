@@ -97,6 +97,26 @@ h1, h2, h3, h4 {
   }
 }
 
+.btn-facebook {
+  $facebook-color: #3b5998;
+  @extend .btn;
+  background-color: $facebook-color;
+
+  &:hover {
+    background-color: lighten($facebook-color, 5%);
+  }
+}
+
+.btn-google {
+  $google-color: #DB4437;
+  @extend .btn;
+  background-color: $google-color;
+
+  &:hover {
+    background-color: $google-color;
+  }
+}
+
 .btn-primary {
   @extend .btn;
   background-color: $primary-color;
@@ -570,6 +590,7 @@ $nav-width: 15%;
 // override django all auth styles
 
 .auth {
+  @extend .full-height;
   background: $light-texture;
   margin-bottom: 0;
 
