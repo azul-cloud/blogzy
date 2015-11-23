@@ -16,7 +16,7 @@
 
 <div class="hide-on-med-and-up">
   {% if request.user.is_authenticated %}
-    {% if request.user.has_blog %}
+    {% if request.user.user_blog %}
       <li>
         <a {% if page == "myblog" %}class="active"{% endif %} href="{% url 'blog-my-blog' %}">
           <i class="material-icons left">settings</i> My Blog

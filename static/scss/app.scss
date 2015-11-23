@@ -171,6 +171,23 @@ $nav-width: 15%;
     line-height: 2.5em;
   }
 
+  .collapsible-body {
+    li {
+      font-size: 0.8em;
+      line-height: 30px;
+    }
+
+    a {
+      padding-top: 7px;
+      padding-bottom: 7px;
+    }
+
+    i {
+      line-height: 30px;
+      font-size: 0.8em;
+    }
+  }
+
   .collapsible { border-top: none; }
 
   @media(min-width: $small-screen){
