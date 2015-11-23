@@ -1,0 +1,99 @@
+<script>
+  function initMap(mapId, lat, lng) {
+    // This sample uses the Place Autocomplete widget to allow the user to search
+    // for and select a place. The sample then displays an info window containing
+    // the place ID and other information about the place that the user has
+    // selected.
+
+    var center;
+
+    var markerPosition = function(){
+      /* determine if we have a marker that we should place on init. This can
+         come from js or from python.
+      */
+      {% if object.lat and object.lng %}
+        return {
+          lat: {{ object.lat }},
+          lng: {{ object.lng }}
+        }
+      {% endif %}
+
+      if(lat && lng){
+        return {
+          lat: parseFloat(lat),
+          lng: parseFloat(lng)
+        };
+      }else{
+        return false;
+      }
+    }
+
+    if(markerPosition()){
+      var position = markerPosition();
+
+      center = {
+        lat: parseFloat(position.lat),
+        lng: parseFloat(position.lng)
+      }
+    }else{
+      center = {
+        lat: 6.244203,
+        lng: -75.581212
+      }
+    }
+
+    var map = new google.maps.Map(document.getElementById(mapId), {
+      center: center,
+      zoom: 4
+    });
+
+    var input = document.getElementById(mapId + '-input');
+
+    var autocomplete = new google.maps.places.Autocomplete(input);
+    autocomplete.bindTo('bounds', map);
+
+    map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+    if(markerPosition()){
+      var position = markerPosition();
+
+      var marker = new google.maps.Marker({
+        map: map,
+        position: {
+          lat: position.lat,
+          lng: position.lng
+        }
+      });
+
+    }else{
+      var marker = new google.maps.Marker({
+        map: map
+      });
+    }
+
+    autocomplete.addListener('place_changed', function() {
+      var place = autocomplete.getPlace();
+      if (!place.geometry) { return; }
+
+      if (place.geometry.viewport) {
+        map.fitBounds(place.geometry.viewport);
+      } else {
+        map.setCenter(place.geometry.location);
+        map.setZoom(17);
+      }
+
+      // Set the position of the marker using the place ID and location.
+      marker.setPlace({
+        placeId: place.place_id,
+        location: place.geometry.location
+      });
+      marker.setVisible(true);
+
+      // Set the place_id on the form field
+      var field = $("#id_place_id");
+      field.val(place.place_id);
+      console.log(field.val());
+    });
+  };
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCsPHVZewbLPsJgz3oB8v8JzaFzNpyR0NA&libraries=places&signed_in=true"></script>

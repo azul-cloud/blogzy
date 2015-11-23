@@ -13,4 +13,9 @@
 
 {% block js %}
   {% include "maininclude/tinymce.html" %}
+  {% include "bloginclude/map.html" %}
+
+  <script type="text/javascript">
+    initMap("post-create-map");
+  </script>
 {% endblock %}

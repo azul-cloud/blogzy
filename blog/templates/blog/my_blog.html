@@ -1,6 +1,7 @@
 {% extends "layouts/2col.html" %}
 {% load crispy_forms_tags %}
 
+
 {% block sidelayout_content %}
   <div class="my-blog">
     <div class="row">
@@ -94,8 +95,9 @@
 
 
 {% block js %}
-  {{block.super}}
+  {{ block.super }}
   {% include "maininclude/tinymce.html" %}
+  {% include "bloginclude/map.html" %}
 
   <script>
     var editPostSection = $("#inner-edit-post");
@@ -127,13 +129,19 @@
       $.get('/api/posts/' + postId).then(function(data){
         $("#edit-form-title").text(data.title);
 
+        // create the map
+        window.setTimeout(function(){
+          initMap(document.getElementById("post-edit-map").id,
+            data.lat, data.lng
+          );
+        }, 500);
+
         // insert generated form HTML from API
         $.get('/api/forms/editpost/' + postId + '' ).then(function(data){
           editFormContainer.prepend(data.html);
           $("#edit-post-form").append("{% csrf_token %}");
 
           $('select').material_select();
-
 
           // need to set a unique id for the body for tinymce
           editFormContainer.find("#id_body").attr("id", "id_edit_body");
@@ -182,6 +190,8 @@
     $(document).ready(function() {
       $('select').material_select();
       $('.modal-trigger').leanModal();
+
+      initMap("post-create-map");
     });
   </script>
 {% endblock %}

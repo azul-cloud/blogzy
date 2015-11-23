@@ -12,7 +12,7 @@ from django.utils.text import slugify
 from imagekit.models import ProcessedImageField
 from imagekit.processors import ResizeToFill
 
-from main.utils import slugify_no_hyphen
+from main.utils import slugify_no_hyphen, get_place_details
 
 
 def get_post_upload_path(instance, filename):
@@ -115,7 +115,7 @@ class Post(models.Model):
         location = details.get("result").get("geometry").get("location")
 
         self.lat = location.get("lat")
-        self.long = location.get("lng")
+        self.lng = location.get("lng")
 
 
     def save(self, *args, **kwargs):
@@ -123,7 +123,7 @@ class Post(models.Model):
         self.slug = slugify(self.title)
 
         # set the lat and long
-        if self.place_id and not self.lat and not self.long:
+        if self.place_id:
             self.set_location()
 
         super(Post, self).save(*args, **kwargs)

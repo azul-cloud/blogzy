@@ -1,8 +1,8 @@
-from django.forms import ModelForm
+from django import forms
 from django.core.urlresolvers import reverse
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout, Field, Fieldset, ButtonHolder, Submit, Div
+from crispy_forms.layout import Layout, HTML, Field, Fieldset, ButtonHolder, Submit, Div
 
 from .models import Post, PersonalBlog
 
@@ -11,18 +11,20 @@ class PostHelper(FormHelper):
     layout = Layout(
         Fieldset(
             '',
+            'place_id',
             Div(
                 Div('title', css_class="col s12 m4"),
                 Div('headline', css_class="col s12 m8"),
                 css_class="row"
             ),
             Div(
-                Div('image', css_class="col m6 s12"),
-                Div('image_description', css_class="col m6 s12"),
+                HTML('<input id="post-create-map-input" class="controls" type="text" placeholder="Enter a location"><div id="post-create-map" class="blog-form-map"></div>'),
+                Div('public', css_class="col m6 s12"),
                 css_class="row"
             ),
             Div(
-                Div('public', css_class="col m6 offset-m3 s12"),
+                Div('image', css_class="col m6 s12"),
+                Div('image_description', css_class="col m6 s12"),
                 css_class="row"
             ),
             Div(
@@ -35,14 +37,21 @@ class PostHelper(FormHelper):
         )
     )
 
+
 class EditPostHelper(FormHelper):
     "Need to change the id of various fields because they break JS"
     layout = Layout(
         Fieldset(
             '',
+            Field('place_id', id="id_edit_public"),
             Div(
                 Div('title', css_class="col s12 m4"),
                 Div('headline', css_class="col s12 m8"),
+                css_class="row"
+            ),
+            Div(
+                HTML('<input id="post-edit-map-input" class="controls" type="text" placeholder="Enter a location"><div id="post-edit-map" class="blog-form-map"></div>'),
+                Div('public', css_class="col m6 s12"),
                 css_class="row"
             ),
             Div(
@@ -65,15 +74,17 @@ class EditPostHelper(FormHelper):
         )
     )
 
-class PostCreateForm(ModelForm):
+
+class PostCreateForm(forms.ModelForm):
+    place_id = forms.CharField(widget=forms.HiddenInput)
+
     def __init__(self, *args, **kwargs):
         super(PostCreateForm, self).__init__(*args, **kwargs)
         self.helper = PostHelper()
 
     class Meta:
         model = Post
-        exclude = ['author', 'blog', 'lat', 'lng', 'place',
-            'place_id']
+        exclude = ['author', 'blog', 'lat', 'lng', 'place']
 
 
 class PostEditForm(PostCreateForm):
@@ -85,10 +96,10 @@ class PostEditForm(PostCreateForm):
 
     class Meta:
         model = Post
-        exclude = ['author', 'blog', 'lat', 'lng', 'place',
-            'place_id']
+        exclude = ['author', 'blog', 'lat', 'lng', 'place']
 
-class BlogEditForm(ModelForm):
+
+class BlogEditForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super(BlogEditForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()

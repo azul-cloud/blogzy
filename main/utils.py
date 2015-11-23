@@ -1,9 +1,21 @@
 import requests, re, unicodedata
 
+from django.conf import settings
 from django.utils import six
 from django.utils.functional import allow_lazy
 from django.utils.safestring import mark_safe
 
+
+
+def get_place_details(place_id):
+    property_search_prefix = "https://maps.googleapis.com/maps/api/place/details/"
+    data_type = "json"
+
+    # build and execute property search api call
+    url = property_search_prefix + data_type + '?placeid=' + place_id + '&key=' + settings.GOOGLE_API_KEY
+    data = requests.get(url).json()
+
+    return data
 
 def slugify_no_hyphen(value):
     """
