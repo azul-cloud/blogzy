@@ -43,7 +43,7 @@ class EditPostHelper(FormHelper):
     layout = Layout(
         Fieldset(
             '',
-            Field('place_id', id="id_edit_public"),
+            Field('place_id', id="id_edit_place_id"),
             Div(
                 Div('title', css_class="col s12 m4"),
                 Div('headline', css_class="col s12 m8"),

@@ -90,9 +90,12 @@
       marker.setVisible(true);
 
       // Set the place_id on the form field
-      var field = $("#id_place_id");
-      field.val(place.place_id);
-      console.log(field.val());
+      var createField = $("#id_place_id");
+      var editField = $("#id_edit_place_id");
+
+      createField.val(place.place_id);
+      editField.val(place.place_id);
+      console.log(createField.val());
     });
   };
 </script>
