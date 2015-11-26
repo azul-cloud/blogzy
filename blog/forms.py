@@ -132,3 +132,25 @@ class BlogEditForm(forms.ModelForm):
     class Meta:
         model = PersonalBlog
         exclude = ['owner',]
+
+
+class BlogCreateForm(forms.ModelForm):
+    description = forms.CharField(required=False, widget=forms.Textarea)
+
+    def __init__(self, *args, **kwargs):
+        super(BlogCreateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper()
+        self.helper.layout = Layout(
+            Fieldset(
+                '',
+                'title',
+                'description',
+            ),
+            ButtonHolder(
+                Submit('submit', 'Go!', css_class='btn right hover-right')
+            )
+        )
+
+    class Meta:
+        model = PersonalBlog
+        exclude = ('owner', 'twitter', 'facebook', 'image')

@@ -474,11 +474,16 @@ $nav-width: 15%;
 
 .blog-home {
   padding: 1em;
+
+  .modal-trigger {
+    color: #333;
+  }
 }
 
 .blog-article {
   $footer-button-padding: 10px;
   margin-bottom: 20px;
+  padding-bottom: 35px;
 
   blockquote {
     @extend .accent-text;

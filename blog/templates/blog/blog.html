@@ -11,6 +11,20 @@
     <div class="container inner-container">
       {% for post in personalblog.posts.all %}
         {% include "bloginclude/post_preview.html" %}
+      {% empty %}
+        {% if request.user == personalblog.owner %}
+        <div class="center-align">
+          <p>You have no posts!</p>
+          <div data-sr="wait 2s, enter bottom, move 50px">
+            <a class="btn-large btn-primary" href="{% url 'blog-post-create' %}">
+              Write your first <i class="material-icons right">create</i>
+            </a>
+          </div>
+        </div>
+        {% else %}
+          <p>There are no posts yet for {{ personalblog }}!</p>
+          <button class="btn btn-primary">Search <i class="material-icons right">search</i> </button>
+        {% endif %}
       {% endfor %}
     </div>
   </div>
@@ -25,7 +39,7 @@
       <p>{{ personalblog.description|safe }}</p>
     </div>
     <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
     </div>
   </div>
 {% endblock %}
@@ -37,15 +51,30 @@
     $(document).ready(function(){
       // initializations
       $(".button-collapse").sideNav();
+      $('.modal-trigger').leanModal();
 
       // Create a map object and specify the DOM element for display.
-      var map = new google.maps.Map(document.getElementById('blog-map'), {
-        center: {
+
+      var center;
+
+      {% if last_post_with_loc %}
+        center = {
           lat: {{last_post_with_loc.lat}},
           lng: {{last_post_with_loc.lng}}
-        },
+        }
+      {% endif %}
+
+      if(!center){
+        center = {
+          lat: 6.244203,
+          lng: -75.581212
+        }
+      }
+
+      var map = new google.maps.Map(document.getElementById('blog-map'), {
+        center,
         scrollwheel: false,
-        zoom: 6
+        zoom: 4
       });
 
       {% with personalblog.posts.all as post_list %}

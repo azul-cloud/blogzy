@@ -1,5 +1,13 @@
 {% extends "layouts/2col.html" %}
+{% load crispy_forms_tags %}
 
 {% block sidelayout_content %}
-  Create your blog here.
+  <div class="container">
+    <div class="row" data-sr="enter bottom, move 50px">
+      <h2>Last step to create your blog</h2>
+      <div class="col offset-m2 m8 s12">
+        {% crispy form %}
+      </div>
+    </div>
+  </div>
 {% endblock %}

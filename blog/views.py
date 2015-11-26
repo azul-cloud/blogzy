@@ -6,7 +6,7 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
 from .models import PersonalBlog, Post
-from .forms import PostCreateForm, PostEditForm, BlogEditForm
+from .forms import PostCreateForm, PostEditForm, BlogEditForm, BlogCreateForm
 
 User = get_user_model()
 
@@ -33,6 +33,15 @@ class BlogView(DetailView):
 class BlogPostView(DetailView):
     template_name = "blog/post.html"
     model = Post
+
+    def get_queryset(self):
+        "limit to the blog's posts"
+        if self.queryset is None:
+            blog_slug = self.kwargs.get("blog")
+
+            self.queryset = Post.objects.filter(blog__slug=blog_slug)
+
+        return self.queryset
 
 
 class BlogMapView(PageMixin, ListView):
@@ -81,11 +90,6 @@ class MyBlogView(PageMixin, DetailView):
         return context
 
 
-class CreateBlogView(PageMixin, TemplateView):
-    template_name = "blog/create.html"
-    page = "create"
-
-
 class PostCreateView(CreateView):
     template_name = "blog/post_create.html"
     form_class = PostCreateForm
@@ -105,6 +109,15 @@ class BlogEditView(UpdateView):
     template_name = "blog/blog_edit.html"
     form_class = BlogEditForm
     model = PersonalBlog
+
+
+class BlogCreateView(CreateView):
+    template_name = "blog/create.html"
+    form_class = BlogCreateForm
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super(BlogCreateView, self).form_valid(form)
 
 
 def delete_post(request):
