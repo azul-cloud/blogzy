@@ -16,7 +16,15 @@
           </ul>
           <ul class="right">
             <li class="hover-left">
-              <a href="{% url 'main-start' %}">Start <i class="material-icons right">arrow_forward</i></a>
+              {% if user.is_authenticated %}
+                {% if user.user_blog %}
+                  <a href="{% url 'blog-my-blog' %}">Blog <i class="material-icons right">arrow_forward</i></a>
+                {% else %}
+                  <a href="{% url 'blog-all-posts' %}">Start <i class="material-icons right">arrow_forward</i></a>
+                {% endif %}
+              {% else %}
+                <a href="{% url 'main-start' %}">Start <i class="material-icons right">arrow_forward</i></a>
+              {% endif %}
             </li>
           </ul>
         </div>
@@ -50,45 +58,51 @@
         <div id="create-info">
           <div class="col m4 s12" data-sr="move 50px, enter left">
             <div class="card-panel">
-              <div class="icon-container">
-                <i class="material-icons">add</i>
-              </div>
-              <h3>Create Blog</h3>
-              <div class="text-container">
-                <span>
-                  Creating your blog could not be easier. Enjoy all the benefits of a travel blog platform, built by travel bloggers like yourself. Have ideas? Let us know!
-                </span>
-              </div>
+              <a href="{% url 'blog-create' %}">
+                <div class="icon-container">
+                  <i class="material-icons">add</i>
+                </div>
+                <h3>Create Blog</h3>
+                <div class="text-container">
+                  <span>
+                    Creating your blog could not be easier. Enjoy all the benefits of a travel blog platform, built by travel bloggers like yourself. Have ideas? Let us know!
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col m4 s12" data-sr="move 50px, enter left, wait 0.25s">
+            <div class="card-panel">
+              <a href="{% url 'blog-create' %}">
+                <div class="icon-container">
+                  <i class="material-icons">library_books</i>
+                </div>
+                <h3>Write Posts</h3>
+                <div class="text-container">
+                  <span>
+                    Write drafts of your articles, view previews, and then publish your articles. Easily make edits to your article if needed.
+                  </span>
+                </div>
+              </a>
             </div>
           </div>
           <div class="col m4 s12" data-sr="move 50px, enter left, wait 0.5s">
             <div class="card-panel">
-              <div class="icon-container">
-                <i class="material-icons">library_books</i>
-              </div>
-              <h3>Write Posts</h3>
-              <div class="text-container">
-                <span>
-                  Write drafts of your articles, view previews, and then publish your articles. Easily make edits to your article if needed.
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col m4 s12" data-sr="move 50px, enter left, wait 1s">
-            <div class="card-panel">
-              <div class="icon-container">
-                <i class="material-icons">map</i>
-              </div>
-              <h3>Travel Map</h3>
-              <div class="text-container">
-                <span>
-                  One of the coolest features of Travel Blog Wave is being able to view articles on a map. Track where you have been, and plan where you will go.
-                </span>
-              </div>
+              <a href="{% url 'blog-map' %}">
+                <div class="icon-container">
+                  <i class="material-icons">map</i>
+                </div>
+                <h3>Travel Map</h3>
+                <div class="text-container">
+                  <span>
+                    One of the coolest features of Travel Blog Wave is being able to view articles on a map. Track where you have been, and plan where you will go.
+                  </span>
+                </div>
+              </a>
             </div>
           </div>
           <div class="row center-align">
-            <a class="btn-large btn-primary hover-right" data-sr="wait 3s, enter left, move 100px">
+            <a class="btn-xlarge btn-primary hover-right" href="{% url 'blog-create' %}" data-sr="wait 3s, enter left, move 100px">
               Create your blog <i class="material-icons right">arrow_forward</i>
               <i class="material-icons left">library_books</i>
             </a>
@@ -97,45 +111,51 @@
         <div id="read-info" class="row">
           <div class="col m4 s12" data-sr="move 50px, enter left">
             <div class="card-panel">
-              <div class="icon-container">
-                <i class="material-icons">search</i>
-              </div>
-              <h3>Search Articles</h3>
-              <div class="text-container">
-                <span>
-                  Search by text, country or topic. Don't worry, we'll show you what you're looking for!
-                </span>
-              </div>
+              <a href="{% url 'blog-all-posts' %}">
+                <div class="icon-container">
+                  <i class="material-icons">search</i>
+                </div>
+                <h3>Search Articles</h3>
+                <div class="text-container">
+                  <span>
+                    Search by text, country or topic. Don't worry, we'll show you what you're looking for!
+                  </span>
+                </div>
+              </a>
+            </div>
+          </div>
+          <div class="col m4 s12" data-sr="move 50px, enter left, wait 0.25s">
+            <div class="card-panel">
+              <a href="{% url 'blog-map' %}">
+                <div class="icon-container">
+                  <i class="material-icons">map</i>
+                </div>
+                <h3>View on Map</h3>
+                <div class="text-container">
+                  <span>
+                    Get a visual representation of the articles that you're looking for. Works great for looking at a specific country, region or city.
+                  </span>
+                </div>
+              </a>
             </div>
           </div>
           <div class="col m4 s12" data-sr="move 50px, enter left, wait 0.5s">
             <div class="card-panel">
-              <div class="icon-container">
-                <i class="material-icons">map</i>
-              </div>
-              <h3>View on Map</h3>
-              <div class="text-container">
-                <span>
-                  Get a visual representation of the articles that you're looking for. Works great for looking at a specific country, region or city.
-                </span>
-              </div>
-            </div>
-          </div>
-          <div class="col m4 s12" data-sr="move 50px, enter left, wait 1s">
-            <div class="card-panel">
-              <div class="icon-container">
-                <i class="material-icons">dashboard</i>
-              </div>
-              <h3>Add to Stream</h3>
-              <div class="text-container">
-                <span>
-                  Have some bloggers that you like to follow their journey? Add multiple blogs to your stream and get all your favorite articles in one place.
-                </span>
-              </div>
+              <a href="{% url 'blog-map' %}">
+                <div class="icon-container">
+                  <i class="material-icons">dashboard</i>
+                </div>
+                <h3>Add to Stream</h3>
+                <div class="text-container">
+                  <span>
+                    <span class="accent-text">Coming Soon</span> - Have some bloggers that you like to follow their journey? Add multiple blogs to your stream and get all your favorite articles in one place.
+                  </span>
+                </div>
+              </a>
             </div>
           </div>
           <div class="row center-align">
-            <a href="{% url 'blog-all-posts' %}" class="btn-large btn-primary hover-right" data-sr="wait 3s, enter left, move 100px">
+            <a href="{% url 'blog-all-posts' %}" class="btn-xlarge btn-primary hover-right" data-sr="wait 3s, enter left, move 100px">
               Search Articles <i class="material-icons right">arrow_forward</i>
               <i class="material-icons left">search</i>
             </a>
@@ -146,6 +166,26 @@
 
     <section class="map no-padding" id="section-map">
       <div id="home-map"></div>
+    </section>
+
+    <section class="recent-posts">
+      <div class="row" data-sr="enter bottom, move 100px">
+        {% for post in recent_post_list %}
+          <div class="col s12 m4">
+            <div class="card">
+              <div class="card-image">
+                <a href="{{ post.get_absolute_url }}"><img src="{{ post.image.url }}"></a>
+              </div>
+              <div class="card-content">
+                <p>{{ post.headline }}</p>
+              </div>
+              <div class="card-action">
+                <a href="{{ post.get_absolute_url }}">{{ post.title }}</a>
+              </div>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
     </section>
 
     <footer class="page-footer">

@@ -24,7 +24,6 @@
   min-height: 100%;
 }
 
-
 body, html { @extend .full-height; }
 
 img {
@@ -81,9 +80,11 @@ h1, h2, h3, h4 {
 }
 
 .social-icons {
+  margin: 0;
+
   li {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 15px;
+    padding-right: 15px;
     display: inline;
   }
 
@@ -313,6 +314,14 @@ $nav-width: 15%;
       }
     }
 
+    .tabs {
+      li {
+        text-transform: none;
+        font-size: 2.5em;
+        font-weight: 200;
+      }
+    }
+
     .card-row {
       $icon-size: 50px;
       $icon-padding: 8px;
@@ -323,7 +332,16 @@ $nav-width: 15%;
       .card-panel {
         position: relative;
 
-        h3 { text-align: center; }
+        a { color: black; }
+
+        h3 {
+          text-align: center;
+          transition: transform 0.1s ease;
+
+          &:hover {
+            transform: scale(1.1);
+          }
+        }
 
         i {
           @extend .circle;
@@ -443,6 +461,9 @@ $nav-width: 15%;
 
 // ===== 5. BLOG ===== //
 .article-container {
+  @extend .z-depth-2;
+  margin-top: 15px;
+
   h1 { font-size: 2.3em; }
 
   img {
@@ -450,6 +471,20 @@ $nav-width: 15%;
 
     &:hover {
       @extend .z-depth-2;
+    }
+  }
+
+  .post-content {
+    padding: 10px;
+  }
+
+  .post-header {
+    padding: 10px;
+
+    h1 {
+      margin: 0;
+      padding-top: 5px;
+      padding-bottom: 5px;
     }
   }
 }
@@ -473,7 +508,7 @@ $nav-width: 15%;
 }
 
 .blog-home {
-  padding: 1em;
+  padding-bottom: 3em!important;
 
   .modal-trigger {
     color: #333;
@@ -632,8 +667,6 @@ $nav-width: 15%;
     padding: 10px;
     margin: 10px;
     text-align: center;
-
-    img { width: 40%; }
   }
 
   .lower {
@@ -648,6 +681,13 @@ $nav-width: 15%;
     color: white;
     border-radius: $border-radius;
     padding: 10px;
+  }
+}
+
+.auth__header {
+  img {
+    height: 50px;
+    width: 50px;
   }
 }
 

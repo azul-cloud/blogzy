@@ -13,6 +13,7 @@ class HomeView(TemplateView):
     def get_context_data(self, **kwargs):
         context = super(HomeView, self).get_context_data(**kwargs)
         context['post_list'] = Post.objects.map_eligible()
+        context['recent_post_list'] = Post.objects.public()[:3]
         return context
 
 

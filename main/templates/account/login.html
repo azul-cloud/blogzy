@@ -7,7 +7,11 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-  <h1>{% trans "Login" %}</h1>
+  <h1 class="auth__header">
+    <img src="{% static 'img/logo_white.png' %}" class="left">
+      {% trans "Login" %}
+    <img src="{% static 'img/logo_white.png' %}" class="right">
+  </h1>
 
   <div class="socialaccount_ballot">
     {% include "accountinclude/social_providers.html" %}

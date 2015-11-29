@@ -23,11 +23,19 @@
 
     <div class="row inner-content">
       <div class="all-posts container">
-        <div class="row">
-          {% for post in post_list %}
-            {% include "bloginclude/post_preview.html" %}
-          {% endfor %}
-        </div>
+        {% for post in post_list %}
+          {% if forloop.first %}
+            <div class="row">
+          {% endif %}
+          {% if forloop.counter|divisibleby:2 %}
+            <div class="col s12 m6">
+              {% include "bloginclude/post_preview.html" %}
+            </div>
+          {% endif %}
+          {% if forloop.last %}
+            </div>
+          {% endif %}
+        {% endfor %}
       </div>
     </div>
   </div>

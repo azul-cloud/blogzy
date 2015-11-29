@@ -1,7 +1,8 @@
 from django.contrib.auth import get_user_model
+from django.core.urlresolvers import reverse
 from django.db.models import Q
 from django.http import HttpResponse
-from django.views.generic import ListView, TemplateView
+from django.views.generic import ListView, TemplateView, RedirectView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
@@ -65,6 +66,10 @@ class PostSearchView(AllPostsView):
             Q(body__icontains=self.request.POST["search"]))
 
         return self.get(request)
+
+
+# class BlogHomeView(RedirectView):
+#     url = reverse('blog-all-posts')
 
 
 class AllBlogsView(PageMixin, ListView):

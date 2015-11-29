@@ -140,11 +140,10 @@
         $.get('/api/forms/editpost/' + postId + '' ).then(function(data){
           editFormContainer.prepend(data.html);
           $("#edit-post-form").append("{% csrf_token %}");
-
           $('select').material_select();
 
           // need to set a unique id for the body for tinymce
-          editFormContainer.find("#id_body").attr("id", "id_edit_body");
+          editFormContainer.find("#id_body").attr("id", "id_edit_body_" + postId);
           tinymce.init({selector:'textarea', height: 400});
 
           // set active labels where they should be active
@@ -169,6 +168,7 @@
         opacity: 0.25,
         height: "toggle"
       }, 300);
+
       editPostSection.removeClass("hide");
       editPostSection.data("id", postId);
 

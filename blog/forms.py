@@ -65,7 +65,7 @@ class EditPostHelper(FormHelper):
                 css_class="row"
             ),
             Div(
-                Div(Field('body', id="id_edit_body"), css_class="col s12"),
+                Div(Field('body'), css_class="col s12"),
                 css_class="row"
             )
         ),
