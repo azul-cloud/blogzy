@@ -6,8 +6,8 @@ import dj_database_url
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 # SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-DEBUG = False
-TEMPLATE_DEBUG = False
+DEBUG = os.environ.get("DEBUG", False)
+TEMPLATE_DEBUG = DEBUG
 
 if DEBUG:
     STATICFILES_DIRS = (

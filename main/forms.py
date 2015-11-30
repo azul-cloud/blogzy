@@ -1,3 +1,5 @@
+from collections import OrderedDict
+
 from django import forms
 from django.contrib.auth import get_user_model
 
@@ -10,11 +12,19 @@ from crispy_forms.layout import Layout, Fieldset, ButtonHolder, Submit, Div
 class CustomSignupForm(SignupForm):
     first_name = forms.CharField()
     last_name = forms.CharField()
+    base_fields = ['email', 'first_name', 'last_name', 'password1',
+        'password2']
 
     class Meta:
         model = get_user_model()
         fields = ['email', 'first_name', 'last_name', 'password1',
             'password2']
+
+CustomSignupForm.base_fields = OrderedDict(
+        (k, CustomSignupForm.base_fields[k])
+        for k in ['email', 'first_name', 'last_name', 'password1',
+            'password2', 'username']
+)
 
 
 class ProfileUpdateForm(forms.ModelForm):

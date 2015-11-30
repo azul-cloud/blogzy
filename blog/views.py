@@ -6,6 +6,8 @@ from django.views.generic import ListView, TemplateView, RedirectView
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, UpdateView
 
+from braces.views import LoginRequiredMixin
+
 from .models import PersonalBlog, Post
 from .forms import PostCreateForm, PostEditForm, BlogEditForm, BlogCreateForm
 
@@ -116,7 +118,7 @@ class BlogEditView(UpdateView):
     model = PersonalBlog
 
 
-class BlogCreateView(CreateView):
+class BlogCreateView(LoginRequiredMixin, CreateView):
     template_name = "blog/create.html"
     form_class = BlogCreateForm
 
