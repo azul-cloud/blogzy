@@ -29,57 +29,58 @@
   }
 
   // Card Sizes
-  &.small, &.medium, &.large {
-    position: relative;
+  @media(min-width: $small-screen){
+    &.small, &.medium, &.large {
+      position: relative;
 
-    .card-image {
-      overflow: hidden;
+      .card-image {
+        overflow: hidden;
+      }
+      .card-content {
+        overflow: hidden;
+      }
+      .card-action {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+      }
     }
-    .card-content {
-      overflow: hidden;
+
+    &.small {
+      height: 300px;
+
+      .card-image {
+        height: 150px;
+      }
+      .card-content {
+        height: 150px;
+      }
+
     }
-    .card-action {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
+
+    &.medium {
+      height: 400px;
+
+      .card-image {
+        height: 250px;
+      }
+      .card-content {
+        height: 150px;
+      }
+    }
+
+    &.large {
+      height: 500px;
+
+      .card-image {
+        height: 330px;
+      }
+      .card-content {
+        height: 170px;
+      }
     }
   }
-
-  &.small {
-    height: 300px;
-
-    .card-image {
-      height: 150px;
-    }
-    .card-content {
-      height: 150px;
-    }
-
-  }
-
-  &.medium {
-    height: 400px;
-
-    .card-image {
-      height: 250px;
-    }
-    .card-content {
-      height: 150px;
-    }
-  }
-
-  &.large {
-    height: 500px;
-
-    .card-image {
-      height: 330px;
-    }
-    .card-content {
-      height: 170px;
-    }
-  }
-
 
   .card-image {
     position: relative;
