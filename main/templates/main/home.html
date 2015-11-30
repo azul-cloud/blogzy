@@ -35,8 +35,8 @@
       <img src="{% static 'img/landing.jpg' %}">
       <div class="overlay hide-on-small-only">
         <div class="inner">
-          <h1 class="title" data-sr="move 50px, enter bottom, scale up 50%, flip 180deg, over 1.5s">Travel Blog Wave</h1>
-          <h5 data-sr="wait 0.5s, move 50px, enter top"><a class="btn" href="{% url 'blog-create' %}">
+          <h1 class="title" data-sr="move 50px, enter bottom, scale up 100%, flip 180deg, over 1.5s">Travel Blog Wave</h1>
+          <h5 data-sr="move 50px, enter top, scale up 100%, flip -180deg, over 1.5s"><a class="btn" href="{% url 'blog-create' %}">
             Create your travel blog
           </a></h5>
         </div>
@@ -218,27 +218,15 @@
 
 {% block js %}
   {{block.super}}
-  <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
   <script type="text/javascript">
     function scrollMap(){
       $('html, body').animate({
         scrollTop: $("#section-map").offset().top - 62
       }, 2000);
     }
-
-    $(document).ready(function(){
-      // initializations
-      $('.parallax').parallax();
-      $(".button-collapse").sideNav();
-
-      // Create a map object and specify the DOM element for display.
-      var map = new google.maps.Map(document.getElementById('home-map'), {
-        center: {lat: -13.163141, lng: -72.544963},
-        scrollwheel: false,
-        zoom: 4
-      });
-
-      {% include "bloginclude/map_markers.html" %}
-    });
   </script>
+
+  {% with "home-map" as map_id %}
+    {% include "bloginclude/blog_map.html" %}
+  {% endwith %}
 {% endblock %}

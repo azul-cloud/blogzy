@@ -31,7 +31,7 @@
                   {% if request.user.user_blog %}
                     <li>
                       <a {% if page == "myblog" %}class="active"{% endif %} href="{% url 'blog-my-blog' %}">
-                        <i class="material-icons left">settings</i> My Blog
+                        <i class="material-icons left">description</i> My Blog
                       </a>
                     </li>
                   {% else %}

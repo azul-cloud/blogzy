@@ -46,8 +46,11 @@
 
 {% block js %}
   {{block.super}}
-  <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-  <script type="text/javascript">
+  {% with "blog-map" as map_id and personalblog.posts.all as post_list and "blog_home" as initializer %}
+    {% include "bloginclude/blog_map.html" %}
+  {% endwith %}
+
+  <!-- <script type="text/javascript">
     $(document).ready(function(){
       // initializations
       $(".button-collapse").sideNav();
@@ -81,5 +84,5 @@
         {% include "bloginclude/map_markers.html" %}
       {% endwith %}
     });
-  </script>
+  </script> -->
 {% endblock %}

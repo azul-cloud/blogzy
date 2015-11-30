@@ -9,22 +9,7 @@
 
 {% block js %}
   {{block.super}}
-  <script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-  <script>
-    $(document).ready(function(){
-      // remove padding on main element
-      $("main").css("padding-bottom", "0");
-
-      // Create a map object and specify the DOM element for display.
-      var map = new google.maps.Map(document.getElementById('all-blog-map'), {
-        center: {lat: 0, lng: 0},
-        scrollwheel: false,
-        zoom: 2
-      });
-
-      {% for post in post_list %}
-        {% include "bloginclude/map_markers.html" %}
-      {% endfor %}
-    });
-  </script>
+  {% with "all-blog-map" as map_id %}
+    {% include "bloginclude/blog_map.html" %}
+  {% endwith %}
 {% endblock %}

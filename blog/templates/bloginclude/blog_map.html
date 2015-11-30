@@ -1,0 +1,95 @@
+{% load staticfiles %}
+
+<script src="//maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+<script type="text/javascript" src="{% static 'js/oms.min.js' %}"></script>
+
+<script type="text/javascript">
+  function initialize() {
+    var gm = google.maps;
+
+    {% if initializer ==  "blog_home" %}
+      console.log('initializing for blog home');
+
+      {% if last_post_with_loc %}
+        center = {
+          lat: {{last_post_with_loc.lat}},
+          lng: {{last_post_with_loc.lng}}
+        }
+      {% endif %}
+
+      if(!center){
+        center = {
+          lat: 6.244203,
+          lng: -75.581212
+        }
+      }
+    {% endif %}
+
+    if(!center){
+      // default center location
+      var center = new gm.LatLng(0, 0);
+    }
+
+    if(!zoom){
+      var zoom = 2;
+    }
+
+    locationData = [
+      {% for p in post_list %}
+        {% if p.lat and p.lng %}
+          [{{ p.lat }},
+          {{ p.lng }},
+          "{{ p }}",
+          "{{ p.headline }}",
+          "{{ p.get_absolute_url }}",
+          "{% if p.image%}{{ p.image.url }}{% endif %}"],
+        {% endif %}
+      {% endfor %}
+    ]
+
+    var mapOptions = {
+      center: center,
+      zoom: zoom,
+      scrollwheel: false,
+    };
+
+    var map = new gm.Map(document.getElementById("{{ map_id }}"), mapOptions);
+
+    // allow users to click to see markers that are in close proximity
+    var oms = new OverlappingMarkerSpiderfier(map);
+    var infowindow = new gm.InfoWindow({
+      maxWidth: 300,
+    });
+    for (var i in locationData) {
+      var p = locationData[i];
+      var latlng = new gm.LatLng(p[0], p[1]);
+      var marker = new gm.Marker({
+        position: latlng,
+        map: map,
+        icon: '/static/img/map_icon_sm.png',
+        title: p[2],
+        headline: p[3],
+        link: p[4],
+        imgURL: p[5],
+      });
+      var iw = new gm.InfoWindow();
+      oms.addListener('click', function(marker, event) {
+        content = '<div class="info-window">'+
+        '<a href="' + marker.link + '">' +
+        '<h1 class="center-align">'+ marker.title +'</h1>'+
+        '<img src="' + marker.imgURL + '">'+
+        '<h5 class="post-headline accent-text center-align">' + marker.headline + '</h5>'+
+        '</a>'+
+        '</div>'
+
+        // "<a class='brand-light' href='" + marker.link + "'><h3 class='infowindow-title'>" +
+        //   marker.title + "</h3><img class='img-responsive img-info-window' src='" + marker.imgURL + "' /></a> " +
+        //   "<h4 class='text-center skinny'>" + marker.headline + "</p>"
+        iw.setContent(content);
+        iw.open(map, marker);
+      });
+      oms.addMarker(marker);
+    }
+  }
+  google.maps.event.addDomListener(window, 'load', initialize);
+</script>
