@@ -43,6 +43,13 @@
                       </button>
                     </td>
                   </tr>
+                {% empty %}
+                  <div class="center-align">
+                    <p>You have no posts!</p>
+                    <a class="btn-large btn-primary" href="{% url 'blog-post-create' %}">
+                      Write your first <i class="material-icons right">create</i>
+                    </a>
+                  </div>
                 {% endfor %}
               </tbody>
             </table>
