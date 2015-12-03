@@ -38,6 +38,7 @@ INSTALLED_APPS = (
     'storages',
     'rest_framework',
     'crispy_forms',
+    'crispy_forms_materialize',
 
     'allauth',
     'allauth.account',
@@ -167,3 +168,4 @@ REST_FRAMEWORK = {
 
 
 CRISPY_TEMPLATE_PACK = 'materialize'
+CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3', 'materialize')

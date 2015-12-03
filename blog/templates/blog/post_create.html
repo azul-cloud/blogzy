@@ -4,10 +4,8 @@
 {% block sidelayout_content %}
   <h1>Create New Post</h1>
   <div class="container">
-    <form method="post" enctype="multipart/form-data">
-      {% csrf_token %}
-      {% crispy form %}
-    </form>
+    {% csrf_token %}
+    {% crispy form %}
   </div>
 {% endblock %}
 
