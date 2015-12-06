@@ -60,11 +60,6 @@ class EditPostHelper(FormHelper):
                 css_class="row"
             ),
             Div(
-                Div(Field('public', id="id_edit_public"),
-                    css_class="col m6 offset-m3 s12"),
-                css_class="row"
-            ),
-            Div(
                 Div(Field('body'), css_class="col s12"),
                 css_class="row"
             )

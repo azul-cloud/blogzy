@@ -7,7 +7,7 @@
       <nav class="nav-icons">
         <div class="nav-wrapper">
           <a href="#" class="brand-logo center">
-            {% include 'maininclude/logo.html' %}
+            <img src="{% static 'img/logo_light.png' %}">
           </a>
           <ul class="left">
             <li class="hover-right">
@@ -169,6 +169,9 @@
     </section>
 
     <section class="recent-posts">
+      <div class="row">
+        <h2 class="center-align">Recent Posts</h2>
+      </div>
       <div class="row" data-sr="enter bottom, move 100px">
         {% for post in recent_post_list %}
           <div class="col s12 m4">

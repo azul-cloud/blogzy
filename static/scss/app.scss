@@ -320,6 +320,10 @@ $nav-width: 15%;
         text-transform: none;
         font-size: 2.5em;
         font-weight: 200;
+
+        a.active {
+          font-weight: 300;
+        }
       }
     }
 
@@ -686,6 +690,8 @@ $nav-width: 15%;
 }
 
 .auth__header {
+  color: white;
+  
   img {
     height: 50px;
     width: 50px;

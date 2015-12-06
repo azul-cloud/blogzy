@@ -20,6 +20,9 @@
         </ul>
       </div>
       <div id="register" class="col s12 m8 offset-m2">
+        <div class="row center-align">
+          {% include "accountinclude/social_providers.html" %}
+        </div>
         <div class="row">
           <form class="col s12" action="/accounts/signup/" method="post">
             {% csrf_token %}
@@ -56,6 +59,9 @@
         </div>
       </div>
       <div id="login" class="col s12 m8 offset-m2">
+        <div class="row center-align">
+          {% include "accountinclude/social_providers.html" %}
+        </div>
         <div class="row">
           <form class="col s12" action="/accounts/login/" method="post">
             {% csrf_token %}
