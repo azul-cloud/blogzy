@@ -1,3 +1,5 @@
+{% load staticfiles %}
+
 <script>
   function initMap(mapId, lat, lng) {
     /* Used to edit or create posts. */
@@ -51,11 +53,14 @@
 
     map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
 
+    var markerIcon = "{% static 'img/map_icon_sm.png' %}";
+
     if(markerPosition()){
       var position = markerPosition();
 
       var marker = new google.maps.Marker({
         map: map,
+        icon: markerIcon,
         position: {
           lat: position.lat,
           lng: position.lng
@@ -92,7 +97,6 @@
 
       createField.val(place.place_id);
       editField.val(place.place_id);
-      console.log(createField.val());
     });
   };
 </script>
