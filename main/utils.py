@@ -6,7 +6,6 @@ from django.utils.functional import allow_lazy
 from django.utils.safestring import mark_safe
 
 
-
 def get_place_details(place_id):
     property_search_prefix = "https://maps.googleapis.com/maps/api/place/details/"
     data_type = "json"

@@ -1,3 +1,5 @@
+from random import randint
+
 from django import forms
 from django.core.urlresolvers import reverse
 
@@ -5,6 +7,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Layout, HTML, Field, Fieldset, ButtonHolder, Submit, Div
 
 from .models import Post, PersonalBlog
+from .utils import get_edit_post_layout
 
 
 class PostHelper(FormHelper):
@@ -40,34 +43,8 @@ class PostHelper(FormHelper):
 
 class EditPostHelper(FormHelper):
     "Need to change the id of various fields because they break JS"
-    layout = Layout(
-        Fieldset(
-            '',
-            Field('place_id', id="id_edit_place_id"),
-            Div(
-                Div('title', css_class="col s12 m4"),
-                Div('headline', css_class="col s12 m8"),
-                css_class="row"
-            ),
-            Div(
-                HTML('<input id="post-edit-map-input" class="controls" type="text" placeholder="Enter a location"><div id="post-edit-map" class="blog-form-map"></div>'),
-                Div('public', css_class="col m6 s12"),
-                css_class="row"
-            ),
-            Div(
-                Div('image', css_class="col m6 s12"),
-                Div('image_description', css_class="col m6 s12"),
-                css_class="row"
-            ),
-            Div(
-                Div(Field('body'), css_class="col s12"),
-                css_class="row"
-            )
-        ),
-        ButtonHolder(
-            Submit('submit', 'Save', css_class='btn right hover-right')
-        )
-    )
+
+    layout = get_edit_post_layout()
 
 
 class PostCreateForm(forms.ModelForm):
@@ -83,11 +60,13 @@ class PostCreateForm(forms.ModelForm):
 
 
 class PostEditForm(PostCreateForm):
+
     def __init__(self, *args, **kwargs):
         super(PostEditForm, self).__init__(*args, **kwargs)
-        self.helper = EditPostHelper()
+        self.helper = FormHelper()
         self.helper.form_id = "edit-post-form"
         self.helper.form_action = reverse('blog-edit-post', kwargs={'pk': self.instance.id})
+        self.helper.layout = get_edit_post_layout(instance=self.instance)
 
     class Meta:
         model = Post

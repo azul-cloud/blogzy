@@ -148,9 +148,6 @@
           editFormContainer.prepend(data.html);
           $("#edit-post-form").append("{% csrf_token %}");
           $('select').material_select();
-
-          // need to set a unique id for the body for tinymce
-          editFormContainer.find("#id_body").attr("id", "id_edit_body_" + postId);
           tinymce.init({selector:'textarea', height: 400});
 
           // set active labels where they should be active
