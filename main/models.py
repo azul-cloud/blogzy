@@ -36,11 +36,14 @@ class User(AbstractUser):
     def get_user_image_upload_path(instance, filename):
         return os.path.join('users/' + str(instance.id) + '/' + filename)
 
+    bio = models.CharField(max_length=1000, blank=True, null=True,
+        help_text="Let people know who's behind the articles.")
     image = ProcessedImageField(blank=True, null=True,
                                upload_to=get_user_image_upload_path,
                                processors=[ResizeToFill(250, 250)],
                                format='JPEG',
-                               options={'quality': 70})
+                               options={'quality': 70},
+                               help_text="A nice picture of yours truly")
 
     def __str__(self):
         return self.email

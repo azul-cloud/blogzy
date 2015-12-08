@@ -36,7 +36,9 @@
   <div id="blog-description-modal" class="modal">
     <div class="modal-content">
       <h4>{{ personalblog.title }}</h4>
-      <p>{{ personalblog.description|safe }}</p>
+      <section class="blog-description-wrapper">
+        {{ personalblog.description|safe }}
+      </section>
     </div>
     <div class="modal-footer">
       <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Close</a>
@@ -50,39 +52,11 @@
     {% include "bloginclude/blog_map.html" %}
   {% endwith %}
 
-  <!-- <script type="text/javascript">
+  <script type="text/javascript">
     $(document).ready(function(){
       // initializations
       $(".button-collapse").sideNav();
       $('.modal-trigger').leanModal();
-
-      // Create a map object and specify the DOM element for display.
-
-      var center;
-
-      {% if last_post_with_loc %}
-        center = {
-          lat: {{last_post_with_loc.lat}},
-          lng: {{last_post_with_loc.lng}}
-        }
-      {% endif %}
-
-      if(!center){
-        center = {
-          lat: 6.244203,
-          lng: -75.581212
-        }
-      }
-
-      var map = new google.maps.Map(document.getElementById('blog-map'), {
-        center,
-        scrollwheel: false,
-        zoom: 4
-      });
-
-      {% with personalblog.posts.all as post_list %}
-        {% include "bloginclude/map_markers.html" %}
-      {% endwith %}
     });
-  </script> -->
+  </script>
 {% endblock %}

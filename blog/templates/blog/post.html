@@ -16,28 +16,31 @@
       </section>
 
       <section class="blog-article__footer row">
-        <div class="col s5 m3">
-          {% with post.blog.owner as author %}
+        {% with post.blog.owner as author %}
+          <div class="col s5 m3">
             {% if author.image %}
               <img src="{{author.image.url}}" class="circle" alt="{{author.first_name}} {{author.last_name}}">
             {% else %}
               <img src="{% static 'img/logo_dark.png' %}" class="circle">
             {% endif %}
-          {% endwith %}
-        </div>
-        <div class="col s7 m9">
-          <p class="signature">
-            Written by {{post.blog.owner.get_full_name}} on {{post.create_date}}
-          </p>
-          <p class="social-row">
-            {% if post.blog.twitter %}
-              <a href="https://twitter.com/{{post.blog.twitter}}"> <i class="fa fa-2x fa-twitter"></i></a>
-            {% endif %}
-            {% if post.blog.facebook %}
-              <a href="https://facebook.com/{{post.blog.facebook}}"> <i class="fa fa-2x fa-facebook"></i></a>
-            {% endif %}
-          </p>
-        </div>
+          </div>
+          <div class="col s7 m9">
+            <p class="signature">
+              Written by {{ author.get_full_name }} on {{ post.create_date }}
+            </p>
+            <p class="social-row">
+              {% if post.blog.twitter %}
+                <a href="https://twitter.com/{{post.blog.twitter}}"> <i class="fa fa-2x fa-twitter"></i></a>
+              {% endif %}
+              {% if post.blog.facebook %}
+                <a href="https://facebook.com/{{post.blog.facebook}}"> <i class="fa fa-2x fa-facebook"></i></a>
+              {% endif %}
+            </p>
+            <p>
+              {{ author.bio }}
+            </p>
+          </div>
+        {% endwith %}
       </section>
 
       <div class="footer-button-container">

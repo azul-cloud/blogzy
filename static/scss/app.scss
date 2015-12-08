@@ -127,6 +127,13 @@ h1, h2, h3, h4 {
   }
 }
 
+.strip-format {
+  font-weight: normal!important;
+  font-style: normal!important;
+  font-size: 1em!important;
+  text-align: left!important;
+}
+
 @media(max-width:$small-screen){
   .nav-icons {
     i { line-height: $navbar-height-mobile; }
@@ -605,6 +612,10 @@ $nav-width: 15%;
 
     &:hover { @include filter(grayscale(50%)); }
   }
+
+  .card-reveal h1, h2, h3, h4, h5, p, em {
+    @extend .strip-format;
+  }
 }
 
 .my-blog {
@@ -691,7 +702,7 @@ $nav-width: 15%;
 
 .auth__header {
   color: white;
-  
+
   img {
     height: 50px;
     width: 50px;

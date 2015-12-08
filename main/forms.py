@@ -29,6 +29,8 @@ CustomSignupForm.base_fields = OrderedDict(
 
 class ProfileUpdateForm(forms.ModelForm):
     first_name = forms.CharField(required=True)
+    bio = forms.CharField(required=False, widget=forms.TextInput(attrs={
+        'placeholder': '<John> lives in <blah blah> doing <blah blah> while also selling cookies.' }))
 
     def __init__(self, *args, **kwargs):
         super(ProfileUpdateForm, self).__init__(*args, **kwargs)
@@ -45,6 +47,10 @@ class ProfileUpdateForm(forms.ModelForm):
                     Div('image', css_class="col s12"),
                     css_class="row"
                 ),
+                Div(
+                    Div('bio', css_class="col s12"),
+                    css_class="row"
+                ),
             ),
             ButtonHolder(
                 Submit('submit', 'Save', css_class='btn right hover-right')
@@ -53,5 +59,5 @@ class ProfileUpdateForm(forms.ModelForm):
 
     class Meta:
         model = get_user_model()
-        fields = ["first_name", "last_name",  "image"]
+        fields = ["first_name", "last_name",  "image", "bio"]
         # required = ["first_name"]
