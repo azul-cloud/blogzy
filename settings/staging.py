@@ -8,7 +8,6 @@ import dj_database_url
 
 DEBUG = os.environ.get("DEBUG", False)
 TEMPLATE_DEBUG = DEBUG
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # Allow all host headers
 # ALLOWED_HOSTS = ['http://tbwvtest.herokuapp.com/']
