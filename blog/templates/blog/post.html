@@ -36,9 +36,9 @@
                 <a href="https://facebook.com/{{post.blog.facebook}}"> <i class="fa fa-2x fa-facebook"></i></a>
               {% endif %}
             </p>
-            <p>
-              {{ author.bio }}
-            </p>
+            {% if author.bio %}
+              <p>{{ author.bio }}</p>
+            {% endif %}
           </div>
         {% endwith %}
       </section>
