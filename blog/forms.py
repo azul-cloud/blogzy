@@ -109,8 +109,7 @@ class BlogEditForm(forms.ModelForm):
 
 
 class BlogCreateForm(forms.ModelForm):
-    description = forms.CharField(required=False, widget=forms.Textarea)
-
+    
     def __init__(self, *args, **kwargs):
         super(BlogCreateForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper()
