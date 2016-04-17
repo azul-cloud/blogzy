@@ -1,4 +1,4 @@
-Django==1.7.11
+Django==1.9.5
 Pillow==3.0.0
 SQLAlchemy==1.0.6
 South==1.0.2
@@ -10,18 +10,18 @@ argparse==1.3.0
 beautifulsoup4==4.3.2
 billiard==3.3.0.19
 boto==2.36.0
--e git+git://github.com/awwester/crispy-forms-materialize.git@10e8ed0ddf78e8468b70c8797e56746f6cdbb8ac#egg=crispy_forms_materialize-master
+-e git+git@github.com:awwester/crispy-forms-materialize.git@1c0b9bda13bb4abad140d60b4a10b9ab6bbfdac2#egg=crispy_forms_materialize-master
 defusedxml==0.4.1
 dj-database-url==0.3.0
 dj-static==0.0.6
-django-allauth==0.23.0
+django-allauth==0.25.2
 django-appconf==1.0.1
 django-braces==1.4.0
 django-common-helpers==0.6.3
 django-crispy-forms==1.5.2
 django-cron==0.3.5
 django-filter==0.10.0
-django-imagekit==3.2.6
+django-imagekit==3.3
 django-postgrespool==0.3.0
 django-storages-redux==1.3
 django-tastypie==0.12.1
@@ -35,17 +35,17 @@ gunicorn==19.0.0
 html5lib==0.999
 kombu==3.0.24
 oauthlib==1.0.3
-pilkit==1.1.12
+pilkit==1.1.13
 psycopg2==2.5.3
 python-dateutil==2.3
 python-mimeparse==0.1.4
 python-openid==2.2.5
-python3-openid==3.0.9
+python3-openid==3.0.10
 pytz==2014.10
 redis==2.10.3
-requests==2.8.1
-requests-oauthlib==0.5.0
-six==1.8.0
+requests==2.9.1
+requests-oauthlib==0.6.1
+six==1.10.0
 static3==0.5.1
 waitress==0.8.9
 whitenoise==2.0.2

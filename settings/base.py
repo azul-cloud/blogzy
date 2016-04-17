@@ -58,11 +58,6 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-TEMPLATE_CONTEXT_PROCESSORS = (
-    'django.core.context_processors.request',
-    "django.contrib.auth.context_processors.auth",
-)
-
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -75,8 +70,6 @@ TEMPLATES = [
 
                 # allauth context processors
                 'django.template.context_processors.request',
-                "allauth.account.context_processors.account",
-                "allauth.socialaccount.context_processors.socialaccount",
             ],
         },
     },
