@@ -13,7 +13,7 @@ if DEBUG:
 else:
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-AWS_STORAGE_BUCKET_NAME = 'travelblogwave.media'
+AWS_S3_BUCKET_NAME = 'travelblogwave.media'
 
 MAILGUN_SERVER_NAME = 'travelblogwave.com'
 

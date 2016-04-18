@@ -35,7 +35,7 @@ INSTALLED_APPS = (
     'blog',
 
     'braces',
-    'storages',
+    'django_s3_storage',
     'rest_framework',
     'crispy_forms',
     'crispy_forms_materialize',
@@ -147,12 +147,11 @@ GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
 
 
 # AWS
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
-AWS_S3_SECURE_URLS = False       # use http instead of https
-AWS_QUERYSTRING_AUTH = False     # don't add complex authentication-related query parameters for requests
+AWS_REGION = "us-west-2"
+DEFAULT_FILE_STORAGE = 'django_s3_storage.storage.S3Storage'
 AWS_S3_ACCESS_KEY_ID = os.environ['S3_KEY']
 AWS_S3_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
-AWS_STORAGE_BUCKET_NAME = 'dev.travelblogwave.media'
+AWS_S3_BUCKET_NAME = 'dev.travelblogwave.media'
 
 
 REST_FRAMEWORK = {
