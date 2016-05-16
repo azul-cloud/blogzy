@@ -148,7 +148,17 @@
           editFormContainer.prepend(data.html);
           $("#edit-post-form").append("{% csrf_token %}");
           $('select').material_select();
-          tinymce.init({selector:'textarea', height: 400});
+
+          tinymce.init({
+            selector:'textarea',
+            height: 400,
+            plugins: [
+                "advlist autolink lists link image charmap print preview anchor",
+                "searchreplace visualblocks code fullscreen",
+                "insertdatetime media table contextmenu paste"
+            ],
+            menubar: 'edit insert format tools'
+          });
 
           // set active labels where they should be active
           var textInputArray = $("#edit-post-form input[type='text']");
