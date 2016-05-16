@@ -3,17 +3,10 @@ from .staging import *
 
 # Allow all host headers
 
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
-# if DEBUG:
-#     STATICFILES_DIRS = (
-#         os.path.join(BASE_DIR, 'static'),
-#     )
-# else:
-#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 AWS_S3_BUCKET_NAME = 'travelblogwave.media'
 
