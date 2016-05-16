@@ -149,8 +149,8 @@ GOOGLE_API_KEY = os.environ['GOOGLE_API_KEY']
 # AWS
 AWS_REGION = "us-west-2"
 DEFAULT_FILE_STORAGE = 'django_s3_storage.storage.S3Storage'
-AWS_S3_ACCESS_KEY_ID = os.environ['S3_KEY']
-AWS_S3_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
+AWS_ACCESS_KEY_ID = os.environ['S3_KEY']
+AWS_SECRET_ACCESS_KEY = os.environ['S3_SECRET']
 AWS_S3_BUCKET_NAME = 'dev.travelblogwave.media'
 
 
