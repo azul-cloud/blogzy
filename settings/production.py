@@ -6,7 +6,7 @@ from .staging import *
 DEBUG = False
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['http://www.travelblogwave.com/']
+ALLOWED_HOSTS = ['*']
 
 # if DEBUG:
 #     STATICFILES_DIRS = (
