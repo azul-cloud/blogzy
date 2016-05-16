@@ -6,12 +6,14 @@ from .staging import *
 DEBUG = False
 TEMPLATE_DEBUG = False
 
-if DEBUG:
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
-else:
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+ALLOWED_HOSTS = ['http://www.travelblogwave.com/']
+
+# if DEBUG:
+#     STATICFILES_DIRS = (
+#         os.path.join(BASE_DIR, 'static'),
+#     )
+# else:
+#     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 AWS_S3_BUCKET_NAME = 'travelblogwave.media'
 
