@@ -1,12 +1,10 @@
 from .staging import *
 
 
-# Allow all host headers
-
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['travelblogwave.com']
 
 AWS_S3_BUCKET_NAME = 'travelblogwave.media'
 
