@@ -1,6 +1,7 @@
 from rest_framework.serializers import ModelSerializer
 
-from .models import PersonalBlog, Post
+from ..models import PersonalBlog, Post
+
 
 class BlogSerializer(ModelSerializer):
     class Meta:

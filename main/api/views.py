@@ -2,10 +2,18 @@ from django.template import Context
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
 from crispy_forms.templatetags.crispy_forms_tags import CrispyFormNode
 
 from blog.models import Post
 from blog.forms import PostEditForm, EditPostHelper
+from ..models import Feedback
+from .serializers import FeedbackSerializer
+
+
+class FeedbackViewSet(ModelViewSet):
+    queryset = Feedback.objects.all()
+    serializer_class = FeedbackSerializer
 
 
 class EditPostFormHtml(APIView):

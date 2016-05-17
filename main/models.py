@@ -29,6 +29,19 @@ class TimeStampedModel(models.Model):
         abstract = True
 
 
+class Feedback(models.Model):
+    """
+    Collect feedback from users about bugs & enhancements
+    """
+    name = models.CharField(max_length=100, null=False, blank=False)
+    email = models.EmailField(null=False, blank=False)
+    feedback = models.TextField()
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return "%s - %s" % (self.name, self.email)
+
+
 class User(AbstractUser):
     """
     Extended User class
