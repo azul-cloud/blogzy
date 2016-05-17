@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ReadOnlyModelViewSet
 
-from .models import PersonalBlog, Post
+from ..models import PersonalBlog, Post
 from .serializers import BlogSerializer, PostSerializer
 
 
