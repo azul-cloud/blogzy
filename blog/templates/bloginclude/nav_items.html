@@ -4,13 +4,13 @@
   </a>
 </li>
 <li>
-  <a {% if page == "blogs" %}class="active"{% endif %} href="{% url 'blog-all-blogs' %}">
-    <i class="material-icons left">whatshot</i> Blogs
+  <a {% if page == "map" %}class="active"{% endif %} href="{% url 'blog-map' %}">
+    <i class="material-icons left">map</i> Map
   </a>
 </li>
 <li>
-  <a {% if page == "map" %}class="active"{% endif %} href="{% url 'blog-map' %}">
-    <i class="material-icons left">map</i> Map
+  <a class="modal-trigger" href="#feedback-modal">
+    <i class="material-icons left">send</i> Feedback
   </a>
 </li>
 

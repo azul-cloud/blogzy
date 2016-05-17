@@ -66,6 +66,43 @@
     {% endblock %}
 
     {% block sidelayout_right %}{% endblock %}
+    <div id="feedback-modal" class="modal modal-fixed-footer">
+      <div class="modal-content">
+        <h4>Help Us Help You</h4>
+        <div class="row">
+          <p class="col s12">We want to make this the best travel blogging platform, but we need help from YOU. Please let us know if you find any bugs or have any ideas that you would like to see implemented.</p>
+        </div>
+        <div class="row">
+          <form class="col s12">
+            <div class="row">
+              <div class="input-field col s6">
+                <i class="material-icons prefix">account_circle</i>
+                <input id="name" type="text" value="{{request.user.get_full_name}}">
+                <label for="name">Name (optional)</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">mail</i>
+                <input id="email" type="text" value="{{request.user.email}}">
+                <label for="email">Email (optional)</label>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <i class="material-icons prefix">create</i>
+                <textarea id="feedback-textarea" class="materialize-textarea"></textarea>
+                <label for="feedback-textarea">Feedback (required, Duh!)</label>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" class=" modal-action modal-close waves-effect btn-flat" onclick="sendFeedback()">
+          <i class="material-icons right">send</i>
+          Send
+        </a>
+      </div>
+    </div>
   </div>
 {% endblock %}
 
@@ -74,6 +111,15 @@
   <script type="text/javascript">
     $(document).ready(function(){
       $(".button-collapse").sideNav();
+      $('.modal-trigger').leanModal();
     });
+
+    var sendFeedback = function(){
+      console.log('sending feedback...');
+      Materialize.toast('Feedback sent, thanks!', 3000);
+
+      // clear feedback textarea
+      $("#feedback-textarea").val("");
+    }
   </script>
 {% endblock %}
