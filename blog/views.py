@@ -57,6 +57,12 @@ class AllPostsView(PageMixin, ListView):
     template_name = "blog/all_posts.html"
     model = Post
     page = "posts"
+    paginate_by = 16
+
+    def get_context_data(self, **kwargs):
+        context = super(AllPostsView, self).get_context_data(**kwargs)
+        context['range'] = range(context["paginator"].num_pages)
+        return context
 
 
 class PostSearchView(AllPostsView):
@@ -68,10 +74,6 @@ class PostSearchView(AllPostsView):
             Q(body__icontains=self.request.POST["search"]))
 
         return self.get(request)
-
-
-# class BlogHomeView(RedirectView):
-#     url = reverse('blog-all-posts')
 
 
 class AllBlogsView(PageMixin, ListView):
