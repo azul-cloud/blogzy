@@ -33,8 +33,8 @@ class Feedback(models.Model):
     """
     Collect feedback from users about bugs & enhancements
     """
-    name = models.CharField(max_length=100, null=False, blank=False)
-    email = models.EmailField(null=False, blank=False)
+    name = models.CharField(max_length=100, null=True, blank=True)
+    email = models.EmailField(null=True, blank=True)
     feedback = models.TextField()
     created = models.DateTimeField(auto_now_add=True)
 

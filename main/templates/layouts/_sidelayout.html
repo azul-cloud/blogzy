@@ -77,13 +77,13 @@
             <div class="row">
               <div class="input-field col s6">
                 <i class="material-icons prefix">account_circle</i>
-                <input id="name" type="text" value="{{request.user.get_full_name}}">
-                <label for="name">Name (optional)</label>
+                <input id="feedback-name" type="text" value="{{request.user.get_full_name}}">
+                <label for="feedback-name">Name (optional)</label>
               </div>
               <div class="input-field col s6">
                 <i class="material-icons prefix">mail</i>
-                <input id="email" type="text" value="{{request.user.email}}">
-                <label for="email">Email (optional)</label>
+                <input id="feedback-email" type="text" value="{{request.user.email}}">
+                <label for="feedback-email">Email (optional)</label>
               </div>
             </div>
             <div class="row">
@@ -97,7 +97,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a href="#!" class=" modal-action modal-close waves-effect btn-flat" onclick="sendFeedback()">
+        <a href="#!" class="modal-action waves-effect btn-flat" onclick="sendFeedback()">
           <i class="material-icons right">send</i>
           Send
         </a>
@@ -115,11 +115,29 @@
     });
 
     var sendFeedback = function(){
-      console.log('sending feedback...');
-      Materialize.toast('Feedback sent, thanks!', 3000);
+      var modal = $('#feedback-modal');
+      var feedback = $("#feedback-textarea").val();
 
-      // clear feedback textarea
-      $("#feedback-textarea").val("");
+      if(feedback){
+        var promise = $.post("/api/feedback/", {
+          feedback: feedback,
+          name: $("#feedback-name").val(),
+          email: $("#feedback-email").val()
+        })
+
+        promise.then(function(data){
+          console.log('success', data);
+          Materialize.toast('Feedback sent, thanks!', 3000);
+          modal.closeModal();
+        }, function(err){
+          console.log('error', err);
+        });
+
+        // clear feedback textarea
+        $("#feedback-textarea").val("");
+      } else {
+        Materialize.toast('Feedback is Required!', 3000);
+      }
     }
   </script>
 {% endblock %}
