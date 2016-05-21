@@ -9,7 +9,7 @@ argparse==1.3.0
 beautifulsoup4==4.3.2
 billiard==3.3.0.19
 boto==2.39.0
--e git://github.com/awwester/crispy-forms-materialize.git@1c0b9bda13bb4abad140d60b4a10b9ab6bbfdac2#egg=crispy_forms_materialize-origin/HEAD
+-e git://github.com/awwester/crispy-forms-materialize.git@1c0b9bda13bb4abad140d60b4a10b9ab6bbfdac2#egg=crispy_forms_materialize
 defusedxml==0.4.1
 dj-database-url==0.3.0
 dj-static==0.0.6
