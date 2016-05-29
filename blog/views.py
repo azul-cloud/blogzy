@@ -49,15 +49,15 @@ class BlogPostView(DetailView):
 
 class BlogMapView(PageMixin, ListView):
     template_name = "blog/map.html"
-    model = Post
+    queryset = Post.objects.filter(public=True)
     page = "map"
 
 
 class AllPostsView(PageMixin, ListView):
     template_name = "blog/all_posts.html"
-    model = Post
     page = "posts"
     paginate_by = 16
+    queryset = Post.objects.filter(public=True)
 
     def get_context_data(self, **kwargs):
         context = super(AllPostsView, self).get_context_data(**kwargs)
@@ -71,7 +71,8 @@ class PostSearchView(AllPostsView):
         self.queryset = Post.objects.filter(
             Q(title__icontains=self.request.POST["search"]) |
             Q(headline__icontains=self.request.POST["search"]) |
-            Q(body__icontains=self.request.POST["search"]))
+            Q(body__icontains=self.request.POST["search"]),
+            public=True)
 
         return self.get(request)
 
