@@ -13,7 +13,7 @@
         <div class="col s4">
           <button type="submit" class="btn btn-primary">Go</button>
           {% if request.method == "POST" %}
-            <a href="{% url 'blog-all-posts' %}" class="btn">
+            <a href="{% url 'blog-all-posts' %}" class="btn hide-on-small-only">
               <i class="material-icons">clear</i>
             </a>
           {% endif %}
