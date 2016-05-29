@@ -33,6 +33,17 @@
           {% if forloop.last or forloop.counter|divisibleby:2 %}
             </div>
           {% endif %}
+        {% empty %}
+        <div class="row">
+          <div class="col s12 m6 offset-m3">
+            <div class="card-secondary">
+              <div class="card-content">
+                <span class="card-title">No Posts</span>
+                <p>There were no posts that have your searched text in its title, headling, or article.</p>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endfor %}
       </div>
       {% if is_paginated %}

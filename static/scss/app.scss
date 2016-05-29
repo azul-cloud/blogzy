@@ -162,7 +162,7 @@ $nav-width: 15%;
   @extend .full-height;
 
   nav {
-    background: #333;
+    background: $brand-dark;
     ul {
       li {
         i { line-height: $i-line-height; }
@@ -220,7 +220,7 @@ $nav-width: 15%;
 
             &.active {
               background-color: $tertiary-color;
-              color: #333;
+              color: $brand-dark;
               font-weight: 400;
             }
           }
@@ -524,7 +524,7 @@ $nav-width: 15%;
   padding-bottom: 3em!important;
 
   .modal-trigger {
-    color: #333;
+    color: $brand-dark;
   }
 }
 
@@ -637,7 +637,7 @@ $nav-width: 15%;
   .input-field {
     margin-top: 1em;
 
-    label { color: #333; }
+    label { color: $brand-dark; }
 
     select { height: 100px; }
   }
@@ -822,4 +822,17 @@ input[type="checkbox"] + label {
   .card-title {
     color: white;
   }
+}
+
+.card-dark {
+  @extend .card;
+
+  background-color: $brand-dark;
+  color: white;
+}
+
+.card-secondary {
+  @extend .card;
+
+  background-color: $secondary-color;
 }
