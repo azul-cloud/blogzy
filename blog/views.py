@@ -76,12 +76,6 @@ class PostSearchView(AllPostsView):
         return self.get(request)
 
 
-class AllBlogsView(PageMixin, ListView):
-    template_name = "blog/all_blogs.html"
-    model = PersonalBlog
-    page = "blogs"
-
-
 class MyBlogView(PageMixin, DetailView):
     template_name = "blog/my_blog.html"
     page = "myblog"
