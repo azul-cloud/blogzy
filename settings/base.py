@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'rest_framework',
     'crispy_forms',
     'crispy_forms_materialize',
+    'corsheaders',
 
     'allauth',
     'allauth.account',
@@ -48,6 +49,7 @@ INSTALLED_APPS = (
 )
 
 MIDDLEWARE_CLASSES = (
+    'corsheaders.middleware.CorsMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -161,3 +163,17 @@ REST_FRAMEWORK = {
 
 CRISPY_TEMPLATE_PACK = 'materialize'
 CRISPY_ALLOWED_TEMPLATE_PACKS = ('bootstrap', 'uni_form', 'bootstrap3', 'materialize')
+
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8100',
+)
+
+CORS_ALLOW_METHODS = (
+    'GET',
+    # 'POST',
+    # 'PUT',
+    # 'PATCH',
+    # 'DELETE',
+    # 'OPTIONS'
+)
